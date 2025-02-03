@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Permite criar releases e fazer upload de assets
+      packages: write  # Permite publicar pacotes (opcional, se necessário)
 
     steps:
       - name: Checkout code
@@ -27,7 +30,11 @@ jobs:
       - name: Archive build artifacts
         run: |
           mkdir -p release
-          tar -czvf release/dragoid.tar.gz bin/ # ou o diretório onde está o build
+          tar -czvf release/dragoid.tar.gz -C ./bin . # ou o diretório onde está o build
+
+      - name: Debug release archive
+        run: |
+          tar -tzvf release/dragoid.tar.gz
 
       - name: Create Release
         id: create_release
