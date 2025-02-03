@@ -24,21 +24,28 @@ jobs:
       - name: Build CLI
         run: npm run build  # Adapte esse comando conforme sua CLI
 
-      - name: Create a zip file of the binary
-        run: |
-          mkdir release
-          zip -r release/dragoid.zip ./bin  # Zipando os arquivos da pasta bin
+     - name: Archive build artifacts
+      run: |
+        mkdir -p release
+        tar -czvf release/dragoid.tar.gz bin/ # ou o diretório onde está o build
 
-      - name: Create GitHub release
-        uses: softprops/action-gh-release@v1
-        with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          body: Release notes for ${{ github.ref }}
-          draft: false
-          prerelease: false
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: false
 
-      - name: Upload binary zip to GitHub release
-        uses: softprops/action-gh-release@v1
-        with:
-          files: release/dragoid.zip  # Especificando o arquivo a ser enviado
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./release/dragoid.tar.gz
+        asset_name: dragoid.tar.gz
+        asset_content_type: application/gzip
