@@ -31,3 +31,9 @@ Para baixar uma novel ou capítulo, use os seguintes comandos:
 - Capítulo
   - [x] JSON
   - [ ] HTML
+
+## Sites suportados
+ Para ver a lista de sites suportados, use o comando:
+ ```bash
+ dragoid --list-crawlers
+ ```
