@@ -1,0 +1,23 @@
+{
+  "name": "dragoid",
+  "version": "0.0.1",
+  "description": "dragoid is a command-line tool that allows you to download entire novels or individual chapters from various websites using crawlers. Simply specify the mode (novel or chapter) and provide the URL to start downloading your favorite stories directly to your preferred format.",
+  "type": "module",
+  "scripts": {
+    "dev": "NODE_NO_WARNINGS=1 node --experimental-strip-types ./src/main.ts",
+    "build": "npx esbuild src/main.ts --bundle --platform=node --target=node22.13.1 --outfile=./bin/dragoid --format=esm --banner:js='import { createRequire as topLevelCreateRequire } from \"module\";\n const require = topLevelCreateRequire(import.meta.url);'  ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "lucasfernandodev",
+  "license": "ISC",
+  "dependencies": {
+    "@types/yargs": "^17.0.33",
+    "cheerio": "^1.0.0",
+    "esbuild": "^0.24.2",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.0"
+  }
+}
