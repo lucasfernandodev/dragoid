@@ -30,7 +30,7 @@ jobs:
           zip -r release/dragoid.zip ./bin  # Zipando os arquivos da pasta bin
 
       - name: Create GitHub release
-        uses: ghcr.io/github-actions/create-release@v1
+        uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
