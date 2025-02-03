@@ -2,4 +2,32 @@
 
 # Dragoid
 
-Dragoid is a command-line tool that allows you to download entire novels or individual chapters from various websites using crawlers. Simply specify the mode (novel or chapter) and provide the URL to start downloading your favorite stories directly to your preferred format.
+O dragoid CLI é uma ferramenta de linha de comando para baixar novels e capítulos de sites suportados. Ele oferece opções para escolher o formato de saída e listar os sites e formatos suportados.
+
+## Requisitos
+
+- Node.js v22.13.1 ou superior.
+
+## Usos
+
+Para baixar uma novel ou capítulo, use os seguintes comandos:
+
+- **Para baixar uma novel**:
+  ```bash
+  dragoid --mode=novel --url=<URL_DA_NOVEL> --output-format=<FORMATO>
+  ```
+
+- **Baixar um capítulo**:
+  ```bash
+  dragoid --mode=chapter --url=<URL_DA_NOVEL> --output-format=<FORMATO>
+  ```
+
+## Formatos de download suportados
+
+- Novel
+  - [x] JSON
+  - [ ] HTML
+  - [ ] EPUB
+- Capítulo
+  - [x] JSON
+  - [ ] HTML
