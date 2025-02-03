@@ -1,0 +1,44 @@
+name: Build and Release CLI
+
+on:
+  push:
+    tags:
+      - 'v*'  # Isso aciona o workflow em qualquer push com uma tag que comece com 'v'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '22.13.1'  # Defina a versão do Node.js que você está usando
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build CLI
+        run: npm run build  # Adapte esse comando conforme sua CLI
+
+      - name: Create a zip file of the binary
+        run: |
+          mkdir release
+          zip -r release/dragoid.zip ./bin  # Zipando os arquivos da pasta bin
+
+      - name: Create GitHub release
+        uses: ghcr.io/github-actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: Release notes for ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload binary zip to GitHub release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release/dragoid.zip  # Especificando o arquivo a ser enviado
