@@ -63,13 +63,10 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-
-    & *:first-child{
-      text-transform: capitalize;
-    }
-
+    
     & *:last-child{
       color: #aaa;
+      text-transform: capitalize;
     }
   }
 }

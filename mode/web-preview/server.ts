@@ -7,6 +7,7 @@ import path from 'path';
 import { logger } from '../../utils/logger.ts';
 
 import { fileURLToPath } from 'url';
+import { isNumber } from '../../utils/isNumber.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -35,6 +36,14 @@ export class Server {
 
   private routers = async () => {
     // index
+    this.fastify.register(function (instance, options, done) {
+      instance.setNotFoundHandler(function (request, reply) {
+        return reply.view("/mode/web-preview/client/not-found.ejs")
+      })
+      done()
+    })
+
+
     this.fastify.get('/', async (request, reply) => {
       return reply.view("/mode/web-preview/client/index.ejs", {
         title: this.data.title,
@@ -46,9 +55,21 @@ export class Server {
       });
     })
 
+
+
     this.fastify.get('/chapter/:id', async (req, reply) => {
       const query = req.query as { id: string }
+
+      if(!isNumber(query?.id)){
+        return reply.callNotFound()
+      }
+      
       const currentid = Number.parseInt(query.id);
+
+      if(currentid < 0 || currentid >= this.data.chapters.length){
+        return reply.callNotFound()
+      }
+
       const nextId = currentid + 1 >= this.data.chapters.length ? null : currentid + 1;
 
       return reply.view("/mode/web-preview/client/chapter.ejs", {

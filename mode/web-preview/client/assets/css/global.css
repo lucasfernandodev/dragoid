@@ -1,14 +1,14 @@
-*{
+* {
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
 }
 
-html{
+html {
   font-size: 62.5%;
 }
 
-body{
+body {
   background-color: #0a0a0a;
   font-size: 1.6rem;
   color: #ddd;
@@ -19,7 +19,7 @@ body{
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-.page{
+.page {
   width: min(736px, calc(100% - 32px));
   min-height: 800px;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAQAAABLCVATAAAAAXNSR0IArs4c6QAAAWlJREFUeNqlloFtwzAMBFU0PxF34k5eoUtktBZVnBysixEEUWBD+idpUnrTGXNkhPvt18awXZjKyE5BE5ix8sw6IEQHfKA1kZoMF5ZNnndqy1k2vae+wTAjMBPIp+sY3QJP1JADaXtvFjv4LR1TFKA5GD4suFSQcGEhjPWRn2+zKpRLT0hBwSo3lRerdpScpbMQCgZS2cH4tHQwerJVPIQjUVBH9wFTPOMgxnRwObhWLLkKlpaJA8TnpDxBwEv1r8Uo+ImegDVX4DBXKKWt3mQnZRRMlxZ7vfxDra6j0vD8vKUtKvJ79Pt1X9W6XxZNTvphhYxcGEjneWncGVH3pM2kAs6Qlq4XDIus4x2qDKieYEsz0nTAYd96MelYZEEgElZxnJtEa4mefZpr7hHGsLLmS2uDVgPGEUadgBxwrn3zwRwGhkU2NVqy6fUEbRs1CruoCM5zlPaIIL6/biLs0edft/d7IfjhT9gfL6wnSxDYPyIAAAAASUVORK5CYII=);
@@ -30,8 +30,40 @@ body{
   padding-bottom: 38px;
 }
 
-@media screen and (max-width: 580px){
-  .page{
+@media screen and (max-width: 580px) {
+  .page {
     width: 100%;
+  }
+}
+
+
+.notFound {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #111;
+  padding: 32px;
+  border-radius: 28px;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.notFound a {
+  text-decoration: none;
+  width: 230px;
+  height: 48px;
+  border-radius: 12px;
+  background: #1f1f1f;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 300ms linear;
+
+  &:hover {
+    background-color: #2f2f2f;
+    color: #ddd;
   }
 }
