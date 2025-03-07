@@ -6,6 +6,11 @@ import ejs from 'ejs'
 import path from 'path';
 import { logger } from '../../utils/logger.ts';
 
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 export class Server {
   private PORT = 3010;
   private fastify: FastifyInstance;
@@ -21,7 +26,7 @@ export class Server {
       }
     })
     this.fastify.register(fastifyStaticFiles, {
-      root: path.join(import.meta.dirname, "/client/assets"),
+      root: path.join(__dirname, "/client/assets"),
       prefix: "/assets/",
     })
     this.data = data;

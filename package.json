@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "NODE_NO_WARNINGS=1 node --experimental-strip-types ./dragoid.ts",
     "build": "npx esbuild ./dragoid.ts --bundle --platform=node --target=node22.13.1 --outfile=./bin/dragoid --format=esm --banner:js='import { createRequire as topLevelCreateRequire } from \"module\";\n const require = topLevelCreateRequire(import.meta.url);'  ",
+    "postbuild": "cp -r ./mode/web-preview/client ./bin/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": ["novel"],

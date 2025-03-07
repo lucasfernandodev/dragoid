@@ -21,7 +21,8 @@ export class Preview implements DefaultCommand {
           description: 'Path to the JSON file containing the downloaded novel data, used to load the content into the web reader.'
         }
       }).check((args) => {
-        const filepath = args['file'];
+        const filepath = args['file']; 
+        
         if (!filepath) {
           logger.error("The '--file' argument is required", 1, true)
         }
