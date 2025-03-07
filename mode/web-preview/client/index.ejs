@@ -14,7 +14,9 @@
   <main class="page">
     <div class="cover">
       <div class="heading">
-        <div class="thumbnail"></div>
+        <div class="thumbnail">
+          <img src="data:image/jpeg;base64,<%= thumbnail %>" alt="Thumbnail" />
+        </div>
         <h1 className="title">
           <%= title %>
         </h1>
@@ -42,6 +44,10 @@
           <%= description %>
         </p>
       </div>
+
+      <a title="project source" href="https://github.com/lucasfernandodev/dragoid" class="project-source-link">
+        Project on GitHub
+      </a>
     </div>
 
     <div class="first-chapter">

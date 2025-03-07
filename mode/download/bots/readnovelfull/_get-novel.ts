@@ -5,6 +5,7 @@ import { readnovelfullGetChapter } from './_get-chapter.ts';
 import { exitOnFetchError } from '../../../../utils/exitOnFetchError.ts';
 import { delay } from '../../../../utils/delay.ts';
 import { logger } from '../../../../utils/logger.ts'; 
+import { downloadAndProcessImage } from '../../../../utils/get-image.ts';
 
 function printProgress(current: unknown, total: unknown) {
   process.stdout.clearLine(0);
@@ -90,6 +91,14 @@ export const readnovelfullGetNovel = async (url: string): Promise<INovelData> =>
     return chaptersData;
   }
 
+  const getBootImage = async ($: CheerioAPI) => {
+    const imageURL = $('.books .book img').first().attr('src');
+    if(imageURL){
+      const image  = await downloadAndProcessImage(imageURL);
+      return image;
+    }
+  }
+
   const response = await exitOnFetchError(async () => axios.get(url));
   const document = response?.data;
   const $ = load(document);
@@ -100,6 +109,7 @@ export const readnovelfullGetNovel = async (url: string): Promise<INovelData> =>
     title: getTitle($),
     author: getAuthor($),
     status: getStatus($),
+    thumbnail: await getBootImage($),
     chapters: await getChapters(getBookId($)),
     description: getDescription($),
     genres: getGenres($),

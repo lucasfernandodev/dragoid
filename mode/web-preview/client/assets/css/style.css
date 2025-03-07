@@ -12,13 +12,18 @@
   position: relative;
   overflow: hidden; 
 
-  &::after{
-    content: "Server working";
+  .project-source-link{
     color: #888;
     position: absolute;
     bottom: 32px;
     left: 50%;
     transform: translateX(-50%);
+    text-decoration: none;
+    transition: 300ms linear;
+
+    &:hover{
+      color: #ddd;
+    }
   }
 }
 
@@ -38,6 +43,15 @@
     background: linear-gradient(to right bottom, #1f1f1f, #151515);
     display: block;
     margin-bottom: 32px;
+    overflow: hidden;
+    color: transparent;
+    
+
+    & img{
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
   }
 
   & h1{

@@ -53,7 +53,8 @@ export class Server {
         chapterTitle: this.data.chapters[0].title,
         chapterContent: this.data.chapters[0].content,
         status: this.data.status,
-        language: this.data.language
+        language: this.data.language,
+        thumbnail: this.data.thumbnail || '',
       });
     })
 

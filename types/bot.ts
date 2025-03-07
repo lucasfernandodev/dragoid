@@ -6,6 +6,7 @@ export interface INovelData {
   chapters: IChapterData[];
   status: string;
   language: string;
+  thumbnail?: string;
 }
 
 export interface IChapterData{
