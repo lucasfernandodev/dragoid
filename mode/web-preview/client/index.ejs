@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Read Novel</title>
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+
+  <main class="page">
+    <div class="cover">
+      <div class="heading">
+        <div class="thumbnail"></div>
+        <h1 className="title">
+          <%= title %>
+        </h1>
+        <p class="author"><%= author %></p>
+      </div>
+
+      <div class="info">
+        <div class="col">
+          <p>status</p>
+          <p>Em andamento</p>
+        </div>
+        <div class="col">
+          <p>Quantidade de capítulos</p>
+          <p><%= chaptersQTD %></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <p class="description">
+          <%= description %>
+        </p>
+      </div>
+    </div>
+
+    <div class="first-chapter">
+      <h2 class="title"><%= chapterTitle %></h2>
+      <div class="content">
+        <% for(var i=0; i<chapterContent.length; i++) { %>
+          <p>
+              <%= chapterContent[i] %>
+          </p>
+      <% } %>
+      </div>
+      <div class="navigation-chapters">
+        <a href="#" data-disabled="true">Prev chapter</a>
+          <div class="divider"></div>
+        <a href="/chapter/?id=1">Next chapter</a>
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>

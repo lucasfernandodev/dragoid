@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Read Chapters</title>
+  <link rel="stylesheet" href="/assets/css/global.css">
+  <link rel="stylesheet" href="/assets/css/chapter.css">
+</head>
+
+<body>
+  <main class="page">
+    <section>
+      <h1>
+        <%= title %>
+      </h1>
+      <div class="content">
+        <% for(var i=0; i<content.length; i++) { %>
+          <p>
+            <%= content[i] %>
+          </p>
+          <% } %>
+      </div>
+      <div class="navigation-chapters">
+        <a href="/chapter/?id=<%= chapter_prev_id %>">
+          Prev chapter
+        </a>
+        <div class="divider"></div>
+        <a href="/chapter/?id=<%= chapter_next_id %>"
+          data-disabled="<%= chapter_next_id === null ? 'true' : 'false' %>">
+          Next chapter
+        </a>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>

@@ -1,8 +1,6 @@
-<img src="./docs/dragoid.webp" alt="Dragoid Logo by gpt" width="200" height="200" />
-
 # Dragoid
 
-O dragoid CLI é uma ferramenta de linha de comando para baixar novels e capítulos de sites suportados. Ele oferece opções para escolher o formato de saída e listar os sites e formatos suportados.
+O dragoid CLI é uma ferramenta de linha de comando intuitiva e poderosa para baixar novels e capítulos para leitura offline. Com ele, você pode obter suas novels em formatos como HTML ou EPUB, ou fazer o download em JSON e utilizar o leitor web integrado da dragoid, oferecendo uma experiência de leitura prática diretamente no navegador.
 
 ## Requisitos
 
@@ -14,15 +12,22 @@ Para baixar uma novel ou capítulo, use os seguintes comandos:
 
 - **Para baixar uma novel**:
   ```bash
-  dragoid --mode=novel --url=<URL_DA_NOVEL> --output-format=<FORMATO>
+  dragoid download --mode=novel --url=<URL_DA_NOVEL> --output-format=<FORMATO>
   ```
 
 - **Baixar um capítulo**:
   ```bash
-  dragoid --mode=chapter --url=<URL_DA_NOVEL> --output-format=<FORMATO>
+  dragoid download --mode=chapter --url=<URL_DO_CAPITULO> --output-format=<FORMATO>
   ```
 
-## Formatos de download suportados
+Para abrir o leitor de novels:
+
+- **Abrir o leitor web**
+  ```bash
+  dragoid preview --file=<CAMINHO_DO_ARQUIVO>
+  ```
+
+## Formatos de downloads suportados
 
 - Novel
   - [x] JSON
@@ -32,8 +37,8 @@ Para baixar uma novel ou capítulo, use os seguintes comandos:
   - [x] JSON
   - [ ] HTML
 
-## Sites suportados
+## Para ver a lista de sites suportados
  Para ver a lista de sites suportados, use o comando:
  ```bash
- dragoid --list-crawlers
+ dragoid download --list-crawlers
  ```
