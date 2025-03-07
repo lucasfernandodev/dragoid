@@ -4,7 +4,10 @@ import { chapterScheme } from "./chapter.ts"
 export const novelSchema = z.object({
   title: z.string(),
   description: z.array(z.string()),
-  chapters: z.array(chapterScheme)
+  chapters: z.array(chapterScheme),
+  genres: z.array(z.string()),
+  status: z.string(),
+  language: z.string(),
 })
 
 export const novelWithDownloadInfo = z.object({

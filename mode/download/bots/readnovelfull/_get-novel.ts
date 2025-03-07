@@ -4,7 +4,7 @@ import { type CheerioAPI, load } from 'cheerio';
 import { readnovelfullGetChapter } from './_get-chapter.ts';
 import { exitOnFetchError } from '../../../../utils/exitOnFetchError.ts';
 import { delay } from '../../../../utils/delay.ts';
-import { logger } from '../../../../utils/logger.ts';
+import { logger } from '../../../../utils/logger.ts'; 
 
 function printProgress(current: unknown, total: unknown) {
   process.stdout.clearLine(0);
@@ -44,6 +44,18 @@ export const readnovelfullGetNovel = async (url: string): Promise<INovelData> =>
       return genres
     }
     return []
+  }
+
+  const getStatus = ($: CheerioAPI) => {
+    const headers = $('ul.info li h3').filter((_, el) => $(el).text().trim() === 'Status:');
+    if (headers.length === 1) {
+      const authorLabel = headers[0];
+      const parent = authorLabel.parent || undefined;
+      const status = $(parent).find('a').map((_, el) => $(el).text()).get();
+      return status[0]
+    }
+
+    return 'unknown'
   }
 
   const getBookId = ($: CheerioAPI) => {
@@ -87,8 +99,10 @@ export const readnovelfullGetNovel = async (url: string): Promise<INovelData> =>
   return {
     title: getTitle($),
     author: getAuthor($),
+    status: getStatus($),
     chapters: await getChapters(getBookId($)),
     description: getDescription($),
-    genres: getGenres($)
+    genres: getGenres($),
+    language: 'english'
   }
 }

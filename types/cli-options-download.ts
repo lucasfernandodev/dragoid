@@ -4,6 +4,6 @@ export type CLIOptionsDownloadType = {
   mode: 'novel' | 'chapter';
   url: string;
   'list-crawlers': boolean;
-  'list-ouput-formats': boolean;
+  'list-output-formats': boolean;
   'output-format': OutputSupportedFormats;
 }

@@ -3,7 +3,9 @@ export interface INovelData {
   description: string[]
   genres: string[];
   author: string[];
-  chapters: IChapterData[]
+  chapters: IChapterData[];
+  status: string;
+  language: string;
 }
 
 export interface IChapterData{

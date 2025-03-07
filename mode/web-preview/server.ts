@@ -51,7 +51,9 @@ export class Server {
         chaptersQTD: this.data.chapters.length,
         description: this.data.description,
         chapterTitle: this.data.chapters[0].title,
-        chapterContent: this.data.chapters[0].content
+        chapterContent: this.data.chapters[0].content,
+        status: this.data.status,
+        language: this.data.language
       });
     })
 
