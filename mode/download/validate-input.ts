@@ -11,7 +11,7 @@ interface Data {
 }
 
 export const validateInput = ({
-  mode = 'novel',
+  mode,
   url,
   outputFormat,
   listCrawlers = false,

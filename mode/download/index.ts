@@ -69,8 +69,11 @@ export class Download implements DefaultCommand {
 
   private selectBot = (url: string) => {
     const urlObject = new URL(url);
-    const urlDomain = urlObject.hostname.split(".")[0];
-    const isBot = this.bots.find(bot => bot.name === urlDomain);
+    const urlDomain = urlObject.hostname;
+    const siteName = urlDomain.split('.').length === 3 ? urlDomain.split('.')[1] : urlDomain.split('.')[0]
+    const isBot = this.bots.find(bot => bot.name === siteName);
+
+    console.log('urlDomain', urlObject.hostname)
 
     if (!isBot) return logger.error('Website not supported', 1, true);
 

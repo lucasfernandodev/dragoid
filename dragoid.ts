@@ -7,12 +7,16 @@ import { GenerateOutputFile } from "./mode/download/generate-output-file.ts";
 import { BotReadNovelFull } from "./mode/download/bots/readnovelfull/index.ts";
 import type { CLIOptionsDownloadType } from "./types/cli-options-download.ts";
 import type { CLIOptionsPreviewType } from "./types/cli-options-preview.ts";
+import { Bot69yuedu } from "./mode/download/bots/69yuedu/index.ts";
 
 const _yargs = yargs(process.argv.slice(2))
 
 
 const downloadClient = new Download(
-  [new BotReadNovelFull()],
+  [
+    new BotReadNovelFull(),
+    new Bot69yuedu()
+  ],
   new GenerateOutputFile()
 )
 

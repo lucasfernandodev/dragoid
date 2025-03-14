@@ -16,7 +16,7 @@ export class DownloadOptions {
     logger.info('[-] Starting retrive novel')
     const novel = await bot.getNovel(url);
 
-    if (!novel) return logger.error('[x] Unable to retrieve Novel',1, true);
+    if (!novel) return logger.error('[x] Unable to retrieve Novel', 1, true);
 
     const isValidData = novelSchema.safeParse(novel)
     if (!isValidData.success) return logger.error('[x] Retrive Data invalid', 1, true)
@@ -41,9 +41,9 @@ export class DownloadOptions {
     logger.info('[-] Starting retrive chapter');
     const chapter = await bot.getChapter(url);
 
-    if (!chapter) return  logger.error('Unable to retrieve chapter', 1, true);
+    if (!chapter) return logger.error('Unable to retrieve chapter', 1, true);
     const isValidData = chapterScheme.safeParse(chapter);
-    if (!isValidData.success) return  logger.error('[x] Error: Retrive Data invalid', 1, true);
+    if (!isValidData.success) return logger.error('[x] Error: Retrive Data invalid', 1, true);
 
     logger.info('[✔] Chapter retrive with sucess;');
     logger.info("[-] Starting generate output file");
@@ -53,14 +53,14 @@ export class DownloadOptions {
       filename: chapter.title,
       chapter
     })
-    
+
     logger.info(`[✔] File "${chalk.blueBright(chapter.title)}" has been written successfully.`)
   }
 
 
   public listBots = (bots: Bot[]) => {
-  
-    const content = bots.map(bot => `[🤖] Bot ${bot.name}`).join('\n');
+    const content = bots.map(bot => `[🤖] Bot ${bot.name} \n${bot.help} `).join('\n\n');
+
     return logger.info([
       'List Bots:\n',
       content.length > 0 ? content : 'Bot list is empty'

@@ -9,16 +9,16 @@ import path from "path";
 
 export class Preview implements DefaultCommand {
   commandEntry = 'preview';
-  describe = 'Start a local server with a simple web reader to view the downloaded novel';
+  describe = 'Start a local server with a web reader to preview novel file';
 
   parserInputs = (args: yargs.Argv<{}>) => {
-    return args.usage('$0 preview --file=<path to json novel file>')
+    return args.usage('$0 preview --file=<path to novel file>')
       .options({
         help: { alias: 'h', description: 'Show help', },
         file: {
           alias: 'f',
           type: 'string',
-          description: 'Path to the JSON file containing the downloaded novel data, used to load the content into the web reader.'
+          description: 'Path to novel JSON file.'
         }
       }).check((args) => {
         const filepath = args['file']; 
