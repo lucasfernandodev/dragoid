@@ -1,44 +1,43 @@
 # Dragoid
 
-O dragoid CLI é uma ferramenta de linha de comando intuitiva e poderosa para baixar novels e capítulos para leitura offline. Com ele, você pode obter suas novels em formatos como HTML ou EPUB, ou fazer o download em JSON e utilizar o leitor web integrado da dragoid, oferecendo uma experiência de leitura prática diretamente no navegador.
+Dragoid CLI é uma ferramenta de linha de comando intuitiva e poderosa para baixar novels e capítulos para leitura offline. Com ele, você pode obter suas novels em formatos como HTML ou EPUB, ou fazer o download em JSON e utilizar o leitor web integrado da dragoid, oferecendo uma experiência de leitura prática diretamente no navegador.
 
 ## Requisitos
 
 - Node.js v22.13.1 ou superior.
 
-## Usos
+## Exemplos
 
 Para baixar uma novel ou capítulo, use os seguintes comandos:
 
-- **Para baixar uma novel**:
+### Baixar novel
   ```bash
-  dragoid download --mode=novel --url=<URL_DA_NOVEL> --output-format=<FORMATO>
+  dragoid download --mode=novel --url=<URL> --output-format=<JSON|HTML|EPUB>
   ```
 
-- **Baixar um capítulo**:
+### Baixar capítulo
   ```bash
-  dragoid download --mode=chapter --url=<URL_DO_CAPITULO> --output-format=<FORMATO>
+  dragoid download --mode=chapter --url=<URL> --output-format=<JSON|HTML|EPUB>
   ```
 
-Para abrir o leitor de novels:
 
-- **Abrir o leitor web**
+### Leitor Web Integrado
+Se a novel foi baixada no formato JSON, você pode visualizá-la no navegador:
+
   ```bash
-  dragoid preview --file=<CAMINHO_DO_ARQUIVO>
+  dragoid preview --file=<novel-file>
   ```
 
-## Formatos de downloads suportados
-
-- Novel
-  - [x] JSON
-  - [ ] HTML
-  - [ ] EPUB
-- Capítulo
-  - [x] JSON
-  - [ ] HTML
-
-## Para ver a lista de sites suportados
- Para ver a lista de sites suportados, use o comando:
+### Lista de sites suportados
+Para visualizar os sites compatíveis, utilize:
  ```bash
  dragoid download --list-crawlers
  ```
+
+
+## Formatos de downloads suportados
+
+| Tipo | JSON | HTML | EPUB |
+|------|------|------|------|
+|Novel | ✅ | ❌ | ❌|
+|Chapter| ✅ | ❌ | -|
