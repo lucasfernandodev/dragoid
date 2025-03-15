@@ -1,14 +1,13 @@
 {
   "name": "dragoid",
   "version": "0.0.2",
-  "description": "Make Download of novels and chapters and read offline",
+  "description": "Make Download of novels and chapters to read offline",
   "main": "./dragoid.ts",
   "type": "module",
   "scripts": {
     "dev": "NODE_NO_WARNINGS=1 node --experimental-strip-types ./dragoid.ts",
     "build": "npx esbuild ./dragoid.ts --bundle --platform=node --target=node22.13.1 --outfile=./bin/dragoid --format=esm --banner:js='import { createRequire as topLevelCreateRequire } from \"module\";\n const require = topLevelCreateRequire(import.meta.url);'  ",
-    "postbuild": "cp -r ./mode/web-preview/client ./bin/",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "postbuild": "cp -r ./mode/web-preview/client ./bin/"
   },
   "keywords": [
     "novel"
@@ -29,6 +28,7 @@
     "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "sharp": "^0.33.5",
+    "typescript": "^5.8.2",
     "yargs": "^17.7.2",
     "zod": "^3.24.2"
   },
