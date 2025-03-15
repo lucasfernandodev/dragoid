@@ -1,13 +1,12 @@
-import puppeteer from 'puppeteer-extra';
 
-import StealthPlugin from 'puppeteer-extra-plugin-stealth';
 import { downloadAndProcessImage } from '../../../../utils/get-image.ts';
 import type { IChapterData, INovelData } from '../../../../types/bot.ts';
 import { logger } from '../../../../utils/logger.ts';
-
-puppeteer.use(StealthPlugin())
+import { puppeteerInstance } from '../../../../lib/puppeteer.ts';
 
 export const getNovel69yuedu = async (url: string): Promise<INovelData> => {
+
+  const puppeteer = await puppeteerInstance()
 
   // instancia o browser
   const browser = await puppeteer.launch();

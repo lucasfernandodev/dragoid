@@ -37,8 +37,6 @@
     "clone-deep": "^4.0.1",
     "ejs": "^3.1.10",
     "fastify": "^5.2.1",
-    "puppeteer": "^24.4.0",
-    "puppeteer-extra": "^3.3.6",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
     "sharp": "^0.33.5",
     "typescript": "^5.8.2",
@@ -48,5 +46,9 @@
   "devDependencies": {
     "@types/node": "^22.13.7",
     "@types/yargs": "^17.0.33"
+  },
+  "optionalDependencies": {
+    "puppeteer": "^24.4.0",
+    "puppeteer-extra": "^3.3.6"
   }
 }

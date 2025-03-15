@@ -1,11 +1,8 @@
-import puppeteer from 'puppeteer-extra';
-
-import StealthPlugin from 'puppeteer-extra-plugin-stealth'; 
-
-puppeteer.use(StealthPlugin())
+import { puppeteerInstance } from "../../../../lib/puppeteer.ts";
 
 export const getChapterIn69yeudu = async (url: string) => {
 
+  const puppeteer = await puppeteerInstance() 
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 

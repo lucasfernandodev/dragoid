@@ -54,6 +54,7 @@ export class Download implements DefaultCommand {
         }
       })
 
+  
     Options.check(args => validateInput({
       url: args.url,
       listCrawlers: args["list-crawlers"],

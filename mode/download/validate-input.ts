@@ -20,7 +20,7 @@ export const validateInput = ({
 
   const generateOutputFile = new GenerateOutputFile()
   
-
+ 
   // Download
   if (!listCrawlers  && !listOutputFormats) {
 
