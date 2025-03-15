@@ -14,9 +14,6 @@
     "bot",
     "chapters"
   ],
-  "directories": {
-    "bin": "bin"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lucasfernandodev/dragoid.git"
