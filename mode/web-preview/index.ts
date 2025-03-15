@@ -12,7 +12,7 @@ export class Preview implements DefaultCommand {
   describe = 'Start a local server with a web reader to preview novel file';
 
   parserInputs = (args: yargs.Argv<{}>) => {
-    return args.usage('$0 preview --file=<path to novel file>')
+    return args.usage('$0 preview --file=<novel-file>')
       .options({
         help: { alias: 'h', description: 'Show help', },
         file: {

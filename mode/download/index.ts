@@ -12,17 +12,16 @@ export class Download implements DefaultCommand {
   bots: Bot[] = [];
   generateoutputFile: GenerateOutputFile;
   commandEntry: string = 'download';
-  describe: string = 'Download Webnovel';
+  describe: string = 'Downloads a complete novel or a specific chapter.';
 
   constructor(bots: Bot[], generateOutputFile: GenerateOutputFile) {
     this.bots = bots;
-  
     this.generateoutputFile = generateOutputFile
   }
 
 
   parserInputs = (args: yargs.Argv<{ [key: string]: Options }>) => {
-    const Options = args.usage('$0 --mode=<download-mode> --url=<novel-or-chapter-url> --output-format=<output-sformatt>')
+    const Options = args.usage('$0 --mode=<novel|chapter> --url=<URL> --output-format=<JSON|HTML|EPUB>')
       .options({
         help: { alias: 'h', description: 'Show help', },
         mode: {
