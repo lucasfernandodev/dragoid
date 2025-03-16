@@ -7,11 +7,13 @@
   },
   "main": "./bin/dragoid",
   "type": "module",
-  "files": [ "./bin/" ],
+  "files": [
+    "./bin/"
+  ],
   "scripts": {
     "dev": "NODE_NO_WARNINGS=1 node --experimental-strip-types ./dragoid.ts",
     "build": "npx esbuild ./dragoid.ts --bundle --platform=node --target=node22.13.1 --outfile=./bin/dragoid --format=esm --banner:js='import { createRequire as topLevelCreateRequire } from \"module\";\n const require = topLevelCreateRequire(import.meta.url);'  --external:tslib",
-    "postbuild": "cp -r ./mode/web-preview/client ./bin/",
+    "postbuild": "cp -r ./mode/web-preview/client ./bin/ && cp ./node_modules/wasm-vips/lib/vips-node.mjs ./bin",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
@@ -43,8 +45,8 @@
     "ejs": "^3.1.10",
     "fastify": "^5.2.1",
     "puppeteer-extra-plugin-stealth": "^2.11.2",
-    "sharp": "^0.33.5",
     "typescript": "^5.8.2",
+    "wasm-vips": "^0.0.11",
     "yargs": "^17.7.2",
     "zod": "^3.24.2"
   },

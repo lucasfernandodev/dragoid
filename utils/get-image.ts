@@ -1,5 +1,10 @@
+import Vips from 'wasm-vips';
 import axios from 'axios';
-import sharp from 'sharp';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /**
  * Baixa uma imagem de uma URL, processa-a para reduzir seu tamanho, redimensiona se necessário
@@ -8,41 +13,28 @@ import sharp from 'sharp';
  * @param maxSizeInBytes Tamanho máximo permitido em bytes (padrão: 1MB).
  * @returns String com a imagem em base64.
  */
-export async function downloadAndProcessImage(imageUrl: string, maxSizeInBytes: number = 1 * 1024 * 1024): Promise<string> {
+export const downloadAndProcessImage = async (
+  imageUrl: string
+): Promise<string> => {
+
+
   // Baixa a imagem
   const response = await axios.get(imageUrl, { responseType: 'arraybuffer' });
-  const imageBuffer = Buffer.from(response.data);
 
-  // Define parâmetros de qualidade e dimensões máximas
-  let quality = 70; // Qualidade inicial para JPEG (ajustável)
-  const maxWidth = 150*2;
-  const maxHeight = 190*2;
-
-  // Obtém metadados da imagem para verificar as dimensões
-  const metadata = await sharp(imageBuffer).metadata();
-
-  // Função auxiliar que cria o pipeline do sharp com redimensionamento (se necessário) e compressão
-  const processImage = (quality: number): Promise<Buffer> => {
-    let pipeline = sharp(imageBuffer);
-    if ((metadata.width && metadata.width > maxWidth) || (metadata.height && metadata.height > maxHeight)) {
-      pipeline = pipeline.resize({
-        width: maxWidth,
-        height: maxHeight,
-        fit: 'inside'
-      });
+  const vips = await Vips({
+    locateFile: (filename) => {
+      return path.join(__dirname, `../node_modules/wasm-vips/lib/${filename}`)
     }
-    return pipeline.jpeg({ quality }).toBuffer();
-  };
+  });
 
-  // Processa a imagem com a qualidade inicial
-  let processedBuffer = await processImage(quality);
 
-  // Ajusta a qualidade até que o buffer fique abaixo do tamanho máximo
-  while (processedBuffer.length > maxSizeInBytes && quality > 10) {
-    quality -= 10;
-    processedBuffer = await processImage(quality);
-  }
+  const image = vips.Image.thumbnailBuffer(response.data, 300, {
+    height: 380,
+    no_rotate: true,
+    crop: vips.Interesting.attention
+  })
 
-  // Converte o buffer para string base64
-  return processedBuffer.toString('base64');
+  const base64Image = Buffer.from(image.jpegsaveBuffer({ Q: 7 })).toString('base64');
+
+  return base64Image;
 }
