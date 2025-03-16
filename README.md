@@ -34,7 +34,7 @@ O dragoid já vem com um leitor web integrado que permite a leitura de novels ba
   dragoid preview --file=<NOVEL-FILE>
   ```
 
-O servidor é iniciado na porta `3010`, acesse em: 'http://127.0.0.1:3010'
+O servidor é iniciado na porta `3010`, acesse em: http://127.0.0.1:3010
 
 ### Listar sites suportados
 Para visualizar as fontes suportadas, utilize
