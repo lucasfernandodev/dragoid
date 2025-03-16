@@ -2,12 +2,17 @@
   "name": "dragoid",
   "version": "0.0.2",
   "description": "Make Download of novels and chapters to read offline",
+  "bin": {
+    "dragoid": "./bin/dragoid"
+  },
   "main": "./bin/dragoid",
   "type": "module",
+  "files": [ "./bin/" ],
   "scripts": {
     "dev": "NODE_NO_WARNINGS=1 node --experimental-strip-types ./dragoid.ts",
     "build": "npx esbuild ./dragoid.ts --bundle --platform=node --target=node22.13.1 --outfile=./bin/dragoid --format=esm --banner:js='import { createRequire as topLevelCreateRequire } from \"module\";\n const require = topLevelCreateRequire(import.meta.url);'  --external:tslib",
-    "postbuild": "cp -r ./mode/web-preview/client ./bin/"
+    "postbuild": "cp -r ./mode/web-preview/client ./bin/",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "novel",
