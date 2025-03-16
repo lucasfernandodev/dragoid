@@ -24,7 +24,8 @@ export class Server {
     this.fastify.register(fastifyView, {
       engine: {
         ejs
-      }
+      },
+      root: path.join(__dirname, 'client')
     })
     this.fastify.register(fastifyStaticFiles, {
       root: path.join(__dirname, "/client/assets"),
@@ -38,14 +39,14 @@ export class Server {
     // index
     this.fastify.register(function (instance, options, done) {
       instance.setNotFoundHandler(function (request, reply) {
-        return reply.view("/mode/web-preview/client/not-found.ejs")
+        return reply.view("not-found.ejs")
       })
       done()
     })
 
 
     this.fastify.get('/', async (request, reply) => {
-      return reply.view("/mode/web-preview/client/index.ejs", {
+      return reply.view("index.ejs", {
         title: this.data.title,
         author: this.data.author[0],
         chaptersQTD: this.data.chapters.length,
@@ -75,7 +76,7 @@ export class Server {
 
       const nextId = currentid + 1 >= this.data.chapters.length ? null : currentid + 1;
 
-      return reply.view("/mode/web-preview/client/chapter.ejs", {
+      return reply.view("chapter.ejs", {
         title: this.data.chapters[currentid].title,
         content: this.data.chapters[currentid].content,
         chapter_prev_id: currentid - 1,
