@@ -8,13 +8,18 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
           node-version: '22.13.1'
           registry-url: 'https://registry.npmjs.org'
+          cache: 'pnpm'
       - name: Install dependencies and build 🔧
-        run: npm ci
+        run: pnpm install --frozen-lockfile
       - name: Publish package on NPM 📦
         run: npm publish
         env:
