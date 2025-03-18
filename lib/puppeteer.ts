@@ -1,19 +1,19 @@
-import StealthPlugin from 'puppeteer-extra-plugin-stealth';
- 
-
-
-
 const puppeteerInstance = async () => {
   try {
-    const puppeteer = (await import('puppeteer-extra')).default as any
-    if (puppeteer?.use) {
-      puppeteer.use(StealthPlugin())
+    const StealthPlugin = await import('puppeteer-extra-plugin-stealth')
+    const puppeteer = await import('puppeteer-extra')
+
+    const StealthPluginDefault = StealthPlugin.default;
+    const puppeteerDefault = puppeteer.default
+
+    if (puppeteerDefault?.use && StealthPluginDefault) {
+      puppeteerDefault.use(StealthPluginDefault())
     }
 
     return puppeteer
 
   } catch (error) {
-    console.error(error);
+    console.error('System not supported by puppetter, try another bot');
     process.exit(1);
   }
 }
