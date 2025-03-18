@@ -1,4 +1,4 @@
-# [0.1.0](https://github.com/lucasfernandodev/dragoid/compare/v0.0.1...v0.1.0) (2025-03-18)
+# [0.2.0](https://github.com/lucasfernandodev/dragoid/compare/v0.0.1...v0.2.0) (2025-03-18)
 
 
 ### Bug Fixes
