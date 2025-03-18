@@ -2271,4 +2271,4 @@ snapshots:
       fd-slicer: 1.1.0
     optional: true
   zod@3.24.2: {}
-version: 0.2.0
+version: 0.3.0
