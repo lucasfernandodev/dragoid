@@ -1,3 +1,12 @@
+## [0.1.1](https://github.com/lucasfernandodev/dragoid/compare/v0.1.0...v0.1.1) (2025-03-18)
+
+
+### Bug Fixes
+
+* **download:** Change native error message for a custo message ([36a68dc](https://github.com/lucasfernandodev/dragoid/commit/36a68dca65c8b0b31652d598678434981629f9ad))
+
+
+
 # [0.1.0](https://github.com/lucasfernandodev/dragoid/compare/v0.0.1...v0.1.0) (2025-03-18)
 
 
