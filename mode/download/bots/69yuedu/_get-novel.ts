@@ -1,8 +1,7 @@
-
-import { downloadAndProcessImage } from '../../../../utils/get-image.ts';
 import type { IChapterData, INovelData } from '../../../../types/bot.ts';
 import { logger } from '../../../../utils/logger.ts';
 import { puppeteerInstance } from '../../../../lib/puppeteer.ts';
+import { downloadImage, processImageToBase64 } from '../../../../utils/images.ts';
 
 export const getNovel69yuedu = async (url: string): Promise<INovelData> => {
 
@@ -142,12 +141,23 @@ export const getNovel69yuedu = async (url: string): Promise<INovelData> => {
   // Fecha o navegador;
   await browser.close();
 
+  const getImage = async (url: string) => {
+    if (!url) return '<image-url>'
+
+    const bufferImage = await downloadImage(url);
+    if (!bufferImage) return '<image-url>'
+
+    const base64Image = await processImageToBase64(bufferImage);
+    if (!base64Image) return '<image-url>'
+
+    return base64Image
+  }
 
   return {
     title: result.title || 'Title unknown',
     author: result.author?.includes(",") ? result.author.split(',') : [result.author || 'Author unknown'],
     status: 'unknown',
-    thumbnail: result.imageURL ? await downloadAndProcessImage(result.imageURL) : '',
+    thumbnail: await getImage(result.imageURL),
     chapters: chapters,
     description: result.description,
     genres: [...result.genres || 'Author unknown'],
