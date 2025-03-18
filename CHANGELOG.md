@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/lucasfernandodev/dragoid/compare/v0.1.1...v0.1.2) (2025-03-18)
+
+
+### Bug Fixes
+
+* **download:** Fixed the support check for Puppeteer. ([11141e8](https://github.com/lucasfernandodev/dragoid/commit/11141e8aefb0f35dd585797023cee62ec3ac3721))
+
+
+
 ## [0.1.1](https://github.com/lucasfernandodev/dragoid/compare/v0.1.0...v0.1.1) (2025-03-18)
 
 
