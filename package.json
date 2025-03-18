@@ -13,7 +13,7 @@
   "scripts": {
     "dev": "NODE_NO_WARNINGS=1 node --experimental-strip-types ./dragoid.ts",
     "prebuild": "rm -rf ./bin",
-    "build": "npx esbuild ./dragoid.ts --bundle --platform=node --target=node22.13.1 --outfile=./bin/dragoid --format=esm --banner:js='import { createRequire as topLevelCreateRequire } from \"module\";\n const require = topLevelCreateRequire(import.meta.url);'  --external:tslib",
+    "build": "npx esbuild ./dragoid.ts --bundle --platform=node --target=node22.13.1 --outfile=./bin/dragoid --format=esm --banner:js='import { createRequire as topLevelCreateRequire } from \"module\";\n const require = topLevelCreateRequire(import.meta.url);'  --external:tslib --external:typescript",
     "postbuild": "cp -r ./mode/web-preview/client ./bin/ && cp ./node_modules/wasm-vips/lib/vips-node.mjs ./bin",
     "prepublishOnly": "npm run build"
   },
