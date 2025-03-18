@@ -4,14 +4,10 @@ import { type CheerioAPI, load } from 'cheerio';
 import { readnovelfullGetChapter } from './_get-chapter.ts';
 import { exitOnFetchError } from '../../../../utils/exitOnFetchError.ts';
 import { delay } from '../../../../utils/delay.ts';
-import { logger } from '../../../../utils/logger.ts';
+import { logger, printChaptersDownloadProgress } from '../../../../utils/logger.ts';
 import { downloadImage, processImageToBase64 } from '../../../../utils/images.ts';
 
-function printProgress(current: unknown, total: unknown) {
-  process.stdout.clearLine(0);
-  process.stdout.cursorTo(0);
-  process.stdout.write(`[+] Downloaded ${current}/${total} chapters${current === total ? '\n' : ''}`);
-}
+
 
 
 
@@ -84,7 +80,7 @@ export const readnovelfullGetNovel = async (url: string): Promise<INovelData> =>
       await delay(500)
       const chapter = await readnovelfullGetChapter(url);
       chaptersData.push(chapter)
-      printProgress(index, chapterList.length - 1)
+      printChaptersDownloadProgress(index, chapterList.length - 1)
       index++
     }
 

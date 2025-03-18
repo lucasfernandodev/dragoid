@@ -23,3 +23,9 @@ export const logger = {
     }
   }
 }
+
+export function printChaptersDownloadProgress(current: number, total: number) {
+  process.stdout.clearLine(0);
+  process.stdout.cursorTo(0);
+  process.stdout.write(`[+] Downloaded ${current}/${total} chapters${current === total ? '\n' : ''}`);
+}

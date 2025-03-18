@@ -1,5 +1,5 @@
 import type { IChapterData, INovelData } from '../../../../types/bot.ts';
-import { logger } from '../../../../utils/logger.ts';
+import { logger, printChaptersDownloadProgress } from '../../../../utils/logger.ts';
 import { puppeteerInstance } from '../../../../lib/puppeteer.ts';
 import { downloadImage, processImageToBase64 } from '../../../../utils/images.ts';
 
@@ -95,6 +95,7 @@ export const getNovel69yuedu = async (url: string): Promise<INovelData> => {
   const chapters: IChapterData[] = []
 
   // Colleta os capítulos
+  let index = 0;
   for (const { url } of chaptersList) {
     await page.goto(url, { waitUntil: 'load' });
     await page.waitForSelector('h1');
@@ -135,7 +136,9 @@ export const getNovel69yuedu = async (url: string): Promise<INovelData> => {
       title: result.title,
       content: result.content
     })
-
+    
+    printChaptersDownloadProgress(index, chaptersList.length - 1)
+    index++
   }
 
   // Fecha o navegador;
