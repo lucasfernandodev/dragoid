@@ -4,10 +4,10 @@ import { readnovelfullGetNovel } from "./_get-novel.ts";
 
 export class BotReadNovelFull implements Bot {
   name = 'readnovelfull';
-  help = [
-    'Tool: Axios',
-    'Site: https://readnovelfull.com/'
-  ].join("\n")
+  help = {
+    scraping_tool: 'axios',
+    site: 'https://readnovelfull.com/'
+  }
 
   getNovel = readnovelfullGetNovel;
 

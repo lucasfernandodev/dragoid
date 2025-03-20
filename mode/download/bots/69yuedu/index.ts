@@ -4,10 +4,10 @@ import { getNovel69yuedu } from "./_get-novel.ts";
 
 export class Bot69yuedu implements Bot {  
   name = '69yuedu';
-  help = [
-    'Tool: Puppeteer',
-    'site: https://www.69yuedu.net/'
-  ].join("\n")
+  help = {
+    scraping_tool: 'puppeteer',
+    site: 'https://www.69yuedu.net/'
+  }
 
 
   getNovel = getNovel69yuedu;

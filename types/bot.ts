@@ -14,12 +14,17 @@ export interface IChapterData{
   content: string[];
 }
 
+type BotHelp = {
+  scraping_tool: string;
+  site: string;
+}
+
 /**
  * Web crawlers responsible for navigate to websites and download a novel or a single chapter
  */
 export abstract class Bot{
   name: string;
-  help: string;
+  help: BotHelp;
 
   /**
    * Fetches novel data from the given URL.

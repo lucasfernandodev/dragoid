@@ -60,13 +60,17 @@ export class DownloadOptions {
 
 
   public listBots = (bots: Bot[]) => {
-    const content = bots.map(bot => `[🤖] Bot ${bot.name} \n${bot.help} `).join('\n\n');
+    const content = bots.map(bot => {
+      const name = bot.name;
+      const tool = bot.help.scraping_tool;
+      const site = bot.help.site;
 
-    logger.info([
-      'List Bots:\n',
-      content.length > 0 ? content : 'Bot list is empty'
-    ].join('\n'))
-    
+      return `Bot ${name} \n` + `Tool: ${tool} \n` + `Site: ${site} \n\n`;
+    });
+
+    logger.info("List Bots \n")
+    logger.info(content.join(""))
+
     return;
   };
 
