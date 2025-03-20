@@ -1,3 +1,12 @@
+## [0.1.3](https://github.com/lucasfernandodev/dragoid/compare/v0.1.2...v0.1.3) (2025-03-20)
+
+
+### Bug Fixes
+
+* Fixed incorrect zod schema fields ([96d9a5b](https://github.com/lucasfernandodev/dragoid/commit/96d9a5b130cd251e059711e934b322879c9cace2))
+
+
+
 ## [0.1.2](https://github.com/lucasfernandodev/dragoid/compare/v0.1.1...v0.1.2) (2025-03-18)
 
 
