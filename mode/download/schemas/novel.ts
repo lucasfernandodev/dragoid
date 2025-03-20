@@ -8,10 +8,10 @@ export const novelSchema = z.object({
   genres: z.array(z.string()),
   status: z.string(),
   language: z.string(),
-})
+}).strict()
 
 export const novelWithDownloadInfo = z.object({
   filename: z.string().min(1).max(48),
   format: z.enum(['json', 'html']),
   novel: novelSchema
-})
+}).strict()

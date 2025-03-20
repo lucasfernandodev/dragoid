@@ -8,17 +8,20 @@ import { BotReadNovelFull } from "./mode/download/bots/readnovelfull/index.ts";
 import type { CLIOptionsDownloadType } from "./types/cli-options-download.ts";
 import type { CLIOptionsPreviewType } from "./types/cli-options-preview.ts";
 import { Bot69yuedu } from "./mode/download/bots/69yuedu/index.ts";
+import { errorHandle } from "./errors/error-handle.ts";
 
 const _yargs = yargs(process.argv.slice(2))
 
+// Get Errors
+process.on("unhandledRejection", errorHandle);
+process.on("uncaughtException", errorHandle)
 
-const downloadClient = new Download(
-  [
-    new BotReadNovelFull(),
-    new Bot69yuedu()
-  ],
-  new GenerateOutputFile()
-)
+const bots = [
+  new BotReadNovelFull(),
+  new Bot69yuedu()
+]
+
+const downloadClient = new Download(bots, new GenerateOutputFile())
 
 const previewClient = new Preview()
 
@@ -39,4 +42,9 @@ _yargs.command<CLIOptionsPreviewType>(
   previewClient.handler
 )
 
-_yargs.locale('en').help().parse()
+_yargs.locale('en').help().fail((msg, err) => { 
+  if(err){
+    errorHandle(err)
+    return;
+  } 
+}).parse()

@@ -1,3 +1,4 @@
+import { ApplicationError } from "../errors/application-error.ts";
 import { logger } from "./logger.ts";
 
 export const axiosComplements = {
@@ -15,10 +16,6 @@ export const exitOnFetchError = async <T>(func: () => Promise<T>) => {
     const response = await func();
     return response;
   } catch (error) {
-    console.log(error)
-    logger.error(
-      `[x] An error occurred with the request: check if the url is correct or if the site is online`,
-      1,
-      true);
+    throw new ApplicationError('An error occurred with the request: check if the url is correct or if the site is online', error) 
   }
 }

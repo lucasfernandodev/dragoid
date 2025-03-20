@@ -2,6 +2,7 @@ import type { IChapterData, INovelData } from '../../../../types/bot.ts';
 import { logger, printChaptersDownloadProgress } from '../../../../utils/logger.ts';
 import { puppeteerInstance } from '../../../../lib/puppeteer.ts';
 import { downloadImage, processImageToBase64 } from '../../../../utils/images.ts';
+import { BotError } from '../../../../errors/bot-error.ts';
 
 export const getNovel69yuedu = async (url: string): Promise<INovelData> => {
 
@@ -68,7 +69,7 @@ export const getNovel69yuedu = async (url: string): Promise<INovelData> => {
 
   // Check if list chapters url is collected
   if (!result.chaptersListURl) {
-    logger.error("[x] Error: List chapter not found", 1, true)
+    throw new BotError('List chapter not found')
   }
 
   // Navegá até a pagina de capítulos
@@ -136,7 +137,7 @@ export const getNovel69yuedu = async (url: string): Promise<INovelData> => {
       title: result.title,
       content: result.content
     })
-    
+
     printChaptersDownloadProgress(index, chaptersList.length - 1)
     index++
   }
@@ -148,7 +149,10 @@ export const getNovel69yuedu = async (url: string): Promise<INovelData> => {
     if (!url) return '<image-url>'
 
     const bufferImage = await downloadImage(url);
-    if (!bufferImage) return '<image-url>'
+    if (!bufferImage) {
+      logger.warning('Novel thumbnail failed');
+      return '<image-url>'
+    }
 
     const base64Image = await processImageToBase64(bufferImage);
     if (!base64Image) return '<image-url>'
@@ -160,7 +164,7 @@ export const getNovel69yuedu = async (url: string): Promise<INovelData> => {
     title: result.title || 'Title unknown',
     author: result.author?.includes(",") ? result.author.split(',') : [result.author || 'Author unknown'],
     status: 'unknown',
-    thumbnail: await getImage(result.imageURL),
+    thumbnail: result.imageURL ? await getImage(result.imageURL) : '<image-url>',
     chapters: chapters,
     description: result.description,
     genres: [...result.genres || 'Author unknown'],

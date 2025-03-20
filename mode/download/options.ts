@@ -1,8 +1,7 @@
+import { BotError } from './../../errors/bot-error.ts';
 import { Bot } from "../../types/bot.ts";
-import { novelSchema } from "./schemas/novel.ts";
 import { GenerateOutputFile } from "./generate-output-file.ts";
 import chalk from "chalk";
-import { chapterScheme } from "./schemas/chapter.ts";
 import { logger } from "../../utils/logger.ts";
 
 export class DownloadOptions {
@@ -16,10 +15,11 @@ export class DownloadOptions {
     logger.info('[-] Starting retrive novel')
     const novel = await bot.getNovel(url);
 
-    if (!novel) return logger.error('[x] Unable to retrieve Novel', 1, true);
+    if (!novel) {
+      throw new BotError('Collect novel data failed')
+    }
 
-    const isValidData = novelSchema.safeParse(novel)
-    if (!isValidData.success) return logger.error('[x] Retrive Data invalid', 1, true)
+
 
     logger.info('[✔] Novel Retrive with success');
     logger.info("[-] Starting generate output file");
@@ -41,9 +41,10 @@ export class DownloadOptions {
     logger.info('[-] Starting retrive chapter');
     const chapter = await bot.getChapter(url);
 
-    if (!chapter) return logger.error('Unable to retrieve chapter', 1, true);
-    const isValidData = chapterScheme.safeParse(chapter);
-    if (!isValidData.success) return logger.error('[x] Error: Retrive Data invalid', 1, true);
+    if (!chapter) {
+      throw new BotError('Collect chapter data failed')
+    }
+
 
     logger.info('[✔] Chapter retrive with sucess;');
     logger.info("[-] Starting generate output file");
@@ -61,10 +62,12 @@ export class DownloadOptions {
   public listBots = (bots: Bot[]) => {
     const content = bots.map(bot => `[🤖] Bot ${bot.name} \n${bot.help} `).join('\n\n');
 
-    return logger.info([
+    logger.info([
       'List Bots:\n',
       content.length > 0 ? content : 'Bot list is empty'
-    ].join('\n'), 1, true, 0)
+    ].join('\n'))
+    
+    return;
   };
 
 

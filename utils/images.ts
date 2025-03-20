@@ -1,8 +1,8 @@
-import { logger } from './logger.ts';
 import Vips from 'wasm-vips';
 import axios from 'axios';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { ApplicationError } from '../errors/application-error.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -15,12 +15,9 @@ export const downloadImage = async (url: string): Promise<Buffer | null> => {
       return response?.data;
     }
 
-    logger.error('Unable to download thumbnail', 1);
-
     return null;
   } catch (error) {
-    logger.error('Unable to download thumbnail', 1);
-    return null;
+    throw new ApplicationError('Unable to download thumbnail', error) 
   }
 }
 
@@ -45,7 +42,6 @@ export const processImageToBase64 = async (image: Buffer): Promise<string|null> 
     return base64Image;
 
   } catch (error) {
-    logger.error('It is not possible to process the image', 1);
-    return null;
+    throw new ApplicationError('It is not possible to process the image', error) 
   }
 }

@@ -3,6 +3,7 @@ import type { IChapterData, INovelData } from "../../types/bot.ts";
 import { writeFile } from "../../utils/file.ts";
 import { chapterScheme } from './schemas/chapter.ts';
 import { logger } from '../../utils/logger.ts';
+import { ApplicationError } from '../../errors/application-error.ts';
 
 
 
@@ -50,7 +51,7 @@ export class GenerateOutputFile {
     if (data.mode === 'novel') {
       const isValidData = novelWithDownloadInfo.safeParse(data)
       if (!isValidData.success) {
-        logger.error('[x] Retrive novel data invalid', 1, true)
+        throw new ApplicationError('Generate file error, retrive novel data invalid', null) 
       }
     }
 
@@ -58,7 +59,7 @@ export class GenerateOutputFile {
     if (data.mode === 'chapter') {
       const isValidData = chapterScheme.safeParse(data.chapter);
       if (!isValidData.success) {
-        logger.error('[x] Retrive chapter data invalid', 1, true)
+        throw new ApplicationError('Generate file error, retrive chapter data invalid', null) 
       }
     }
 
@@ -70,7 +71,7 @@ export class GenerateOutputFile {
     }
 
     if (data.mode === 'novel' && data.format === 'html') {
-      logger.warning('NOT IMPLEMENTED', 1, true)
+      logger.info('NOT IMPLEMENTED',)
     }
 
     if (data.mode === 'chapter' && data.format === 'json') {
@@ -79,7 +80,7 @@ export class GenerateOutputFile {
     }
 
     if (data.mode === 'chapter' && data.format === 'html') {
-      logger.warning('NOT IMPLEMENTED', 1, true)
+      logger.info('NOT IMPLEMENTED',)
     }
 
   }

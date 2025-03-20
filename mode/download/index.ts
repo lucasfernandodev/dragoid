@@ -6,6 +6,7 @@ import { GenerateOutputFile } from "./generate-output-file.ts";
 import { DownloadOptions } from "./options.ts";
 import type { CLIOptionsDownloadType } from "../../types/cli-options-download.ts";
 import { logger } from "../../utils/logger.ts";
+import { ApplicationError } from "../../errors/application-error.ts";
 
 
 export class Download implements DefaultCommand {
@@ -27,6 +28,7 @@ export class Download implements DefaultCommand {
         mode: {
           group: 'Download',
           alias: 'm',
+          type: 'string' as const,
           choices: ['novel', 'chapter'] as const,
           description: 'Choose whether you want to download all chapters of the novel or just one chapter'
         },
@@ -73,7 +75,9 @@ export class Download implements DefaultCommand {
     const siteName = urlDomain.split('.').length === 3 ? urlDomain.split('.')[1] : urlDomain.split('.')[0]
     const isBot = this.bots.find(bot => bot.name === siteName);
 
-    if (!isBot) return logger.error('Website not supported', 1, true);
+    if (!isBot) {
+      throw new ApplicationError('Website not supported')
+    }
 
     return isBot;
   }

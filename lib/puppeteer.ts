@@ -10,12 +10,12 @@ const puppeteerInstance = async () => {
       puppeteerDefault.use(StealthPluginDefault())
     }
 
-    if(!puppeteer?.launch){
+    if(!puppeteerDefault?.launch){
       console.error('System not supported by puppetter, try another bot');
       process.exit(1);
     }
 
-    return puppeteer
+    return puppeteerDefault
 
   } catch (error) {
     console.error('System not supported by puppetter, try another bot');

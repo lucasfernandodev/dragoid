@@ -3,9 +3,9 @@ import { DefaultCommand } from "../../types/command.ts";
 import { readFile } from "../../utils/file.ts";
 import type { INovelData } from "../../types/bot.ts";
 import { Server } from "./server.ts";
-import type { CLIOptionsPreviewType } from "../../types/cli-options-preview.ts";
-import { logger } from "../../utils/logger.ts";
+import type { CLIOptionsPreviewType } from "../../types/cli-options-preview.ts"; 
 import path from "path";
+import { ValidationError } from "../../errors/validation-error.ts";
 
 export class Preview implements DefaultCommand {
   commandEntry = 'preview';
@@ -21,14 +21,14 @@ export class Preview implements DefaultCommand {
           description: 'Path to novel JSON file.'
         }
       }).check((args) => {
-        const filepath = args['file']; 
-        
+        const filepath = args['file'];
+
         if (!filepath) {
-          logger.error("The '--file' argument is required", 1, true)
+          throw new ValidationError("The '--file' argument is required")
         }
 
         if (path.extname(filepath as string) !== '.json') {
-          logger.error("The file provided does not have a .json extension.",1,true);
+          throw new ValidationError("The file provided does not have a .json extension.");
         }
 
         return true;
@@ -39,7 +39,7 @@ export class Preview implements DefaultCommand {
     const filepath = args['file'];
 
     if (!filepath) {
-      logger.error("The '--file' argument is required", 1, true)
+      throw new ValidationError("The '--file' argument is required")
     }
 
     const file = await readFile<INovelData>(filepath as string);
@@ -50,6 +50,6 @@ export class Preview implements DefaultCommand {
       return;
     }
 
-    logger.error('Error reading the JSON file. Please ensure that the file exists and is in a valid JSON format.', 1, true)
+    throw new ValidationError('Error reading the JSON file. Please ensure that the file exists and is in a valid JSON format.')
   };
 }

@@ -6,6 +6,7 @@ import { exitOnFetchError } from '../../../../utils/exitOnFetchError.ts';
 import { delay } from '../../../../utils/delay.ts';
 import { logger, printChaptersDownloadProgress } from '../../../../utils/logger.ts';
 import { downloadImage, processImageToBase64 } from '../../../../utils/images.ts';
+import { BotError } from '../../../../errors/bot-error.ts';
 
 
 
@@ -62,7 +63,7 @@ export const readnovelfullGetNovel = async (url: string): Promise<INovelData> =>
   const getChapters = async (bookId?: string) => {
 
     if (!bookId) {
-      logger.error('BookId Not Found', 1, true)
+      throw new BotError('Unable to retrieve chapter list');
     }
 
     const chapterListBaseURL = 'https://readnovelfull.com/ajax/chapter-archive?novelId=';
@@ -92,7 +93,10 @@ export const readnovelfullGetNovel = async (url: string): Promise<INovelData> =>
     if (!imageURL) return '<image-url>'
 
     const bufferImage = await downloadImage(imageURL);
-    if (!bufferImage) return '<image-url>'
+    if (!bufferImage) {
+      logger.warning('Novel thumbnail failed');
+      return '<image-url>'
+    }
 
     const base64Image = await processImageToBase64(bufferImage);
     if (!base64Image) return '<image-url>'
