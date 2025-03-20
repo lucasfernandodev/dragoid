@@ -13,7 +13,7 @@
   "scripts": {
     "dev": "NODE_NO_WARNINGS=1 node --experimental-strip-types ./dragoid.ts",
     "prebuild": "rm -rf ./bin",
-    "build": "npx esbuild ./dragoid.ts --bundle --platform=node --target=node22.13.1 --outfile=./bin/dragoid --format=esm --banner:js='import { createRequire as topLevelCreateRequire } from \"module\";\n const require = topLevelCreateRequire(import.meta.url);'  --external:tslib --external:typescript --external:puppeteer --external:puppeteer-extra --external:puppeteer-extra-plugin-stealth",
+    "build": "NODE_NO_WARNINGS=1 node --experimental-strip-types ./build.ts",
     "postbuild": "cp -r ./mode/web-preview/client ./bin/ && cp ./node_modules/wasm-vips/lib/vips-node.mjs ./bin",
     "prepublishOnly": "npm run build"
   },
@@ -44,6 +44,7 @@
     "cheerio": "^1.0.0",
     "clone-deep": "^4.0.1",
     "ejs": "^3.1.10",
+    "esbuild": "^0.25.1",
     "fastify": "^5.2.1",
     "puppeteer-core": "^24.4.0",
     "typescript": "^5.8.2",

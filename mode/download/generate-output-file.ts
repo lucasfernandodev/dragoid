@@ -51,7 +51,7 @@ export class GenerateOutputFile {
     if (data.mode === 'novel') {
       const isValidData = novelWithDownloadInfo.safeParse(data)
       if (!isValidData.success) {
-        throw new ApplicationError('Generate file error, retrive novel data invalid', null) 
+        throw new ApplicationError('Generate file error, retrive novel data invalid', isValidData.error) 
       }
     }
 
@@ -59,7 +59,7 @@ export class GenerateOutputFile {
     if (data.mode === 'chapter') {
       const isValidData = chapterScheme.safeParse(data.chapter);
       if (!isValidData.success) {
-        throw new ApplicationError('Generate file error, retrive chapter data invalid', null) 
+        throw new ApplicationError('Generate file error, retrive chapter data invalid', isValidData.error) 
       }
     }
 
