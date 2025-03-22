@@ -3,7 +3,7 @@ import { DefaultCommand } from "../../types/command.ts";
 import { readFile } from "../../utils/file.ts";
 import type { INovelData } from "../../types/bot.ts";
 import { Server } from "./server.ts";
-import type { CLIOptionsPreviewType } from "../../types/cli-options-preview.ts"; 
+import type { CLIOptionsPreviewType } from "../../types/command-preview-args.ts"; 
 import path from "path";
 import { ValidationError } from "../../errors/validation-error.ts";
 

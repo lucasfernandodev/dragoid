@@ -4,7 +4,7 @@ import { validateInput } from "./validate-input.ts";
 import { Bot } from "../../types/bot.ts";
 import { GenerateOutputFile } from "./generate-output-file.ts";
 import { DownloadOptions } from "./options.ts";
-import type { CLIOptionsDownloadType } from "../../types/cli-options-download.ts";
+import type { CLIOptionsDownloadType } from "../../types/command-download-args.ts";
 import { logger } from "../../utils/logger.ts";
 import { ApplicationError } from "../../errors/application-error.ts";
 
