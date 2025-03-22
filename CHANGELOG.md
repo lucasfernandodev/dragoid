@@ -1,3 +1,13 @@
+## [0.1.4](https://github.com/lucasfernandodev/dragoid/compare/v0.1.3...v0.1.4) (2025-03-22)
+
+
+### Bug Fixes
+
+* Fixed flag --version returning unknown ([7878fc8](https://github.com/lucasfernandodev/dragoid/commit/7878fc890f7a0066b4a5150202483796833601e8))
+* Fixing wasm path files incorrect ([d93d29b](https://github.com/lucasfernandodev/dragoid/commit/d93d29ba961f51a701100c6bab1423842b300041))
+
+
+
 ## [0.1.3](https://github.com/lucasfernandodev/dragoid/compare/v0.1.2...v0.1.3) (2025-03-20)
 
 
@@ -46,10 +56,6 @@
 * Implement function to download images and join to json ([2331b00](https://github.com/lucasfernandodev/dragoid/commit/2331b0067919bf01a70ee58281c134d116a633ea))
 * Turning puppeteer optional ([651f6a3](https://github.com/lucasfernandodev/dragoid/commit/651f6a3af8e5e6f92540791091ebcbf5d97932cc))
 * **preview:** Add not found page ([a71ed67](https://github.com/lucasfernandodev/dragoid/commit/a71ed678dda15db002f2c0cb656d8250b21e4e28))
-
-
-
-## 0.0.1 (2025-02-03)
 
 
 
