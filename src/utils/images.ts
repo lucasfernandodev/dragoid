@@ -26,7 +26,7 @@ export const processImageToBase64 = async (image: Buffer): Promise<string|null> 
   try {
     const vips = await Vips({
       locateFile: (filename) => {
-        return path.join(__dirname, `../node_modules/wasm-vips/lib/${filename}`)
+        return path.join(__dirname, `../../node_modules/wasm-vips/lib/${filename}`)
       }
     });
 

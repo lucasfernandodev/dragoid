@@ -1,7 +1,7 @@
 import esbuild from 'esbuild';
 
 esbuild.build({
-  entryPoints: ['./dragoid.ts'],
+  entryPoints: ['./src/dragoid.ts'],
   bundle: true,
   platform: 'node',
   target: 'node22.13.1',

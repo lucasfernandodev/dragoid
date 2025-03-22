@@ -1,4 +1,4 @@
-import { type INovelData } from './../../types/bot.ts';
+import { type INovelData } from '../../types/bot.ts';
 import Fastify, { type FastifyInstance } from "fastify";
 import fastifyView from '@fastify/view';
 import fastifyStaticFiles from '@fastify/static';

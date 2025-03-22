@@ -1,4 +1,4 @@
-import type { OutputSupportedFormats } from "../mode/download/generate-output-file";
+import type { OutputSupportedFormats } from "../commands/download/generate-output-file";
 
 export type CLIOptionsDownloadType = {
   mode: 'novel' | 'chapter';

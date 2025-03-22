@@ -11,10 +11,10 @@
     "./bin/"
   ],
   "scripts": {
-    "dev": "NODE_NO_WARNINGS=1 node --experimental-strip-types ./dragoid.ts",
+    "dev": "NODE_NO_WARNINGS=1 node --experimental-strip-types ./src/dragoid.ts",
     "prebuild": "rm -rf ./bin",
     "build": "NODE_NO_WARNINGS=1 node --experimental-strip-types ./build.ts",
-    "postbuild": "cp -r ./mode/web-preview/client ./bin/ && cp ./node_modules/wasm-vips/lib/vips-node.mjs ./bin",
+    "postbuild": "cp -r ./src/commands/web-preview/client ./bin/ && cp ./node_modules/wasm-vips/lib/vips-node.mjs ./bin",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
