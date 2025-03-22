@@ -42,7 +42,7 @@ _yargs.command<TypeCommandPreviewArgs>(
   previewClient.handler
 )
 
-_yargs.locale('en').help().fail((msg, err) => { 
+_yargs.locale('en').help().version(process.env.VERSION_PLACEHOLDER || '').fail((msg, err) => { 
   if(err){
     errorHandle(err)
     return;
