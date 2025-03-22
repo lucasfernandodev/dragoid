@@ -3,7 +3,7 @@
 import yargs from "yargs";
 import { errorHandle } from "./errors/error-handle.ts";
 import { Download } from "./commands/download/index.ts";
-import { Preview } from "./commands/web-preview/index.ts";
+import { Preview } from "./commands/preview/index.ts";
 import { GenerateOutputFile } from "./commands/download/generate-output-file.ts";
 import { BotReadNovelFull } from "./commands/download/bots/readnovelfull/index.ts"; 
 import { Bot69yuedu } from "./commands/download/bots/69yuedu/index.ts";
