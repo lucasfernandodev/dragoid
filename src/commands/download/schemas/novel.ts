@@ -12,6 +12,17 @@ export const novelSchema = z.object({
   language: z.string(),
 }).strict()
 
+export const novelFileSchema = z.object({
+  thumbnail: z.string().optional(),
+  title: z.string().optional(),
+  author: z.array(z.string()).optional(),
+  description: z.array(z.string()).optional(),
+  chapters: z.array(chapterScheme).optional(),
+  genres: z.array(z.string()).optional(),
+  status: z.string().optional(),
+  language: z.string().optional(),
+}).strict()
+
 export const novelWithDownloadInfo = z.object({
   mode: z.string(),
   filename: z.string().min(1).max(48),

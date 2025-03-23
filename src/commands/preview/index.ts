@@ -1,11 +1,12 @@
+import type { TypeCommandPreviewArgs } from './../../types/command-preview-args.ts';
 import yargs from "yargs";
 import { DefaultCommand } from "../../types/command.ts";
-import { readFile } from "../../utils/file.ts";
+import { fileExists, readFile } from "../../utils/file.ts";
 import type { INovelData } from "../../types/bot.ts";
 import { Server } from "./server.ts";
-import type { CLIOptionsPreviewType } from "../../types/command-preview-args.ts"; 
 import path from "path";
 import { ValidationError } from "../../errors/validation-error.ts";
+import { novelFileSchema } from '../download/schemas/novel.ts';
 
 export class Preview implements DefaultCommand {
   commandEntry = 'preview';
@@ -24,32 +25,50 @@ export class Preview implements DefaultCommand {
         const filepath = args['file'];
 
         if (!filepath) {
-          throw new ValidationError("The '--file' argument is required")
+          throw new ValidationError("Missing required argument '--file'. Please provide the path to a JSON file.")
+        }
+
+        if (filepath.length > 120) {
+          throw new ValidationError('Invalid file path: the path exceeds the maximum allowed length of 120 characters.')
         }
 
         if (path.extname(filepath as string) !== '.json') {
-          throw new ValidationError("The file provided does not have a .json extension.");
+          throw new ValidationError(`Invalid file extension for '${filepath}'. Expected a file with a '.json' extension.`);
         }
 
         return true;
       });
   };
 
-  public handler = async (args: Partial<CLIOptionsPreviewType>) => {
+  public handler = async (args: TypeCommandPreviewArgs) => {
     const filepath = args['file'];
 
-    if (!filepath) {
-      throw new ValidationError("The '--file' argument is required")
+    const isExistFile = await fileExists(filepath)
+
+    if (!isExistFile) {
+      throw new ValidationError(`File not found: ${filepath}`)
     }
 
     const file = await readFile<INovelData>(filepath as string);
+
+    if (!file) {
+      throw new ValidationError(
+        'Failed to load the JSON file. Ensure the file exists, is accessible, and contains valid JSON.'
+      )
+    }
+
+    const isValidatedFile = await novelFileSchema.safeParseAsync(file);
+    if (!isValidatedFile.success) {
+      throw new ValidationError(
+        'The JSON file is not in the expected format. Ensure it contains the required data structure.',
+        isValidatedFile.error
+      )
+    }
 
     if (file) {
       const server = new Server(file);
       server.init();
       return;
     }
-
-    throw new ValidationError('Error reading the JSON file. Please ensure that the file exists and is in a valid JSON format.')
   };
 }

@@ -18,3 +18,13 @@ export const readFile = async <T>(filepath: string) => {
     return null
   }
 }
+ 
+
+export async function fileExists(filePath: string) {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch (error) {
+    return false;
+  }
+}
