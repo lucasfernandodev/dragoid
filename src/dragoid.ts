@@ -9,6 +9,7 @@ import { BotReadNovelFull } from "./commands/download/bots/readnovelfull/index.t
 import { Bot69yuedu } from "./commands/download/bots/69yuedu/index.ts";
 import type { TypeCommandPreviewArgs } from "./types/command-preview-args.ts";
 import type { TypeCommandDownloadArgs } from "./types/command-download-args.ts";
+import { getCurrentVersion } from "./utils/helper.ts";
 
 const _yargs = yargs(process.argv.slice(2))
 
@@ -42,7 +43,7 @@ _yargs.command<TypeCommandPreviewArgs>(
   previewClient.handler
 )
 
-_yargs.locale('en').help().version(process.env.VERSION_PLACEHOLDER || '').fail((msg, err) => { 
+_yargs.locale('en').help().version(process.env.VERSION_PLACEHOLDER || await getCurrentVersion() || '').fail((msg, err) => { 
   if(err){
     errorHandle(err)
     return;

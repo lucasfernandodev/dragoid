@@ -1,13 +1,7 @@
-import esbuild from 'esbuild'; 
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { readFile } from './src/utils/file.ts';
+import esbuild from 'esbuild';  
+import { getCurrentVersion } from './src/utils/helper.ts';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-const packageJSONPath = path.join(__dirname, `./package.json`);
-const packageJSON = await readFile<{version: string}>(packageJSONPath);
-const version = packageJSON?.version; 
+
 
 esbuild.build({
   entryPoints: ['./src/dragoid.ts'],
@@ -20,7 +14,7 @@ esbuild.build({
     js: 'import { createRequire as topLevelCreateRequire } from "module";\n const require = topLevelCreateRequire(import.meta.url);'
   },
   define: {
-    'process.env.VERSION_PLACEHOLDER': `'${version}'`,
+    'process.env.VERSION_PLACEHOLDER': `'${await getCurrentVersion()}'`,
     '__IS_BUILD__': 'true'
   },
   external: [
