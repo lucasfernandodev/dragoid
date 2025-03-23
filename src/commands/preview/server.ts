@@ -32,7 +32,7 @@ export class Server {
       prefix: "/assets/",
     })
     this.data = data;
-    logger.info(`[*] Server is Running in port: ${this.PORT}`)
+    logger.info(`[*] Server is running in: http://127.0.0.1:${this.PORT}`)
   }
 
   private routers = async () => {
