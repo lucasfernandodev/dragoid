@@ -20,7 +20,8 @@ esbuild.build({
     js: 'import { createRequire as topLevelCreateRequire } from "module";\n const require = topLevelCreateRequire(import.meta.url);'
   },
   define: {
-    'process.env.VERSION_PLACEHOLDER': `'${version}'`
+    'process.env.VERSION_PLACEHOLDER': `'${version}'`,
+    '__IS_BUILD__': 'true'
   },
   external: [
     'tslib',

@@ -3,6 +3,7 @@ import axios from 'axios';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { ApplicationError } from '../errors/application-error.ts';
+import { isBuild } from './helper.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,7 +27,11 @@ export const processImageToBase64 = async (image: Buffer): Promise<string|null> 
   try {
     const vips = await Vips({
       locateFile: (filename) => { 
+       if(isBuild){
         return path.join(__dirname, `../node_modules/wasm-vips/lib/${filename}`)
+       }
+
+       return path.join(__dirname, `../../node_modules/wasm-vips/lib/${filename}`)
       }
     });
 
