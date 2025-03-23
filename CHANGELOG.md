@@ -1,3 +1,17 @@
+# [0.3.0](https://github.com/lucasfernandodev/dragoid/compare/v0.2.0...v0.3.0) (2025-03-23)
+
+
+### Bug Fixes
+
+* Improving error handle for JSON validation ([0104569](https://github.com/lucasfernandodev/dragoid/commit/0104569dbfd03fad5c014be6bfeb5ba29467701f))
+
+
+### Features
+
+* Add favicon for reader pages ([4ea0ceb](https://github.com/lucasfernandodev/dragoid/commit/4ea0cebe498e3ee4a794133959895ce264cddef9))
+
+
+
 # [0.2.0](https://github.com/lucasfernandodev/dragoid/compare/v0.1.5...v0.2.0) (2025-03-23)
 
 
@@ -32,15 +46,6 @@
 ### Bug Fixes
 
 * Fixed incorrect zod schema fields ([96d9a5b](https://github.com/lucasfernandodev/dragoid/commit/96d9a5b130cd251e059711e934b322879c9cace2))
-
-
-
-## [0.1.2](https://github.com/lucasfernandodev/dragoid/compare/v0.1.1...v0.1.2) (2025-03-18)
-
-
-### Bug Fixes
-
-* **download:** Fixed the support check for Puppeteer. ([11141e8](https://github.com/lucasfernandodev/dragoid/commit/11141e8aefb0f35dd585797023cee62ec3ac3721))
 
 
 
