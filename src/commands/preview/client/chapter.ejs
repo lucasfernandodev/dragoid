@@ -10,6 +10,16 @@
 </head>
 
 <body>
+  <header class="header">
+    <div class="bradcrumb">
+      <a href="/">Homepage</a>
+      <span class="bradcrumb-divider">></span>
+      <span>
+        <%= title %>
+      </span>
+    </div>
+  </header>
+
   <main class="page">
     <section>
       <h1>
@@ -23,7 +33,8 @@
           <% } %>
       </div>
       <div class="navigation-chapters">
-        <a href="/chapter/?id=<%= chapter_prev_id %>">
+        <a href="/chapter/?id=<%= chapter_prev_id %>"
+          data-disabled="<%= chapter_prev_id === null ? 'true' : 'false' %>">
           Prev chapter
         </a>
         <div class="divider"></div>

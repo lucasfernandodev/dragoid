@@ -75,11 +75,12 @@ export class Server {
       }
 
       const nextId = currentid + 1 >= this.data.chapters.length ? null : currentid + 1;
+      const prevId = currentid - 1 < 0 ? null : (currentid - 1)
 
       return reply.view("chapter.ejs", {
         title: this.data.chapters[currentid].title,
         content: this.data.chapters[currentid].content,
-        chapter_prev_id: currentid - 1,
+        chapter_prev_id: prevId,
         chapter_next_id: nextId,
       })
     })

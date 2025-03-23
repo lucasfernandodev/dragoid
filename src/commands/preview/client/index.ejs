@@ -10,32 +10,39 @@
 </head>
 
 <body>
-
   <main class="page">
     <div class="cover">
       <div class="heading">
         <div class="thumbnail">
-          <img src="data:image/jpeg;base64,<%= thumbnail %>" alt="Thumbnail" />
+          <img src="data:image/jpeg;base64,<%= thumbnail %>" alt="Thumbnail" title="Thumbnail - <%= title %> "/>
         </div>
         <h1 className="title">
           <%= title %>
         </h1>
-        <p class="author"><%= author %></p>
+        <p class="author" title="Author">
+          <%= author %>
+        </p>
       </div>
 
       <div class="info">
         <div class="col">
           <p>Status</p>
-          <p><%= status %></p>
+          <p>
+            <%= status %>
+          </p>
         </div>
         <div class="col">
           <p>Number of chapters</p>
-          <p><%= chaptersQTD %></p>
+          <p>
+            <%= chaptersQTD %>
+          </p>
         </div>
 
         <div class="col">
           <p>Language</p>
-          <p><%= language %></p>
+          <p>
+            <%= language %>
+          </p>
         </div>
       </div>
 
@@ -51,17 +58,19 @@
     </div>
 
     <div class="first-chapter">
-      <h2 class="title"><%= chapterTitle %></h2>
+      <h2 class="title">
+        <%= chapterTitle %>
+      </h2>
       <div class="content">
         <% for(var i=0; i<chapterContent.length; i++) { %>
           <p>
-              <%= chapterContent[i] %>
+            <%= chapterContent[i] %>
           </p>
-      <% } %>
+          <% } %>
       </div>
       <div class="navigation-chapters">
         <a href="#" data-disabled="true">Prev chapter</a>
-          <div class="divider"></div>
+        <div class="divider"></div>
         <a href="/chapter/?id=1">Next chapter</a>
       </div>
     </div>
