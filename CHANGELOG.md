@@ -1,3 +1,12 @@
+# [0.2.0](https://github.com/lucasfernandodev/dragoid/compare/v0.1.5...v0.2.0) (2025-03-23)
+
+
+### Features
+
+* Add chapter name for title ([3b298ca](https://github.com/lucasfernandodev/dragoid/commit/3b298ca1017cc07583634d43d377e765e648f741))
+
+
+
 ## [0.1.5](https://github.com/lucasfernandodev/dragoid/compare/v0.1.4...v0.1.5) (2025-03-23)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * **download:** Fixed the support check for Puppeteer. ([11141e8](https://github.com/lucasfernandodev/dragoid/commit/11141e8aefb0f35dd585797023cee62ec3ac3721))
-
-
-
-## [0.1.1](https://github.com/lucasfernandodev/dragoid/compare/v0.1.0...v0.1.1) (2025-03-18)
-
-
-### Bug Fixes
-
-* **download:** Change native error message for a custo message ([36a68dc](https://github.com/lucasfernandodev/dragoid/commit/36a68dca65c8b0b31652d598678434981629f9ad))
 
 
 
