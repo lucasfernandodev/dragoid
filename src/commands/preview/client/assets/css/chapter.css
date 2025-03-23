@@ -33,9 +33,10 @@
     }
   }
 
-  & .bradcrumb-divider{
-    opacity: 0.5;
-    font-weight: bold;
+  & .bradcrumb{
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 }
 
