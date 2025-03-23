@@ -1,3 +1,12 @@
+## [0.3.1](https://github.com/lucasfernandodev/dragoid/compare/v0.3.0...v0.3.1) (2025-03-23)
+
+
+### Bug Fixes
+
+* Fixed processToImage wasm not found ([bcb3edf](https://github.com/lucasfernandodev/dragoid/commit/bcb3edf35527b8bd4466480e5d7253932f8d77cf))
+
+
+
 # [0.3.0](https://github.com/lucasfernandodev/dragoid/compare/v0.2.0...v0.3.0) (2025-03-23)
 
 
@@ -37,15 +46,6 @@
 
 * Fixed flag --version returning unknown ([7878fc8](https://github.com/lucasfernandodev/dragoid/commit/7878fc890f7a0066b4a5150202483796833601e8))
 * Fixing wasm path files incorrect ([d93d29b](https://github.com/lucasfernandodev/dragoid/commit/d93d29ba961f51a701100c6bab1423842b300041))
-
-
-
-## [0.1.3](https://github.com/lucasfernandodev/dragoid/compare/v0.1.2...v0.1.3) (2025-03-20)
-
-
-### Bug Fixes
-
-* Fixed incorrect zod schema fields ([96d9a5b](https://github.com/lucasfernandodev/dragoid/commit/96d9a5b130cd251e059711e934b322879c9cace2))
 
 
 
