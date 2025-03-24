@@ -9,14 +9,14 @@ import { ApplicationError } from '../../errors/application-error.ts';
 
 interface INovelDataOuput {
   mode: 'novel',
-  format: 'json' | 'html',
+  format: string,
   filename: string;
   novel: INovelData
 }
 
 interface IChapterDataOuput {
   mode: 'chapter',
-  format: 'json' | 'html',
+  format: string,
   filename: string;
   chapter: IChapterData
 }
