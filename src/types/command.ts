@@ -1,4 +1,4 @@
-import yargs, {type  Options } from "yargs";
+import yargs from "yargs";
 
 export abstract class DefaultCommand {
   commandEntry: string;

@@ -4,9 +4,8 @@ import { validateInput } from "./validate-input.ts";
 import { Bot } from "../../types/bot.ts";
 import { GenerateOutputFile } from "./generate-output-file.ts";
 import { DownloadOptions } from "./options.ts";
-import type { CLIOptionsDownloadType } from "../../types/command-download-args.ts";
-import { logger } from "../../utils/logger.ts";
 import { ApplicationError } from "../../errors/application-error.ts";
+import type { TypeCommandDownloadArgs } from "../../types/command-download-args.ts";
 
 
 export class Download implements DefaultCommand {
@@ -53,17 +52,23 @@ export class Download implements DefaultCommand {
           group: 'List Options',
           description: 'List supported file outputs format',
           type: 'boolean'
+        },
+        'limit': {
+          group: "Download Novel",
+          alias: 'l',
+          type: 'number',
+          description: 'Limits the number of chapter downloads'
+        },
+        'skip': {
+          group: "Download Novel",
+          alias: 's',
+          type: 'number',
+          description: 'Defines from which chapter the download starts',
         }
       })
 
-  
-    Options.check(args => validateInput({
-      url: args.url,
-      listCrawlers: args["list-crawlers"],
-      outputFormat: args["output-format"],
-      listOutputFormats: args['list-output-formats'],
-      mode: args.mode,
-    }))
+
+    Options.check(args => validateInput(args))
 
     return Options;
   };
@@ -82,8 +87,8 @@ export class Download implements DefaultCommand {
     return isBot;
   }
 
-  public handler = async (args: Partial<CLIOptionsDownloadType>) => {
-    
+  public handler = async (args: Partial<TypeCommandDownloadArgs>) => {
+
     const cliOptions = new DownloadOptions(
       new GenerateOutputFile()
     );
@@ -97,12 +102,19 @@ export class Download implements DefaultCommand {
       }
 
       if (args.mode === 'novel' && bot) {
-        cliOptions.handlerNovel(args.url, bot, args['output-format'])
+        const data = {
+          url: args.url,
+          opt: {
+            limit: args.limit,
+            skip: args.skip
+          }
+        }
+        cliOptions.handlerNovel(data, bot, args['output-format'])
       }
     }
 
     if (args['list-crawlers']) {
-     
+
       cliOptions.listBots(this.bots)
     }
 

@@ -19,6 +19,12 @@ type BotHelp = {
   site: string;
 }
 
+export type DownloadNovelOptions = Partial<{
+  limit: number;
+  skip: number
+}>
+
+
 /**
  * Web crawlers responsible for navigate to websites and download a novel or a single chapter
  */
@@ -31,7 +37,7 @@ export abstract class Bot{
    * @param {string} url - The URL of the novel page.
    * @returns {Promise<INovelData | null>} A promise resolving to novel data or null if not found.
    */
-  getNovel: (url: string) => Promise<INovelData | null>
+  getNovel: (url: string, opt: DownloadNovelOptions) => Promise<INovelData | null>
 
   /**
    * Fetches a single chapter from the given URL.

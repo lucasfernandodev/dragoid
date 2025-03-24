@@ -4,4 +4,6 @@ export type TypeCommandDownloadArgs = {
   'list-crawlers': boolean;
   'list-output-formats': boolean;
   'output-format': string;
+  limit: number;
+  skip: number;
 }

@@ -1,8 +1,13 @@
 import { BotError } from './../../errors/bot-error.ts';
-import { Bot } from "../../types/bot.ts";
+import { Bot, type DownloadNovelOptions } from "../../types/bot.ts";
 import { GenerateOutputFile } from "./generate-output-file.ts";
 import chalk from "chalk";
-import { logger } from "../../utils/logger.ts";
+import { logger } from "../../utils/logger.ts"; 
+
+interface IHandlerNovelData {
+  url: string;
+  opt: DownloadNovelOptions
+}
 
 export class DownloadOptions {
 
@@ -11,15 +16,13 @@ export class DownloadOptions {
     this.generateFile = generateFile
   }
 
-  public handlerNovel = async (url: string, bot: Bot, format: 'html' | 'json') => {
+  public handlerNovel = async ({url, opt}: IHandlerNovelData, bot: Bot, format: string) => {
     logger.info('[-] Starting retrive novel')
-    const novel = await bot.getNovel(url);
+    const novel = await bot.getNovel(url, opt);
 
     if (!novel) {
       throw new BotError('Collect novel data failed')
     }
-
-
 
     logger.info('[✔] Novel Retrive with success');
     logger.info("[-] Starting generate output file");
@@ -37,7 +40,7 @@ export class DownloadOptions {
 
 
 
-  public handlerChapter = async (url: string, bot: Bot, format: 'html' | 'json') => {
+  public handlerChapter = async (url: string, bot: Bot, format: string) => {
     logger.info('[-] Starting retrive chapter');
     const chapter = await bot.getChapter(url);
 

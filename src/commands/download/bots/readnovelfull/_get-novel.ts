@@ -1,18 +1,22 @@
 import axios from 'axios';
-import { type INovelData } from "../../../../types/bot.ts";
+import type { DownloadNovelOptions, INovelData } from "../../../../types/bot.ts";
 import { type CheerioAPI, load } from 'cheerio';
 import { readnovelfullGetChapter } from './_get-chapter.ts';
 import { exitOnFetchError } from '../../../../utils/exitOnFetchError.ts';
 import { delay } from '../../../../utils/delay.ts';
-import { logger, printChaptersDownloadProgress } from '../../../../utils/logger.ts';
+import { logger } from '../../../../utils/logger.ts';
 import { downloadImage, processImageToBase64 } from '../../../../utils/images.ts';
 import { BotError } from '../../../../errors/bot-error.ts';
+import { processChaptersList } from '../../../../core.ts';
 
 
 
 
 
-export const readnovelfullGetNovel = async (url: string): Promise<INovelData> => {
+export const readnovelfullGetNovel = async (
+  url: string,
+  opt: DownloadNovelOptions = {}
+): Promise<INovelData> => {
 
   const getTitle = ($: CheerioAPI) => {
     return $('h3.title').first().text();
@@ -62,28 +66,29 @@ export const readnovelfullGetNovel = async (url: string): Promise<INovelData> =>
 
   const getChapters = async (bookId?: string) => {
 
+    const chaptersData = [] as INovelData['chapters']
+
     if (!bookId) {
       throw new BotError('Unable to retrieve chapter list');
     }
 
+    // ChapterList Page
     const chapterListBaseURL = 'https://readnovelfull.com/ajax/chapter-archive?novelId=';
     const response = await exitOnFetchError(async () => await axios.get(`${chapterListBaseURL}${bookId}`));
     const document = response?.data;
     const $ = load(document);
+
+    // ChapterList Array
     const chapterList = $('.list-chapter li a').map((_, el) => ({
       title: $(el).text().trim(),
       url: `https://readnovelfull.com${$(el).attr('href')}`
     })).get() as { url: string, title: string }[];
 
-    const chaptersData = [] as INovelData['chapters']
-    let index = 0;
-    for (const { url, title } of chapterList) {
+    await processChaptersList(chapterList, async ({ url }) => {
       await delay(500)
       const chapter = await readnovelfullGetChapter(url);
       chaptersData.push(chapter)
-      printChaptersDownloadProgress(index, chapterList.length - 1)
-      index++
-    }
+    }, opt)
 
     return chaptersData;
   }
