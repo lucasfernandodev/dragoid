@@ -24,10 +24,10 @@ export const errorHandle = (error: any) => {
 
   if (error instanceof ValidationError) {
     if (process.env.DEBUG === 'true') {
-      logger.error(error?.debugMessage?.message || '');
+      logger.error(`Validation error: ${error?.debugMessage?.message}` || '');
     }
 
-    logger.error(error.message);
+    logger.error(`Validation error: ${error?.message}`);
     process.exit(error.exitCode)
   }
 
