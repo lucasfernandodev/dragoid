@@ -1,3 +1,13 @@
+# [0.4.0](https://github.com/lucasfernandodev/dragoid/compare/v0.3.1...v0.4.0) (2025-03-24)
+
+
+### Features
+
+* **download:** Implement new flags --limit, --skip for handle with chapters download ([f404b06](https://github.com/lucasfernandodev/dragoid/commit/f404b06fd4bea4ab419811d51b6b793e17363b6a))
+* Add function to validate number ([72aa9be](https://github.com/lucasfernandodev/dragoid/commit/72aa9be44ea9e484d737e9106ddb9602bc4f89f7))
+
+
+
 ## [0.3.1](https://github.com/lucasfernandodev/dragoid/compare/v0.3.0...v0.3.1) (2025-03-23)
 
 
@@ -36,16 +46,6 @@
 ### Bug Fixes
 
 * **preview:** Fix back chapter button being enable with no chapters available ([2948620](https://github.com/lucasfernandodev/dragoid/commit/29486209bbbf3b080b72a238904bf947eea0cefe))
-
-
-
-## [0.1.4](https://github.com/lucasfernandodev/dragoid/compare/v0.1.3...v0.1.4) (2025-03-22)
-
-
-### Bug Fixes
-
-* Fixed flag --version returning unknown ([7878fc8](https://github.com/lucasfernandodev/dragoid/commit/7878fc890f7a0066b4a5150202483796833601e8))
-* Fixing wasm path files incorrect ([d93d29b](https://github.com/lucasfernandodev/dragoid/commit/d93d29ba961f51a701100c6bab1423842b300041))
 
 
 
