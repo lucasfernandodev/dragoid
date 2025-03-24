@@ -21,3 +21,7 @@ export const getCurrentVersion = async () => {
   const version = packageJSON?.version;
   return version
 }
+
+export function isNumberValid(value: unknown): value is number {
+  return typeof value === 'number' && !isNaN(value);
+}
