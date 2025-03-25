@@ -1,3 +1,12 @@
+# [0.5.0](https://github.com/lucasfernandodev/dragoid/compare/v0.4.0...v0.5.0) (2025-03-25)
+
+
+### Features
+
+* Add custom flag '--version' and '-v' alias ([57da6a8](https://github.com/lucasfernandodev/dragoid/commit/57da6a8d8a8ff088524b252bb3f7cbd79f2be640))
+
+
+
 # [0.4.0](https://github.com/lucasfernandodev/dragoid/compare/v0.3.1...v0.4.0) (2025-03-24)
 
 
@@ -37,15 +46,6 @@
 ### Features
 
 * Add chapter name for title ([3b298ca](https://github.com/lucasfernandodev/dragoid/commit/3b298ca1017cc07583634d43d377e765e648f741))
-
-
-
-## [0.1.5](https://github.com/lucasfernandodev/dragoid/compare/v0.1.4...v0.1.5) (2025-03-23)
-
-
-### Bug Fixes
-
-* **preview:** Fix back chapter button being enable with no chapters available ([2948620](https://github.com/lucasfernandodev/dragoid/commit/29486209bbbf3b080b72a238904bf947eea0cefe))
 
 
 
