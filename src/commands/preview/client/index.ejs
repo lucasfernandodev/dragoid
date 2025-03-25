@@ -74,7 +74,11 @@
       <div class="navigation-chapters">
         <a href="#" data-disabled="true">Prev chapter</a>
         <div class="divider"></div>
-        <a href="/chapter/?id=1">Next chapter</a>
+        <a
+        href="/chapter/?id=1"
+        data-disabled="<%= chapter_next_id === null ? 'true' : 'false' %>">
+        Next chapter
+      </a>
       </div>
     </div>
   </main>

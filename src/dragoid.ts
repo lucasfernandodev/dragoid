@@ -60,7 +60,6 @@ _yargs
   } 
 }).parse()
 
-
 if ((_yargs.argv as any).version === true) {
   logger.info(process.env.VERSION_PLACEHOLDER || await getCurrentVersion() || '')
   process.exit(0)

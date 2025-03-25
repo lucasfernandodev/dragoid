@@ -46,6 +46,7 @@ export class Server {
 
 
     this.fastify.get('/', async (request, reply) => {
+      
       return reply.view("index.ejs", {
         title: this.data.title,
         author: this.data.author[0],
@@ -56,6 +57,7 @@ export class Server {
         status: this.data.status,
         language: this.data.language,
         thumbnail: this.data.thumbnail || '',
+        chapter_next_id: this.data.chapters.length > 1 ? 1 : null,
       });
     })
 
@@ -64,13 +66,13 @@ export class Server {
     this.fastify.get('/chapter/:id', async (req, reply) => {
       const query = req.query as { id: string }
 
-      if(!isNumber(query?.id)){
+      if (!isNumber(query?.id)) {
         return reply.callNotFound()
       }
-      
+
       const currentid = Number.parseInt(query.id);
 
-      if(currentid < 0 || currentid >= this.data.chapters.length){
+      if (currentid < 0 || currentid >= this.data.chapters.length) {
         return reply.callNotFound()
       }
 
