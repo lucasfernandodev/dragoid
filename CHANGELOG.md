@@ -1,3 +1,12 @@
+## [0.5.2](https://github.com/lucasfernandodev/dragoid/compare/v0.5.1...v0.5.2) (2025-03-25)
+
+
+### Bug Fixes
+
+* disable next chapter button when no chapters are available ([19d228b](https://github.com/lucasfernandodev/dragoid/commit/19d228bfc770d4d3394968433f041cda2315eaa7))
+
+
+
 ## [0.5.1](https://github.com/lucasfernandodev/dragoid/compare/v0.5.0...v0.5.1) (2025-03-25)
 
 
@@ -32,20 +41,6 @@
 ### Bug Fixes
 
 * Fixed processToImage wasm not found ([bcb3edf](https://github.com/lucasfernandodev/dragoid/commit/bcb3edf35527b8bd4466480e5d7253932f8d77cf))
-
-
-
-# [0.3.0](https://github.com/lucasfernandodev/dragoid/compare/v0.2.0...v0.3.0) (2025-03-23)
-
-
-### Bug Fixes
-
-* Improving error handle for JSON validation ([0104569](https://github.com/lucasfernandodev/dragoid/commit/0104569dbfd03fad5c014be6bfeb5ba29467701f))
-
-
-### Features
-
-* Add favicon for reader pages ([4ea0ceb](https://github.com/lucasfernandodev/dragoid/commit/4ea0cebe498e3ee4a794133959895ce264cddef9))
 
 
 
