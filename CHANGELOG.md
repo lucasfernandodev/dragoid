@@ -1,3 +1,12 @@
+## [0.5.1](https://github.com/lucasfernandodev/dragoid/compare/v0.5.0...v0.5.1) (2025-03-25)
+
+
+### Bug Fixes
+
+* Fixed --version flag returning unknown ([6cdbd16](https://github.com/lucasfernandodev/dragoid/commit/6cdbd16591de2ba8b35ba8563e296f3ddfa5f740))
+
+
+
 # [0.5.0](https://github.com/lucasfernandodev/dragoid/compare/v0.4.0...v0.5.0) (2025-03-25)
 
 
@@ -37,15 +46,6 @@
 ### Features
 
 * Add favicon for reader pages ([4ea0ceb](https://github.com/lucasfernandodev/dragoid/commit/4ea0cebe498e3ee4a794133959895ce264cddef9))
-
-
-
-# [0.2.0](https://github.com/lucasfernandodev/dragoid/compare/v0.1.5...v0.2.0) (2025-03-23)
-
-
-### Features
-
-* Add chapter name for title ([3b298ca](https://github.com/lucasfernandodev/dragoid/commit/3b298ca1017cc07583634d43d377e765e648f741))
 
 
 
