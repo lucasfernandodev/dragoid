@@ -46,7 +46,21 @@
           Next chapter
         </a>
       </div>
+
+      <div class="navigation-chapters-default">
+        <a href="/chapter/?id=<%= chapter_prev_id %>"
+          data-disabled="<%= chapter_prev_id === null ? 'true' : 'false' %>">
+          Prev chapter
+        </a>
+        <div class="divider"></div>
+        <a href="/chapter/?id=<%= chapter_next_id %>"
+          data-disabled="<%= chapter_next_id === null ? 'true' : 'false' %>">
+          Next chapter
+        </a>
+      </div>
     </section>
   </main>
+
+  <script type="module" src="/assets/js/chapter.js"></script>
 </body> 
 </html>
