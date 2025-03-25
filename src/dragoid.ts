@@ -10,6 +10,7 @@ import { Bot69yuedu } from "./commands/download/bots/69yuedu/index.ts";
 import type { TypeCommandPreviewArgs } from "./types/command-preview-args.ts";
 import type { TypeCommandDownloadArgs } from "./types/command-download-args.ts";
 import { getCurrentVersion } from "./utils/helper.ts";
+import { logger } from "./utils/logger.ts";
 
 const _yargs = yargs(process.argv.slice(2))
 
@@ -23,7 +24,6 @@ const bots = [
 ]
 
 const downloadClient = new Download(bots, new GenerateOutputFile())
-
 const previewClient = new Preview()
 
 
@@ -43,7 +43,23 @@ _yargs.command<TypeCommandPreviewArgs>(
   previewClient.handler
 )
 
-_yargs.locale('en').help().version(process.env.VERSION_PLACEHOLDER || await getCurrentVersion() || '').fail((msg, err) => { 
+_yargs
+.locale('en')
+.help()
+.version()
+.option({
+  version: {
+    alias: 'v',
+    type: 'boolean',
+  }
+})
+.middleware(async (yargs) => {
+  if(yargs.version){
+    logger.info(process.env.VERSION_PLACEHOLDER || await getCurrentVersion() || '')
+    process.exit(1)
+  }
+})
+.fail((msg, err) => { 
   if(err){
     errorHandle(err)
     return;
