@@ -46,22 +46,22 @@ _yargs.command<TypeCommandPreviewArgs>(
 _yargs
 .locale('en')
 .help()
-.version()
+.version(false)
 .option({
   version: {
     alias: 'v',
     type: 'boolean',
   }
-})
-.middleware(async (yargs) => {
-  if(yargs.version){
-    logger.info(process.env.VERSION_PLACEHOLDER || await getCurrentVersion() || '')
-    process.exit(1)
-  }
-})
+}) 
 .fail((msg, err) => { 
   if(err){
     errorHandle(err)
     return;
   } 
 }).parse()
+
+
+if ((_yargs.argv as any).version === true) {
+  logger.info(process.env.VERSION_PLACEHOLDER || await getCurrentVersion() || '')
+  process.exit(0)
+}
