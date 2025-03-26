@@ -1,3 +1,13 @@
+# [0.6.0](https://github.com/lucasfernandodev/dragoid/compare/v0.5.2...v0.6.0) (2025-03-26)
+
+
+### Features
+
+* Add gesture to show navigation menu ([7dc639f](https://github.com/lucasfernandodev/dragoid/commit/7dc639f918adec2b63777ec8605b8bececcd6c09))
+* Add gesture to show navigation menu ([141c5be](https://github.com/lucasfernandodev/dragoid/commit/141c5bea3f5f7237021950e81544cce35ce1f737))
+
+
+
 ## [0.5.2](https://github.com/lucasfernandodev/dragoid/compare/v0.5.1...v0.5.2) (2025-03-25)
 
 
@@ -32,15 +42,6 @@
 
 * **download:** Implement new flags --limit, --skip for handle with chapters download ([f404b06](https://github.com/lucasfernandodev/dragoid/commit/f404b06fd4bea4ab419811d51b6b793e17363b6a))
 * Add function to validate number ([72aa9be](https://github.com/lucasfernandodev/dragoid/commit/72aa9be44ea9e484d737e9106ddb9602bc4f89f7))
-
-
-
-## [0.3.1](https://github.com/lucasfernandodev/dragoid/compare/v0.3.0...v0.3.1) (2025-03-23)
-
-
-### Bug Fixes
-
-* Fixed processToImage wasm not found ([bcb3edf](https://github.com/lucasfernandodev/dragoid/commit/bcb3edf35527b8bd4466480e5d7253932f8d77cf))
 
 
 
