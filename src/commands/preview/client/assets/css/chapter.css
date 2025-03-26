@@ -49,16 +49,15 @@
 @media (min-width: 581px) {
   .navigation-chapters { 
     position: fixed;
-    top: 50%;
-    right: calc(((100vw - 736px) - 100vw / 3) - 32px);
-    transform: translateY(-50%);
+    top: calc(100vh / 4);
+    right: calc(((100vw - 736px) - 100vw / 4) - 64px);
     background: #1f1f1f;
     height: fit-content;
-    width: fit-content;
+    width: 72px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    border-radius: 16px;
+    border-radius: 8px;
     overflow: hidden;
 
     & a {
@@ -71,6 +70,14 @@
       color: #aaa;
       height: 54px;
       padding: 0px 32px;
+
+      &:first-child{
+        border-bottom: 1px solid #333;
+      }
+
+      & span{
+        display: none;
+      }
 
       &:hover {
         background: #2f2f2f;
@@ -209,6 +216,10 @@
       justify-content: center;
       height: 100%;
       color: #aaa;
+
+      & svg{
+        display: none;
+      }
 
       &:hover {
         background: #2f2f2f;
