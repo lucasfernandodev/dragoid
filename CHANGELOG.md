@@ -1,3 +1,12 @@
+## [0.6.1](https://github.com/lucasfernandodev/dragoid/compare/v0.6.0...v0.6.1) (2025-03-26)
+
+
+### Bug Fixes
+
+* Fixing incorrect server andress ([6aaab01](https://github.com/lucasfernandodev/dragoid/commit/6aaab01de2975a6d69f705058e3532001dfcf487))
+
+
+
 # [0.6.0](https://github.com/lucasfernandodev/dragoid/compare/v0.5.2...v0.6.0) (2025-03-26)
 
 
@@ -32,16 +41,6 @@
 ### Features
 
 * Add custom flag '--version' and '-v' alias ([57da6a8](https://github.com/lucasfernandodev/dragoid/commit/57da6a8d8a8ff088524b252bb3f7cbd79f2be640))
-
-
-
-# [0.4.0](https://github.com/lucasfernandodev/dragoid/compare/v0.3.1...v0.4.0) (2025-03-24)
-
-
-### Features
-
-* **download:** Implement new flags --limit, --skip for handle with chapters download ([f404b06](https://github.com/lucasfernandodev/dragoid/commit/f404b06fd4bea4ab419811d51b6b793e17363b6a))
-* Add function to validate number ([72aa9be](https://github.com/lucasfernandodev/dragoid/commit/72aa9be44ea9e484d737e9106ddb9602bc4f89f7))
 
 
 
