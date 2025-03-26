@@ -26,13 +26,13 @@ body {
 html,
 body,
 .page {
-  scrollbar-width: thin;
+  scrollbar-width: auto;
   scrollbar-color: #222 transparent;
   scrollbar-gutter: stable;
 }
 
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 14px;
 }
 
 ::-webkit-scrollbar-track {
