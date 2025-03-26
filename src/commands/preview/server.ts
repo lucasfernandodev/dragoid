@@ -8,18 +8,26 @@ import { logger } from '../../utils/logger.ts';
 
 import { fileURLToPath } from 'url';
 import { isNumber } from '../../utils/isNumber.ts';
+import { getLocalIPAddress } from '../../utils/get-local-ip.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+interface IServerOptions {
+  isPublic: boolean;
+}
 
 export class Server {
   private PORT = 3010;
   private fastify: FastifyInstance;
   private data: INovelData
+  private opt: IServerOptions = {
+    isPublic: false,
+  }
 
-  constructor(data: INovelData) {
+  constructor(data: INovelData, opt: IServerOptions = {} as IServerOptions) {
     this.fastify = Fastify({
-      logger: false
+      logger: false,
     })
     this.fastify.register(fastifyView, {
       engine: {
@@ -32,7 +40,20 @@ export class Server {
       prefix: "/assets/",
     })
     this.data = data;
-    logger.info(`[*] Server is running in: http://127.0.0.1:${this.PORT}`)
+    this.opt = {
+      ...opt
+    }
+
+    if(this.opt.isPublic){
+      const publicIp = getLocalIPAddress();
+      logger.info('[*] Server started successfully.\n[-] You can start reading your novel at the url:')
+      logger.info(`http://127.0.0.1:${this.PORT}`, 'blue')
+      publicIp && logger.info(`http://${publicIp}:${this.PORT}`, 'blue')
+    }else{
+      logger.info('[*] Server started successfully.\n[-] You can start reading your novel at the url:')
+      logger.info(`http://127.0.0.1:${this.PORT}`, 'blue')
+    }
+    
   }
 
   private routers = async () => {
@@ -46,7 +67,7 @@ export class Server {
 
 
     this.fastify.get('/', async (request, reply) => {
-      
+
       return reply.view("index.ejs", {
         title: this.data.title,
         author: this.data.author[0],
@@ -90,8 +111,9 @@ export class Server {
 
   public init = async () => {
     try {
+      const host = this.opt.isPublic ? '0.0.0.0' : '127.0.0.1'
       await this.routers()
-      await this.fastify.listen({ host: '0.0.0.0', port: this.PORT })
+      await this.fastify.listen({ host: host, port: this.PORT })
     } catch (err) {
       this.fastify.log.error(err)
       process.exit(1)

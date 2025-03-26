@@ -6,7 +6,7 @@ import type { INovelData } from "../../types/bot.ts";
 import { Server } from "./server.ts";
 import path from "path";
 import { ValidationError } from "../../errors/validation-error.ts";
-import { novelFileSchema } from '../download/schemas/novel.ts';
+import { novelFileSchema } from '../download/schemas/novel.ts'; 
 
 export class Preview implements DefaultCommand {
   commandEntry = 'preview';
@@ -20,10 +20,18 @@ export class Preview implements DefaultCommand {
           alias: 'f',
           type: 'string',
           description: 'Path to novel JSON file.'
+        },
+        public: {
+          alias: 'p',
+          type: 'boolean',
+          default: false,
+          description: 'Makes the server accessible to other devices on the same network'
         }
+        
       }).check((args) => {
         const filepath = args['file'];
-
+        const publicOption = args['public']
+        
         if (!filepath) {
           throw new ValidationError("Missing required argument '--file'. Please provide the path to a JSON file.")
         }
@@ -36,12 +44,17 @@ export class Preview implements DefaultCommand {
           throw new ValidationError(`Invalid file extension for '${filepath}'. Expected a file with a '.json' extension.`);
         }
 
+        if(publicOption !== true && publicOption !== false){
+          throw new ValidationError(`Invalid argument: --public only accepts boolean values (true or false).`)
+        }
+
         return true;
       });
   };
 
   public handler = async (args: TypeCommandPreviewArgs) => {
     const filepath = args['file'];
+    const isPublicServer = args['public']
 
     const isExistFile = await fileExists(filepath)
 
@@ -65,8 +78,10 @@ export class Preview implements DefaultCommand {
       )
     }
 
-    if (file) {
-      const server = new Server(file);
+    if (file) { 
+      const server = new Server(file, {
+        isPublic: isPublicServer ? true : false
+      });
       server.init();
       return;
     }
