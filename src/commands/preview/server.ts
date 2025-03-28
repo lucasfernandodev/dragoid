@@ -1,3 +1,4 @@
+import { ApplicationError } from './../../errors/application-error.ts';
 import { type INovelData } from '../../types/bot.ts';
 import Fastify, { type FastifyInstance } from "fastify";
 import fastifyView from '@fastify/view';
@@ -44,16 +45,20 @@ export class Server {
       ...opt
     }
 
-    if(this.opt.isPublic){
+
+
+  }
+
+  private printStartMessage = () => {
+    if (this.opt.isPublic) {
       const publicIp = getLocalIPAddress();
       logger.info('[*] Server started successfully.\n[-] You can start reading your novel at the url:')
       logger.info(`http://127.0.0.1:${this.PORT}`, 'blue')
       publicIp && logger.info(`http://${publicIp}:${this.PORT}`, 'blue')
-    }else{
+    } else {
       logger.info('[*] Server started successfully.\n[-] You can start reading your novel at the url:')
       logger.info(`http://127.0.0.1:${this.PORT}`, 'blue')
     }
-    
   }
 
   private routers = async () => {
@@ -113,10 +118,14 @@ export class Server {
     try {
       const host = this.opt.isPublic ? '0.0.0.0' : '127.0.0.1'
       await this.routers()
-      await this.fastify.listen({ host: host, port: this.PORT })
+      await this.fastify.listen({ host: host, port: this.PORT });
+      this.printStartMessage()
     } catch (err) {
-      this.fastify.log.error(err)
-      process.exit(1)
+      if (err?.code === 'EADDRINUSE') {
+        throw new ApplicationError(`Server initialization failed. Port ${this.PORT} is already in use by another process. Check if the server is already running.`, err)
+      }
+
+      throw new ApplicationError('Server initialization failed.', err)
     }
   }
 }
