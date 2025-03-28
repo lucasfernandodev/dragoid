@@ -1,3 +1,12 @@
+# [0.7.0](https://github.com/lucasfernandodev/dragoid/compare/v0.6.1...v0.7.0) (2025-03-28)
+
+
+### Features
+
+* Add dialog for custom chapter page style ([804a615](https://github.com/lucasfernandodev/dragoid/commit/804a6152ef31e77043970724fc7313449d50c105))
+
+
+
 ## [0.6.1](https://github.com/lucasfernandodev/dragoid/compare/v0.6.0...v0.6.1) (2025-03-26)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * Fixed --version flag returning unknown ([6cdbd16](https://github.com/lucasfernandodev/dragoid/commit/6cdbd16591de2ba8b35ba8563e296f3ddfa5f740))
-
-
-
-# [0.5.0](https://github.com/lucasfernandodev/dragoid/compare/v0.4.0...v0.5.0) (2025-03-25)
-
-
-### Features
-
-* Add custom flag '--version' and '-v' alias ([57da6a8](https://github.com/lucasfernandodev/dragoid/commit/57da6a8d8a8ff088524b252bb3f7cbd79f2be640))
 
 
 
