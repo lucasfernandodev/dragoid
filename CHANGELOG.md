@@ -1,3 +1,12 @@
+# [0.8.0](https://github.com/lucasfernandodev/dragoid/compare/v0.7.0...v0.8.0) (2025-03-28)
+
+
+### Features
+
+* Add custom message error for server initialization failed ([9bb8653](https://github.com/lucasfernandodev/dragoid/commit/9bb8653e50f89bb5e87544161e935f9d7429db8a))
+
+
+
 # [0.7.0](https://github.com/lucasfernandodev/dragoid/compare/v0.6.1...v0.7.0) (2025-03-28)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * disable next chapter button when no chapters are available ([19d228b](https://github.com/lucasfernandodev/dragoid/commit/19d228bfc770d4d3394968433f041cda2315eaa7))
-
-
-
-## [0.5.1](https://github.com/lucasfernandodev/dragoid/compare/v0.5.0...v0.5.1) (2025-03-25)
-
-
-### Bug Fixes
-
-* Fixed --version flag returning unknown ([6cdbd16](https://github.com/lucasfernandodev/dragoid/commit/6cdbd16591de2ba8b35ba8563e296f3ddfa5f740))
 
 
 
