@@ -1,3 +1,12 @@
+## [0.8.1](https://github.com/lucasfernandodev/dragoid/compare/v0.8.0...v0.8.1) (2025-04-01)
+
+
+### Bug Fixes
+
+* Fixing modal close button not working ([68f8352](https://github.com/lucasfernandodev/dragoid/commit/68f83529e1dec72aafc703df2085c0bd79460990))
+
+
+
 # [0.8.0](https://github.com/lucasfernandodev/dragoid/compare/v0.7.0...v0.8.0) (2025-03-28)
 
 
@@ -32,15 +41,6 @@
 
 * Add gesture to show navigation menu ([7dc639f](https://github.com/lucasfernandodev/dragoid/commit/7dc639f918adec2b63777ec8605b8bececcd6c09))
 * Add gesture to show navigation menu ([141c5be](https://github.com/lucasfernandodev/dragoid/commit/141c5bea3f5f7237021950e81544cce35ce1f737))
-
-
-
-## [0.5.2](https://github.com/lucasfernandodev/dragoid/compare/v0.5.1...v0.5.2) (2025-03-25)
-
-
-### Bug Fixes
-
-* disable next chapter button when no chapters are available ([19d228b](https://github.com/lucasfernandodev/dragoid/commit/19d228bfc770d4d3394968433f041cda2315eaa7))
 
 
 
