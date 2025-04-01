@@ -61,7 +61,9 @@ export class CustomChapter {
     })
 
     // Close Dialog
-    this.buttonCloseDialog.addEventListener('click', () => this.dialog.hidden);
+    this.buttonCloseDialog.addEventListener('click', () => {
+      this.dialog.hidden()
+    });
 
     // Update Style
     this.buttonDialogSubmit.addEventListener('click', () => {
