@@ -70,6 +70,14 @@ export class Server {
       done()
     })
 
+    this.fastify.get("/api/chapters", async (req, reply) => {
+      return reply.send({
+        chapters: this.data.chapters.map((ch, index) => ({
+          title: ch.title,
+        }))
+      })
+    })
+
 
     this.fastify.get('/', async (request, reply) => {
 
