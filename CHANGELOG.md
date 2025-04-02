@@ -1,3 +1,12 @@
+# [0.9.0](https://github.com/lucasfernandodev/dragoid/compare/v0.8.1...v0.9.0) (2025-04-02)
+
+
+### Features
+
+* **preview:** Add chapter list for reader ([b539f6a](https://github.com/lucasfernandodev/dragoid/commit/b539f6a5942ee883859a80db553f8445ff394706))
+
+
+
 ## [0.8.1](https://github.com/lucasfernandodev/dragoid/compare/v0.8.0...v0.8.1) (2025-04-01)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * Fixing incorrect server andress ([6aaab01](https://github.com/lucasfernandodev/dragoid/commit/6aaab01de2975a6d69f705058e3532001dfcf487))
-
-
-
-# [0.6.0](https://github.com/lucasfernandodev/dragoid/compare/v0.5.2...v0.6.0) (2025-03-26)
-
-
-### Features
-
-* Add gesture to show navigation menu ([7dc639f](https://github.com/lucasfernandodev/dragoid/commit/7dc639f918adec2b63777ec8605b8bececcd6c09))
-* Add gesture to show navigation menu ([141c5be](https://github.com/lucasfernandodev/dragoid/commit/141c5bea3f5f7237021950e81544cce35ce1f737))
 
 
 
