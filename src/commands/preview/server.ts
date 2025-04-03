@@ -10,6 +10,7 @@ import { logger } from '../../utils/logger.ts';
 import { fileURLToPath } from 'url';
 import { isNumber } from '../../utils/isNumber.ts';
 import { getLocalIPAddress } from '../../utils/get-local-ip.ts';
+import { isBuild } from '../../utils/helper.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,6 +18,8 @@ const __dirname = path.dirname(__filename);
 interface IServerOptions {
   isPublic: boolean;
 }
+
+const FAVICON_PATH = isBuild ? '/assets/img/icon.svg' :  '/assets/img/icon-dev.svg'
 
 export class Server {
   private PORT = 3010;
@@ -65,7 +68,7 @@ export class Server {
     // index
     this.fastify.register(function (instance, options, done) {
       instance.setNotFoundHandler(function (request, reply) {
-        return reply.view("not-found.ejs")
+        return reply.view("not-found.ejs", {favicon_path: FAVICON_PATH})
       })
       done()
     })
@@ -92,6 +95,7 @@ export class Server {
         language: this.data.language,
         thumbnail: this.data.thumbnail || '',
         chapter_next_id: this.data.chapters.length > 1 ? 1 : null,
+        favicon_path: FAVICON_PATH
       });
     })
 
@@ -118,6 +122,7 @@ export class Server {
         content: this.data.chapters[currentid].content,
         chapter_prev_id: prevId,
         chapter_next_id: nextId,
+        favicon_path: FAVICON_PATH
       })
     })
   }
