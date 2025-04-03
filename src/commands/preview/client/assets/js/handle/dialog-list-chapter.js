@@ -1,3 +1,5 @@
+import { getChapterlist } from "../api.js";
+
 export const dialogListChapter = async () => {
   const buttonOpenDialog = document.querySelector('.toggle-dialog-chapter-list');
   const dialog = document.querySelector('.dialog-chapter-list');
@@ -5,11 +7,7 @@ export const dialogListChapter = async () => {
   const chapterList = document.querySelector("#chapte_list");
   const displayChapterQTD = document.querySelector(".chapter_qtd");
 
-  const getChapterlist = async () => {
-    const response = await fetch("/api/chapters");
-    const data = await response.json();
-    return data?.chapters || [];
-  }
+
 
   const chapters = await getChapterlist();
 

@@ -1,6 +1,6 @@
-import { CustomChapter } from "./custom_chapter.js";
-import { dialogListChapter } from "./dialog-list-chapter.js";
-import { isMobile, onGesture } from "./utils.js";
+import { CustomChapter } from "../handle/custom_chapter.js";
+import { dialogListChapter } from "../handle/dialog-list-chapter.js";
+import { isMobile, onGesture } from "../utils.js";
 
 
 
