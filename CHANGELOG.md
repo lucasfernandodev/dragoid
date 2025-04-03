@@ -1,3 +1,12 @@
+## [0.9.1](https://github.com/lucasfernandodev/dragoid/compare/v0.9.0...v0.9.1) (2025-04-03)
+
+
+### Bug Fixes
+
+* **preview:** Fixing error floating navigation not showing ([3d2eb65](https://github.com/lucasfernandodev/dragoid/commit/3d2eb6592a232304e4b91ee36697a9a19804d6db))
+
+
+
 # [0.9.0](https://github.com/lucasfernandodev/dragoid/compare/v0.8.1...v0.9.0) (2025-04-02)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Add dialog for custom chapter page style ([804a615](https://github.com/lucasfernandodev/dragoid/commit/804a6152ef31e77043970724fc7313449d50c105))
-
-
-
-## [0.6.1](https://github.com/lucasfernandodev/dragoid/compare/v0.6.0...v0.6.1) (2025-03-26)
-
-
-### Bug Fixes
-
-* Fixing incorrect server andress ([6aaab01](https://github.com/lucasfernandodev/dragoid/commit/6aaab01de2975a6d69f705058e3532001dfcf487))
 
 
 
