@@ -8,12 +8,24 @@ const handleDialogChapterList = async () => {
   const chapterList = document.querySelector("#chapte_list");
   const displayChapterQTD = document.querySelector(".chapter_qtd");
 
+  const getChapterlist = async () => {
+    const response = await fetch("/api/chapters");
+    const data = await response.json();
+    return data?.chapters || [];
+  }
+
+  const chapters = await getChapterlist();
 
   buttonOpenDialog.addEventListener('click', () => {
     const isHidden = dialog.getAttribute('data-hidden');
     if (isHidden === 'true') {
       document.body.style.overflow = 'hidden';
       dialog.setAttribute('data-hidden', 'false')
+
+      const activeItem = document.querySelector('a[data-active="true"]')
+      if (chapters.length > 0) {
+        activeItem.scrollIntoView()
+      }
     } else {
       document.body.style.overflow = 'unset';
       dialog.setAttribute('data-hidden', 'true')
@@ -25,13 +37,7 @@ const handleDialogChapterList = async () => {
     document.body.style.overflow = 'unset';
   })
 
-  const getChapterlist = async () => {
-    const response = await fetch("/api/chapters");
-    const data = await response.json();
-    return data?.chapters || [];
-  }
 
-  const chapters = await getChapterlist();
 
   const createListItem = (title, chapterId, isActive = false) => {
     const li = document.createElement('li');
@@ -43,14 +49,16 @@ const handleDialogChapterList = async () => {
     return li;
   }
 
-  chapters.forEach((chapter, index) => { 
-    const id = Number.parseInt(window.location.search.replace("?id=",""));
+  chapters.forEach((chapter, index) => {
+    const id = Number.parseInt(window.location.search.replace("?id=", ""));
     const item = createListItem(chapter.title, index, index === id);
     chapterList.appendChild(item)
   })
 
   displayChapterQTD.textContent = chapters.length;
   displayChapterQTD.setAttribute('title', `Number of available chapters: ${chapters.length}`)
+
+
 }
 
 const main = () => {
