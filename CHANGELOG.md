@@ -1,3 +1,12 @@
+# [0.12.0](https://github.com/lucasfernandodev/dragoid/compare/v0.11.0...v0.12.0) (2025-04-03)
+
+
+### Features
+
+* **preview:** Change the favicon when the environment is different ([5b37fb6](https://github.com/lucasfernandodev/dragoid/commit/5b37fb6214093e32ff47cb399d2c39961de2fe55))
+
+
+
 # [0.11.0](https://github.com/lucasfernandodev/dragoid/compare/v0.10.0...v0.11.0) (2025-04-03)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **preview:** Fixing error floating navigation not showing ([3d2eb65](https://github.com/lucasfernandodev/dragoid/commit/3d2eb6592a232304e4b91ee36697a9a19804d6db))
-
-
-
-# [0.9.0](https://github.com/lucasfernandodev/dragoid/compare/v0.8.1...v0.9.0) (2025-04-02)
-
-
-### Features
-
-* **preview:** Add chapter list for reader ([b539f6a](https://github.com/lucasfernandodev/dragoid/commit/b539f6a5942ee883859a80db553f8445ff394706))
 
 
 
