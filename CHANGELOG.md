@@ -1,3 +1,12 @@
+# [0.11.0](https://github.com/lucasfernandodev/dragoid/compare/v0.10.0...v0.11.0) (2025-04-03)
+
+
+### Features
+
+* **preview:** Change the favicon when the environment is different ([5d89150](https://github.com/lucasfernandodev/dragoid/commit/5d89150b0452e380010425db756ce5912963b2cc))
+
+
+
 # [0.10.0](https://github.com/lucasfernandodev/dragoid/compare/v0.9.2...v0.10.0) (2025-04-03)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * **preview:** Add chapter list for reader ([b539f6a](https://github.com/lucasfernandodev/dragoid/commit/b539f6a5942ee883859a80db553f8445ff394706))
-
-
-
-## [0.8.1](https://github.com/lucasfernandodev/dragoid/compare/v0.8.0...v0.8.1) (2025-04-01)
-
-
-### Bug Fixes
-
-* Fixing modal close button not working ([68f8352](https://github.com/lucasfernandodev/dragoid/commit/68f83529e1dec72aafc703df2085c0bd79460990))
 
 
 
