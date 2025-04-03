@@ -1,3 +1,12 @@
+# [0.10.0](https://github.com/lucasfernandodev/dragoid/compare/v0.9.2...v0.10.0) (2025-04-03)
+
+
+### Features
+
+* **preview:** Add 'translate=no' attribute to select ([924be5d](https://github.com/lucasfernandodev/dragoid/commit/924be5d6d5e6f5111f1b288e457a53fc71d75795))
+
+
+
 ## [0.9.2](https://github.com/lucasfernandodev/dragoid/compare/v0.9.1...v0.9.2) (2025-04-03)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Fixing modal close button not working ([68f8352](https://github.com/lucasfernandodev/dragoid/commit/68f83529e1dec72aafc703df2085c0bd79460990))
-
-
-
-# [0.8.0](https://github.com/lucasfernandodev/dragoid/compare/v0.7.0...v0.8.0) (2025-03-28)
-
-
-### Features
-
-* Add custom message error for server initialization failed ([9bb8653](https://github.com/lucasfernandodev/dragoid/commit/9bb8653e50f89bb5e87544161e935f9d7429db8a))
 
 
 
