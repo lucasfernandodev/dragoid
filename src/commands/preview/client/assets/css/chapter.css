@@ -526,12 +526,14 @@ NAVIGATION
   }
 
   .floating-navigation {
-
     position: fixed;
     bottom: 0px;
     left: 0px;
     background: #1f1f1f;
-    width: 100%;
+    width: 100vw;
+    flex-shrink: 0;
+    flex-grow: 0;
+    overflow: hidden;
     height: 54px;
     display: flex;
     align-items: center;
@@ -546,7 +548,7 @@ NAVIGATION
       height: 100%;
       color: #aaa;
       height: 54px;
-      padding: 0px 32px;
+      padding: 0px;
       background: transparent;
       border: none;
       cursor: pointer;
