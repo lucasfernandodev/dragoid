@@ -40,7 +40,7 @@
           </p>
           <% } %>
       </div>
-      <div class="navigation-chapters">
+      <div class="floating-navigation">
         <a class="option" href="/chapter/?id=<%= chapter_prev_id %>" title="Prev chapter"
           data-disabled="<%= chapter_prev_id === null ? 'true' : 'false' %>">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -92,7 +92,7 @@
       </div>
 
       <!-- Chapter Footer Navigation -->
-      <div class="navigation-chapters-default">
+      <div class="navigation">
         <a href="/chapter/?id=<%= chapter_prev_id %>"
           data-disabled="<%= chapter_prev_id === null ? 'true' : 'false' %>">
           Prev chapter
