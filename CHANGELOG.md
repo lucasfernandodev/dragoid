@@ -1,3 +1,12 @@
+## [0.9.2](https://github.com/lucasfernandodev/dragoid/compare/v0.9.1...v0.9.2) (2025-04-03)
+
+
+### Bug Fixes
+
+* **preview:** Fixing floating navigation overflow in moble screen ([fa1e6d1](https://github.com/lucasfernandodev/dragoid/commit/fa1e6d190fc1a149d1366172710c64a8f2534e8f))
+
+
+
 ## [0.9.1](https://github.com/lucasfernandodev/dragoid/compare/v0.9.0...v0.9.1) (2025-04-03)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Add custom message error for server initialization failed ([9bb8653](https://github.com/lucasfernandodev/dragoid/commit/9bb8653e50f89bb5e87544161e935f9d7429db8a))
-
-
-
-# [0.7.0](https://github.com/lucasfernandodev/dragoid/compare/v0.6.1...v0.7.0) (2025-03-28)
-
-
-### Features
-
-* Add dialog for custom chapter page style ([804a615](https://github.com/lucasfernandodev/dragoid/commit/804a6152ef31e77043970724fc7313449d50c105))
 
 
 
