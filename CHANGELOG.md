@@ -1,3 +1,12 @@
+# [0.13.0](https://github.com/lucasfernandodev/dragoid/compare/v0.12.0...v0.13.0) (2025-04-04)
+
+
+### Features
+
+* **preview:** Add button to show chapter list into navigation ([0d142c9](https://github.com/lucasfernandodev/dragoid/commit/0d142c9df9cbd5de741b415192aba627b493ff49))
+
+
+
 # [0.12.0](https://github.com/lucasfernandodev/dragoid/compare/v0.11.0...v0.12.0) (2025-04-03)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **preview:** Fixing floating navigation overflow in moble screen ([fa1e6d1](https://github.com/lucasfernandodev/dragoid/commit/fa1e6d190fc1a149d1366172710c64a8f2534e8f))
-
-
-
-## [0.9.1](https://github.com/lucasfernandodev/dragoid/compare/v0.9.0...v0.9.1) (2025-04-03)
-
-
-### Bug Fixes
-
-* **preview:** Fixing error floating navigation not showing ([3d2eb65](https://github.com/lucasfernandodev/dragoid/commit/3d2eb6592a232304e4b91ee36697a9a19804d6db))
 
 
 
