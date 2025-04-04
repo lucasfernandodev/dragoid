@@ -1,3 +1,12 @@
+# [0.14.0](https://github.com/lucasfernandodev/dragoid/compare/v0.13.0...v0.14.0) (2025-04-04)
+
+
+### Features
+
+* **download:** Increase puppeteer timeout ([16cc509](https://github.com/lucasfernandodev/dragoid/commit/16cc50981f352a90639487fb162d158ce93f92e9))
+
+
+
 # [0.13.0](https://github.com/lucasfernandodev/dragoid/compare/v0.12.0...v0.13.0) (2025-04-04)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * **preview:** Add 'translate=no' attribute to select ([924be5d](https://github.com/lucasfernandodev/dragoid/commit/924be5d6d5e6f5111f1b288e457a53fc71d75795))
-
-
-
-## [0.9.2](https://github.com/lucasfernandodev/dragoid/compare/v0.9.1...v0.9.2) (2025-04-03)
-
-
-### Bug Fixes
-
-* **preview:** Fixing floating navigation overflow in moble screen ([fa1e6d1](https://github.com/lucasfernandodev/dragoid/commit/fa1e6d190fc1a149d1366172710c64a8f2534e8f))
 
 
 
