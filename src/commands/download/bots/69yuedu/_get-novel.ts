@@ -102,7 +102,7 @@ export const getNovel69yuedu = async (
 
   // Coleta os capítulos
   await processChaptersList(chaptersList, async ({url}) => {
-    await page.goto(url, { waitUntil: 'load' });
+    await page.goto(url, { waitUntil: 'load', timeout: 600000 });
     await page.waitForSelector('h1');
 
     const result = await page.evaluate(() => {
@@ -141,6 +141,7 @@ export const getNovel69yuedu = async (
       title: result.title,
       content: result.content
     }) 
+
     await delay(500)
   }, opt)
   
