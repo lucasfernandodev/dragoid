@@ -1,7 +1,7 @@
 import { getChapterlist } from "../api.js";
 
 export const dialogListChapter = async () => {
-  const buttonOpenDialog = document.querySelector('.toggle-dialog-chapter-list');
+  const buttonsOpenDialog = document.querySelectorAll('.toggle-dialog-chapter-list');
   const dialog = document.querySelector('.dialog-chapter-list');
   const buttonCloseDialog = document.querySelector('.btn-close-dialog-chapter-list');
   const chapterList = document.querySelector("#chapte_list");
@@ -11,20 +11,22 @@ export const dialogListChapter = async () => {
 
   const chapters = await getChapterlist();
 
-  buttonOpenDialog.addEventListener('click', () => {
-    const isHidden = dialog.getAttribute('data-hidden');
-    if (isHidden === 'true') {
-      document.body.style.overflow = 'hidden';
-      dialog.setAttribute('data-hidden', 'false')
-
-      const activeItem = document.querySelector('a[data-active="true"]')
-      if (chapters.length > 0) {
-        activeItem.scrollIntoView()
+  buttonsOpenDialog.forEach(buttonOpenDialog => {
+    buttonOpenDialog.addEventListener('click', () => {
+      const isHidden = dialog.getAttribute('data-hidden');
+      if (isHidden === 'true') {
+        document.body.style.overflow = 'hidden';
+        dialog.setAttribute('data-hidden', 'false')
+  
+        const activeItem = document.querySelector('a[data-active="true"]')
+        if (chapters.length > 0) {
+          activeItem.scrollIntoView()
+        }
+      } else {
+        document.body.style.overflow = 'unset';
+        dialog.setAttribute('data-hidden', 'true')
       }
-    } else {
-      document.body.style.overflow = 'unset';
-      dialog.setAttribute('data-hidden', 'true')
-    }
+    })
   });
 
   buttonCloseDialog.addEventListener('click', () => {

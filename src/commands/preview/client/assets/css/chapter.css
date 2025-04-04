@@ -387,7 +387,7 @@ NAVIGATION
       background: #2f2f2f;
     }
 
-    & a {
+    & a, & .option {
       width: calc((100% / 2) - 2px);
       height: 100%;
       display: flex;
@@ -397,6 +397,8 @@ NAVIGATION
       text-decoration: none;
       cursor: pointer;
       transition: 300ms linear;
+      background: transparent;
+      border: none;
 
       &:hover {
         background: #2f2f2f;
@@ -488,15 +490,17 @@ NAVIGATION
     overflow: hidden;
     align-items: center;
     display: flex !important;
+    justify-content: center;
 
     & .divider {
       height: calc(50%);
       width: 2px;
       background: #2f2f2f;
+      margin: 0px 2px;
     }
 
-    & a {
-      width: calc((100% / 2) - 2px);
+    & a, & .option {
+      width: calc((100% / 3) - 2px);
       height: 100%;
       display: flex;
       align-items: center;
@@ -505,6 +509,15 @@ NAVIGATION
       text-decoration: none;
       cursor: pointer;
       transition: 300ms linear;
+      background: transparent;
+      border: none;
+      text-align: center;
+      flex-grow: 1;
+
+      &:is(button){
+        max-width: 54px;
+        flex-grow: 0;
+      }
 
       &:hover {
         background: #2f2f2f;
