@@ -109,6 +109,7 @@ export class Download implements DefaultCommand {
             skip: args.skip
           }
         }
+
         cliOptions.handlerNovel(data, bot, args['output-format'])
       }
     }

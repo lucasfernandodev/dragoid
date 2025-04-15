@@ -11,6 +11,7 @@ import type { TypeCommandPreviewArgs } from "./types/command-preview-args.ts";
 import type { TypeCommandDownloadArgs } from "./types/command-download-args.ts";
 import { getCurrentVersion } from "./utils/helper.ts";
 import { logger } from "./utils/logger.ts";
+import { Bot69Shuba } from "./commands/download/bots/69shuba/index.ts";
 
 const _yargs = yargs(process.argv.slice(2))
 
@@ -20,7 +21,8 @@ process.on("uncaughtException", errorHandle)
 
 const bots = [
   new BotReadNovelFull(),
-  new Bot69yuedu()
+  new Bot69yuedu(),
+  new Bot69Shuba()
 ]
 
 const downloadClient = new Download(bots, new GenerateOutputFile())

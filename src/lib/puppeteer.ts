@@ -7,13 +7,17 @@ const puppeteerInstance = async () => {
     const puppeteerDefault = puppeteer.default
 
     if (puppeteerDefault?.use && StealthPluginDefault) {
-      puppeteerDefault.use(StealthPluginDefault())
+      const steald = StealthPluginDefault()
+      steald.enabledEvasions.delete('iframe.contentWindow')
+      puppeteerDefault.use(steald)
     }
 
-    if(!puppeteerDefault?.launch){
+    if (!puppeteerDefault?.launch) {
       console.error('System not supported by puppetter, try another bot');
       process.exit(1);
     }
+
+
 
     return puppeteerDefault
 

@@ -100,8 +100,13 @@ export const getNovel69yuedu = async (
 
   const chapters: IChapterData[] = []
 
+
+
   // Coleta os capítulos
   await processChaptersList(chaptersList, async ({url}) => {
+    const context = await browser.createBrowserContext();
+    const page = await context.newPage();
+
     await page.goto(url, { waitUntil: 'load', timeout: 600000 });
     await page.waitForSelector('h1');
 
@@ -143,6 +148,7 @@ export const getNovel69yuedu = async (
     }) 
 
     await delay(500)
+    await context.close();
   }, opt)
   
  
