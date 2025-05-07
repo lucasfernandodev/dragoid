@@ -1,3 +1,12 @@
+## [0.18.1](https://github.com/lucasfernandodev/dragoid/compare/v0.18.0...v0.18.1) (2025-05-07)
+
+
+### Bug Fixes
+
+* Fixing github action ([8ff1a2f](https://github.com/lucasfernandodev/dragoid/commit/8ff1a2f7e769c0ea0cf1055e16281384e958e0fa))
+
+
+
 # [0.18.0](https://github.com/lucasfernandodev/dragoid/compare/v0.17.0...v0.18.0) (2025-05-07)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Add new bot ([0595931](https://github.com/lucasfernandodev/dragoid/commit/0595931bcba808254cd7463abcfed1041da4fee9))
-
-
-
-# [0.14.0](https://github.com/lucasfernandodev/dragoid/compare/v0.13.0...v0.14.0) (2025-04-04)
-
-
-### Features
-
-* **download:** Increase puppeteer timeout ([16cc509](https://github.com/lucasfernandodev/dragoid/commit/16cc50981f352a90639487fb162d158ce93f92e9))
 
 
 
