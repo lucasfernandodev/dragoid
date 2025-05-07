@@ -1,3 +1,12 @@
+# [0.16.0](https://github.com/lucasfernandodev/dragoid/compare/v0.15.0...v0.16.0) (2025-05-07)
+
+
+### Features
+
+* Increasize schema title length ([98af071](https://github.com/lucasfernandodev/dragoid/commit/98af071c6f7fbc1ce7a49a6d1ce2114e2c79a6c4))
+
+
+
 # [0.15.0](https://github.com/lucasfernandodev/dragoid/compare/v0.14.0...v0.15.0) (2025-04-15)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * **preview:** Change the favicon when the environment is different ([5b37fb6](https://github.com/lucasfernandodev/dragoid/commit/5b37fb6214093e32ff47cb399d2c39961de2fe55))
-
-
-
-# [0.11.0](https://github.com/lucasfernandodev/dragoid/compare/v0.10.0...v0.11.0) (2025-04-03)
-
-
-### Features
-
-* **preview:** Change the favicon when the environment is different ([5d89150](https://github.com/lucasfernandodev/dragoid/commit/5d89150b0452e380010425db756ce5912963b2cc))
 
 
 
