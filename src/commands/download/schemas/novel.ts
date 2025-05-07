@@ -25,7 +25,7 @@ export const novelFileSchema = z.object({
 
 export const novelWithDownloadInfo = z.object({
   mode: z.string(),
-  filename: z.string().min(1).max(48),
+  filename: z.string().min(1).max(128),
   format: z.enum(['json', 'html']),
   novel: novelSchema
 }).strict()
