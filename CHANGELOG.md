@@ -1,3 +1,12 @@
+# [0.17.0](https://github.com/lucasfernandodev/dragoid/compare/v0.16.0...v0.17.0) (2025-05-07)
+
+
+### Features
+
+* Improving description ([aea414f](https://github.com/lucasfernandodev/dragoid/commit/aea414fdb6757c1e601e315e1b4bee438b61b5bc))
+
+
+
 # [0.16.0](https://github.com/lucasfernandodev/dragoid/compare/v0.15.0...v0.16.0) (2025-05-07)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * **preview:** Add button to show chapter list into navigation ([0d142c9](https://github.com/lucasfernandodev/dragoid/commit/0d142c9df9cbd5de741b415192aba627b493ff49))
-
-
-
-# [0.12.0](https://github.com/lucasfernandodev/dragoid/compare/v0.11.0...v0.12.0) (2025-04-03)
-
-
-### Features
-
-* **preview:** Change the favicon when the environment is different ([5b37fb6](https://github.com/lucasfernandodev/dragoid/commit/5b37fb6214093e32ff47cb399d2c39961de2fe55))
 
 
 
