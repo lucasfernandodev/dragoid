@@ -1,3 +1,12 @@
+# [0.18.0](https://github.com/lucasfernandodev/dragoid/compare/v0.17.0...v0.18.0) (2025-05-07)
+
+
+### Features
+
+* Improving description ([332021e](https://github.com/lucasfernandodev/dragoid/commit/332021e4eccde0ece441ec3a5571cc39aba44495))
+
+
+
 # [0.17.0](https://github.com/lucasfernandodev/dragoid/compare/v0.16.0...v0.17.0) (2025-05-07)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * **download:** Increase puppeteer timeout ([16cc509](https://github.com/lucasfernandodev/dragoid/commit/16cc50981f352a90639487fb162d158ce93f92e9))
-
-
-
-# [0.13.0](https://github.com/lucasfernandodev/dragoid/compare/v0.12.0...v0.13.0) (2025-04-04)
-
-
-### Features
-
-* **preview:** Add button to show chapter list into navigation ([0d142c9](https://github.com/lucasfernandodev/dragoid/commit/0d142c9df9cbd5de741b415192aba627b493ff49))
 
 
 
