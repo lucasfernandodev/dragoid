@@ -1,0 +1,66 @@
+#modal-chapter-style {
+  & .wrapper {
+    max-width: min(320px, calc(100% - 16px));
+  }
+
+  & .container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  & .group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  & label {
+    font-size: 1.6rem;
+  }
+
+  & select {
+    width: 100%;
+    height: 36px;
+    padding-left: 8px;
+    background: transparent;
+    border: 1px solid #3f3f3f;
+    border-radius: 4px;
+    color: #7f7f7f;
+    cursor: pointer;
+
+    & option {
+      background: #0f0f0f;
+      color: #7f7f7f;
+      border: 1px solid #3f3f3f;
+      height: 32px;
+    }
+
+    &:focus,
+    &:active,
+    &:focus-within {
+      outline: none;
+    }
+  }
+
+  & .btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 36px;
+    width: 140px;
+    border-radius: 6px;
+    border: none;
+    background: #fff;
+    color: #1f1f1f;
+    cursor: pointer;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-top: 42px;
+    margin-left: auto;
+
+    &:hover {
+      opacity: 0.9
+    }
+  }
+}

@@ -52,7 +52,15 @@
           <span>Prev</span>
         </a>
         <button class="option btn-open-replacement-modal" title="Manage Substitutions">
-          <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M16 21h3c.81 0 1.48 -.67 1.48 -1.48l.02 -.02c0 -.82 -.69 -1.5 -1.5 -1.5h-3v3z" /><path d="M16 15h2.5c.84 -.01 1.5 .66 1.5 1.5s-.66 1.5 -1.5 1.5h-2.5v-3z" /><path d="M4 9v-4c0 -1.036 .895 -2 2 -2s2 .964 2 2v4" /><path d="M2.99 11.98a9 9 0 0 0 9 9m9 -9a9 9 0 0 0 -9 -9" /><path d="M8 7h-4" /></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M16 21h3c.81 0 1.48 -.67 1.48 -1.48l.02 -.02c0 -.82 -.69 -1.5 -1.5 -1.5h-3v3z" />
+            <path d="M16 15h2.5c.84 -.01 1.5 .66 1.5 1.5s-.66 1.5 -1.5 1.5h-2.5v-3z" />
+            <path d="M4 9v-4c0 -1.036 .895 -2 2 -2s2 .964 2 2v4" />
+            <path d="M2.99 11.98a9 9 0 0 0 9 9m9 -9a9 9 0 0 0 -9 -9" />
+            <path d="M8 7h-4" />
+          </svg>
         </button>
         <button class="option toggle-dialog-chapter-list">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -135,72 +143,11 @@
         <ul id="chapte_list"></ul>
       </div>
     </div>
-  </div>
-
-  <div class="dialog" data-hidden="true">
-    <div class="inner">
-      <div class="dialog-header">
-        <h3>Chapter style</h3>
-        <button class="close-dialog">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M18 6l-12 12" />
-            <path d="M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-      <div class="dialog-content">
-        <div class="group">
-          <label for="font-size">Font size</label>
-          <select translate="no" translate="no" name="options" id="font-size">
-            <option value="16">16</option>
-            <option value="18">18</option>
-            <option value="20">20</option>
-            <option value="22">22</option>
-            <option value="24">24</option>
-            <option value="26">26</option>
-            <option value="28">28</option>
-            <option value="30">30</option>
-            <option value="32">32</option>
-          </select>
-        </div>
-        <div class="group">
-          <label for="line-height">Line height</label>
-          <select translate="no" name="line-height" id="line-height">
-            <option value="24">24</option>
-            <option value="26">26</option>
-            <option value="28">28</option>
-            <option value="30">30</option>
-            <option value="32">32</option>
-            <option value="34">34</option>
-            <option value="36">36</option>
-            <option value="38">38</option>
-            <option value="40">40</option>
-          </select>
-        </div>
-        <div class="group">
-          <label for="paragraph-gap">Paragraph gap</label>
-          <select translate="no" name="paragraph-gap" id="paragraph-gap">
-            <option value="32">32</option>
-            <option value="36">36</option>
-            <option value="40">40</option>
-            <option value="48">48</option>
-            <option value="52">52</option>
-            <option value="56">56</option>
-            <option value="60">60</option>
-            <option value="64">64</option>
-          </select>
-        </div>
-      </div>
-      <div class="dialog-footer">
-        <button class="dialog-submit">Save changes</button>
-      </div>
-    </div>
-  </div>
+  </div> 
 
   <link rel="stylesheet" href="/assets/css/components/modal.css">
   <link rel="stylesheet" href="/assets/css/components/modal-replacement.css">
+  <link rel="stylesheet" href="/assets/css/components/moda-chapter-style.css">
   <script type="module" src="/assets/js/page/chapter.js"></script>
 </body>
 

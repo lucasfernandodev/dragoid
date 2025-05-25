@@ -1,7 +1,7 @@
+import { modalChapterStyle } from "../components/modal-chapter-style/index.js";
 import { modalReplacement } from "../components/modal-replace/index.js";
-import { observerDomChanges } from "../core/observer-dom-changes.js";
+import { appyChapterStyle } from "../core/chapter-style-setting/appy-chapter-style.js";
 import { applyReplacementListToChapter } from "../core/replacement/apply-replacement-list-to-chapter.js";
-import { CustomChapter } from "../handle/custom_chapter.js";
 import { dialogListChapter } from "../handle/dialog-list-chapter.js";
 import { isMobile, onGesture } from "../utils.js";
 
@@ -20,33 +20,20 @@ const main = async () => {
       }, 1500)
     })
   }
-
-
-
-  // Dialog chapter style
-  new CustomChapter()
+  
 
   // Dialog chapter list
   await dialogListChapter()
 
-
-
-  // Initializing Replacement Modal
-  modalReplacement()
-
+  modalChapterStyle() // Initializing Chapter Syle Modal
+  modalReplacement() // Initializing Replacement Modal
 
 
 
 
-  const chapterPage = document.querySelector('.page')
-
-  // Roda a função de substituição, se houver alguma alteração nos textos (google translate)
-  observerDomChanges(chapterPage, () => {
-    applyReplacementListToChapter(chapterPage)
-  })
-
-  // Roda a função de substituição quando a pagina carregar
-  applyReplacementListToChapter(chapterPage)
+  // Update page
+  applyReplacementListToChapter()
+  appyChapterStyle()
 }
 
 await main()

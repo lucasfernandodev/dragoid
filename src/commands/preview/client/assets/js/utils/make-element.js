@@ -30,15 +30,19 @@ export const makeElement = (tag, attributes = {}, children = []) => {
   for (const [name, value] of Object.entries(attributes)) {
     if (name.startsWith('on') && typeof value === 'function') {
       element.addEventListener(name.slice(2), value);
-    } 
+    }
     else if (name === 'style' && typeof value === 'object') {
       Object.assign(element.style, value);
-    } 
+    }
     else if (name === 'dataset' && typeof value === 'object') {
       Object.assign(element.dataset, value);
-    } 
+    }
     else {
-      element.setAttribute(name, value);
+      if (name in element) {
+        element[name] = value;
+      } else {
+        element.setAttribute(name, value);
+      }
     }
   }
 

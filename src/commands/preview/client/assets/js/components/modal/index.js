@@ -19,6 +19,7 @@ export class Modal {
   #create = (id, titleText = '', content) => {
     const modal = makeElement('div', {
       class: 'modal',
+      id: id,
       'data-hidden': true,
       'data-id': id
     });
