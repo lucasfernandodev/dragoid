@@ -1,3 +1,12 @@
+# [0.19.0](https://github.com/lucasfernandodev/dragoid/compare/v0.18.1...v0.19.0) (2025-05-25)
+
+
+### Features
+
+* Implement manage substitutions ([a7307ca](https://github.com/lucasfernandodev/dragoid/commit/a7307caf9d13289863867cc8462ee343bbefaaa0))
+
+
+
 ## [0.18.1](https://github.com/lucasfernandodev/dragoid/compare/v0.18.0...v0.18.1) (2025-05-07)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Increasize schema title length ([98af071](https://github.com/lucasfernandodev/dragoid/commit/98af071c6f7fbc1ce7a49a6d1ce2114e2c79a6c4))
-
-
-
-# [0.15.0](https://github.com/lucasfernandodev/dragoid/compare/v0.14.0...v0.15.0) (2025-04-15)
-
-
-### Features
-
-* Add new bot ([0595931](https://github.com/lucasfernandodev/dragoid/commit/0595931bcba808254cd7463abcfed1041da4fee9))
 
 
 
