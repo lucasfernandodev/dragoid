@@ -6,6 +6,7 @@ import { iconClose } from "../icons.js";
 export class Modal {
   #modal = null;
   #id = null;
+  #onShowCallback = () => {};
 
   /**
    * Cria e configura um modal com cabeçalho e conteúdo fornecidos.
@@ -57,9 +58,22 @@ export class Modal {
 
   // Seleciona um elemento para abrir o modal[target = htmlElement]
   attach = (target) => {
-    target.addEventListener('click', () => {
+    target.addEventListener('click', async () => {
       this.#modal.setAttribute("data-hidden", false);
+      await this.#onShowCallback(this.#modal) 
     })
+  }
+
+  show = () => {
+    this.#modal.setAttribute("data-hidden", false);
+  }
+
+  hidden = () => {
+    this.#modal.setAttribute("data-hidden", true);
+  }
+
+  onShow = (callback = () => {}) => {
+    this.#onShowCallback = callback;
   }
 
   constructor(id, title = '', content) {

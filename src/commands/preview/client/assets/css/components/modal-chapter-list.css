@@ -1,0 +1,81 @@
+#modal-chapter-list .wrapper {
+  width: min(720px, calc(100% - 32px));
+}
+
+.chapter-list {
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: auto;
+  width: 100%;
+  height: auto;
+  list-style: none;
+  gap: 16px;
+  padding-bottom: 16px;
+  height: 420px;
+  overflow-y: auto;
+
+  & .item {
+    display: flex;
+    width: calc(100% / 2 - 8px);
+    flex-shrink: 0;
+    height: 44px;
+    overflow: hidden; 
+  }
+
+  & a {
+    background: #151515;
+    color: inherit;
+    text-decoration: none;
+    font-size: 1.6rem;
+    transition: 250ms ease-in-out;
+
+    width: 100%;
+    height: 44px;
+    display: flex;
+    padding-left: 12px;
+    align-items: center;
+    border-radius: 8px; 
+
+    /* disable current chapter link */
+    &[data-active=true] {
+      color: var(--color-primary);
+      opacity: 1;
+      cursor: default;
+      user-select: none;
+      -moz-user-select: none;
+      -webkit-user-select: none;
+      pointer-events: none;
+    }
+
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+
+
+  & .item a .title {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    /* For hidden texto overflow on translated by google */
+    & font {
+      width: fit-content;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+@media (max-width: 580px) {
+  .chapter-list {
+    & .item {
+      width: 100%;
+    }
+  }
+}

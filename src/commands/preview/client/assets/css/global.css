@@ -6,6 +6,8 @@
 
 :root{
   --is-mobile: 0;
+
+  --color-primary: #0593d4;
 }
 
 html {
