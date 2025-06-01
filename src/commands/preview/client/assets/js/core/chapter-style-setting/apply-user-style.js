@@ -1,6 +1,6 @@
 import { ChapterStyleSettingStorage } from "./storage.js";
 
-export const appyChapterStyle = () => {
+export const applyUserStyles = () => {
   const updateCss = () => {
     const storage = new ChapterStyleSettingStorage();
     const values = storage.get()

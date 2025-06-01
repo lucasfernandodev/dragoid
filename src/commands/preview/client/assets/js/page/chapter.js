@@ -1,36 +1,37 @@
 import { modalChapterList } from "../components/modal-chapter-list/index.js";
 import { modalChapterStyle } from "../components/modal-chapter-style/index.js";
 import { modalReplacement } from "../components/modal-replace/index.js";
-import { appyChapterStyle } from "../core/chapter-style-setting/appy-chapter-style.js";
-import { applyReplacementListToChapter } from "../core/replacement/apply-replacement-list-to-chapter.js";
-import { isMobile, onGesture } from "../utils.js";
+import { applyUserStyles } from "../core/chapter-style-setting/apply-user-style.js";
+import { applyUserReplacements } from "../core/replacement/apply-user-replacements.js";
+import { onTouchGesture } from "../core/shortcuts/on-touch-gesture.js";
+import { isMobile } from "../utils/is-Mobile.js";
+
+
+const initChapterPage = async () => {
+  const isMobileView = isMobile();
+
+  // === Inicializa modais ===
+  modalChapterStyle() 
+  modalReplacement()
+  await modalChapterList() 
 
 
 
-const main = async () => {
-  const isMobilewView = isMobile();
+  // === Aplica customizações do usuário no capítulo ===
+  applyUserReplacements()
+  applyUserStyles()
 
-  if (isMobilewView) {
+
+  // Handle with show/hidden floating navigation in mobile devices
+  if (isMobileView) {
     const navigationMenu = document.querySelector(".floating-navigation");
-    // Start gesture 
-    onGesture(() => {
+    onTouchGesture(() => {
       navigationMenu.style.display = 'flex'
       setTimeout(() => {
         navigationMenu.style.display = "none";
       }, 1500)
     })
   } 
-
-  // Modais
-  await modalChapterList() 
-  modalChapterStyle() 
-  modalReplacement()
-
-
-
-  // Extra functions
-  applyReplacementListToChapter()
-  appyChapterStyle()
 }
 
-await main()
+await initChapterPage()

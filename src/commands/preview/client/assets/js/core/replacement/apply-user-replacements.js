@@ -2,7 +2,7 @@ import { observerDomChanges } from "../observer-dom-changes.js";
 import { ReplacementNodeText } from "./replacement-node-text.js";
 import { ReplacementStorage } from "./storage.js";
 
-export const applyReplacementListToChapter = () => {
+export const applyUserReplacements = () => {
   const executeReplacement = (chapterContent) => {
     const storage = new ReplacementStorage();
     const currentListId = window.localStorage.getItem('replacement-list-active')

@@ -1,4 +1,4 @@
-import { isObjectWithStringValues } from "../../utils.js";
+import { isObjectWithStringValues } from "../../utils/is-object-with-string-values.js";
 
 export class ReplacementStorage {
   #storage = {};
