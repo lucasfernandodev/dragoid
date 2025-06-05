@@ -39,7 +39,7 @@ export const processChaptersList = async <T>(
   const start = opt?.skip || 0;
   const end = opt?.limit ? Math.min(start + opt.limit, listSize) : listSize;
 
-  const sliceData = opt.limit ? data.slice(start, end) : data;
+  const sliceData = data.slice(start, end);
   let index = 0;
   for (const item of sliceData) {
     await callback(item, index);
