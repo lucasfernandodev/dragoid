@@ -1,12 +1,12 @@
 import { makeElement } from "../../utils/make-element.js";
 import { iconClose } from "../icons.js";
 
- 
+
 
 export class Modal {
   #modal = null;
   #id = null;
-  #onShowCallback = () => {};
+  #onShowCallback = () => { };
 
   /**
    * Cria e configura um modal com cabeçalho e conteúdo fornecidos.
@@ -22,17 +22,28 @@ export class Modal {
       class: 'modal',
       id: id,
       'data-hidden': true,
-      'data-id': id
+      'data-id': id,
+      role: "dialog",
+      tabindex:"-1",
     });
+
     const wrapper = makeElement('div', { class: 'wrapper' })
     const heading = makeElement('div', { class: 'heading' })
     const title = makeElement('h2', { class: 'title' }, titleText);
-    const buttonClose = makeElement('button', { class: 'btn-close' });
+
+    const buttonClose = makeElement('button', {
+      class: 'btn-close',
+      'aria-label': 'Close Modal',
+      autofocus: true
+    });
+
     buttonClose.innerHTML = iconClose;
+
     buttonClose.onclick = () => {
       modal.setAttribute('data-hidden', true);
     }
-    const innerWrapper = makeElement('div', { class: 'inner-wrapper' });
+
+    const innerWrapper = makeElement('div', { class: 'inner-wrapper', role:"document" });
     innerWrapper.appendChild(content)
 
     heading.append(title, buttonClose);
@@ -58,21 +69,22 @@ export class Modal {
 
   // Seleciona um elemento para abrir o modal[target = htmlElement]
   attach = (target) => {
-    target.addEventListener('click', async () => {
-      this.#modal.setAttribute("data-hidden", false);
-      await this.#onShowCallback(this.#modal) 
+    target.addEventListener('click', () => {
+      this.show()
     })
   }
 
   show = () => {
     this.#modal.setAttribute("data-hidden", false);
+    this.#modal.focus()
+    this.#onShowCallback(this.#modal).catch(console.error)
   }
 
   hidden = () => {
     this.#modal.setAttribute("data-hidden", true);
   }
 
-  onShow = (callback = () => {}) => {
+  onShow = (callback = () => { }) => {
     this.#onShowCallback = callback;
   }
 

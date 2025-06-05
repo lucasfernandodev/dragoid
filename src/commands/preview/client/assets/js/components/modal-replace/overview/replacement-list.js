@@ -20,7 +20,7 @@ export const replacementList = () => {
       btnEdit.innerHTML = iconEdit;
       btnEdit.appendChild(makeElement('span', {}, 'Edit'))
 
-      const btnDelete = makeElement('button', { class: 'btn-delete' })
+      const btnDelete = makeElement('button', { class: 'btn-delete', 'aria-label': 'Delete' })
       btnDelete.innerHTML = iconDelete
 
       btnDelete.onclick = () => {
@@ -31,7 +31,14 @@ export const replacementList = () => {
       }
 
 
-      const btnSelect = makeElement('button', { class: `btn-select ${isCurrectListActive === id ? 'active' : ''}` }, makeElement('span', {}));
+      const btnSelect = makeElement(
+        'button',
+        {
+          class: `btn-select ${isCurrectListActive === id ? 'active' : ''}`,
+          'aria-label': 'Select'
+        },
+        makeElement('span', {'aria-hidden': true})
+      );
       btnSelect.onclick = () => {
         const buttons = document.querySelectorAll('.overview-list .group-buttons .btn-select');
         buttons.forEach(btn => btn.classList.remove('active'))
