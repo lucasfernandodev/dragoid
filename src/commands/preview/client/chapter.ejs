@@ -41,9 +41,9 @@
           <% } %>
       </div>
       <div class="floating-navigation">
-        <a class="option" href="/chapter/?id=<%= chapter_prev_id %>" title="Prev chapter"
+        <a role="button" aria-label="Prev Chapter" class="option" href="/chapter/?id=<%= chapter_prev_id %>" title="Prev chapter"
           data-disabled="<%= chapter_prev_id === null ? 'true' : 'false' %>">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M11 7l-5 5l5 5" />
@@ -51,8 +51,8 @@
           </svg>
           <span>Prev</span>
         </a>
-        <button class="option btn-open-replacement-modal" title="Manage Substitutions">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        <button aria-label="Manage Substitutions" class="option btn-open-replacement-modal" title="Manage Substitutions">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M16 21h3c.81 0 1.48 -.67 1.48 -1.48l.02 -.02c0 -.82 -.69 -1.5 -1.5 -1.5h-3v3z" />
@@ -62,8 +62,8 @@
             <path d="M8 7h-4" />
           </svg>
         </button>
-        <button class="option toggle-dialog-chapter-list">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        <button aria-label="Open chapter list" title="Open chapter list" class="option toggle-dialog-chapter-list">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M9 6l11 0" />
@@ -74,8 +74,8 @@
             <path d="M5 18l0 .01" />
           </svg>
         </button>
-        <button class="option button-mcc">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+        <button aria-label="Open chapter style setting modal" title="Chapter style setting" class="option button-mcc">
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path
@@ -83,10 +83,10 @@
             <path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" />
           </svg>
         </button>
-        <a class="option" href="/chapter/?id=<%= chapter_next_id %>" title="Next chapter"
+        <a role="button" aria-label="Next chapter" class="option" href="/chapter/?id=<%= chapter_next_id %>" title="Next chapter"
           data-disabled="<%= chapter_next_id === null ? 'true' : 'false' %>">
           <span>Next</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path stroke="none" d="M0 0h24v24H0z" fill="none" />
             <path d="M7 7l5 5l-5 5" />
@@ -94,6 +94,8 @@
           </svg>
         </a>
       </div>
+
+
 
       <!-- Chapter Footer Navigation -->
       <div class="navigation">
