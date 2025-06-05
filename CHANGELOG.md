@@ -1,3 +1,12 @@
+## [0.19.1](https://github.com/lucasfernandodev/dragoid/compare/v0.19.0...v0.19.1) (2025-06-05)
+
+
+### Bug Fixes
+
+* **download:** Correctly apply skip parameter when only skip is provided ([2d513e8](https://github.com/lucasfernandodev/dragoid/commit/2d513e839f2fa5a312ca2e75b3861be99550796d))
+
+
+
 # [0.19.0](https://github.com/lucasfernandodev/dragoid/compare/v0.18.1...v0.19.0) (2025-05-25)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Improving description ([aea414f](https://github.com/lucasfernandodev/dragoid/commit/aea414fdb6757c1e601e315e1b4bee438b61b5bc))
-
-
-
-# [0.16.0](https://github.com/lucasfernandodev/dragoid/compare/v0.15.0...v0.16.0) (2025-05-07)
-
-
-### Features
-
-* Increasize schema title length ([98af071](https://github.com/lucasfernandodev/dragoid/commit/98af071c6f7fbc1ce7a49a6d1ce2114e2c79a6c4))
 
 
 
