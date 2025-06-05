@@ -3,7 +3,6 @@ import { logger, printChaptersDownloadProgress } from '../../../../utils/logger.
 import { puppeteerInstance } from '../../../../lib/puppeteer.ts';
 import { downloadImage, processImageToBase64 } from '../../../../utils/images.ts';
 import { BotError } from '../../../../errors/bot-error.ts';
-import { delay } from '../../../../utils/delay.ts';
 import { processChaptersList } from '../../../../core.ts'; 
 
 export const getNovel69yuedu = async (
@@ -145,9 +144,8 @@ export const getNovel69yuedu = async (
     chapters.push({
       title: result.title,
       content: result.content
-    }) 
+    })
 
-    await delay(500)
     await context.close();
   }, opt)
   

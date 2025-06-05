@@ -3,7 +3,6 @@ import type { DownloadNovelOptions, INovelData } from "../../../../types/bot.ts"
 import { type CheerioAPI, load } from 'cheerio';
 import { readnovelfullGetChapter } from './_get-chapter.ts';
 import { exitOnFetchError } from '../../../../utils/exitOnFetchError.ts';
-import { delay } from '../../../../utils/delay.ts';
 import { logger } from '../../../../utils/logger.ts';
 import { downloadImage, processImageToBase64 } from '../../../../utils/images.ts';
 import { BotError } from '../../../../errors/bot-error.ts';
@@ -85,7 +84,6 @@ export const readnovelfullGetNovel = async (
     })).get() as { url: string, title: string }[];
 
     await processChaptersList(chapterList, async ({ url }) => {
-      await delay(500)
       const chapter = await readnovelfullGetChapter(url);
       chaptersData.push(chapter)
     }, opt)

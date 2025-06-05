@@ -1,13 +1,20 @@
 import { ValidationError } from "./errors/validation-error.ts";
+import type { DownloadNovelOptions } from "./types/bot.ts";
+import { delay } from "./utils/delay.ts";
 import { printChaptersDownloadProgress } from "./utils/logger.ts";
 
 type callback<T> = (data: T, index: number) => void | Promise<void>
-type options = {
-  skip?: number;
-  limit?: number;
-}
 
-export const processChaptersList = async <T>(data: T[], callback: callback<T>, opt: options) => {
+export const processChaptersList = async <T>(
+  data: T[],
+  callback: callback<T>,
+  opt: DownloadNovelOptions
+) => {
+
+  const downloadDelayMs = (typeof opt.chapterDownloadDelay === 'number' && !isNaN(opt.chapterDownloadDelay))
+  ? opt.chapterDownloadDelay
+  : 1000;
+
   if (opt?.skip !== undefined && opt.skip < 0) {
     throw new ValidationError('The value for the --skip option must be 0 or greater.')
   }
@@ -38,5 +45,6 @@ export const processChaptersList = async <T>(data: T[], callback: callback<T>, o
     await callback(item, index);
     printChaptersDownloadProgress(index + 1, sliceData.length);
     index++
+    await delay(downloadDelayMs)
   }
 }

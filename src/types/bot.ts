@@ -21,7 +21,8 @@ type BotHelp = {
 
 export type DownloadNovelOptions = Partial<{
   limit: number;
-  skip: number
+  skip: number;
+  chapterDownloadDelay: number;
 }>
 
 
