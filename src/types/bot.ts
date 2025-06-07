@@ -9,6 +9,8 @@ export interface INovelData {
   thumbnail?: string;
 }
 
+export interface INovelMeta extends Omit<INovelData, 'chapters'>{}
+
 export interface IChapterData{
   title: string;
   content: string[];

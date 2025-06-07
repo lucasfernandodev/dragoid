@@ -5,6 +5,7 @@ import { type DownloadNovelOptions, type IChapterData, type INovelData } from ".
 import { logger } from '../../../utils/logger.ts';
 import { processChaptersList } from '../../process-chapter-list.ts';
 import { delay } from '../../../utils/delay.ts';
+import { collectNovelInfo69shuba } from './parse-html/collect-novel-info.ts';
 
 
 
@@ -127,9 +128,9 @@ export const getNovel69shuba = async (
   // Fica aguardando até que um titulo aparece na pagina
   await page.waitForSelector('h1');
 
-  const result = await page.evaluate(collectPageData)
+  const novelInfo = await page.evaluate(collectNovelInfo69shuba);
 
-  if (!result) {
+  if (!novelInfo) {
     await browser.close()
     throw new BotError(
       'Unable to retrieve any information from the target page. Check if the URL used is correct'
@@ -137,32 +138,26 @@ export const getNovel69shuba = async (
   }
 
   // Check if list chapters url is collected
-  if (!result.chaptersListUrl) {
+  if (!novelInfo.chapterListPageUrl) {
     await browser.close()
     throw new BotError('Unable to retrieve chapter list page url')
   }
 
-
-  // Navegá até a pagina de capítulos
-  await page.goto(result.chaptersListUrl as string, { waitUntil: 'load' });
-
-
-  // Aguarda até que a div com os capítulos seha carregada
+  // Collect Chapter List
+  await page.goto(novelInfo.chapterListPageUrl, { waitUntil: 'load' });
   const isCatalogPage = await page.waitForSelector('#catalog');
+
   if (!isCatalogPage) {
     await browser.close();
     throw new BotError('Unable to collect chapter list')
   }
 
-
-  // Colleta todos os urls dos capítulos da novel
   const chaptersList = await page.evaluate(collectChapterList);
 
 
+
+  // Collect Chapters
   const chapters: IChapterData[] = []
-
-
-  // Coleta os capítulos
   await processChaptersList(chaptersList, async ({ url }, index) => {
 
     if (index % 100 === 0) {
@@ -212,7 +207,7 @@ export const getNovel69shuba = async (
   await page.close()
   await browser.close();
 
-  const getImage = async (url: string) => {
+  const getImage = async (url?: string) => {
     if (!url) return '<image-url>'
 
     const bufferImage = await downloadImage(url);
@@ -227,14 +222,15 @@ export const getNovel69shuba = async (
     return base64Image
   }
 
+
   return {
-    title: result.title || 'Title unknown',
-    author: result.author?.includes(",") ? result.author.split(',') : [result.author || 'Author unknown'],
-    status: 'unknown',
-    thumbnail: result.imageURL ? await getImage(result.imageURL) : '<image-url>',
+    title: novelInfo.title,
+    author: novelInfo.author || [],
+    status: novelInfo.status,
+    thumbnail: await getImage(novelInfo.thumbnail),
     chapters: chapters,
-    description: result.description,
-    genres: [...result.genres || 'Author unknown'],
-    language: 'chinese'
+    description: novelInfo.description || [],
+    genres: novelInfo.genres || [],
+    language: 'Chinese'
   }
 }
