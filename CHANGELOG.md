@@ -1,3 +1,12 @@
+# [0.20.0](https://github.com/lucasfernandodev/dragoid/compare/v0.19.2...v0.20.0) (2025-06-07)
+
+
+### Features
+
+* drop support for 69yuedu bot ([0148e04](https://github.com/lucasfernandodev/dragoid/commit/0148e04d86b24e8e2d73a9a28e91d6df3305eeed))
+
+
+
 ## [0.19.2](https://github.com/lucasfernandodev/dragoid/compare/v0.19.1...v0.19.2) (2025-06-07)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Fixing github action ([8ff1a2f](https://github.com/lucasfernandodev/dragoid/commit/8ff1a2f7e769c0ea0cf1055e16281384e958e0fa))
-
-
-
-# [0.18.0](https://github.com/lucasfernandodev/dragoid/compare/v0.17.0...v0.18.0) (2025-05-07)
-
-
-### Features
-
-* Improving description ([332021e](https://github.com/lucasfernandodev/dragoid/commit/332021e4eccde0ece441ec3a5571cc39aba44495))
 
 
 
