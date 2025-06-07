@@ -1,3 +1,12 @@
+## [0.19.2](https://github.com/lucasfernandodev/dragoid/compare/v0.19.1...v0.19.2) (2025-06-07)
+
+
+### Bug Fixes
+
+* Fix wording of unexpected error message ([22811ae](https://github.com/lucasfernandodev/dragoid/commit/22811ae260aa7fc49f03e58d652161adee9c5fac))
+
+
+
 ## [0.19.1](https://github.com/lucasfernandodev/dragoid/compare/v0.19.0...v0.19.1) (2025-06-05)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Improving description ([332021e](https://github.com/lucasfernandodev/dragoid/commit/332021e4eccde0ece441ec3a5571cc39aba44495))
-
-
-
-# [0.17.0](https://github.com/lucasfernandodev/dragoid/compare/v0.16.0...v0.17.0) (2025-05-07)
-
-
-### Features
-
-* Improving description ([aea414f](https://github.com/lucasfernandodev/dragoid/commit/aea414fdb6757c1e601e315e1b4bee438b61b5bc))
 
 
 
