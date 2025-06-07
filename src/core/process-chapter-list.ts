@@ -42,9 +42,9 @@ export const processChaptersList = async <T>(
   const sliceData = data.slice(start, end);
   let index = 0;
   for (const item of sliceData) {
+    await delay(downloadDelayMs)
     await callback(item, index);
     printChaptersDownloadProgress(index + 1, sliceData.length);
     index++
-    await delay(downloadDelayMs)
   }
 }
