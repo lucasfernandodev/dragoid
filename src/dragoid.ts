@@ -10,7 +10,6 @@ import { getCurrentVersion } from "./utils/helper.ts";
 import { logger } from "./utils/logger.ts";
 import { BotReadNovelFull } from './core/bots/readnovelfull/index.ts';
 import { Bot69Shuba } from './core/bots/69shuba/index.ts';
-import { Bot69yuedu } from './core/bots/69yuedu/index.ts';
 import { language } from "./core/configurations.ts";
 
 const _yargs = yargs(process.argv.slice(2))
@@ -21,7 +20,6 @@ process.on("uncaughtException", errorHandle)
 
 const bots = [
   new BotReadNovelFull(),
-  new Bot69yuedu(),
   new Bot69Shuba()
 ]
 

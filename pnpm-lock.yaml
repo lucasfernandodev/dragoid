@@ -14,9 +14,6 @@ importers:
       '@fastify/view':
         specifier: ^10.0.2
         version: 10.0.2
-      '@types/axios':
-        specifier: ^0.14.4
-        version: 0.14.4
       '@types/ejs':
         specifier: ^3.1.5
         version: 3.1.5
@@ -279,10 +276,6 @@ packages:
 
   '@tootallnate/quickjs-emscripten@0.23.0':
     resolution: {integrity: sha512-C5Mc6rdnsaJDjO3UpGW/CQTHtCKaYlScZTly4JIu97Jxo/odCiH0ITnDXSJPTOrEKk/ycSZ0AOgTmkDtkOsvIA==}
-
-  '@types/axios@0.14.4':
-    resolution: {integrity: sha512-9JgOaunvQdsQ/qW2OPmE5+hCeUB52lQSolecrFrthct55QekhmXEwT203s20RL+UHtCQc15y3VXpby9E7Kkh/g==}
-    deprecated: This is a stub types definition. axios provides its own type definitions, so you do not need this installed.
 
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
@@ -1489,12 +1482,6 @@ snapshots:
       - supports-color
 
   '@tootallnate/quickjs-emscripten@0.23.0': {}
-
-  '@types/axios@0.14.4':
-    dependencies:
-      axios: 1.8.1
-    transitivePeerDependencies:
-      - debug
 
   '@types/debug@4.1.12':
     dependencies:
