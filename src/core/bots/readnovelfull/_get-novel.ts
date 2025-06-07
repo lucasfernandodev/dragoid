@@ -1,12 +1,12 @@
-import axios from 'axios';
-import type { DownloadNovelOptions, INovelData } from "../../../../types/bot.ts";
+import axios from 'axios'; 
 import { type CheerioAPI, load } from 'cheerio';
-import { readnovelfullGetChapter } from './_get-chapter.ts';
-import { exitOnFetchError } from '../../../../utils/exitOnFetchError.ts';
-import { logger } from '../../../../utils/logger.ts';
-import { downloadImage, processImageToBase64 } from '../../../../utils/images.ts';
-import { BotError } from '../../../../errors/bot-error.ts';
-import { processChaptersList } from '../../../../core.ts';
+import { readnovelfullGetChapter } from './_get-chapter.ts'; 
+import type { DownloadNovelOptions, INovelData } from '../../../types/bot.ts';
+import { BotError } from '../../../errors/bot-error.ts';
+import { exitOnFetchError } from '../../../utils/exitOnFetchError.ts';
+import { downloadImage, processImageToBase64 } from '../../../utils/images.ts';
+import { logger } from '../../../utils/logger.ts';
+import { processChaptersList } from '../../process-chapter-list.ts';
 
 
 

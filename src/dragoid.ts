@@ -4,14 +4,14 @@ import yargs from "yargs";
 import { errorHandle } from "./errors/error-handle.ts";
 import { Download } from "./commands/download/index.ts";
 import { Preview } from "./commands/preview/index.ts";
-import { GenerateOutputFile } from "./commands/download/generate-output-file.ts";
-import { BotReadNovelFull } from "./commands/download/bots/readnovelfull/index.ts"; 
-import { Bot69yuedu } from "./commands/download/bots/69yuedu/index.ts";
 import type { TypeCommandPreviewArgs } from "./types/command-preview-args.ts";
 import type { TypeCommandDownloadArgs } from "./types/command-download-args.ts";
 import { getCurrentVersion } from "./utils/helper.ts";
 import { logger } from "./utils/logger.ts";
-import { Bot69Shuba } from "./commands/download/bots/69shuba/index.ts";
+import { BotReadNovelFull } from './core/bots/readnovelfull/index.ts';
+import { Bot69Shuba } from './core/bots/69shuba/index.ts';
+import { Bot69yuedu } from './core/bots/69yuedu/index.ts';
+import { language } from "./core/configurations.ts";
 
 const _yargs = yargs(process.argv.slice(2))
 
@@ -25,7 +25,7 @@ const bots = [
   new Bot69Shuba()
 ]
 
-const downloadClient = new Download(bots, new GenerateOutputFile())
+const downloadClient = new Download(bots)
 const previewClient = new Preview()
 
 
@@ -46,7 +46,7 @@ _yargs.command<TypeCommandPreviewArgs>(
 )
 
 _yargs
-.locale('en')
+.locale(language)
 .help()
 .version(false)
 .option({

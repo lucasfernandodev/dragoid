@@ -1,116 +1,106 @@
 import { ValidationError } from './../../errors/validation-error.ts';
-import { isValidUrl } from "../../utils/validate.ts";
-import { GenerateOutputFile } from "./generate-output-file.ts";
-import { isNumberValid } from '../../utils/helper.ts';
 import type { TypeCommandDownloadArgs } from '../../types/command-download-args.ts';
-
+import { ZodIssueCode, z } from 'zod';
+import { outputSupported } from '../../core/configurations.ts';
 interface Args extends Partial<TypeCommandDownloadArgs> {
   $0: string;
   _: any
 }
 
+const validateDonwloadCommandFlags = z.object({
+  mode: z.enum(['novel', 'chapter'], {
+    message: `Invalid value for option '--mode'. Supported values are 'chapter' or 'novel'`
+  }),
+  url: z.string().url({ message: "Invalid value for option '--url'" }),
+  outputFormat: z.string({
+    message: "the --output-format option must not be left empty"
+  }),
+  skip: z.coerce.number({
+    message: "Invalid value for option '--skip'. Option must be a number"
+  }).min(0, {
+    message: "Invalid value for option '--skip'. Option must be 0 or greater"
+  }).optional(),
+  limit: z.coerce.number({
+    message: "Invalid value for option '--limit'. Option must be a number"
+  }).min(1, {
+    message: "Invalid value for option '--limit'. Option must be 1 or greater"
+  }).optional(),
+}).superRefine((data, ctx) => { 
+  const allowed = outputSupported[data.mode];
+  if (!allowed.includes(data.outputFormat as any)) {
+    ctx.addIssue({
+      code: ZodIssueCode.custom,
+      path: ["outputFormat"],
+      message: `Invalid value for option '--output-format' when '--mode=${data.mode}'. Supported values are ${allowed.join(", ")}`,
+    });
+  }
+});
+
+ 
+
+
 
 
 export const validateInput = (data: Args) => {
 
-  const listOutputFormats = data['list-output-formats'];
-  const listCrawlers = data['list-crawlers'];
-  const outputFormat = data['output-format'];
+  const options = {
+    mode: data['mode'],
+    url: data['url'],
+    outputFormat: data['output-format'],
+    listOutputFormats: data['list-output-formats'],
+    listCrawlers: data['list-crawlers'],
+    limit: data['limit'],
+    skip: data['skip'],
+  }
 
-  const { mode, url } = data;
+  const optionsKeys = Object.keys(options).filter(key => typeof options[key] !== 'undefined');
 
-  const keys = Object.keys(data).filter(key => key !== "_" && key !== "$0");
+  // Check if there are conflicting options
+  if (options.listOutputFormats) {
+    if (optionsKeys.length !== 1) {
+      throw new ValidationError(
+        `Argument conflict, '--list-output-formats' option cannot be used together with other flags`
+      )
+    }
+    return true;
+  }
 
-  if (keys.length === 0) {
+  if (options.listCrawlers) {
+    if (optionsKeys.length !== 1) {
+      throw new ValidationError(
+        `Argument conflict, '--list-crawlers' option cannot be used together with other flags`
+      )
+    }
+    return true;
+  }
+
+
+
+  // Validate download props
+  const missingDownloadFlags: string[] = []
+  if (!options.mode) {
+    missingDownloadFlags.push("'--mode'")
+  }
+
+  if (!options.url) {
+    missingDownloadFlags.push("'--url'")
+  }
+
+  if (!options.outputFormat) {
+    missingDownloadFlags.push("'--output-format'")
+  }
+
+  if (missingDownloadFlags.length > 0) {
     throw new ValidationError(
-      `Download options empty`
-    )
+      `Missing required option(s): ${missingDownloadFlags.join(", ")}`
+    );
   }
 
-  const generateOutputFile = new GenerateOutputFile()
-
-
-  // Download
-  if (!listCrawlers && !listOutputFormats) {
-
-    if (!mode) {
-      throw new ValidationError('Option --mode=<novel|chapter> is required')
-    }
-
-    if (mode !== 'novel' && mode !== 'chapter') {
-      throw new ValidationError(`Option "--mode=${mode}" is invalid. Use --mode=<chapter|novel>`)
-    }
-
-    if (!url) {
-      throw new ValidationError('Option --url=<URL> is required')
-    }
-
-    if (url && !isValidUrl(url)) {
-      throw new ValidationError('Url value is invalid')
-    }
-
-    if (!outputFormat) {
-      throw new ValidationError('Option --output-format=<JSON|EPUB|HTML> is required')
-    }
-
-
-    if (typeof data?.limit !== 'undefined' && !isNumberValid(data.limit)) {
-      throw new ValidationError(
-        'The value provided for the --limit option must be a valid number'
-      )
-    }
-
-    if (typeof data?.skip !== 'undefined' && !isNumberValid(data.skip)) {
-      throw new ValidationError(
-        'The value provided for the --skip option must be a valid number'
-      )
-    }
-
-
-    if (typeof data?.limit !== 'undefined' && isNumberValid(data.limit)) {
-      if (data.limit <= 0) {
-        throw new ValidationError(
-          ' The value for the --limit option must be greater than 0'
-        )
-      }
-    }
-
-    if (typeof data?.skip !== 'undefined'&& isNumberValid(data.skip)) {
-      if (data.skip < 0) {
-        throw new ValidationError(
-          'The value for the --skip option must be 0 or greater.'
-        )
-      }
-    }
-
-
-    if (mode && outputFormat) {
-      const formatts = generateOutputFile.getSupportedFormats()
-
-      if (mode === 'novel') {
-        if (!formatts.novel.find(type => type === outputFormat)) {
-          throw new ValidationError('Option output-format invalid')
-        }
-      }
-
-      if (mode === 'chapter') {
-        if (!formatts.chapter.find(type => type === outputFormat)) {
-          throw new ValidationError('Option output-format invalid')
-        }
-      }
-    }
-  }
-
-  // Information
-  if (listCrawlers || listOutputFormats) {
-    if (url || outputFormat) {
-      throw new ValidationError('Args invalid')
-    }
-
-    if (listCrawlers && listOutputFormats) {
-      throw new ValidationError('Args invalid')
-    }
-  }
-
-  return true;
+  validateDonwloadCommandFlags.parse({
+    mode: options.mode,
+    url: options.url,
+    outputFormat: options.outputFormat,
+    skip: options.skip,
+    limit: options.limit,
+  })
 }

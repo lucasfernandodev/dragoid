@@ -1,8 +1,6 @@
 import esbuild from 'esbuild';  
 import { getCurrentVersion } from './src/utils/helper.ts';
 
-
-
 esbuild.build({
   entryPoints: ['./src/dragoid.ts'],
   bundle: true,

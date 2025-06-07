@@ -1,6 +1,6 @@
+import { exitOnFetchError } from './../../../utils/exitOnFetchError.ts';
 import axios from 'axios';
 import {type CheerioAPI, load} from 'cheerio';
-import { exitOnFetchError } from '../../../../utils/exitOnFetchError.ts';
 
 export const readnovelfullGetChapter = async (url: string) => {
 

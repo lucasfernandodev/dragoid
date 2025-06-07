@@ -1,5 +1,5 @@
+import { Bot } from "../../../types/bot.ts";
 import { getChapterIn69shuba } from './_get-chapter.ts';
-import { Bot } from "../../../../types/bot.ts";
 import { getNovel69shuba } from './_get-novel.ts';
 
 export class Bot69Shuba implements Bot{

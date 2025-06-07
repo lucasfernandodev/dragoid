@@ -12,7 +12,7 @@ export const logger = {
   warning: (message: string) => {
     console.warn(chalk.yellow(message));
   },
-  error: (message: string) => {
+  error: (message: string | Object) => {
     console.error(chalk.red(message))
   }
 }

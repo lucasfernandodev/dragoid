@@ -1,4 +1,4 @@
-import { Bot } from "../../../../types/bot.ts";
+import { Bot } from "../../../types/bot.ts";
 import { getChapterIn69yeudu } from "./_get-chapter.ts";
 import { getNovel69yuedu } from "./_get-novel.ts";
 

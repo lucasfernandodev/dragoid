@@ -1,16 +1,19 @@
-import type { DownloadNovelOptions, IChapterData, INovelData } from '../../../../types/bot.ts';
-import { logger } from '../../../../utils/logger.ts';
-import { puppeteerInstance } from '../../../../lib/puppeteer.ts';
-import { downloadImage, processImageToBase64 } from '../../../../utils/images.ts';
-import { BotError } from '../../../../errors/bot-error.ts';
-import { processChaptersList } from '../../../../core.ts';
+import { BotError } from "../../../errors/bot-error.ts";
+import { puppeteerInstance } from "../../../lib/puppeteer.ts";
+import type { DownloadNovelOptions, INovelData, IChapterData } from "../../../types/bot.ts";
+import { downloadImage, processImageToBase64 } from "../../../utils/images.ts";
+import { logger } from "../../../utils/logger.ts";
+import { processChaptersList } from "../../process-chapter-list.ts";
+
 
 
 function collectPageData() {
   const description: string[] = []
-  const title = document.querySelector(".booknav2 h1 a")?.textContent;
-  const author = document.querySelectorAll(".booknav2 p a")[0].textContent;
+  const title = document.querySelector(".booknav2 h1 a")?.textContent || null;
+  const author = document.querySelectorAll(".booknav2 p a")[0]?.textContent || null;
   const descriptionText = document.querySelectorAll(".mybox .navtxt p");
+
+
 
   descriptionText?.forEach(paragrafo => {
     let linhaAtual = '';
@@ -42,6 +45,10 @@ function collectPageData() {
 
 
   const chaptersListUrl = document.querySelectorAll(".addbtn .btn")[0]?.getAttribute('href');
+
+  if (!title && !author && genres.length === 0 && !imageURL && !chaptersListUrl) {
+    return null;
+  }
 
   return {
     title,
@@ -85,7 +92,7 @@ function collectChapter() {
   }
 }
 
-export const getNovel69shuba = async (
+export const getNovel69yuedu = async (
   url: string,
   opt: DownloadNovelOptions
 ): Promise<INovelData> => {
@@ -106,6 +113,12 @@ export const getNovel69shuba = async (
 
   const result = await page.evaluate(collectPageData)
 
+  if (!result) {
+    throw new BotError(
+      'Unable to retrieve any information from the target page. Check if the URL used is correct'
+    )
+  }
+
   // Check if list chapters url is collected
   if (!result.chaptersListUrl) {
     throw new BotError('List chapter not found')
@@ -118,6 +131,8 @@ export const getNovel69shuba = async (
 
   // Aguarda até que a div com os capítulos seha carregada
   await page.waitForSelector('#catalog');
+
+
 
   // Colleta todos os urls dos capítulos da novel
   const chaptersList = await page.evaluate(collectChapterList);

@@ -1,91 +1,55 @@
-import { BotError } from './../../errors/bot-error.ts';
-import { Bot, type DownloadNovelOptions } from "../../types/bot.ts";
-import { GenerateOutputFile } from "./generate-output-file.ts";
-import chalk from "chalk";
-import { logger } from "../../utils/logger.ts";
+import yargs, { type Options } from "yargs"; 
 
-interface IHandlerNovelData {
-  url: string;
-  opt: DownloadNovelOptions
-}
+/**
+  Configures the options available for the download command
+  and defines the texts that will be displayed in the help menu.
+*/
+export const setDownloadOptions = (args: yargs.Argv<{ [key: string]: Options }>) => {
+  const Options = args.usage('$0 download [options]')
+  .options({
+    help: { alias: 'h', description: 'Show help', },
+    mode: {
+      group: 'Download Options',
+      alias: 'm',
+      type: 'string' as const,
+      choices: ['novel', 'chapter'] as const,
+      description: 'Download an entire novel (“novel”) or a single chapter (“chapter”)'
+    },
+    url: {
+      group: 'Download Options',
+      alias: 'u',
+      type: 'string' as const,
+      description: 'URL of the novel or chapter to download'
+    },
+    'output-format': {
+      group: 'Download Options',
+      alias: 'o',
+      type: 'string',
+      description: 'Output file format (e.g. json, epub, txt).',
+    },
+    'limit': {
+      group: "Download Options",
+      alias: 'l',
+      type: 'number',
+      description: 'Limit the total number of chapters to download'
+    },
+    'skip': {
+      group: "Download Options",
+      alias: 's',
+      type: 'number',
+      description: 'Begin downloading from chapter number',
+    },
+    'list-crawlers': {
+      group: 'List Options',
+      description: 'List all supported websites and crawlers.',
+      type: 'boolean'
+    },
+    'list-output-formats': {
+      group: 'List Options',
+      description: 'List all supported output formats',
+      type: 'boolean'
+    },
+  })
 
-export class DownloadOptions {
-
-  private generateFile: GenerateOutputFile
-  constructor(generateFile: GenerateOutputFile) {
-    this.generateFile = generateFile
-  }
-
-  public handlerNovel = async ({ url, opt }: IHandlerNovelData, bot: Bot, format: string) => {
-    logger.info('[-] Starting retrive novel')
-    const novel = await bot.getNovel(url, opt);
-
-    if (!novel) {
-      throw new BotError('Collect novel data failed')
-    }
-
-    logger.info('[✔] Novel Retrive with success');
-    logger.info("[-] Starting generate output file");
-
-    await this.generateFile.execute({
-      mode: 'novel',
-      format: format,
-      filename: novel.title,
-      novel
-    })
-
-    logger.info(`[✔] File "${chalk.blueBright(novel.title)}" has been written successfully.`)
-  }
-
-
-
-
-  public handlerChapter = async (url: string, bot: Bot, format: string) => {
-    logger.info('[-] Starting retrive chapter');
-    const chapter = await bot.getChapter(url);
-
-    if (!chapter) {
-      throw new BotError('Collect chapter data failed')
-    }
-
-
-    logger.info('[✔] Chapter retrive with sucess;');
-    logger.info("[-] Starting generate output file");
-    await this.generateFile.execute({
-      mode: 'chapter',
-      format: format,
-      filename: chapter.title,
-      chapter
-    })
-
-    logger.info(`[✔] File "${chalk.blueBright(chapter.title)}" has been written successfully.`)
-  }
-
-
-  public listBots = (bots: Bot[]) => {
-    const content = bots.map(bot => {
-      const name = bot.name;
-      const tool = bot.help.scraping_tool;
-      const site = bot.help.site;
-
-      return `Bot ${name} \n` + `Tool: ${tool} \n` + `Site: ${site} \n\n`;
-    });
-
-    logger.info("List Bots \n")
-    logger.info(content.join(""))
-
-    return;
-  };
-
-
-  public listOutputFormats = () => {
-    const formats = this.generateFile.getSupportedFormats();
-    logger.info([
-      'List of supported format types sorted by download type:',
-      '\nNovel: ',
-      formats.novel.map(type => `[🗸] ${type}`).join('\n'),
-      '\nChapter: ',
-      formats.chapter.map(type => `[🗸] ${type}`).join('\n')
-    ].join('\n'))
-  }
+  return Options;
 }

@@ -6,7 +6,7 @@ import type { INovelData } from "../../types/bot.ts";
 import { Server } from "./server.ts";
 import path from "path";
 import { ValidationError } from "../../errors/validation-error.ts";
-import { novelFileSchema } from '../download/schemas/novel.ts'; 
+import { novelFileSchema } from '../../core/schemas/novel.ts'; 
 
 export class Preview implements DefaultCommand {
   commandEntry = 'preview';

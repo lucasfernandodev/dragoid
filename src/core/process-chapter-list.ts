@@ -1,7 +1,7 @@
-import { ValidationError } from "./errors/validation-error.ts";
-import type { DownloadNovelOptions } from "./types/bot.ts";
-import { delay } from "./utils/delay.ts";
-import { printChaptersDownloadProgress } from "./utils/logger.ts";
+import { ValidationError } from "../errors/validation-error.ts";
+import type { DownloadNovelOptions } from "../types/bot.ts";
+import { delay } from "../utils/delay.ts";
+import { printChaptersDownloadProgress } from "../utils/logger.ts";
 
 type callback<T> = (data: T, index: number) => void | Promise<void>
 
@@ -38,7 +38,7 @@ export const processChaptersList = async <T>(
   const listSize = data.length;
   const start = opt?.skip || 0;
   const end = opt?.limit ? Math.min(start + opt.limit, listSize) : listSize;
-
+  
   const sliceData = data.slice(start, end);
   let index = 0;
   for (const item of sliceData) {

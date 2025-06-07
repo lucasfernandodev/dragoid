@@ -8,9 +8,10 @@ import path from 'path';
 import { logger } from '../../utils/logger.ts';
 
 import { fileURLToPath } from 'url';
-import { isNumber } from '../../utils/isNumber.ts';
 import { getLocalIPAddress } from '../../utils/get-local-ip.ts';
 import { isBuild } from '../../utils/helper.ts';
+import { isNumber } from 'util';
+import { chapterRequestSchema } from './schema/chapter-request.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -103,18 +104,20 @@ export class Server {
 
     this.fastify.get('/chapter/:id', async (req, reply) => {
       const query = req.query as { id: string }
+      const validateQuery = chapterRequestSchema.safeParse(query);
+      const chapterListLength = this.data.chapters.length
 
-      if (!isNumber(query?.id)) {
+      if (!validateQuery.success) {
         return reply.callNotFound()
       }
 
-      const currentid = Number.parseInt(query.id);
+      const currentid = validateQuery.data.id
 
-      if (currentid < 0 || currentid >= this.data.chapters.length) {
+      if (currentid >= chapterListLength) {
         return reply.callNotFound()
       }
 
-      const nextId = currentid + 1 >= this.data.chapters.length ? null : currentid + 1;
+      const nextId = currentid + 1 >= chapterListLength ? null : currentid + 1;
       const prevId = currentid - 1 < 0 ? null : (currentid - 1)
 
       return reply.view("chapter.ejs", {
