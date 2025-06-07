@@ -19,7 +19,7 @@ export const errorHandle = (error: any) => {
       logger.error(`[DEBUG] Bot error: ${error?.debugMessage?.message}` || '');
     }
 
-    logger.error(error.message);
+    logger.error(`Bot error: ${error?.message}`);
     process.exit(error.exitCode)
   }
 
