@@ -2,10 +2,15 @@ import chalk from "chalk"
 
 
 export const logger = {
+  debug: (message: string) => {
+    if(process.env.DEBUG === 'true'){
+      console.log(chalk.yellow(message));
+    }
+  },
   info: (message: string, color?: string) => {
-    if(color){
+    if (color) {
       console.log(chalk[color](message));
-    }else{
+    } else {
       console.log(message)
     }
   },
@@ -18,7 +23,12 @@ export const logger = {
 }
 
 export function printChaptersDownloadProgress(current: number, total: number) {
-  process.stdout.clearLine(0);
-  process.stdout.cursorTo(0);
-  process.stdout.write(`[+] Downloaded ${current}/${total} chapters${current === total ? '\n' : ''}`);
+  if(process.env.DEBUG !== 'true'){
+    process.stdout.clearLine(0);
+    process.stdout.cursorTo(0);
+    process.stdout.write(`[+] Downloaded ${current}/${total} chapters${current === total ? '\n' : ''}`);
+  }else{
+    logger.debug(`[DEBUG] Download ${current}/${total} of chapters${current === total ? '\n' : ''}`)
+  }
+
 }
