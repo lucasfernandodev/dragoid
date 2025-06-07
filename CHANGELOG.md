@@ -1,3 +1,13 @@
+# [0.21.0](https://github.com/lucasfernandodev/dragoid/compare/v0.20.0...v0.21.0) (2025-06-07)
+
+
+### Features
+
+* Add new debug function and use new fn to show download progress (DEBUG=true) ([81fb457](https://github.com/lucasfernandodev/dragoid/commit/81fb4579835f0ac4687bb33d73a71700e9e88240))
+* Enhancing the bot's ability to handle failures ([e3f0f9c](https://github.com/lucasfernandodev/dragoid/commit/e3f0f9c0fb88c3087bdd5cdee33a71ba3677dd00))
+
+
+
 # [0.20.0](https://github.com/lucasfernandodev/dragoid/compare/v0.19.2...v0.20.0) (2025-06-07)
 
 
@@ -31,15 +41,6 @@
 ### Features
 
 * Implement manage substitutions ([a7307ca](https://github.com/lucasfernandodev/dragoid/commit/a7307caf9d13289863867cc8462ee343bbefaaa0))
-
-
-
-## [0.18.1](https://github.com/lucasfernandodev/dragoid/compare/v0.18.0...v0.18.1) (2025-05-07)
-
-
-### Bug Fixes
-
-* Fixing github action ([8ff1a2f](https://github.com/lucasfernandodev/dragoid/commit/8ff1a2f7e769c0ea0cf1055e16281384e958e0fa))
 
 
 
