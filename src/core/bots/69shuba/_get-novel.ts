@@ -6,96 +6,8 @@ import { logger } from '../../../utils/logger.ts';
 import { processChaptersList } from '../../process-chapter-list.ts';
 import { delay } from '../../../utils/delay.ts';
 import { collectNovelInfo69shuba } from './parse-html/collect-novel-info.ts';
-
-
-
-function collectPageData() {
-  const description: string[] = []
-  const title = document.querySelector(".booknav2 h1 a")?.textContent || null;
-  const author = document.querySelectorAll(".booknav2 p a")[0]?.textContent || null;
-  const descriptionText = document.querySelectorAll(".mybox .navtxt p");
-
-
-
-  descriptionText?.forEach(paragrafo => {
-    let linhaAtual = '';
-
-    paragrafo.childNodes.forEach((node: any) => {
-      if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'BR') {
-        // Quando encontra um <br>, adiciona a linha atual ao array
-        if (linhaAtual.trim()) {
-          description.push(linhaAtual.trim());
-        }
-        linhaAtual = ''; // Reinicia a linha
-      } else {
-        // Adiciona o conteúdo de nós de texto ou outros elementos
-        linhaAtual += node.textContent;
-      }
-    });
-
-    // Adiciona a última linha se houver conteúdo restante
-    if (linhaAtual.trim()) {
-      description.push(linhaAtual.trim());
-    }
-  })
-
-  const genres = Array.from(document.querySelectorAll(".booknav2 h1 p")).map(content => {
-    return content?.textContent?.includes('分类：') ? content?.textContent.split('分类：')[1] : undefined
-  }).filter(content => content !== undefined) as string[]
-
-  const imageURL = document.querySelector(".bookimg2 img")?.getAttribute('src');
-
-
-  const chaptersListUrl = document.querySelectorAll(".addbtn .btn")[0]?.getAttribute('href');
-
-  if (!title && !author && genres.length === 0 && !imageURL && !chaptersListUrl) {
-    return null;
-  }
-
-  return {
-    title,
-    author,
-    genres,
-    imageURL: chaptersListUrl ? imageURL : null,
-    chaptersListUrl: chaptersListUrl ? chaptersListUrl : null,
-    description
-  }
-
-}
-
-function collectChapterList() {
-  let chaptersList: { title: string, url: string }[] = []
-  const links = Array.from(document.querySelectorAll('#catalog ul li a'));
-  links.map(link => {
-    chaptersList.push({
-      url: link.getAttribute('href') as string,
-      title: link.getAttribute('title') as string
-    })
-  })
-  return chaptersList;
-}
-
-function collectChapter() {
-  const title = document.querySelector('h1');
-  const content = [] as string[];
-  const container = document.querySelector(".txtnav");
-
-  if (container) {
-    container.childNodes.forEach(node => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        const text = node?.textContent?.trim();
-        if (text) content.push(text);
-      }
-    })
-  }
-
-  window.localStorage.clear();
-
-  return {
-    title: title?.textContent || '',
-    content: content
-  }
-}
+import { collectChapterList69shuba } from './parse-html/collect-chapter-list.ts';
+import { collectChapter69shuba } from './parse-html/collect-chapter.ts';
 
 export const getNovel69shuba = async (
   url: string,
@@ -152,9 +64,13 @@ export const getNovel69shuba = async (
     throw new BotError('Unable to collect chapter list')
   }
 
-  const chaptersList = await page.evaluate(collectChapterList);
+  const chaptersList = await page.evaluate(collectChapterList69shuba);
+ 
 
-
+  if (chaptersList.length === 0) {
+    await browser.close();
+    throw new BotError('The chapter list is empty, or it could not be retrieved')
+  }
 
   // Collect Chapters
   const chapters: IChapterData[] = []
@@ -178,8 +94,11 @@ export const getNovel69shuba = async (
         await page.waitForSelector('h1', { timeout: 10000 })
       }
 
-      const result = await page.evaluate(collectChapter);
+      const result = await page.evaluate(collectChapter69shuba);
 
+      if(!result){
+        throw new BotError('Failed to extract chapter')
+      }
 
 
       chapters.push({
