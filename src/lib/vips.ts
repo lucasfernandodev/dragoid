@@ -1,8 +1,8 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import Vips from "wasm-vips";
-import { isBuild } from "../utils/helper.ts";
 import { ApplicationError } from "../errors/application-error.ts";
+import { isBuild } from "../core/configurations.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

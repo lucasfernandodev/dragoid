@@ -1,9 +1,7 @@
 import path from "path";
 import { fileURLToPath } from "url";
 import { readFile } from "./file.ts";
-
-declare const __IS_BUILD__: boolean;
-export const isBuild = typeof __IS_BUILD__ !== 'undefined' ? __IS_BUILD__ : process.env.IS_BUILD === 'true';
+import { isBuild } from "../core/configurations.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
