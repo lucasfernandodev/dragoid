@@ -7,14 +7,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export const getCurrentVersion = async () => {
-  if(isBuild){
-    const packageJSONPath = path.join(__dirname, `../package.json`);
-    const packageJSON = await readFile<{ version: string }>(packageJSONPath);
-    const version = packageJSON?.version;
-    return version;
-  }
+  const realPath = isBuild ? '../package.json' : '../../package.json'
 
-  const packageJSONPath = path.join(__dirname, `../../package.json`);
+  const packageJSONPath = path.join(__dirname, realPath);
   const packageJSON = await readFile<{ version: string }>(packageJSONPath);
   const version = packageJSON?.version;
   return version

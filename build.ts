@@ -1,5 +1,5 @@
-import esbuild from 'esbuild';  
-import { getCurrentVersion } from './src/utils/helper.ts';
+import esbuild from 'esbuild';
+import { getCurrentVersion } from './src/utils/get-current-version.ts';
 
 esbuild.build({
   entryPoints: ['./src/dragoid.ts'],

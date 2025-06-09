@@ -6,11 +6,11 @@ import { Download } from "./commands/download/index.ts";
 import { Preview } from "./commands/preview/index.ts";
 import type { TypeCommandPreviewArgs } from "./types/command-preview-args.ts";
 import type { TypeCommandDownloadArgs } from "./types/command-download-args.ts";
-import { getCurrentVersion } from "./utils/helper.ts";
 import { logger } from "./utils/logger.ts";
 import { BotReadNovelFull } from './core/bots/readnovelfull/index.ts';
 import { Bot69Shuba } from './core/bots/69shuba/index.ts';
 import { language } from "./core/configurations.ts";
+import { getCurrentVersion } from "./utils/get-current-version.ts";
 
 const _yargs = yargs(process.argv.slice(2))
 
