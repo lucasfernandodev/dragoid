@@ -1,15 +1,11 @@
+import { ThumbnailProcessor } from './../../download-thumbnail.ts';
 import axios from 'axios'; 
 import { type CheerioAPI, load } from 'cheerio';
 import { readnovelfullGetChapter } from './_get-chapter.ts'; 
 import type { DownloadNovelOptions, INovelData } from '../../../types/bot.ts';
 import { BotError } from '../../../errors/bot-error.ts';
 import { exitOnFetchError } from '../../../utils/exitOnFetchError.ts';
-import { downloadImage, processImageToBase64 } from '../../../utils/images.ts';
-import { logger } from '../../../utils/logger.ts';
 import { processChaptersList } from '../../process-chapter-list.ts';
-
-
-
 
 
 export const readnovelfullGetNovel = async (
@@ -95,16 +91,9 @@ export const readnovelfullGetNovel = async (
     const imageURL = $('.books .book img').first().attr('src');
     if (!imageURL) return '<image-url>'
 
-    const bufferImage = await downloadImage(imageURL);
-    if (!bufferImage) {
-      logger.warning('Novel thumbnail failed');
-      return '<image-url>'
-    }
-
-    const base64Image = await processImageToBase64(bufferImage);
-    if (!base64Image) return '<image-url>'
-
-    return base64Image
+    const thumbnailProcessor = new ThumbnailProcessor(imageURL)
+    const thumbnail = await thumbnailProcessor.execute(); 
+    return thumbnail
   }
 
   const response = await exitOnFetchError(async () => axios.get(url));

@@ -1,18 +1,19 @@
-import { downloadImage, processImageToBase64 } from './../../../utils/images.ts';
 import { BotError } from './../../../errors/bot-error.ts';
 import { puppeteerInstance } from "../../../lib/puppeteer.ts";
 import { type DownloadNovelOptions, type IChapterData, type INovelData } from "../../../types/bot.ts";
 import { logger } from '../../../utils/logger.ts';
 import { processChaptersList } from '../../process-chapter-list.ts';
 import { delay } from '../../../utils/delay.ts';
-import { collectNovelInfo69shuba } from './parse-html/collect-novel-info.ts';
+import { collectNovelInfo69shuba,  } from './parse-html/collect-novel-info.ts';
 import { collectChapterList69shuba } from './parse-html/collect-chapter-list.ts';
 import { collectChapter69shuba } from './parse-html/collect-chapter.ts';
+import { ThumbnailProcessor } from '../../download-thumbnail.ts';
 
 export const getNovel69shuba = async (
   url: string,
   opt: DownloadNovelOptions
 ): Promise<INovelData> => {
+
 
   const puppeteer = await puppeteerInstance();
 
@@ -49,6 +50,14 @@ export const getNovel69shuba = async (
     )
   }
 
+  // download thumbnail To base64
+  if(novelInfo.thumbnail){
+    const thumbnailProcessor = new ThumbnailProcessor(novelInfo.thumbnail);
+    const thumbnail = await thumbnailProcessor.execute();
+    novelInfo.thumbnail = thumbnail;
+  }
+  
+
   // Check if list chapters url is collected
   if (!novelInfo.chapterListPageUrl) {
     await browser.close()
@@ -65,12 +74,12 @@ export const getNovel69shuba = async (
   }
 
   const chaptersList = await page.evaluate(collectChapterList69shuba);
- 
 
   if (chaptersList.length === 0) {
     await browser.close();
     throw new BotError('The chapter list is empty, or it could not be retrieved')
   }
+
 
   // Collect Chapters
   const chapters: IChapterData[] = []
@@ -126,27 +135,12 @@ export const getNovel69shuba = async (
   await page.close()
   await browser.close();
 
-  const getImage = async (url?: string) => {
-    if (!url) return '<image-url>'
-
-    const bufferImage = await downloadImage(url);
-    if (!bufferImage) {
-      logger.warning('Novel thumbnail failed');
-      return '<image-url>'
-    }
-
-    const base64Image = await processImageToBase64(bufferImage);
-    if (!base64Image) return '<image-url>'
-
-    return base64Image
-  }
-
 
   return {
     title: novelInfo.title,
     author: novelInfo.author || [],
     status: novelInfo.status,
-    thumbnail: await getImage(novelInfo.thumbnail),
+    thumbnail: novelInfo.thumbnail,
     chapters: chapters,
     description: novelInfo.description || [],
     genres: novelInfo.genres || [],

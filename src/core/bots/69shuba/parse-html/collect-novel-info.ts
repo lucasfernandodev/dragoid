@@ -109,3 +109,4 @@ export const collectNovelInfo69shuba = () => {
 
   return data
 }
+

@@ -20,6 +20,11 @@ export const downloadNovel = async (
   logger.info('[✔] Novel Retrive with success');
   logger.info("[-] Starting generate output file");
 
+  if(!novel.thumbnail){
+    logger.warning('Novel thumbnail failed');
+    novel.thumbnail = '<image-url>'
+  }
+
 
   generateOutputFile.novel[outputFormat](
     novel.title,
