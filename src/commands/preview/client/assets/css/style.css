@@ -1,4 +1,10 @@
-.cover{
+:root {
+  --font-size: 1.6rem;
+  --line-height: 3rem;
+  --paragraph-gap: 2.4rem;
+}
+
+.cover {
   width: calc(100% - 54px);
   height: calc(800px - 64px);
   border-radius: 28px;
@@ -7,12 +13,12 @@
   padding: 32px;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   gap: 48px;
   position: relative;
-  overflow: hidden; 
+  overflow: hidden;
 
-  .project-source-link{
+  .project-source-link {
     color: #888;
     position: absolute;
     bottom: 32px;
@@ -21,7 +27,7 @@
     text-decoration: none;
     transition: 300ms linear;
 
-    &:hover{
+    &:hover {
       color: #ddd;
     }
   }
@@ -29,14 +35,14 @@
 
 
 
-.cover .heading{
+.cover .heading {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
 
-  & .thumbnail{
+  & .thumbnail {
     height: 190px;
     width: 150px;
     border-radius: 6px;
@@ -45,16 +51,16 @@
     margin-bottom: 32px;
     overflow: hidden;
     color: transparent;
-    
 
-    & img{
+
+    & img {
       width: 100%;
       height: auto;
       object-fit: cover;
     }
   }
 
-  & h1{
+  & h1 {
     font-size: 3.2rem
   }
 
@@ -66,58 +72,58 @@
 
 
 
-.cover .info{
+.cover .info {
   display: flex;
   width: 100%;
   justify-content: space-around;
 
-  & .col{
+  & .col {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    
-    & *:last-child{
+
+    & *:last-child {
       color: #aaa;
       text-transform: capitalize;
     }
   }
 }
 
-@media screen and (max-width: 580px){
-  .cover{
+@media screen and (max-width: 580px) {
+  .cover {
     width: calc(100% - 24px);
     height: 700px;
     padding: 32px 16px
   }
 
-  .cover .heading{
-    & h1{
+  .cover .heading {
+    & h1 {
       font-size: 2.4rem;
     }
   }
 
-  .cover .info .col{
+  .cover .info .col {
     max-width: 100px;
     font-size: 1.4rem;
   }
 }
 
-.cover .description{
+.cover .description {
   display: -webkit-box;
-   -webkit-line-clamp: 3;
-   -webkit-box-orient: vertical;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   text-align: center;
-   line-height: 2.4rem;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  line-height: 2.4rem;
 }
 
 
-.first-chapter{
+.first-chapter {
   padding: 32px 0px;
-  min-height: 800px; 
+  min-height: 800px;
   width: calc(100% - 64px);
   display: flex;
   flex-direction: column;
@@ -125,20 +131,20 @@
   margin: 0 auto;
   margin-top: 42px;
 
-  & .title{
+  & .title {
     font-size: 2rem;
   }
 
-  & .content{
+  & .content {
     display: flex;
     flex-direction: column;
-    gap: 1.8rem;
-    font-size: 1.6rem;
-    line-height: 3rem;
+    gap: var(--paragraph-gap);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
     color: #ffffff99;
   }
 
-  & .navigation-chapters{
+  & .navigation-chapters {
     margin-top: 64px;
     display: flex;
     width: 100%;
@@ -148,13 +154,13 @@
     overflow: hidden;
     align-items: center;
 
-    & .divider{
+    & .divider {
       height: calc(50%);
       width: 2px;
       background: #2f2f2f;
     }
 
-    & a{
+    & a {
       width: calc((100% / 2) - 2px);
       height: 100%;
       display: flex;
@@ -165,17 +171,18 @@
       cursor: pointer;
       transition: 300ms linear;
 
-      &:hover{
+      &:hover {
         background: #2f2f2f;
         color: #ddd;
       }
 
-      &[data-disabled="true"]{
+      &[data-disabled="true"] {
         cursor: default;
         user-select: none;
         pointer-events: none;
         color: #666;
-        &:hover{
+
+        &:hover {
           background: transparent;
           color: #666;
         }
