@@ -5,12 +5,10 @@ import { applyUserStyles } from "../core/chapter-style-setting/apply-user-style.
 import { applyUserReplacements } from "../core/replacement/apply-user-replacements.js";
 import { ShortcutKeyboardNavigation } from "../core/shortcuts/keyboard/navigation.js";
 
-import { onTouchGesture } from "../core/shortcuts/on-touch-gesture.js";
-import { isMobile } from "../utils/is-Mobile.js";
+import { ShortcutTouchShowFloatingNavigation } from "../core/shortcuts/touch/show-floating-navigation.js";
 
 
-const initChapterPage = async () => {
-  const isMobileView = isMobile();
+const initChapterPage = async () => { 
 
   // === Inicializa modais ===
   modalChapterStyle() 
@@ -34,18 +32,7 @@ const initChapterPage = async () => {
     prev_chapter: prevId,
     next_chapter: nextId
   })
-
-
-  // Handle with show/hidden floating navigation in mobile devices
-  if (isMobileView) {
-    const navigationMenu = document.querySelector(".floating-navigation");
-    onTouchGesture(() => {
-      navigationMenu.style.display = 'flex'
-      setTimeout(() => {
-        navigationMenu.style.display = "none";
-      }, 1500)
-    })
-  } 
+  new ShortcutTouchShowFloatingNavigation() 
 }
 
 await initChapterPage()
