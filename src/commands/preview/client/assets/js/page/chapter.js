@@ -10,10 +10,10 @@ import { ShortcutTouchShowFloatingNavigation } from "../core/shortcuts/touch/sho
 
 const initChapterPage = async () => { 
 
-  // === Inicializa modais ===
+  // === Attach modais ===
   modalChapterStyle() 
   modalReplacement()
-  await modalChapterList() 
+  modalChapterList() 
 
 
 
@@ -27,11 +27,12 @@ const initChapterPage = async () => {
   const nextChapterLink = document.querySelector('.nav-next')
   const prevId = prevChapterLink.dataset.id
   const nextId = nextChapterLink.dataset.id
-
   new ShortcutKeyboardNavigation({
     prev_chapter: prevId,
     next_chapter: nextId
   })
+
+  // Shortcut to showing float navigation menu (mobile)
   new ShortcutTouchShowFloatingNavigation() 
 }
 
