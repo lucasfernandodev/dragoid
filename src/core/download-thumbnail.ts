@@ -29,7 +29,7 @@ export class ThumbnailProcessor {
       )
     }
 
-    this.url = isSafeUrl.data;
+    this.url = url;
     this.quality = isSafeConfig?.data?.quality
   }
 

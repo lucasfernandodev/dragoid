@@ -11,6 +11,7 @@ import { BotReadNovelFull } from './core/bots/readnovelfull/index.ts';
 import { Bot69Shuba } from './core/bots/69shuba/index.ts';
 import { language } from "./core/configurations.ts";
 import { getCurrentVersion } from "./utils/get-current-version.ts";
+import { BotNovelBin } from "./core/bots/novelbin/index.ts";
 
 const _yargs = yargs(process.argv.slice(2))
 
@@ -20,7 +21,8 @@ process.on("uncaughtException", errorHandle)
 
 const bots = [
   new BotReadNovelFull(),
-  new Bot69Shuba()
+  new Bot69Shuba(),
+  new BotNovelBin()
 ]
 
 const downloadClient = new Download(bots)
