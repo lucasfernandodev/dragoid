@@ -4,7 +4,7 @@ export const CMD_DOWNLOAD_PROXY_FLAGS = {
   help: 'help',
   mode: 'mode',
   url: 'url',
-  outputFormat: 'output-format',
+  outputFormat: 'format',
   limit: 'limit',
   skip: 'skip',
   listCrawlers: 'list-crawlers',
