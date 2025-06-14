@@ -1,3 +1,12 @@
+# [0.24.0](https://github.com/lucasfernandodev/dragoid/compare/v0.23.0...v0.24.0) (2025-06-14)
+
+
+### Features
+
+* **cli:** rename --output-format flag to --format ([8986fcd](https://github.com/lucasfernandodev/dragoid/commit/8986fcdf54cf53915f276280bdf8fd54d44ad396))
+
+
+
 # [0.23.0](https://github.com/lucasfernandodev/dragoid/compare/v0.22.0...v0.23.0) (2025-06-14)
 
 
@@ -34,15 +43,6 @@
 ### Features
 
 * drop support for 69yuedu bot ([0148e04](https://github.com/lucasfernandodev/dragoid/commit/0148e04d86b24e8e2d73a9a28e91d6df3305eeed))
-
-
-
-## [0.19.2](https://github.com/lucasfernandodev/dragoid/compare/v0.19.1...v0.19.2) (2025-06-07)
-
-
-### Bug Fixes
-
-* Fix wording of unexpected error message ([22811ae](https://github.com/lucasfernandodev/dragoid/commit/22811ae260aa7fc49f03e58d652161adee9c5fac))
 
 
 
