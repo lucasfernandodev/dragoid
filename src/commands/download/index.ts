@@ -1,22 +1,27 @@
-import { type CmdParseInputType, DefaultCommand } from "../../types/command.ts";
-import type { TypeCommandDownloadArgs } from "../../types/command-download-args.ts";
-import { downloadNovel } from './options/download-novel.ts';
+import { DefaultCommand } from "../../types/command.ts";
+import { downloadNovelService } from './options/download-novel.ts';
 import { validateInput } from "./validate-input.ts";
 import { Bot } from "../../types/bot.ts";
 import { ApplicationError } from "../../errors/application-error.ts";
-import { setDownloadOptions } from "./options.ts";
+import {
+  type DownloadArgs,
+  CMD_DOWNLOAD_PROXY_FLAGS,
+  setDownloadOptions,
+  type DownloadOptionsMap
+} from "./options.ts";
 import { getSiteName } from "../../utils/get-site-name.ts";
-import { downloadChapter } from './options/download-chapter.ts';
-import { listCrawlers } from './options/list-crawlers.ts';
-import { listOuputFormats } from './options/list-output-formats.ts';
+import { downloadChapterService } from './options/download-chapter.ts';
+import { listCrawlersService } from './options/list-crawlers.ts';
+import { listOutputFormatsService } from './options/list-output-formats.ts';
+import type { Argv } from "yargs";
+
 
 
 export class Download implements DefaultCommand {
-  private bots: Bot[] = [];
   public commandEntry: string = 'download';
   public describe: string = 'Download an entire novel or an individual chapter.';
-  private isDownloadOptions = false;
-  private selectedBot: Bot | null = null;
+  private bots: Bot[] = [];
+  private options = {} as DownloadOptionsMap
 
   constructor(bots: Bot[]) {
     this.bots = bots;
@@ -24,28 +29,21 @@ export class Download implements DefaultCommand {
 
 
 
-  parserInputs = async (args: CmdParseInputType) => {
+  parserInputs = async (args: Argv<DownloadArgs>) => {
+    // Set input flags
     const options = setDownloadOptions(args);
+
+    // Validate input flags
     options.check(args => validateInput(args))
 
-    const argv = await options.argv
+    // Validade values
+    const argv = await options.argv;
 
-    if (argv['mode'] && argv['url'] && argv['output-format']) {
-      this.isDownloadOptions = true;
+    // Map CLI flag values from argv to internal option keys
+    for (const [proxyName, flag] of Object.entries(CMD_DOWNLOAD_PROXY_FLAGS)) {
+      const value = argv[flag]
+      this.options[proxyName] = value
     }
-
-    if (argv.url) {
-      const siteName = getSiteName(argv.url || '');
-      const isBot = this.bots.find(bot => bot.name === siteName);
-
-      if (isBot) {
-        this.selectedBot = isBot;
-        return;
-      }
-
-      throw new ApplicationError('Website not supported')
-    }
-
 
     return options;
   };
@@ -53,29 +51,48 @@ export class Download implements DefaultCommand {
 
 
 
-  public handler = async (args: TypeCommandDownloadArgs) => {
+  public handler = async () => {
 
-    if (this.isDownloadOptions && this.selectedBot) {
-      const mode = args['mode'];
-      const outputformat = args['output-format'];
-      const opt = { limit: args.limit, skip: args.skip }
-      const url = args.url
+    const {
+      mode,
+      url,
+      outputFormat,
+      limit,
+      skip,
+      listCrawlers,
+      listOutputFormats,
+    } = this.options;
 
-      mode === 'novel' && await downloadNovel(
-        this.selectedBot,
-        url,
-        outputformat,
-        opt
-      )
 
-      mode === 'chapter' && await downloadChapter(
-        this.selectedBot,
-        url,
-        outputformat
-      )
+    if (listCrawlers) {
+      listCrawlersService(this.bots)
     }
 
-    args['list-crawlers'] && listCrawlers(this.bots)
-    args['list-output-formats'] && listOuputFormats()
+    if (listOutputFormats) {
+      listOutputFormatsService()
+    }
+
+    // Is download mode?
+    if (mode && url && outputFormat) {
+      const siteName = getSiteName(url);
+      const bot = this.bots.find(bot => bot.name === siteName);
+
+      if (!bot) {
+        throw new ApplicationError('Website not supported');
+      }
+
+      if (mode === 'chapter') {
+        await downloadChapterService(bot, url, outputFormat)
+      }
+
+      if (mode === 'novel') {
+        const opt = {
+          limit,
+          skip
+        }
+
+        await downloadNovelService(bot, url, outputFormat, opt)
+      }
+    }
   }
 }

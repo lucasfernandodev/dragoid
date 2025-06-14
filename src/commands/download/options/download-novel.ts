@@ -4,7 +4,7 @@ import type { Bot, DownloadNovelOptions } from "../../../types/bot.ts";
 import { logger } from "../../../utils/logger.ts"; 
 import { generateOutputFile } from "../output.ts";
 
-export const downloadNovel = async (
+export const downloadNovelService = async (
   bot: Bot,
   url: string,
   outputFormat: string,

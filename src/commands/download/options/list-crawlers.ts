@@ -1,7 +1,7 @@
 import type { Bot } from "../../../types/bot.ts";
 import { logger } from "../../../utils/logger.ts";
 
-export const listCrawlers = (bots: Bot[]) => {
+export const listCrawlersService = (bots: Bot[]) => {
   const content = bots.map(bot => {
     const name = bot.name;
     const tool = bot.help.scraping_tool;

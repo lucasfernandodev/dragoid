@@ -1,7 +1,7 @@
 import { outputSupported } from "../../../core/configurations.ts";
 import { logger } from "../../../utils/logger.ts";
 
-export const listOuputFormats = () => {
+export const listOutputFormatsService = () => {
   const formats = outputSupported;
   logger.info([
     'Supported output formats, organized by download type:',

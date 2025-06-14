@@ -1,55 +1,93 @@
-import yargs, { type Options } from "yargs"; 
+import type { Argv } from "yargs";
+
+export const CMD_DOWNLOAD_PROXY_FLAGS = {
+  help: 'help',
+  mode: 'mode',
+  url: 'url',
+  outputFormat: 'output-format',
+  limit: 'limit',
+  skip: 'skip',
+  listCrawlers: 'list-crawlers',
+  listOutputFormats: 'list-output-formats'
+} as const
+
+export interface DownloadArgs {
+  [CMD_DOWNLOAD_PROXY_FLAGS.help]?: boolean | unknown;
+  [CMD_DOWNLOAD_PROXY_FLAGS.mode]?: 'novel' | 'chapter';
+  [CMD_DOWNLOAD_PROXY_FLAGS.url]?: string;
+  [CMD_DOWNLOAD_PROXY_FLAGS.outputFormat]?: string;
+  [CMD_DOWNLOAD_PROXY_FLAGS.limit]?: number;
+  [CMD_DOWNLOAD_PROXY_FLAGS.skip]?: number;
+  [CMD_DOWNLOAD_PROXY_FLAGS.listCrawlers]?: boolean;
+  [CMD_DOWNLOAD_PROXY_FLAGS.listOutputFormats]?: boolean;
+}
+
+export type DownloadOptionsMap = {
+  [k in keyof typeof CMD_DOWNLOAD_PROXY_FLAGS]: DownloadArgs[typeof CMD_DOWNLOAD_PROXY_FLAGS[k]]
+}
 
 /**
   Configures the options available for the download command
   and defines the texts that will be displayed in the help menu.
 */
-export const setDownloadOptions = (args: yargs.Argv<{ [key: string]: Options }>) => {
+export const setDownloadOptions = (args: Argv<DownloadArgs>) => {
+  const {
+    help,
+    mode,
+    url,
+    limit,
+    skip,
+    outputFormat,
+    listOutputFormats,
+    listCrawlers
+  } = CMD_DOWNLOAD_PROXY_FLAGS;
+
+
   const Options = args.usage('$0 download [options]')
-  .options({
-    help: { alias: 'h', description: 'Show help', },
-    mode: {
-      group: 'Download Options',
-      alias: 'm',
-      type: 'string' as const,
-      choices: ['novel', 'chapter'] as const,
-      description: 'Download an entire novel (“novel”) or a single chapter (“chapter”)'
-    },
-    url: {
-      group: 'Download Options',
-      alias: 'u',
-      type: 'string' as const,
-      description: 'URL of the novel or chapter to download'
-    },
-    'output-format': {
-      group: 'Download Options',
-      alias: 'o',
-      type: 'string',
-      description: 'Output file format (e.g. json, epub, txt).',
-    },
-    'limit': {
-      group: "Download Options",
-      alias: 'l',
-      type: 'number',
-      description: 'Limit the total number of chapters to download'
-    },
-    'skip': {
-      group: "Download Options",
-      alias: 's',
-      type: 'number',
-      description: 'Begin downloading from chapter number',
-    },
-    'list-crawlers': {
-      group: 'List Options',
-      description: 'List all supported websites and crawlers.',
-      type: 'boolean'
-    },
-    'list-output-formats': {
-      group: 'List Options',
-      description: 'List all supported output formats',
-      type: 'boolean'
-    },
-  })
+    .options({
+      [help]: { alias: 'h', description: 'Show help', },
+      [mode]: {
+        group: 'Download Options',
+        alias: 'm',
+        type: 'string' as const,
+        choices: ['novel', 'chapter'] as const,
+        description: 'Download an entire novel (“novel”) or a single chapter (“chapter”)'
+      },
+      [url]: {
+        group: 'Download Options',
+        alias: 'u',
+        type: 'string' as const,
+        description: 'URL of the novel or chapter to download'
+      },
+      [outputFormat]: {
+        group: 'Download Options',
+        alias: 'o',
+        type: 'string',
+        description: 'Output file format (e.g. json, epub, txt).',
+      },
+      [limit]: {
+        group: "Download Options",
+        alias: 'l',
+        type: 'number',
+        description: 'Limit the total number of chapters to download'
+      },
+      [skip]: {
+        group: "Download Options",
+        alias: 's',
+        type: 'number',
+        description: 'Begin downloading from chapter number',
+      },
+      [listCrawlers]: {
+        group: 'List Options',
+        description: 'List all supported websites and crawlers.',
+        type: 'boolean'
+      },
+      [listOutputFormats]: {
+        group: 'List Options',
+        description: 'List all supported output formats',
+        type: 'boolean'
+      },
+    })
 
   return Options;
 }

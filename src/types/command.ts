@@ -1,4 +1,4 @@
-import yargs, { type Options } from "yargs";
+import yargs from "yargs";
 
 export abstract class DefaultCommand {
   commandEntry: string;
@@ -6,6 +6,3 @@ export abstract class DefaultCommand {
   parserInputs: (args: yargs.Argv<{}>) => any
   handler: (args: any) => void;
 }
-
-
-export type CmdParseInputType = yargs.Argv<{ [key: string]: Options }>
