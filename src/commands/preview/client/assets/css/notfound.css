@@ -1,0 +1,30 @@
+.notFound {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #111;
+  padding: 32px;
+  border-radius: 28px;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+.notFound a {
+  text-decoration: none;
+  width: 230px;
+  height: 48px;
+  border-radius: 12px;
+  background: #1f1f1f;
+  color: #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 300ms linear;
+
+  &:hover {
+    background-color: #2f2f2f;
+    color: #ddd;
+  }
+}
