@@ -8,6 +8,7 @@ export const downloadChapterService = async (
   bot: Bot,
   url: string,
   outputFormat: string,
+  outputFolder: string | null,
 ) => {
   logger.info('[-] Starting retrive chapter');
   const chapter = await bot.getChapter(url);
@@ -22,7 +23,8 @@ export const downloadChapterService = async (
 
   generateOutputFile.chapter[outputFormat](
     chapter.title,
-    chapter
+    chapter,
+    outputFolder
   )
 
   logger.info(`[✔] File "${chalk.blueBright(chapter.title)}" has been written successfully.`)

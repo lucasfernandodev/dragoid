@@ -8,7 +8,8 @@ export const CMD_DOWNLOAD_PROXY_FLAGS = {
   limit: 'limit',
   skip: 'skip',
   listCrawlers: 'list-crawlers',
-  listOutputFormats: 'list-output-formats'
+  listOutputFormats: 'list-output-formats',
+  path: 'path'
 } as const
 
 export interface DownloadArgs {
@@ -20,6 +21,7 @@ export interface DownloadArgs {
   [CMD_DOWNLOAD_PROXY_FLAGS.skip]?: number;
   [CMD_DOWNLOAD_PROXY_FLAGS.listCrawlers]?: boolean;
   [CMD_DOWNLOAD_PROXY_FLAGS.listOutputFormats]?: boolean;
+  [CMD_DOWNLOAD_PROXY_FLAGS.path]?: string;
 }
 
 export type DownloadOptionsMap = {
@@ -38,6 +40,7 @@ export const setDownloadOptions = (args: Argv<DownloadArgs>) => {
     limit,
     skip,
     outputFormat,
+    path,
     listOutputFormats,
     listCrawlers
   } = CMD_DOWNLOAD_PROXY_FLAGS;
@@ -64,6 +67,12 @@ export const setDownloadOptions = (args: Argv<DownloadArgs>) => {
         alias: 'o',
         type: 'string',
         description: 'Output file format (e.g. json, epub, txt).',
+      },
+      [path]: {
+        group: "Download Options",
+        alias: 'p',
+        type: 'string',
+        description: 'Path to the folder where the file will be saved'
       },
       [limit]: {
         group: "Download Options",

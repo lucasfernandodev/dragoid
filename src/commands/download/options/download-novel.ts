@@ -8,6 +8,7 @@ export const downloadNovelService = async (
   bot: Bot,
   url: string,
   outputFormat: string,
+  outputFolder: string | null,
   opts: DownloadNovelOptions
 ) => {
   logger.info('[-] Starting retrive novel')
@@ -28,7 +29,8 @@ export const downloadNovelService = async (
 
   generateOutputFile.novel[outputFormat](
     novel.title,
-    novel
+    novel,
+    outputFolder
   )
 
   logger.info(`[✔] File "${chalk.blueBright(novel.title)}" has been written successfully.`)

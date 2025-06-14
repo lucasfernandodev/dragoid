@@ -6,6 +6,8 @@ import {
   type DownloadOptionsMap,
   type DownloadArgs
 } from './options.ts';
+import { isDir } from '../../utils/isDir.ts';
+
 
 const validateDownloadCommandFlags = z.object({
   mode: z.enum(['novel', 'chapter'], {
@@ -24,6 +26,12 @@ const validateDownloadCommandFlags = z.object({
     message: `Invalid value for option '--${CMD_DOWNLOAD_PROXY_FLAGS.limit}'. Option must be a number`
   }).min(1, {
     message: `Invalid value for option '--${CMD_DOWNLOAD_PROXY_FLAGS.limit}'. Option must be 1 or greater`
+  }).optional(),
+  path: z.string()
+  .min(1, {
+    message: `Invalid value for option '--${CMD_DOWNLOAD_PROXY_FLAGS.path}'. Option must not be left empty`
+  }).refine(p => isDir(p), {
+    message: `Invalid value for option '--${CMD_DOWNLOAD_PROXY_FLAGS.path}'. Provided path does not exist or is not a directory`
   }).optional(),
 }).superRefine((data, ctx) => {
   const allowed = outputSupported[data.mode];
@@ -50,8 +58,7 @@ export const validateInput = (data: Partial<DownloadArgs>) => {
     const value = data[flag]
     options[option] = value
   }
-
-
+ 
 
   const optionsKeys = Object.keys(options).filter(key => typeof options[key] !== 'undefined');
 
@@ -103,5 +110,6 @@ export const validateInput = (data: Partial<DownloadArgs>) => {
     outputFormat: options.outputFormat,
     skip: options.skip,
     limit: options.limit,
+    path: options.path
   })
 }

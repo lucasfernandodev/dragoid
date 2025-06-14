@@ -61,6 +61,7 @@ export class Download implements DefaultCommand {
       skip,
       listCrawlers,
       listOutputFormats,
+      path
     } = this.options;
 
 
@@ -82,7 +83,7 @@ export class Download implements DefaultCommand {
       }
 
       if (mode === 'chapter') {
-        await downloadChapterService(bot, url, outputFormat)
+        await downloadChapterService(bot, url, outputFormat, path || null)
       }
 
       if (mode === 'novel') {
@@ -91,7 +92,7 @@ export class Download implements DefaultCommand {
           skip
         }
 
-        await downloadNovelService(bot, url, outputFormat, opt)
+        await downloadNovelService(bot, url, outputFormat, path || null, opt)
       }
     }
   }
