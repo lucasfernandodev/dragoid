@@ -1,3 +1,12 @@
+# [0.23.0](https://github.com/lucasfernandodev/dragoid/compare/v0.22.0...v0.23.0) (2025-06-14)
+
+
+### Features
+
+* Improving chapter-list css ([a7cf8ef](https://github.com/lucasfernandodev/dragoid/commit/a7cf8ef1e677dde4b0df53df09c97bc6770e0a87))
+
+
+
 # [0.22.0](https://github.com/lucasfernandodev/dragoid/compare/v0.21.0...v0.22.0) (2025-06-12)
 
 
@@ -34,15 +43,6 @@
 ### Bug Fixes
 
 * Fix wording of unexpected error message ([22811ae](https://github.com/lucasfernandodev/dragoid/commit/22811ae260aa7fc49f03e58d652161adee9c5fac))
-
-
-
-## [0.19.1](https://github.com/lucasfernandodev/dragoid/compare/v0.19.0...v0.19.1) (2025-06-05)
-
-
-### Bug Fixes
-
-* **download:** Correctly apply skip parameter when only skip is provided ([2d513e8](https://github.com/lucasfernandodev/dragoid/commit/2d513e839f2fa5a312ca2e75b3861be99550796d))
 
 
 
