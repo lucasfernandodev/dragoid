@@ -1,3 +1,12 @@
+# [0.26.0](https://github.com/lucasfernandodev/dragoid/compare/v0.25.0...v0.26.0) (2025-06-15)
+
+
+### Features
+
+* Implement service to generate epub file ([b06aad7](https://github.com/lucasfernandodev/dragoid/commit/b06aad7fc0d71c93b62147938c36ec5439db5aef))
+
+
+
 # [0.25.0](https://github.com/lucasfernandodev/dragoid/compare/v0.24.0...v0.25.0) (2025-06-14)
 
 
@@ -33,16 +42,6 @@
 * add new book 'novelbin' ([bf5591b](https://github.com/lucasfernandodev/dragoid/commit/bf5591b5959d6f1aab9fbdfa85936d8aede718c2))
 * Add support for user-select CSS style in chapter container ([5f4678f](https://github.com/lucasfernandodev/dragoid/commit/5f4678f152f0e4283960e08831b372c33d09852a))
 * Implement navigation shortcut using keyboard ([0b11d2a](https://github.com/lucasfernandodev/dragoid/commit/0b11d2a8364829e9297becd89a7ffea56a3a0dd7))
-
-
-
-# [0.21.0](https://github.com/lucasfernandodev/dragoid/compare/v0.20.0...v0.21.0) (2025-06-07)
-
-
-### Features
-
-* Add new debug function and use new fn to show download progress (DEBUG=true) ([81fb457](https://github.com/lucasfernandodev/dragoid/commit/81fb4579835f0ac4687bb33d73a71700e9e88240))
-* Enhancing the bot's ability to handle failures ([e3f0f9c](https://github.com/lucasfernandodev/dragoid/commit/e3f0f9c0fb88c3087bdd5cdee33a71ba3677dd00))
 
 
 
