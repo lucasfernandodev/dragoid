@@ -43,6 +43,7 @@
     "cheerio": "^1.0.0",
     "clone-deep": "^4.0.1",
     "ejs": "^3.1.10",
+    "epub-gen": "^0.1.0",
     "esbuild": "^0.25.1",
     "fastify": "^5.2.1",
     "puppeteer-core": "^24.4.0",

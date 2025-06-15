@@ -15,9 +15,7 @@ import type { DownloadArgs } from "./commands/download/options.ts";
 
 const _yargs = yargs(process.argv.slice(2))
 
-// Get Errors
-process.on("unhandledRejection", errorHandle);
-process.on("uncaughtException", errorHandle)
+
 
 const bots = [
   new BotReadNovelFull(),
@@ -66,3 +64,7 @@ if ((_yargs.argv as any).version === true) {
   logger.info(process.env.VERSION_PLACEHOLDER || await getCurrentVersion() || '')
   process.exit(0)
 }
+
+// Get Errors
+process.on("unhandledRejection", errorHandle);
+process.on("uncaughtException", errorHandle)

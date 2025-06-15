@@ -1,5 +1,5 @@
 export const outputSupported = {
-  novel: ['json'],
+  novel: ['json', 'epub'],
   chapter: ['json']
 } as const
 

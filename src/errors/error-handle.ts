@@ -5,12 +5,13 @@ import { ApplicationError } from './application-error.ts';
 import { ZodError } from 'zod';
 
 export const errorHandle = (error: any) => {
+ 
   if (error instanceof ApplicationError) {
     if (process.env.DEBUG === 'true' && error?.debugMessage?.message) {
       logger.error(error?.debugMessage?.message || '');
     }
 
-    logger.error(error.message);
+    logger.error(`Application error: ${error?.message}`);
     process.exit(error.exitCode)
   }
 

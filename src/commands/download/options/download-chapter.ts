@@ -21,7 +21,7 @@ export const downloadChapterService = async (
   logger.info('[✔] Chapter retrive with sucess;');
   logger.info("[-] Starting generate output file");
 
-  generateOutputFile.chapter[outputFormat](
+  await generateOutputFile.chapter[outputFormat](
     chapter.title,
     chapter,
     outputFolder

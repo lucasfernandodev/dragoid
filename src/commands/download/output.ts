@@ -6,6 +6,7 @@ import type { IChapterData, INovelData } from "../../types/bot.ts";
 import type { OutputSupportedType } from "../../types/output-generate-files.ts";
 import { writeFile } from "../../utils/file.ts";
 import { resolveUserPath } from "../../utils/path.ts";
+import { GenerateEpubService } from "../../services/generate-epub.ts";
 
 export const generateOutputFile: OutputSupportedType = {
   novel: {
@@ -18,7 +19,16 @@ export const generateOutputFile: OutputSupportedType = {
 
       const outdir = path ? resolveUserPath(path) : process.cwd()
       const target = join(outdir, filename)
-      await writeFile(target, 'json', jsonData); 
+      await writeFile(target, 'json', jsonData);
+    },
+    epub: async (filename: string, data: INovelData, path?: string) => {
+      const service = new GenerateEpubService()
+      await service.execute({
+        novel: data,
+        filename,
+        title: data.title,
+        outputFolder: path || null
+      })
     }
   },
   chapter: {
@@ -31,7 +41,7 @@ export const generateOutputFile: OutputSupportedType = {
 
       const outdir = path ? resolveUserPath(path) : process.cwd()
       const target = join(outdir, filename)
-      await writeFile(target, 'json', jsonData); 
+      await writeFile(target, 'json', jsonData);
     }
   }
 }

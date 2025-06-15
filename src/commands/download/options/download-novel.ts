@@ -27,7 +27,7 @@ export const downloadNovelService = async (
   }
 
 
-  generateOutputFile.novel[outputFormat](
+  await generateOutputFile.novel[outputFormat](
     novel.title,
     novel,
     outputFolder
