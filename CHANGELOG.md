@@ -1,3 +1,12 @@
+# [0.25.0](https://github.com/lucasfernandodev/dragoid/compare/v0.24.0...v0.25.0) (2025-06-14)
+
+
+### Features
+
+* Implement flag '--path' for custom output directory ([0abeaac](https://github.com/lucasfernandodev/dragoid/commit/0abeaacf5f98395d5f5fd0159e37320fad47029b))
+
+
+
 # [0.24.0](https://github.com/lucasfernandodev/dragoid/compare/v0.23.0...v0.24.0) (2025-06-14)
 
 
@@ -34,15 +43,6 @@
 
 * Add new debug function and use new fn to show download progress (DEBUG=true) ([81fb457](https://github.com/lucasfernandodev/dragoid/commit/81fb4579835f0ac4687bb33d73a71700e9e88240))
 * Enhancing the bot's ability to handle failures ([e3f0f9c](https://github.com/lucasfernandodev/dragoid/commit/e3f0f9c0fb88c3087bdd5cdee33a71ba3677dd00))
-
-
-
-# [0.20.0](https://github.com/lucasfernandodev/dragoid/compare/v0.19.2...v0.20.0) (2025-06-07)
-
-
-### Features
-
-* drop support for 69yuedu bot ([0148e04](https://github.com/lucasfernandodev/dragoid/commit/0148e04d86b24e8e2d73a9a28e91d6df3305eeed))
 
 
 
