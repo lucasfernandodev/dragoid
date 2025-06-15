@@ -1,51 +1,90 @@
 # Dragoid
 
-Uma ferramenta para baixar webnovels de fontes online para ler offline.
+A tool for downloading web novels online for offline reading in various formats.
 
-## Requisitos
+## Requirements
 
-- Node.js v22.13.1 ou superior.
+- Node.js v22.13.1 or higher.
 
-## Instalação
+## Installation
 
 ```bash
 npm install -g dragoid
 ```
 
-## Exemplos
+## Usage
 
-Para fazer o download de uma novel ou de um capítulo específico:
+```bash
+dragoid <command> [options]
+```
 
-### Baixar novel
-  ```bash
-  dragoid download --mode=novel --url=<URL> --output-format=<JSON|HTML|EPUB>
-  ```
+To view general help:
 
-### Baixar capítulo
-  ```bash
-  dragoid download --mode=chapter --url=<URL> --output-format=<JSON|HTML|EPUB>
-  ```
+```bash
+dragoid --help
+```
 
+To view the installed version:
 
-### Leitor web integrado
-O dragoid já vem com um leitor web integrado que permite a leitura de novels baixadas no formato JSON diretamente do navegador.
+```bash
+dragoid --version
+```
 
-  ```bash
-  dragoid preview --file=<NOVEL-FILE>
-  ```
+## Examples
 
-O servidor está disponível na porta `3010`, acesse: http://127.0.0.1:3010
+### Download:
 
-### Listar sites suportados
-Para visualizar as fontes suportadas, utilize
- ```bash
- dragoid download --list-crawlers
- ```
+Download the first 5 chapters of a novel in EPUB:
 
+```bash
+dragoid download \
+  --mode=novel \
+  --url="https://site.com/my-novel" \
+  --format=epub \
+  --limit=5
+```
 
-## Formatos de download suportados
+Before downloading, check if the site is supported using:
 
-| Tipo | JSON | HTML | EPUB |
-|------|------|------|------|
-|Novel | ✅ | ❌ | ❌|
-|Capítulo| ✅ | ❌ | -|
+```bash
+dragoid download --list-crawlers
+```
+
+List supported output formats:
+
+```bash
+dragoid download --list-output-formats
+```
+
+Download a specific chapter:
+
+```bash
+dragoid download \
+  --mode=chapter \
+  --url="https://site.com/my-novel/cap-10" \
+  --format=json \
+  --path="./downloads"
+```
+
+For more information about the download command, <a href="./docs/command-download.md">click here</a>.
+
+### Starting the web reader
+
+Starts a local server with a web reader to preview downloaded novel files in `JSON` format.
+
+```bash
+dragoid preview \
+  --file="./my-novel.json" \
+  --public
+```
+
+<img src="./docs/reader.png" alt="Reader Preview" />
+
+For more information about the preview command, <a href="./docs/command-preview.md">click here</a>.
+
+## Supported Download Formats
+
+| Type | JSON | EPUB | TXT |
+| --- | --- | --- | --- |
+| Novel | ✅ | ✅ | ❌ |
+| Chapter | ✅ | - | ❌ |
