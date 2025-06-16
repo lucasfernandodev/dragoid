@@ -1,3 +1,12 @@
+# [0.28.0](https://github.com/lucasfernandodev/dragoid/compare/v0.27.0...v0.28.0) (2025-06-16)
+
+
+### Features
+
+* add `--port` flag to configure server listening port ([705ae28](https://github.com/lucasfernandodev/dragoid/commit/705ae28d0b0cda4a4b4265c34e8fca860cfcd053))
+
+
+
 # [0.27.0](https://github.com/lucasfernandodev/dragoid/compare/v0.26.0...v0.27.0) (2025-06-16)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * **cli:** rename --output-format flag to --format ([8986fcd](https://github.com/lucasfernandodev/dragoid/commit/8986fcdf54cf53915f276280bdf8fd54d44ad396))
-
-
-
-# [0.23.0](https://github.com/lucasfernandodev/dragoid/compare/v0.22.0...v0.23.0) (2025-06-14)
-
-
-### Features
-
-* Improving chapter-list css ([a7cf8ef](https://github.com/lucasfernandodev/dragoid/commit/a7cf8ef1e677dde4b0df53df09c97bc6770e0a87))
 
 
 
