@@ -2,22 +2,22 @@ import chalk from "chalk"
 
 
 export const logger = {
-  debug: (message: string) => {
+  debug: (message?: string) => {
     if(process.env.DEBUG === 'true'){
       console.log(chalk.yellow(message));
     }
   },
-  info: (message: string, color?: string) => {
+  info: (message?: string, color?: string) => {
     if (color) {
       console.log(chalk[color](message));
     } else {
       console.log(message)
     }
   },
-  warning: (message: string) => {
+  warning: (message?: string) => {
     console.warn(chalk.yellow(message));
   },
-  error: (message: string | Object) => {
+  error: (message?: string | Object) => {
     console.error(chalk.red(message))
   }
 }

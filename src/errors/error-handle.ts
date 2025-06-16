@@ -7,40 +7,48 @@ import { ZodError } from 'zod';
 export const errorHandle = (error: any) => {
  
   if (error instanceof ApplicationError) {
-    if (process.env.DEBUG === 'true' && error?.debugMessage?.message) {
-      logger.error(error?.debugMessage?.message || '');
-    }
 
     logger.error(`Application error: ${error?.message}`);
+
+    if (process.env.DEBUG === 'true' && error?.debugMessage?.message) {
+      const stack = error.debugMessage.stack
+      logger.error(stack)
+    }
+
     process.exit(error.exitCode)
   }
 
   if (error instanceof BotError) {
+    logger.error(`Bot error: ${error?.message}`);
+
     if (process.env.DEBUG === 'true' && error?.debugMessage?.message) {
-      logger.error(`[DEBUG] Bot error: ${error?.debugMessage?.message}` || '');
+      const stack = error.debugMessage.stack
+      logger.error(stack)
     }
 
-    logger.error(`Bot error: ${error?.message}`);
     process.exit(error.exitCode)
   }
 
   if (error instanceof ValidationError) {
+    logger.error(`Validation error: ${error?.message}`);
+
     if (process.env.DEBUG === 'true' && error?.debugMessage?.message) {
-      logger.error(`[DEBUG] Validation error: ${error?.debugMessage?.message}` || '');
+      const stack = error.debugMessage.stack
+      logger.error(stack)
     }
 
-    logger.error(`Validation error: ${error?.message}`);
     process.exit(error.exitCode)
   }
 
   if(error instanceof ZodError){
     const message = error.issues[0].message;
+    logger.error(`Validation error: ${message}`);
+
+
     if (process.env.DEBUG === 'true') {
-      logger.error(`[DEBUG] Validation error:\n`);
       logger.error(error);
     }
 
-    logger.error(`Validation error: ${message}`);
     process.exit(1)
   }
 

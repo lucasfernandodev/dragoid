@@ -18,5 +18,5 @@ node_modules/
 
 # Build Dir
 bin
-
+novels/
 .pnp.*

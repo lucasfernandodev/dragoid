@@ -1,146 +1,85 @@
+import { fastifyInstance } from './../../lib/fastify.ts';
 import { ApplicationError } from './../../errors/application-error.ts';
 import { type INovelData } from '../../types/bot.ts';
-import Fastify, { type FastifyInstance } from "fastify";
-import fastifyView from '@fastify/view';
-import fastifyStaticFiles from '@fastify/static';
-import ejs from 'ejs'
-import path from 'path';
 import { logger } from '../../utils/logger.ts';
-
-import { fileURLToPath } from 'url';
+import type { FastifyInstance } from 'fastify';
+import { chapterRoutes } from './routes/chapter.ts';
+import { indexRoutes } from './routes/index.ts';
+import { apiChaptersRoutes } from './routes/api-chapters.ts';
 import { getLocalIPAddress } from '../../utils/get-local-ip.ts';
-import { chapterRequestSchema } from './schema/chapter-request.ts';
-import { isBuild } from '../../core/configurations.ts';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-interface IServerOptions {
+interface ServerOptions {
   isPublic: boolean;
 }
 
-const FAVICON_PATH = isBuild ? '/assets/img/icon.svg' :  '/assets/img/icon-dev.svg'
+
 
 export class Server {
   private PORT = 3010;
   private fastify: FastifyInstance;
-  private data: INovelData
-  private opt: IServerOptions = {
-    isPublic: false,
+  private opt: ServerOptions = {
+    isPublic: false
   }
 
-  constructor(data: INovelData, opt: IServerOptions = {} as IServerOptions) {
-    this.fastify = Fastify({
-      logger: false,
-    })
-    this.fastify.register(fastifyView, {
-      engine: {
-        ejs
-      },
-      root: path.join(__dirname, 'client')
-    })
-    this.fastify.register(fastifyStaticFiles, {
-      root: path.join(__dirname, "/client/assets"),
-      prefix: "/assets/",
-    })
-    this.data = data;
-    this.opt = {
-      ...opt
-    }
 
-
-
+  constructor(novel: INovelData, opt = {} as ServerOptions) {
+    this.fastify = fastifyInstance(novel)
+    this.opt = { ...opt };
   }
 
-  private printStartMessage = () => {
+  private registerRoutes = async () => {
+    this.fastify.register(async instance => {
+      await indexRoutes(instance);
+      await apiChaptersRoutes(instance);
+      await chapterRoutes(instance);
+    });
+  }
+
+
+  private logStartup = () => {
+    const urlLocal = `http://127.0.0.1:${this.PORT}`;
+    logger.info('[*] Server started successfully.');
+    logger.info('[-] You can start reading your novel at the url:');
+    logger.info(urlLocal, 'blue');
     if (this.opt.isPublic) {
-      const publicIp = getLocalIPAddress();
-      logger.info('[*] Server started successfully.\n[-] You can start reading your novel at the url:')
-      logger.info(`http://127.0.0.1:${this.PORT}`, 'blue')
-      publicIp && logger.info(`http://${publicIp}:${this.PORT}`, 'blue')
-    } else {
-      logger.info('[*] Server started successfully.\n[-] You can start reading your novel at the url:')
-      logger.info(`http://127.0.0.1:${this.PORT}`, 'blue')
+      const ip = getLocalIPAddress()
+      ip && logger.info(`http://${ip}:${this.PORT}`, 'blue');
     }
   }
 
-  private routers = async () => {
-    // index
-    this.fastify.register(function (instance, options, done) {
-      instance.setNotFoundHandler(function (request, reply) {
-        return reply.view("not-found.ejs", {favicon_path: FAVICON_PATH})
-      })
-      done()
-    })
+  private handleInitError = (err: any) => {
+    if (err?.code === 'EADDRINUSE') {
+      throw new ApplicationError(
+        `Server initialization failed. Port ${this.PORT} is already in use by another process.`,
+        err
+      )
+    }
 
-    this.fastify.get("/api/chapters", async (req, reply) => {
-      return reply.send({
-        chapters: this.data.chapters.map((ch, index) => ({
-          title: ch.title,
-        }))
-      })
-    })
-
-
-    this.fastify.get('/', async (request, reply) => {
-
-      return reply.view("index.ejs", {
-        title: this.data.title,
-        author: this.data.author[0],
-        chaptersQTD: this.data.chapters.length,
-        description: this.data.description,
-        chapterTitle: this.data.chapters[0].title,
-        chapterContent: this.data.chapters[0].content,
-        status: this.data.status,
-        language: this.data.language,
-        thumbnail: this.data.thumbnail || '',
-        chapter_next_id: this.data.chapters.length > 1 ? 1 : null,
-        favicon_path: FAVICON_PATH
-      });
-    })
-
-
-
-    this.fastify.get('/chapter/:id', async (req, reply) => {
-      const query = req.query as { id: string }
-      const validateQuery = chapterRequestSchema.safeParse(query);
-      const chapterListLength = this.data.chapters.length
-
-      if (!validateQuery.success) {
-        return reply.callNotFound()
-      }
-
-      const currentid = validateQuery.data.id
-
-      if (currentid >= chapterListLength) {
-        return reply.callNotFound()
-      }
-
-      const nextId = currentid + 1 >= chapterListLength ? null : currentid + 1;
-      const prevId = currentid - 1 < 0 ? null : (currentid - 1)
-
-      return reply.view("chapter.ejs", {
-        title: this.data.chapters[currentid].title,
-        content: this.data.chapters[currentid].content,
-        chapter_prev_id: prevId,
-        chapter_next_id: nextId,
-        favicon_path: FAVICON_PATH
-      })
-    })
+    throw new ApplicationError('Server initialization failed.', err)
   }
+
+
+
+
+  private startServer = async () => {
+    await this.registerRoutes()
+    await this.fastify.listen({
+      host: this.opt.isPublic ? '0.0.0.0' : '127.0.0.1',
+      port: this.PORT
+    });
+
+    this.logStartup()
+  }
+
+
+
+
 
   public init = async () => {
     try {
-      const host = this.opt.isPublic ? '0.0.0.0' : '127.0.0.1'
-      await this.routers()
-      await this.fastify.listen({ host: host, port: this.PORT });
-      this.printStartMessage()
+      await this.startServer()
     } catch (err) {
-      if (err?.code === 'EADDRINUSE') {
-        throw new ApplicationError(`Server initialization failed. Port ${this.PORT} is already in use by another process. Check if the server is already running.`, err)
-      }
-
-      throw new ApplicationError('Server initialization failed.', err)
+      this.handleInitError(err)
     }
   }
 }
