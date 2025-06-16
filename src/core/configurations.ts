@@ -1,6 +1,6 @@
 export const outputSupported = {
-  novel: ['json', 'epub'],
-  chapter: ['json']
+  novel: ['json', 'epub', 'txt'],
+  chapter: ['json', 'txt']
 } as const
 
 export const language = 'en'

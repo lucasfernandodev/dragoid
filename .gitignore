@@ -20,5 +20,3 @@ node_modules/
 bin
 
 .pnp.*
-*.json
-*.epub

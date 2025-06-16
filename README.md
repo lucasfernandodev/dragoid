@@ -86,5 +86,5 @@ For more information about the preview command, <a href="./docs/command-preview.
 
 | Type | JSON | EPUB | TXT |
 | --- | --- | --- | --- |
-| Novel | ✅ | ✅ | ❌ |
-| Chapter | ✅ | - | ❌ |
+| Novel | ✅ | ✅ | ✅ |
+| Chapter | ✅ | - | ✅ |

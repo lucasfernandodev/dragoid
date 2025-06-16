@@ -17,7 +17,6 @@ export const readFile = async <T>(filepath: string) => {
     return JSON.parse(data) as T;
   } catch (error) {
     throw new ApplicationError(`Unable to read file. Check existence and permissions.`, error);
-    return null
   }
 }
  
