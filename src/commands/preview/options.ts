@@ -4,12 +4,14 @@ export const CMD_PREVIEW_PROXY_FLAGS = {
   help: 'help',
   file: 'file',
   public: 'public',
+  port: 'port'
 } as const
 
 export interface PreviewArgs {
   [CMD_PREVIEW_PROXY_FLAGS.help]?: boolean | unknown;
   [CMD_PREVIEW_PROXY_FLAGS.file]?: string;
   [CMD_PREVIEW_PROXY_FLAGS.public]?: boolean
+  [CMD_PREVIEW_PROXY_FLAGS.port]?: number;
 }
 
 export type PreviewOptionsMapped = {
@@ -25,7 +27,8 @@ export const setPreviewOptions = (command: Argv<PreviewArgs>) => {
   const {
     help,
     file,
-    public: publicFlag,
+    port,
+    public: publicFlagKey,
   } = CMD_PREVIEW_PROXY_FLAGS
 
   const options = command.usage('$0 download [options]')
@@ -36,11 +39,16 @@ export const setPreviewOptions = (command: Argv<PreviewArgs>) => {
         type: 'string',
         description: 'Path to novel JSON file.'
       },
-      [publicFlag]: {
+      [publicFlagKey]: {
         alias: 'p',
         type: 'boolean',
         default: false,
         description: 'Makes the server accessible to other devices on the same network'
+      },
+      [port]: {
+        type: 'number',
+        default: 3010,
+        description: 'Port to bind the server'
       }
     })
 

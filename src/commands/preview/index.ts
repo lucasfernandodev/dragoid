@@ -58,7 +58,8 @@ export class Preview implements DefaultCommand {
 
     if (this.file) {
       const server = new Server(this.file, {
-        isPublic: this.options.public || false
+        isPublic: this.options.public || false,
+        port: this.options.port || 3010,
       });
 
       server.init();

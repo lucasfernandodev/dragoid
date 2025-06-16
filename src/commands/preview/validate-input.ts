@@ -43,11 +43,31 @@ export const validatePreviewInput = (data: Partial<PreviewArgs>) => {
     throw new ValidationError(`Expected a file, but received: ${safePath}`);
   }
 
-  if(typeof options?.public !== 'undefined'){
-    if(options.public !== true && options.public !== false){
+  if (typeof options?.public !== 'undefined') {
+    if (options.public !== true && options.public !== false) {
       throw new ValidationError(
         `Invalid argument: --${CMD_PREVIEW_PROXY_FLAGS.public} only accepts boolean values (true or false).`
       )
+    }
+  }
+
+  if (options.port) {
+    if (typeof options.port === 'string' && (options.port as string).trim() === '') {
+      throw new ValidationError('Port must not be empty.');
+    }
+    
+    const port = typeof options.port === 'number' ? options.port : Number(options.port);
+    
+    if (Number.isNaN(port)) {
+      throw new ValidationError('Port must be a number.');
+    }
+
+    if (!Number.isInteger(port)) {
+      throw new Error('Port must be an integer.');
+    }
+
+    if (port < 2048 || port > 65535) {
+      throw new Error('Port must be between 2048 and 65535.');
     }
   }
 
