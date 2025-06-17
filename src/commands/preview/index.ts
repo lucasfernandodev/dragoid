@@ -1,10 +1,10 @@
 import type { Argv } from "yargs";
 import { DefaultCommand } from "../../types/command.ts";
 import { readFile } from "../../utils/file.ts";
-import type { INovelData } from "../../types/bot.ts";
+import type { IChapterData, INovelData } from "../../types/bot.ts";
 import { Server } from "./server.ts";
 import { ValidationError } from "../../errors/validation-error.ts";
-import { novelFileSchema } from '../../core/schemas/novel.ts';
+import { novelSchema } from '../../core/schemas/novel.ts';
 import {
   type PreviewArgs,
   type PreviewOptionsMapped,
@@ -12,11 +12,21 @@ import {
   CMD_PREVIEW_PROXY_FLAGS
 } from './options.ts';
 import { validatePreviewInput } from './validate-input.ts';
+import { chapterScheme } from "../../core/schemas/chapter.ts";
+import { ZodError } from "zod";
+
+interface PreviewFiles {
+  novel: INovelData | null;
+  chapter: IChapterData | null;
+}
 
 export class Preview implements DefaultCommand {
   public commandEntry = 'preview';
   public describe = 'Start a local server with a web reader to preview novel file';
-  private file = {} as INovelData;
+  private files: PreviewFiles = {
+    novel: null,
+    chapter: null,
+  };
   private options = {} as PreviewOptionsMapped
 
   parserInputs = async (args: Argv<PreviewArgs>) => {
@@ -39,27 +49,46 @@ export class Preview implements DefaultCommand {
       )
     }
 
-    const validateFile = await novelFileSchema.safeParseAsync(file);
-    if (!validateFile.success) {
-      throw new ValidationError(
-        'The JSON file is not in the expected format. Ensure it contains the required data structure.',
-        validateFile.error
-      )
+    const isSafeChapter = await chapterScheme.safeParseAsync(file);
+
+    if (isSafeChapter.success) {
+      this.files.chapter = isSafeChapter.data;
+      return true
     }
 
-    this.file = file;
-  };
+    const isSafeNovel = await novelSchema.safeParseAsync(file);
 
+    if (isSafeNovel.success) {
+      this.files.novel = isSafeNovel.data;
+      return true
+    }
+
+    const combinedErrors = [
+      ...(isSafeChapter.error?.issues || []),
+      ...(isSafeNovel.error?.issues || [])
+    ];
+
+    // Cria uma nova ZodError com os erros combinados
+    const combinedZodError = new ZodError(combinedErrors);
+
+    throw new ValidationError(
+      'The JSON file is not in the expected format. Ensure it contains the required data structure.',
+      combinedZodError
+    );
+  };
 
 
 
 
   public handler = async () => {
 
-    if (this.file) {
-      const server = new Server(this.file, {
-        isPublic: this.options.public || false,
-        port: this.options.port || 3010,
+    if (this.files.novel || this.files.chapter) {
+      const server = new Server({
+        files: this.files,
+        opt: {
+          isPublic: this.options.public || false,
+          port: this.options.port || 3010,
+        }
       });
 
       server.init();

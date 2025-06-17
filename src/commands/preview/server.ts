@@ -1,22 +1,33 @@
+import { logger } from '../../utils/logger.ts';
 import { fastifyInstance } from './../../lib/fastify.ts';
 import { ApplicationError } from './../../errors/application-error.ts';
-import { type INovelData } from '../../types/bot.ts';
-import { logger } from '../../utils/logger.ts';
+import type { IChapterData, INovelData } from '../../types/bot.ts';
 import type { FastifyInstance } from 'fastify';
-import { chapterRoutes } from './routes/chapter.ts';
-import { indexRoutes } from './routes/index.ts';
-import { apiChaptersRoutes } from './routes/api-chapters.ts';
-import { getLocalIPAddress } from '../../utils/get-local-ip.ts';
+import { readerNovelRoutes } from './routes/ejs/novel/index.ts';
+import { getLocalIPAddress } from '../../utils/get-local-ip.ts';  
+import { apiNovelRoutes } from './routes/api/novel/index.ts';
+import { readerSingleChapterRoutes } from './routes/ejs/single-chapter/index.ts';
 
 interface ServerOptions {
   isPublic: boolean;
   port: number;
 }
 
+type ServerRoutes  = 'novel' | 'chapter'
 
+interface IServer {
+  files: {
+    novel: null | INovelData;
+    chapter: null | IChapterData;
+  };
+  opt: {
+    isPublic: boolean;
+    port: number;
+  }
+}
 
 export class Server {
-
+  private routesTo: ServerRoutes = 'novel'
   private fastify: FastifyInstance;
   private opt: ServerOptions = {
     isPublic: false,
@@ -24,17 +35,39 @@ export class Server {
   }
 
 
-  constructor(novel: INovelData, opt = {} as ServerOptions) {
-    this.fastify = fastifyInstance(novel)
+  constructor({ files, opt }: IServer) {
+    this.fastify = fastifyInstance(files)
     this.opt = { ...opt };
+
+    if (files.chapter) {
+      this.routesTo = 'chapter'
+    }
   }
 
-  private registerRoutes = async () => {
-    this.fastify.register(async instance => {
-      await indexRoutes(instance);
-      await apiChaptersRoutes(instance);
-      await chapterRoutes(instance);
-    });
+
+  private registerNovelRoutes = async () => {
+    this.fastify.register(readerNovelRoutes);
+    this.fastify.register(apiNovelRoutes)
+  }
+
+
+
+
+  private registerSingleChapterRoutes = async () => {
+    this.fastify.register(readerSingleChapterRoutes)
+  }
+
+
+
+
+  private handleRoutes = async () => {
+    if (this.routesTo === 'chapter') {
+      await this.registerSingleChapterRoutes()
+    }
+
+    if (this.routesTo === 'novel') {
+      await this.registerNovelRoutes()
+    }
   }
 
 
@@ -64,7 +97,7 @@ export class Server {
 
 
   private startServer = async () => {
-    await this.registerRoutes()
+    await this.handleRoutes();
     await this.fastify.listen({
       host: this.opt.isPublic ? '0.0.0.0' : '127.0.0.1',
       port: this.opt.port
