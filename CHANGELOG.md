@@ -1,3 +1,12 @@
+# [0.29.0](https://github.com/lucasfernandodev/dragoid/compare/v0.28.0...v0.29.0) (2025-06-17)
+
+
+### Features
+
+* Add support to open single chapters on preview command ([768974b](https://github.com/lucasfernandodev/dragoid/commit/768974bb4e453c2a09b19d51a87d2600822a014e))
+
+
+
 # [0.28.0](https://github.com/lucasfernandodev/dragoid/compare/v0.27.0...v0.28.0) (2025-06-16)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Implement flag '--path' for custom output directory ([0abeaac](https://github.com/lucasfernandodev/dragoid/commit/0abeaacf5f98395d5f5fd0159e37320fad47029b))
-
-
-
-# [0.24.0](https://github.com/lucasfernandodev/dragoid/compare/v0.23.0...v0.24.0) (2025-06-14)
-
-
-### Features
-
-* **cli:** rename --output-format flag to --format ([8986fcd](https://github.com/lucasfernandodev/dragoid/commit/8986fcdf54cf53915f276280bdf8fd54d44ad396))
 
 
 
