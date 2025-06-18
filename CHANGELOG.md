@@ -1,3 +1,12 @@
+# [0.30.0](https://github.com/lucasfernandodev/dragoid/compare/v0.29.0...v0.30.0) (2025-06-18)
+
+
+### Features
+
+* Improving reader novel cover ([f56442d](https://github.com/lucasfernandodev/dragoid/commit/f56442d9e518119d15203731e81c77fd485f7222))
+
+
+
 # [0.29.0](https://github.com/lucasfernandodev/dragoid/compare/v0.28.0...v0.29.0) (2025-06-17)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Implement service to generate epub file ([b06aad7](https://github.com/lucasfernandodev/dragoid/commit/b06aad7fc0d71c93b62147938c36ec5439db5aef))
-
-
-
-# [0.25.0](https://github.com/lucasfernandodev/dragoid/compare/v0.24.0...v0.25.0) (2025-06-14)
-
-
-### Features
-
-* Implement flag '--path' for custom output directory ([0abeaac](https://github.com/lucasfernandodev/dragoid/commit/0abeaacf5f98395d5f5fd0159e37320fad47029b))
 
 
 
