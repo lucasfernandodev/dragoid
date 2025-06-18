@@ -74,20 +74,80 @@
 
 .cover .info {
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
-  justify-content: space-around;
+  --divider-height: 20px;
+ 
 
-  & .col {
+  & .row {
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    text-align: center;
+    flex-wrap: wrap;
+    position: relative;
 
-    & *:last-child {
-      color: #aaa;
-      text-transform: capitalize;
+    &:first-child::before{
+      content: "";
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(to right, transparent, #2f2f2f, transparent);
+      display: block;
+      position: absolute;
+      bottom: 0px;
+      left: 0px; 
     }
+  }
+
+  & .col{
+    width: calc(100% / 3); 
+    text-align: center;
+    padding: 8px 0px;
+    position: relative;
+  }
+
+
+  & .row:first-child .col:first-child::before{
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: var(--divider-height);
+    background: linear-gradient(to bottom, transparent, #2f2f2f);
+    bottom: 0px;
+    right: 0px;
+    display: block; 
+  }
+
+  & .row:last-child .col:first-child::before{
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: var(--divider-height);
+    background: linear-gradient(to top, transparent, #2f2f2f);
+    top: 0px;
+    right: 0px;
+    display: block;
+  }
+
+  & .row:first-child .col:last-child::before{
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: var(--divider-height);
+    background: linear-gradient(to bottom, transparent, #2f2f2f);
+    bottom: 0px;
+    left: 0px;
+    display: block;
+  }
+
+  & .row:last-child .col:last-child::before{
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: var(--divider-height);
+    background: linear-gradient(to top, transparent, #2f2f2f);
+    top: 0px;
+    left: 0px;
+    display: block;
   }
 }
 
@@ -113,11 +173,13 @@
 .cover .description {
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
-  line-height: 2.4rem;
+  line-height: 2.6rem;
+  width: 100%;
 }
 
 

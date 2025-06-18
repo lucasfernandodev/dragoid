@@ -28,25 +28,16 @@
       </div>
 
       <div class="info">
-        <div class="col">
-          <p>Status</p>
-          <p>
-            <%= status %>
-          </p>
+        <div class="row">
+          <div class="col"><p>Status</p></div>
+          <div class="col"><p>Chapters</p></div>
+          <div class="col"><p>Language</p></div>
         </div>
-        <div class="col">
-          <p>Number of chapters</p>
-          <p>
-            <%= chaptersQTD %>
-          </p>
-        </div>
-
-        <div class="col">
-          <p>Language</p>
-          <p>
-            <%= language %>
-          </p>
-        </div>
+        <div class="row">
+          <div class="col"><p><%= status %></p></div>
+          <div class="col"><%= chaptersQTD %></div>
+          <div class="col"><%= language %></div>
+        </div> 
       </div>
 
       <div class="row">
