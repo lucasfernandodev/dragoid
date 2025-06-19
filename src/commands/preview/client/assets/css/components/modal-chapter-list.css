@@ -21,6 +21,12 @@
     flex-shrink: 0;
     height: 44px;
     overflow: hidden; 
+
+    &.read span::before{
+      content: "[READ] ";
+      letter-spacing: 0.016rem;
+      color: hsl(140, 79%, 62%); 
+    }
   }
 
   & a {
@@ -39,8 +45,8 @@
 
     /* disable current chapter link */
     &[data-active=true] {
-      color: var(--color-primary);
-      opacity: 1;
+      color: inherit;
+      opacity: 0.5;
       cursor: default;
       user-select: none;
       -moz-user-select: none;

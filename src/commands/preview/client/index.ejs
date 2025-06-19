@@ -17,7 +17,7 @@
     <div class="cover">
       <div class="heading">
         <div class="thumbnail">
-          <img src="<%= thumbnail %>" alt="Thumbnail" title="Thumbnail - <%= title %> "/>
+          <img src="<%= thumbnail %>" alt="Thumbnail" title="Thumbnail - <%= title %> " />
         </div>
         <h1 className="title">
           <%= title %>
@@ -29,15 +29,29 @@
 
       <div class="info">
         <div class="row">
-          <div class="col"><p>Status</p></div>
-          <div class="col"><p>Chapters</p></div>
-          <div class="col"><p>Language</p></div>
+          <div class="col">
+            <p>Status</p>
+          </div>
+          <div class="col">
+            <p>Chapters</p>
+          </div>
+          <div class="col">
+            <p>Language</p>
+          </div>
         </div>
         <div class="row">
-          <div class="col"><p><%= status %></p></div>
-          <div class="col"><%= chaptersQTD %></div>
-          <div class="col"><%= language %></div>
-        </div> 
+          <div class="col">
+            <p>
+              <%= status %>
+            </p>
+          </div>
+          <div class="col">
+            <%= chaptersQTD %>
+          </div>
+          <div class="col">
+            <%= language %>
+          </div>
+        </div>
       </div>
 
       <div class="row">
@@ -62,19 +76,26 @@
           </p>
           <% } %>
       </div>
-      
+
       <div class="navigation-chapters">
         <a href="#" data-disabled="true">Prev chapter</a>
         <div class="divider"></div>
-        <a
-        href="/chapter/?id=1"
-        data-disabled="<%= chapter_next_id === null ? 'true' : 'false' %>">
-        Next chapter
-      </a>
+        <a href="/chapter/?id=1" data-disabled="<%= chapter_next_id === null ? 'true' : 'false' %>">
+          Next chapter
+        </a>
       </div>
     </div>
   </main>
 
+  <script type="module">
+    window.dragoid_info = {
+      novelTitle: "<%= title %>",
+      chapterTitle: "<%= chapterTitle %>",
+      chapterUrl: window.location.href.slice(-1) === '/' ? window.location.href + 'chapter/?id=0' : window.location.href + '/chapter/?id=0'
+    }
+  </script>
+
   <script type="module" src="/assets/js/page/homepage.js"></script>
 </body>
+
 </html>

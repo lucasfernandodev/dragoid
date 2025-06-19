@@ -28,7 +28,7 @@
     </div>
   </header>
 
-  <main class="page">
+  <main class="page" data-novel-title="<%= novelTitle %>">
     <section>
       <h1>
         <%= title %>
@@ -132,6 +132,13 @@
     </section>
   </main>
 
+  <script type="module">
+     window.dragoid_info = {
+      novelTitle: "<%= novelTitle %>",
+      chapterTitle: "<%= title %>",
+      chapterUrl: window.location.href
+    }
+  </script>
   <link rel="stylesheet" href="/assets/css/components/modal.css">
   <link rel="stylesheet" href="/assets/css/components/modal-replacement.css">
   <link rel="stylesheet" href="/assets/css/components/modal-chapter-style.css">

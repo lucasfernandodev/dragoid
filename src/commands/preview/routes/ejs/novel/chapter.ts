@@ -32,6 +32,7 @@ export async function readerNovelChapter(app: FastifyInstance){
     const prevId = currentid - 1 < 0 ? null : (currentid - 1)
 
     return reply.view("chapter.ejs", {
+      novelTitle: app.novel.title,
       title: app.novel.chapters[currentid].title,
       content: app.novel.chapters[currentid].content,
       chapter_prev_id: prevId,
