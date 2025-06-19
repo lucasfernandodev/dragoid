@@ -1,3 +1,12 @@
+# [0.31.0](https://github.com/lucasfernandodev/dragoid/compare/v0.30.0...v0.31.0) (2025-06-19)
+
+
+### Features
+
+* implement chapter read history ([82069e5](https://github.com/lucasfernandodev/dragoid/commit/82069e512c05c8d2a1d31c3d6808c7817507a0b3))
+
+
+
 # [0.30.0](https://github.com/lucasfernandodev/dragoid/compare/v0.29.0...v0.30.0) (2025-06-18)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * add service to generate TXT files for novels and chapters ([7dad648](https://github.com/lucasfernandodev/dragoid/commit/7dad648437b8f7a29ab5a097db03fbaef46ee331))
-
-
-
-# [0.26.0](https://github.com/lucasfernandodev/dragoid/compare/v0.25.0...v0.26.0) (2025-06-15)
-
-
-### Features
-
-* Implement service to generate epub file ([b06aad7](https://github.com/lucasfernandodev/dragoid/commit/b06aad7fc0d71c93b62147938c36ec5439db5aef))
 
 
 
