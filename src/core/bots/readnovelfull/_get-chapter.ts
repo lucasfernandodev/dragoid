@@ -1,6 +1,6 @@
-import { exitOnFetchError } from './../../../utils/exitOnFetchError.ts';
 import axios from 'axios';
 import {type CheerioAPI, load} from 'cheerio';
+import { BotError } from '../../../errors/bot-error.ts';
 
 export const readnovelfullGetChapter = async (url: string) => {
 
@@ -13,9 +13,12 @@ export const readnovelfullGetChapter = async (url: string) => {
   }
   
   
-  const response = await exitOnFetchError(async () => axios.get(url));
-  const data  = response?.data;
-  const $ = load(data)
+  const response = await axios.get(url);
+  if(!('data' in response)){
+    throw new BotError('Retrive chapter page failed', response)
+  }
+  
+  const $ = load(response.data)
 
   return {
     title: getTitle($),

@@ -7,6 +7,7 @@ export interface INovelData {
   status: string;
   language: string;
   thumbnail?: string;
+  source?: string;
 }
 
 export interface INovelMeta extends Omit<INovelData, 'chapters'>{}

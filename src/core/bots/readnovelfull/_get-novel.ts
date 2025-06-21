@@ -1,10 +1,9 @@
 import { ThumbnailProcessor } from './../../download-thumbnail.ts';
-import axios from 'axios'; 
+import axios from 'axios';
 import { type CheerioAPI, load } from 'cheerio';
-import { readnovelfullGetChapter } from './_get-chapter.ts'; 
+import { readnovelfullGetChapter } from './_get-chapter.ts';
 import type { DownloadNovelOptions, INovelData } from '../../../types/bot.ts';
 import { BotError } from '../../../errors/bot-error.ts';
-import { exitOnFetchError } from '../../../utils/exitOnFetchError.ts';
 import { processChaptersList } from '../../process-chapter-list.ts';
 
 
@@ -12,6 +11,18 @@ export const readnovelfullGetNovel = async (
   url: string,
   opt: DownloadNovelOptions = {}
 ): Promise<INovelData> => {
+
+  const LANGUAGE = 'english'
+  const SOURCE = url;
+
+  const getThumbnail = async ($: CheerioAPI) => {
+    const imageURL = $('.books .book img').first().attr('src');
+    if (!imageURL) return '<image-url>'
+
+    const thumbnailProcessor = new ThumbnailProcessor(imageURL)
+    const thumbnail = await thumbnailProcessor.execute();
+    return thumbnail
+  }
 
   const getTitle = ($: CheerioAPI) => {
     return $('h3.title').first().text();
@@ -55,31 +66,46 @@ export const readnovelfullGetNovel = async (
     return 'unknown'
   }
 
-  const getBookId = ($: CheerioAPI) => {
-    return $('[data-novel-id]').first().attr('data-novel-id')
+
+  const getChapterId = ($: CheerioAPI) => {
+    const bookId = $('[data-novel-id]').first().attr('data-novel-id')
+    return bookId;
   }
 
-  const getChapters = async (bookId?: string) => {
 
-    const chaptersData = [] as INovelData['chapters']
-
+  const getChaptersList = async (bookId?: string) => {
     if (!bookId) {
       throw new BotError('Unable to retrieve chapter list');
     }
 
-    // ChapterList Page
-    const chapterListBaseURL = 'https://readnovelfull.com/ajax/chapter-archive?novelId=';
-    const response = await exitOnFetchError(async () => await axios.get(`${chapterListBaseURL}${bookId}`));
-    const document = response?.data;
-    const $ = load(document);
+    const pageUrl = `https://readnovelfull.com/ajax/chapter-archive?novelId=${bookId}`;
+    const response = await axios.get(pageUrl)
 
-    // ChapterList Array
+    if (!('data' in response)) {
+      throw new BotError('Retrive chapter list page failed!', response)
+    }
+
+    const $ = load(response.data);
+
     const chapterList = $('.list-chapter li a').map((_, el) => ({
       title: $(el).text().trim(),
       url: `https://readnovelfull.com${$(el).attr('href')}`
-    })).get() as { url: string, title: string }[];
+    })).get()
 
-    await processChaptersList(chapterList, async ({ url }) => {
+    return chapterList;
+  }
+
+
+  const getChapters = async ($: CheerioAPI) => {
+    const chaptersData = [] as INovelData['chapters']
+    const bookId = getChapterId($);
+    const chaptersList = await getChaptersList(bookId)
+
+    if (chaptersList.length < 1) {
+      throw new BotError('Chapter list empty')
+    }
+
+    await processChaptersList(chaptersList, async ({ url }) => {
       const chapter = await readnovelfullGetChapter(url);
       chaptersData.push(chapter)
     }, opt)
@@ -87,29 +113,23 @@ export const readnovelfullGetNovel = async (
     return chaptersData;
   }
 
-  const getThumbnail = async ($: CheerioAPI) => {
-    const imageURL = $('.books .book img').first().attr('src');
-    if (!imageURL) return '<image-url>'
+  const response = await axios.get(url);
 
-    const thumbnailProcessor = new ThumbnailProcessor(imageURL)
-    const thumbnail = await thumbnailProcessor.execute(); 
-    return thumbnail
+  if (!('data' in response)) {
+    throw new BotError('Retrive novel page failed!', response)
   }
 
-  const response = await exitOnFetchError(async () => axios.get(url));
-  const document = response?.data;
-  const $ = load(document);
-
-
+  const $ = load(response.data);
 
   return {
     title: getTitle($),
     author: getAuthor($),
     status: getStatus($),
     thumbnail: await getThumbnail($),
-    chapters: await getChapters(getBookId($)),
+    chapters: await getChapters($),
     description: getDescription($),
     genres: getGenres($),
-    language: 'english'
+    language: LANGUAGE,
+    source: SOURCE
   }
 }

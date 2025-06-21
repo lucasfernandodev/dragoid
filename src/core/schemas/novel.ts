@@ -10,4 +10,5 @@ export const novelSchema = z.object({
   genres: z.array(z.string()),
   status: z.string(),
   language: z.string(),
+  source: z.string().url().optional()
 }).strict()

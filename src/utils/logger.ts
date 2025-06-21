@@ -30,5 +30,4 @@ export function printChaptersDownloadProgress(current: number, total: number) {
   }else{
     logger.debug(`[DEBUG] Download ${current}/${total} of chapters${current === total ? '\n' : ''}`)
   }
-
 }
