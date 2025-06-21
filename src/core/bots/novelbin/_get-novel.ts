@@ -13,6 +13,10 @@ export const _getNovel = async (
   url: string,
   opt: DownloadNovelOptions
 ): Promise<INovelData> => {
+
+  const LANGUAGE = 'english';
+  const SOURCE = url;
+
   const puppeteer = await puppeteerInstance();
 
   // instancia o browser
@@ -161,6 +165,7 @@ export const _getNovel = async (
     chapters: chapters,
     description: novelInfo.description || [],
     genres: novelInfo.genres || [],
-    language: 'English'
+    language: LANGUAGE,
+    source: SOURCE
   }
 }

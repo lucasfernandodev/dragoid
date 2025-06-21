@@ -4,7 +4,7 @@ import { type DownloadNovelOptions, type IChapterData, type INovelData } from ".
 import { logger } from '../../../utils/logger.ts';
 import { processChaptersList } from '../../process-chapter-list.ts';
 import { delay } from '../../../utils/delay.ts';
-import { collectNovelInfo69shuba,  } from './parse-html/collect-novel-info.ts';
+import { collectNovelInfo69shuba, } from './parse-html/collect-novel-info.ts';
 import { collectChapterList69shuba } from './parse-html/collect-chapter-list.ts';
 import { collectChapter69shuba } from './parse-html/collect-chapter.ts';
 import { ThumbnailProcessor } from '../../download-thumbnail.ts';
@@ -14,6 +14,8 @@ export const getNovel69shuba = async (
   opt: DownloadNovelOptions
 ): Promise<INovelData> => {
 
+  const LANGUAGE = 'chinese';
+  const SOURCE = url;
 
   const puppeteer = await puppeteerInstance();
 
@@ -51,12 +53,12 @@ export const getNovel69shuba = async (
   }
 
   // download thumbnail To base64
-  if(novelInfo.thumbnail){
+  if (novelInfo.thumbnail) {
     const thumbnailProcessor = new ThumbnailProcessor(novelInfo.thumbnail);
     const thumbnail = await thumbnailProcessor.execute();
     novelInfo.thumbnail = thumbnail;
   }
-  
+
 
   // Check if list chapters url is collected
   if (!novelInfo.chapterListPageUrl) {
@@ -99,13 +101,13 @@ export const getNovel69shuba = async (
       const title = await page.waitForSelector('h1', { timeout: 10000 });
 
       if (!title) {
-        await page.reload()
+        await page.reload() 
         await page.waitForSelector('h1', { timeout: 10000 })
       }
 
       const result = await page.evaluate(collectChapter69shuba);
 
-      if(!result){
+      if (!result) {
         throw new BotError('Failed to extract chapter')
       }
 
@@ -144,6 +146,7 @@ export const getNovel69shuba = async (
     chapters: chapters,
     description: novelInfo.description || [],
     genres: novelInfo.genres || [],
-    language: 'Chinese'
+    language: LANGUAGE,
+    source: SOURCE
   }
 }
