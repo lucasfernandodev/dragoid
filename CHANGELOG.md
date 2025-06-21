@@ -1,3 +1,13 @@
+# [0.32.0](https://github.com/lucasfernandodev/dragoid/compare/v0.31.0...v0.32.0) (2025-06-21)
+
+
+### Features
+
+* Add novel source link to reader homepage ([9912546](https://github.com/lucasfernandodev/dragoid/commit/99125463734a31aaf724531253375f5fede667ec))
+* Add source links bot return ([e9c1f54](https://github.com/lucasfernandodev/dragoid/commit/e9c1f541750417a7ced4fe362bb2df278842be58))
+
+
+
 # [0.31.0](https://github.com/lucasfernandodev/dragoid/compare/v0.30.0...v0.31.0) (2025-06-19)
 
 
@@ -31,15 +41,6 @@
 ### Features
 
 * add `--port` flag to configure server listening port ([705ae28](https://github.com/lucasfernandodev/dragoid/commit/705ae28d0b0cda4a4b4265c34e8fca860cfcd053))
-
-
-
-# [0.27.0](https://github.com/lucasfernandodev/dragoid/compare/v0.26.0...v0.27.0) (2025-06-16)
-
-
-### Features
-
-* add service to generate TXT files for novels and chapters ([7dad648](https://github.com/lucasfernandodev/dragoid/commit/7dad648437b8f7a29ab5a097db03fbaef46ee331))
 
 
 
