@@ -34,6 +34,7 @@ export async function readerNovelHomepage(app: FastifyInstance){
       language: app.novel.language,
       thumbnail: `data:image/jpeg;base64,${app.novel.thumbnail}` || '',
       chapter_next_id: app.novel.chapters.length > 1 ? 1 : null,
+      source: app.novel?.source || null,
       favicon_path: FAVICON_PATH
     });
   })

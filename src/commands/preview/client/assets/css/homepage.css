@@ -18,7 +18,7 @@
   position: relative;
   overflow: hidden;
 
-  .project-source-link {
+  & .source-link {
     color: #888;
     position: absolute;
     bottom: 32px;
@@ -26,6 +26,13 @@
     transform: translateX(-50%);
     text-decoration: none;
     transition: 300ms linear;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    & svg{
+      stroke-width: 1px;
+    }
 
     &:hover {
       color: #ddd;
@@ -103,6 +110,7 @@
     text-align: center;
     padding: 8px 0px;
     position: relative;
+    text-transform: capitalize;
   }
 
 
@@ -178,7 +186,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   text-align: center;
-  line-height: 2.6rem;
+  line-height: 3rem;
   width: 100%;
 }
 
