@@ -21,7 +21,7 @@
   & .source-link {
     color: #888;
     position: absolute;
-    bottom: 32px;
+    bottom: 24px;
     left: 50%;
     transform: translateX(-50%);
     text-decoration: none;
