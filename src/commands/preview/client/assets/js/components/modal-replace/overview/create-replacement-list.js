@@ -1,4 +1,4 @@
-import {makeElement} from "../../../utils/make-element.js"
+import { makeElement } from "../../../utils/make-element.js"
 import { ReplacementStorage } from "../../../core/replacement/storage.js"
 
 
@@ -9,7 +9,7 @@ export const createReplacementList = () => {
   })
 
   // Form for creating new List
-  const form = makeElement('form', { class: 'form-create-new-list' })
+  const form = makeElement('form', { class: 'form-new-list' })
   const input = makeElement('input', { placeholder: 'New list name' })
   const btnSave = makeElement('button', { 'class': 'btn-save' }, 'Add')
   const btnCancel = makeElement('button', { class: 'btn-cancel' }, 'Cancel')
@@ -26,13 +26,13 @@ export const createReplacementList = () => {
       return
     }
 
-    container.setAttribute('data-active', false)
-    input.value = '' 
+    container.classList.toggle('expand')
+    input.value = ''
   }
 
   btnCancel.onclick = (ev) => {
     ev.preventDefault();
-    container.setAttribute('data-active', false)
+    container.classList.toggle('expand')
     input.value = ''
     input.classList.remove('invalid')
   }
@@ -42,11 +42,11 @@ export const createReplacementList = () => {
 
   // Trigger for show form
   const buttonTrigger = makeElement('button', {
-    class: 'btn btn-create-new-list'
+    class: 'btn btn-trigger btn-create-new-list'
   }, 'New Substitution List')
 
   buttonTrigger.onclick = () => {
-    container.setAttribute('data-active', true)
+    container.classList.toggle('expand')
   }
 
   container.append(buttonTrigger, form)

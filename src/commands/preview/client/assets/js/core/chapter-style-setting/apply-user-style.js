@@ -1,24 +1,66 @@
 import { ChapterStyleSettingStorage } from "./storage.js";
 
+const setTheme = () => {
+  const isConfig = window.localStorage.getItem('chapter-style');
+  const isDarkModePref = window.matchMedia('(prefers-color-scheme: dark)').matches
+  const root = document.documentElement;
+
+  // Não há configuração / e a preferencia é lighmode
+  if (!isConfig && !isDarkModePref) {
+    root.classList.add('light')
+    root.classList.remove('dark')
+    return;
+  }
+
+  const { isDarkMode } = isConfig ? JSON.parse(isConfig) : {}
+
+  // A opção darkmode não existe / user prefere ligh mode
+  if (typeof isDarkMode === 'undefined') {
+    if (!isDarkModePref) {
+      root.classList.add('light')
+      root.classList.remove('dark')
+    }
+    return;
+  }
+
+  // O darkMode está desativado
+  if (isDarkMode === false) {
+    root.classList.add('light')
+    root.classList.remove('dark')
+  }else{
+    root.classList.remove('light')
+    root.classList.add('dark')
+  }
+}
+
 export const applyUserStyles = () => {
   const updateCss = () => {
     const storage = new ChapterStyleSettingStorage();
-    const values = storage.get()
+    const data = storage.get()
 
-    if(values.length === 0) return;
+    if (!data) return;
 
     const root = document.documentElement;
-    if (values.length === 0) return;
 
     const parseValues = (value) => (value / 10).toString()
 
-    const fontSize = values[0];
-    const lineHeight = values[1];
-    const paragraphGap = values[2];
+    // Set fontSize
+    if (data?.fontSize) {
+      const value = `${parseValues(data?.fontSize)}rem`;
+      root.style.setProperty("--font-size", value)
+    }
 
-    root.style.setProperty("--font-size", `${parseValues(fontSize)}rem`)
-    root.style.setProperty("--line-height", `${parseValues(lineHeight)}rem`)
-    root.style.setProperty("--paragraph-gap", `${parseValues(paragraphGap)}rem`)
+    if (data?.lineHeight) {
+      const value = `${parseValues(data?.lineHeight)}rem`;
+      root.style.setProperty("--line-height", value)
+    }
+
+    if (data?.paragraphGap) {
+      const value = `${parseValues(data?.paragraphGap)}rem`;
+      root.style.setProperty("--paragraph-gap", value)
+    }
+
+    setTheme()
   }
 
   updateCss();
@@ -27,3 +69,4 @@ export const applyUserStyles = () => {
     updateCss();
   })
 }
+

@@ -17,7 +17,7 @@ export class ChapterStyleSettingStorage {
     this.#storage = JSON.parse(storaged)
   }
 
-  add = (options = []) => {
+  add = (options = {}) => {
     this.#storage = options;
     this.#store()
   }
@@ -26,7 +26,7 @@ export class ChapterStyleSettingStorage {
     return this.#storage
   }
 
-  update = (options = []) => {
+  update = (options = {}) => {
     this.#storage = options;
     this.#store();
   } 

@@ -9,45 +9,86 @@ const generateNumber = (initial, end, step = 2) => {
   return result;
 }
 
-const retriveValues = () => {
-  const container = document.getElementById('container-chapter-style');
+const retriveValues = (id) => {
+  const container = document.getElementById(id);
   const selects = container.querySelectorAll('select');
   const values = (Array.from(selects)).map(select => Number.parseInt(select.value));
   return values;
 }
 
-export const chapterStyleSetting = () => {
+const generateOptions = (label, id, values = [], selectedValue = 0) => {
+  const labelEl = makeElement('label', { class: 'label', for: id }, label);
+  const options = values.map(v => makeElement(
+    'option',
+    { value: v, selected: selectedValue === v ? true : false },
+    v
+  ))
 
-  const generateOptions = (label, id, values = [], selectedValue = 0) => {
-    const labelEl = makeElement('label', { class: 'label', for: id }, label);
-    const options = values.map(v => makeElement(
-      'option',
-      { value: v, selected: selectedValue === v ? true : false },
-      v
-    ))
-    
-    const select = makeElement( 'select', { class: 'select', id }, options);
-    const group = makeElement('div', { class: 'group' });
-    group.append(labelEl, select);
+  const select = makeElement('select', { class: 'select', id }, options);
+  const group = makeElement('div', { class: 'group' });
+  group.append(labelEl, select);
+  return group;
+}
+
+
+
+export const chapterStyleSetting = () => {
+  const storage = new ChapterStyleSettingStorage();
+  const valuesSaved = storage.get();
+  const viewSettingId = 'chapter-setting-container'
+
+  const container = makeElement('div', { class: 'container', id: viewSettingId });
+
+  // Options
+  const fontsize = generateOptions(
+    'Font size:',
+    'fontsize',
+    generateNumber(16, 32), valuesSaved.fontSize
+  )
+
+  const lineHeight = generateOptions(
+    'Line height:',
+    'lineheight',
+    generateNumber(24, 40),
+    valuesSaved.lineHeight
+  )
+
+  const paragraphGap = generateOptions(
+    'Space between paragraphs:',
+    'gap',
+    generateNumber(32, 64, 4),
+    valuesSaved.paragraphGap
+  )
+
+  const usignDarkTheme = () => {
+    const label = makeElement('label', { class: 'label', for: '#dark-mode' }, 'Dark theme:')
+    const input = makeElement('input', {
+      class: 'switch',
+      id: 'dark-mode',
+      role: 'switch',
+      type: 'checkbox',
+      checked: valuesSaved.isDarkMode
+    })
+
+    const group = makeElement('div', { class: 'group row' }, [label, input]);
     return group;
   }
 
-  const storage = new ChapterStyleSettingStorage();
-  const valuesSaved = storage.get();
-
-  const container = makeElement('div', { class: 'container', id: 'container-chapter-style' });
-  const fontsize = generateOptions('Font Size', 'fontsize', generateNumber(16, 32), valuesSaved[0])
-  const lineHeight = generateOptions('Line Height', 'lineheight', generateNumber(24, 40), valuesSaved[1])
-  const paragraphGap = generateOptions('Paragraph Gap', 'gap', generateNumber(32, 64, 4), valuesSaved[2])
-
+  // Submit
   const btnSubmit = makeElement('button', { type: 'submit', class: 'btn-submit' }, 'Save Changes')
 
   btnSubmit.onclick = () => {
-    const values = retriveValues();
-    storage.add(values)
+    const values = retriveValues(viewSettingId);
+    const isDarkModeActive = document.getElementById('dark-mode');
+    storage.add({
+      fontSize: values[0],
+      lineHeight: values[1],
+      paragraphGap: values[2],
+      isDarkMode: isDarkModeActive.checked
+    })
   }
 
-  container.append(fontsize, lineHeight, paragraphGap, btnSubmit);
+  container.append(fontsize, lineHeight, paragraphGap, usignDarkTheme(), btnSubmit);
 
   return container;
 }

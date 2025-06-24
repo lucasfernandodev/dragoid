@@ -1,8 +1,21 @@
+html #chapter-list{
+  --list-option-read-indicator-color: var(--color-bright-green);
+  --list-option-background: var(--color-dark-600);
+  --list-option-hover-color: var(--color-primary);
+}
+
+html.light #chapter-list {
+  --list-option-read-indicator-color: var(--color-bright-green);
+  --list-option-background: var(--color-light-300);
+  --list-option-hover-color: var(--color-primary);
+}
+
+
 #modal-chapter-list .wrapper {
   width: min(720px, calc(100% - 32px));
 }
 
-.chapter-list {
+#chapter-list {
   display: flex;
   flex-wrap: wrap;
   overflow-y: auto;
@@ -14,54 +27,64 @@
   height: 420px;
   overflow-y: auto;
   align-content: flex-start;
+  padding-right: 8px;
+}
 
-  & .item {
-    display: flex;
-    width: calc(100% / 2 - 8px);
-    flex-shrink: 0;
-    height: 44px;
-    overflow: hidden; 
 
-    &.read span::before{
-      content: "[READ] ";
-      letter-spacing: 0.016rem;
-      color: hsl(140, 79%, 62%); 
-    }
+#chapter-list .item {
+  display: flex;
+  width: calc(100% / 2 - 8px);
+  flex-shrink: 0;
+  height: 44px;
+  overflow: hidden;
+
+  &.read .text::before {
+    content: "[READ] ";
+    letter-spacing: 0.016rem;
+    color: var(--list-option-read-indicator-color);
   }
+}
 
-  & a {
-    background: #151515;
-    color: inherit;
-    text-decoration: none;
-    font-size: 1.6rem;
-    transition: 250ms ease-in-out;
-
+@media (max-width: 580px) {
+  #chapter-list .item{
     width: 100%;
-    height: 44px;
-    display: flex;
-    padding-left: 12px;
-    align-items: center;
-    border-radius: 8px; 
+  }
+}
 
-    /* disable current chapter link */
-    &[data-active=true] {
-      color: inherit;
-      opacity: 0.5;
-      cursor: default;
-      user-select: none;
-      -moz-user-select: none;
-      -webkit-user-select: none;
-      pointer-events: none;
-    }
 
-    &:hover {
-      color: var(--color-primary);
-    }
+#chapter-list .item .wrapper {
+  background: var(--list-option-background);
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.6rem;
+  transition: 250ms ease-in-out;
+
+  width: 100%;
+  height: 44px;
+  display: flex;
+  padding-left: 12px;
+  align-items: center;
+  border-radius: 8px;
+
+  /* disable current chapter link */
+  &[data-active=true] {
+    color: inherit;
+    opacity: 0.5;
+    cursor: default;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    pointer-events: none;
   }
 
+  &:hover {
+    color: var(--list-option-hover-color);
+  }
+}
 
-  & .item a .title {
-    display: -webkit-box;
+
+#chapter-list .item .wrapper .text{
+   display: -webkit-box;
     -webkit-line-clamp: 1;
     line-clamp: 1;
     -webkit-box-orient: vertical;
@@ -78,13 +101,4 @@
       overflow: hidden;
       text-overflow: ellipsis;
     }
-  }
-}
-
-@media (max-width: 580px) {
-  .chapter-list {
-    & .item {
-      width: 100%;
-    }
-  }
 }

@@ -1,3 +1,33 @@
+html {
+  --page-header-background: var(--color-dark-400);
+  --page-header-link-houver-color: var(--color-white);
+
+
+  /* Floating Menu */
+  --float-navigation-background: var(--color-dark-700);
+  --float-options-color: var(--color-gray-600);
+  --float-divider: var(--color-dark-1000);
+  --float-option-hover-color: var(--color-primary);
+  --float-option-houver-background: var(--color-dark-900);
+  --float-option-disable-color: var(--color-gray-100);
+}
+
+
+html.light {
+
+  --page-header-background: var(--color-white);
+  --page-header-link-houver-color: var(--color-dark-400);
+
+
+  /* Floating Menu */
+  --float-navigation-background: var(--color-light-400);
+  --float-options-color: var(--color-dark-900);
+  --float-divider: var(--color-light-200);
+  --float-option-hover-color: var(--color-primary);
+  --float-option-houver-background: var(--color-white);
+  --float-option-disable-color: var(--color-gray-800);
+}
+
 /* Chapter Style */
 :root {
   --font-size: 1.6rem;
@@ -25,15 +55,15 @@ body>.header {
 
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAQAAABLCVATAAAAAXNSR0IArs4c6QAAAWlJREFUeNqlloFtwzAMBFU0PxF34k5eoUtktBZVnBysixEEUWBD+idpUnrTGXNkhPvt18awXZjKyE5BE5ix8sw6IEQHfKA1kZoMF5ZNnndqy1k2vae+wTAjMBPIp+sY3QJP1JADaXtvFjv4LR1TFKA5GD4suFSQcGEhjPWRn2+zKpRLT0hBwSo3lRerdpScpbMQCgZS2cH4tHQwerJVPIQjUVBH9wFTPOMgxnRwObhWLLkKlpaJA8TnpDxBwEv1r8Uo+ImegDVX4DBXKKWt3mQnZRRMlxZ7vfxDra6j0vD8vKUtKvJ79Pt1X9W6XxZNTvphhYxcGEjneWncGVH3pM2kAs6Qlq4XDIus4x2qDKieYEsz0nTAYd96MelYZEEgElZxnJtEa4mefZpr7hHGsLLmS2uDVgPGEUadgBxwrn3zwRwGhkU2NVqy6fUEbRs1CruoCM5zlPaIIL6/biLs0edft/d7IfjhT9gfL6wnSxDYPyIAAAAASUVORK5CYII=);
   background-attachment: scroll;
-  background-color: #111;
-  color: #ffffff99;
+  background-color: var(--page-header-background);
+  color: var(--page-content-color);
 
   & a {
     color: inherit;
     text-decoration: none;
 
     &:hover {
-      color: #fff;
+      color: var(--page-header-link-houver-color);
       text-decoration: underline;
     }
   }
@@ -65,7 +95,7 @@ body>.header {
   gap: var(--paragraph-gap);
   font-size: var(--font-size);
   line-height: var(--line-height);
-  color: #ffffff99;
+  color: var(--page-content-color);
 }
 
 
@@ -82,7 +112,7 @@ NAVIGATION
     width: 100%;
     height: 54px;
     border-radius: 28px;
-    background: #1f1f1f;
+    background: var(--page-navigation-background);
     overflow: hidden;
     align-items: center;
     display: flex !important;
@@ -90,7 +120,10 @@ NAVIGATION
     & .divider {
       height: calc(50%);
       width: 2px;
-      background: #2f2f2f;
+      user-select: none;
+      cursor: default;
+      pointer-events: none;
+      background: var(--page-navigation-divider-background);
     }
 
     & a,
@@ -100,7 +133,7 @@ NAVIGATION
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #aaa;
+      color: var(--app-color);
       text-decoration: none;
       cursor: pointer;
       transition: 300ms linear;
@@ -108,29 +141,29 @@ NAVIGATION
       border: none;
 
       &:hover {
-        background: #2f2f2f;
-        color: #ddd;
+        background: var(--page-navigation-houver-background);
       }
 
       &[data-disabled="true"] {
         cursor: default;
         user-select: none;
         pointer-events: none;
-        color: #666;
+        color: var(--page-navigation-disable-background);
 
         &:hover {
-          background: transparent;
-          color: #666;
+          background: inherit;
+          color: inherit;
         }
       }
     }
   }
 
+
   .floating-navigation {
     position: fixed;
     top: calc(100vh / 4);
     right: calc(((100vw - 736px) - 100vw / 4) - 64px);
-    background: #1f1f1f;
+    background: var(--float-navigation-background);
     height: fit-content;
     width: 72px;
     display: flex;
@@ -146,7 +179,7 @@ NAVIGATION
       align-items: center;
       justify-content: center;
       height: 100%;
-      color: #aaa;
+      color: var(--float-options-color);
       height: 54px;
       padding: 0px 32px;
       background: transparent;
@@ -154,10 +187,10 @@ NAVIGATION
       cursor: pointer;
 
       &:nth-child(even) {
-        border-top: 1px solid #333;
+        border-top: 1px solid var(--float-divider);
 
         &:not(:last-child) {
-          border-bottom: 1px solid #333;
+          border-bottom: 1px solid var(--float-divider);
         }
       }
 
@@ -166,19 +199,19 @@ NAVIGATION
       }
 
       &:hover {
-        background: #2f2f2f;
-        color: #ddd;
+        background: var(--float-option-houver-background);
+        color: var(--float-option-hover-color);
       }
 
       &[data-disabled="true"] {
         cursor: default;
         user-select: none;
         pointer-events: none;
-        color: #666;
+        color: var(--float-option-disable-color);
 
         &:hover {
-          background: transparent;
-          color: #666;
+          background: inherit;
+          color: inherit;
         }
       }
 
@@ -186,14 +219,15 @@ NAVIGATION
   }
 }
 
+
 @media (max-width: 580px) {
   .navigation {
     margin-top: 64px;
     display: flex;
     width: 100%;
     height: 54px;
+    background: var(--page-navigation-background);
     border-radius: 28px;
-    background: #1f1f1f;
     overflow: hidden;
     align-items: center;
     display: flex !important;
@@ -202,8 +236,11 @@ NAVIGATION
     & .divider {
       height: calc(50%);
       width: 2px;
-      background: #2f2f2f;
       margin: 0px 2px;
+      user-select: none;
+      cursor: default;
+      pointer-events: none;
+      background: var(--page-navigation-divider-background);
     }
 
     & a,
@@ -213,7 +250,6 @@ NAVIGATION
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #aaa;
       text-decoration: none;
       cursor: pointer;
       transition: 300ms linear;
@@ -221,6 +257,7 @@ NAVIGATION
       border: none;
       text-align: center;
       flex-grow: 1;
+      color: var(--app-color);
 
       &:is(button) {
         max-width: 54px;
@@ -228,19 +265,18 @@ NAVIGATION
       }
 
       &:hover {
-        background: #2f2f2f;
-        color: #ddd;
+        background: var(--page-navigation-houver-background);
       }
 
       &[data-disabled="true"] {
         cursor: default;
         user-select: none;
         pointer-events: none;
-        color: #666;
+        color: var(--page-navigation-disable-background);
 
         &:hover {
-          background: transparent;
-          color: #666;
+          background: inherit;
+          color: inherit;
         }
       }
     }
@@ -250,7 +286,7 @@ NAVIGATION
     position: fixed;
     bottom: 0px;
     left: 0px;
-    background: #1f1f1f;
+    background: var(--float-navigation-background);
     width: 100vw;
     flex-shrink: 0;
     flex-grow: 0;
@@ -267,7 +303,7 @@ NAVIGATION
       align-items: center;
       justify-content: center;
       height: 100%;
-      color: #aaa;
+      color: var(--float-options-color);
       height: 54px;
       padding: 0px;
       background: transparent;
@@ -279,25 +315,21 @@ NAVIGATION
       }
 
       &:hover {
-        background: #2f2f2f;
-        color: #ddd;
+        background: var(--float-option-houver-background);
+        color: var(--float-option-hover-color);
       }
 
       &[data-disabled="true"] {
         cursor: default;
         user-select: none;
         pointer-events: none;
-        color: #666;
+        color: var(--float-option-disable-color);
 
         &:hover {
-          background: transparent;
-          color: #666;
+          background: inherit;
+          color: inherit;
         }
       }
-
     }
   }
 }
-
-
-

@@ -8,8 +8,9 @@ export const replacementList = () => {
   const generateList = () => {
     const storage = new ReplacementStorage();
     const isCurrectListActive = window.localStorage.getItem('replacement-list-active');
+
     const item = (id) => {
-      const container = makeElement('li', { 'data-id': id })
+      const container = makeElement('li', { 'data-id': id, class: 'item' })
       const label = makeElement('p', { class: 'label' }, id)
       const containerButtons = makeElement('div', { class: 'group-buttons' })
       const btnEdit = makeElement('button', {
@@ -37,7 +38,7 @@ export const replacementList = () => {
           class: `btn-select ${isCurrectListActive === id ? 'active' : ''}`,
           'aria-label': 'Select'
         },
-        makeElement('span', {'aria-hidden': true})
+        makeElement('span', { 'aria-hidden': true })
       );
       btnSelect.onclick = () => {
         const buttons = document.querySelectorAll('.overview-list .group-buttons .btn-select');

@@ -57,7 +57,7 @@ export const customReplacementOptions = (id) => {
 
   const replacementContainer = makeElement('div', { class: 'container-terms' });
 
-  const addButton = makeElement('button', { class: 'btn-add-terms', 'aria-label': 'Add' });
+  const addButton = makeElement('button', { class: 'btn-add', 'aria-label': 'Add' });
   addButton.innerHTML = iconPlus;
   addButton.append(makeElement('span', {}, 'New replacement term'))
 

@@ -13,16 +13,44 @@
 </head>
 
 <body>
+  <script>
+    (function () {
+      const isConfig = window.localStorage.getItem('chapter-style');
+      const isDarkModePref = window.matchMedia('(prefers-color-scheme: dark)').matches
+      const root = document.documentElement;
+
+      if (!isConfig && !isDarkModePref) {
+        root.classList.add('light')
+        root.classList.remove('dark')
+        return;
+      }
+
+      const { isDarkMode } = isConfig ? JSON.parse(isConfig) : {}
+
+      if (typeof isDarkMode === 'undefined') {
+        if (!isDarkModePref) {
+          root.classList.add('light')
+          root.classList.remove('dark')
+        }
+        return;
+      }
+
+      if (isDarkMode === false) {
+        root.classList.add('light')
+        root.classList.remove('dark')
+      }
+    }())
+  </script>
   <main class="page">
     <div class="cover">
       <div class="heading">
         <div class="thumbnail">
           <img src="<%= thumbnail %>" alt="Thumbnail" title="Thumbnail - <%= title %> " />
         </div>
-        <h1 className="title">
+        <h1 classe="title">
           <%= title %>
         </h1>
-        <p class="author" title="Author">
+        <p class="author" title="Author - <%= author %>">
           <%= author %>
         </p>
       </div>
@@ -55,7 +83,7 @@
       </div>
 
       <div class="row">
-        <p class="description">
+        <p class="sinopse">
           <%= description %>
         </p>
       </div>

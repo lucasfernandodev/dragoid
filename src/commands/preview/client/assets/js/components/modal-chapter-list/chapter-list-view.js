@@ -17,13 +17,14 @@ export const chapterListView = async (currentChapterId) => {
     const linkAttributes = {
       href: url,
       'data-active': currentChapterId === index,
-      title: title
+      title: title,
+      class: 'wrapper'
     }
 
 
 
     const chapterLink = makeElement('a', linkAttributes, [
-      makeElement('span', { class: 'title' }, title)
+      makeElement('span', { class: 'text' }, title)
     ])
 
     

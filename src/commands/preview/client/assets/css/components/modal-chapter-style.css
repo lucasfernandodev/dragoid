@@ -1,66 +1,160 @@
-#modal-chapter-style {
-  & .wrapper {
-    max-width: min(320px, calc(100% - 16px));
-  }
+html #chapter-setting-container {
+  /* select */
+  --select-border-color: var(--color-dark-1100);
+  --select-color: var(--color-gray-300);
+  --select-options-background: var(--color-dark-200);
+  --select-options-color: var(--color-gray-300);
+  --select-options-border-color: var(--color-dark-1100);
 
-  & .container {
-    display: flex;
-    flex-direction: column;
-    gap: 1.6rem;
-  }
+  /* input switch */
+  --input-switch-background: var(--color-gray-100);
+  --input-switch-color: var(--color-gray-100);
+  --input-switch-indicator-background: var(--color-white);
+  --input-switch-indicator-border-color: var(--color-white);
+  --input-switch-hover-indicator-background: var(--color-primary);
+  --input-switch-hover-indicator-border-color: var(--color-primary);
 
-  & .group {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
+  /* Button Submit */
+  --buton-submit-background: var(--color-white);
+  --buton-submit-color: var(--color-dark-700);
+}
 
-  & label {
-    font-size: 1.6rem;
-  }
+html.light #chapter-setting-container{
+  /* Modal - Chapter Page Style Setting */
+  --select-border-color: var(--color-gray-400);
+  --select-color: var(--color-gray-300);
+  --select-options-background: var(--color-dark-200);
+  --select-options-color: var(--color-gray-300);
+  --select-options-border-color: var(--color-dark-1100);
 
-  & select {
+  --buton-submit-background: var(--color-dark-700);
+  --buton-submit-color: var(--color-white);
+
+  --input-switch-background: var(--color-gray-800);
+  --input-switch-color: var(--color-gray-800);
+  --input-switch-indicator-background: var(--color-white);
+  --input-switch-indicator-border-color: var(--color-white);
+  --input-switch-hover-indicator-background: var(--color-primary);
+  --input-switch-hover-indicator-border-color: var(--color-primary);
+}
+
+
+#modal-chapter-style .wrapper {
+  max-width: min(320px, calc(100% - 16px));
+}
+
+
+#chapter-setting-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+#chapter-setting-container .group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &.row {
     width: 100%;
-    height: 36px;
-    padding-left: 8px;
-    background: transparent;
-    border: 1px solid #3f3f3f;
-    border-radius: 4px;
-    color: #7f7f7f;
-    cursor: pointer;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
 
-    & option {
-      background: #0f0f0f;
-      color: #7f7f7f;
-      border: 1px solid #3f3f3f;
-      height: 32px;
-    }
+#chapter-setting-container .group label {
+  font-size: 1.6rem;
+}
 
-    &:focus,
-    &:active,
-    &:focus-within {
-      outline: none;
-    }
+#chapter-setting-container .group select {
+  width: 100%;
+  height: 36px;
+  padding-left: 8px;
+  background: transparent;
+  border: 1px solid var(--select-border-color);
+  border-radius: 4px;
+  color: var(--select-color);
+  cursor: pointer;
+
+  & option {
+    background: var(--select-options-background);
+    color: var(--select-options-color);
+    border: 1px solid var(--select-options-border-color);
+    height: 32px;
   }
 
-  & .btn-submit {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 36px;
-    width: 140px;
-    border-radius: 6px;
-    border: none;
-    background: #fff;
-    color: #1f1f1f;
-    cursor: pointer;
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin-top: 42px;
-    margin-left: auto;
+  &:focus,
+  &:active,
+  &:focus-within {
+    outline: none;
+  }
+}
 
-    &:hover {
-      opacity: 0.9
-    }
+#chapter-setting-container .group input:where([type="checkbox"][role="switch"]) {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  position: relative;
+  font-size: 2.4rem;
+  width: 2em;
+  height: 1em;
+  box-sizing: content-box;
+  border: 1px solid;
+  border-radius: 1em;
+  vertical-align: text-bottom;
+  background: var(--input-switch-background);
+  color: var(--input-switch-background);
+  cursor: pointer;
+
+  &:active {
+    opacity: 0.6;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(0, -50%);
+    box-sizing: border-box;
+    width: 0.7em;
+    height: 0.7em;
+    margin: 0 0.15em;
+    border: 1px solid;
+    border-radius: 50%;
+    background: var(--input-switch-indicator-background);
+    border-color: var(--input-switch-indicator-border-color);
+    transition: left 300ms ease-in-out;
+  }
+
+  &:checked::before {
+    left: 1em;
+  }
+
+  &:checked {
+    background: var(--input-switch-hover-indicator-background);
+    border-color: var(--input-switch-hover-indicator-border-color);
+  }
+}
+
+#chapter-setting-container .btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  width: 140px;
+  border-radius: 6px;
+  border: none;
+  background: var(--buton-submit-background);
+  color: var(--buton-submit-color);
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-weight: 500;
+  margin-top: 42px;
+  margin-left: auto;
+
+  &:hover {
+    opacity: 0.9
   }
 }

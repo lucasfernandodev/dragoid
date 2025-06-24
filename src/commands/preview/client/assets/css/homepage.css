@@ -4,11 +4,35 @@
   --paragraph-gap: 2.4rem;
 }
 
+html .cover{
+  --cover-border-color: var(--color-dark-700);
+  --source-link-color: var(--color-gray-400);
+  --author-color: var(--color-gray-600);
+  --thumbnail-background: linear-gradient(to right bottom, var(--color-dark-700), var(--color-dark-600));
+  --divider-row-background: linear-gradient(to right, transparent, var(--color-dark-900), transparent);
+  --divider-col-left-top-background: linear-gradient(to bottom, transparent, var(--color-dark-900));
+  --divider-col-left-bottom-background: linear-gradient(to top, transparent, var(--color-dark-900));
+  --divider-col-right-top-background: linear-gradient(to bottom, transparent, var(--color-dark-900));
+  --divider-col-right-bottom-background: linear-gradient(to top, transparent, var(--color-dark-900));
+}
+
+html.light .cover{
+  --cover-border-color: var(--color-light-100);
+  --source-link-color: var(--color-gray-100);
+  --author-color: var(--color-gray-100);
+  --thumbnail-background: var(--color-light-100);
+  --divider-row-background: linear-gradient(to right, transparent, var(--color-gray-400), transparent);
+  --divider-col-left-top-background: linear-gradient(to bottom, transparent, var(--color-gray-400));
+  --divider-col-left-bottom-background: linear-gradient(to top, transparent, var(--color-gray-400));
+  --divider-col-right-top-background: linear-gradient(to bottom, transparent, var(--color-gray-400));
+  --divider-col-right-bottom-background: linear-gradient(to top, transparent, var(--color-gray-400));
+}
+
 .cover {
   width: calc(100% - 54px);
   height: calc(800px - 64px);
   border-radius: 28px;
-  border: 1px solid #1f1f1f;
+  border: 1px solid var(--cover-border-color);
   margin: 0 auto;
   padding: 32px;
   display: flex;
@@ -19,7 +43,7 @@
   overflow: hidden;
 
   & .source-link {
-    color: #888;
+    color: var(--source-link-color);
     position: absolute;
     bottom: 24px;
     left: 50%;
@@ -30,12 +54,12 @@
     align-items: center;
     gap: 6px;
 
-    & svg{
+    & svg {
       stroke-width: 1px;
     }
 
     &:hover {
-      color: #ddd;
+      color: var(--app-color);
     }
   }
 }
@@ -53,7 +77,7 @@
     height: 190px;
     width: 150px;
     border-radius: 6px;
-    background: linear-gradient(to right bottom, #1f1f1f, #151515);
+    background: var(--thumbnail-background);
     display: block;
     margin-bottom: 32px;
     overflow: hidden;
@@ -67,24 +91,23 @@
     }
   }
 
-  & h1 {
+  & .title {
     font-size: 3.2rem
   }
 
-  & p {
-    color: #aaa;
+  & .author {
+    color: var(--author-color);
     margin-top: 8px;
   }
 }
 
 
-
 .cover .info {
+  --divider-height: 20px;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  --divider-height: 20px;
- 
+
 
   & .row {
     width: 100%;
@@ -93,92 +116,63 @@
     flex-wrap: wrap;
     position: relative;
 
-    &:first-child::before{
+    &:first-child::before {
       content: "";
       width: 100%;
       height: 1px;
-      background: linear-gradient(to right, transparent, #2f2f2f, transparent);
+      background: var(--divider-row-background);
       display: block;
       position: absolute;
       bottom: 0px;
-      left: 0px; 
+      left: 0px;
     }
   }
 
-  & .col{
-    width: calc(100% / 3); 
+  & .col {
+    width: calc(100% / 3);
     text-align: center;
     padding: 8px 0px;
     position: relative;
     text-transform: capitalize;
   }
 
-
-  & .row:first-child .col:first-child::before{
+  & .row:first-child .col:first-child::before,
+  & .row:last-child .col:first-child::before,
+  & .row:first-child .col:last-child::before,
+  & .row:last-child .col:last-child::before {
     content: "";
     position: absolute;
+    display: block;
     width: 1px;
     height: var(--divider-height);
-    background: linear-gradient(to bottom, transparent, #2f2f2f);
+  }
+
+  & .row:first-child .col:first-child::before {
+    background: var(--divider-col-left-top-background);
     bottom: 0px;
     right: 0px;
-    display: block; 
   }
 
-  & .row:last-child .col:first-child::before{
-    content: "";
-    position: absolute;
-    width: 1px;
-    height: var(--divider-height);
-    background: linear-gradient(to top, transparent, #2f2f2f);
+  & .row:last-child .col:first-child::before {
+    background: var(--divider-col-left-bottom-background);
     top: 0px;
     right: 0px;
-    display: block;
   }
 
-  & .row:first-child .col:last-child::before{
-    content: "";
-    position: absolute;
-    width: 1px;
-    height: var(--divider-height);
-    background: linear-gradient(to bottom, transparent, #2f2f2f);
+  & .row:first-child .col:last-child::before {
+    background: var(--divider-col-right-top-background);
     bottom: 0px;
     left: 0px;
-    display: block;
   }
 
-  & .row:last-child .col:last-child::before{
-    content: "";
-    position: absolute;
-    width: 1px;
-    height: var(--divider-height);
-    background: linear-gradient(to top, transparent, #2f2f2f);
+  & .row:last-child .col:last-child::before {
+    background: var(--divider-col-right-bottom-background);
     top: 0px;
     left: 0px;
-    display: block;
   }
 }
 
-@media screen and (max-width: 580px) {
-  .cover {
-    width: calc(100% - 24px);
-    height: 700px;
-    padding: 32px 16px
-  }
-
-  .cover .heading {
-    & h1 {
-      font-size: 2.4rem;
-    }
-  }
-
-  .cover .info .col {
-    max-width: 100px;
-    font-size: 1.4rem;
-  }
-}
-
-.cover .description {
+.cover .sinopse {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   line-clamp: 3;
@@ -189,6 +183,29 @@
   line-height: 3rem;
   width: 100%;
 }
+
+
+@media screen and (max-width: 580px) {
+  .cover {
+    width: calc(100% - 24px);
+    height: 700px;
+    padding: 32px 16px
+  }
+
+  .cover .heading {
+    & .title {
+      font-size: 2.4rem;
+    }
+  }
+
+  .cover .info .col {
+    max-width: 100px;
+    font-size: 1.4rem;
+  }
+}
+
+
+
 
 
 .first-chapter {
@@ -211,7 +228,7 @@
     gap: var(--paragraph-gap);
     font-size: var(--font-size);
     line-height: var(--line-height);
-    color: #ffffff99;
+    color: var(--page-content-color);
   }
 
   & .navigation-chapters {
@@ -220,14 +237,17 @@
     width: 100%;
     height: 54px;
     border-radius: 28px;
-    background: #1f1f1f;
+    background: var(--page-navigation-background);
     overflow: hidden;
     align-items: center;
 
     & .divider {
       height: calc(50%);
       width: 2px;
-      background: #2f2f2f;
+      user-select: none;
+      cursor: default;
+      pointer-events: none;
+      background: var(--page-navigation-divider-background);
     }
 
     & a {
@@ -236,25 +256,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: #aaa;
+      color: var(--app-color);
       text-decoration: none;
       cursor: pointer;
       transition: 300ms linear;
 
       &:hover {
-        background: #2f2f2f;
-        color: #ddd;
+        background: var(--page-navigation-houver-background);
       }
 
       &[data-disabled="true"] {
         cursor: default;
         user-select: none;
         pointer-events: none;
-        color: #666;
+        color: var(--page-navigation-disable-background);
 
         &:hover {
-          background: transparent;
-          color: #666;
+          background: inherit;
+          color: inherit;
         }
       }
     }

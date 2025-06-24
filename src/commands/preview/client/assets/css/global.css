@@ -1,31 +1,63 @@
+@import url("/assets/css/colors.css");
+
 * {
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
 }
 
-:root{
+:root {
   --is-mobile: 0;
-
-  --color-primary: #0593d4;
 }
+
+html,
+html.dark { 
+  --app-background: var(--color-dark-100);
+  --app-color: var(--color-light-100);
+  --app-scrollbar-color: var(--color-dark-800);
+
+  /* ChapterPage */
+  --page-background: var(--color-dark-400);
+  --page-content-color: var(--color-light-400);
+  --page-navigation-background: var(--color-dark-700);
+  --page-navigation-divider-background: var(--color-dark-900);
+  --page-navigation-houver-background: var(--color-dark-900);
+  --page-navigation-disable-background: var(--color-gray-100);
+}
+
+/* Ligth Theme */
+html.light {
+  --app-background: var(--color-light-200);
+  --app-color: var(--color-dark-100);
+  --app-scrollbar-color: var(--color-dark-800);
+
+  /* Chapter Page */
+  --page-background: var(--color-white);
+  --page-content-color: var(--color-dark-400);
+  --page-navigation-background: var(--color-light-200);
+  --page-navigation-divider-background: var(--color-gray-700);
+  --page-navigation-houver-background: var(--color-gray-800);
+  --page-navigation-disable-background: var(--color-gray-200);
+}
+
 
 html {
   font-size: 62.5%;
 }
 
 body {
-  background-color: #0a0a0a;
+  background-color: var(--app-background);
   font-size: 1.6rem;
-  color: #ddd;
+  color: var(--app-color);
   width: 100%;
   min-height: 100vh;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAQAAABLCVATAAAAAXNSR0IArs4c6QAAAWlJREFUeNqlloFtwzAMBFU0PxF34k5eoUtktBZVnBysixEEUWBD+idpUnrTGXNkhPvt18awXZjKyE5BE5ix8sw6IEQHfKA1kZoMF5ZNnndqy1k2vae+wTAjMBPIp+sY3QJP1JADaXtvFjv4LR1TFKA5GD4suFSQcGEhjPWRn2+zKpRLT0hBwSo3lRerdpScpbMQCgZS2cH4tHQwerJVPIQjUVBH9wFTPOMgxnRwObhWLLkKlpaJA8TnpDxBwEv1r8Uo+ImegDVX4DBXKKWt3mQnZRRMlxZ7vfxDra6j0vD8vKUtKvJ79Pt1X9W6XxZNTvphhYxcGEjneWncGVH3pM2kAs6Qlq4XDIus4x2qDKieYEsz0nTAYd96MelYZEEgElZxnJtEa4mefZpr7hHGsLLmS2uDVgPGEUadgBxwrn3zwRwGhkU2NVqy6fUEbRs1CruoCM5zlPaIIL6/biLs0edft/d7IfjhT9gfL6wnSxDYPyIAAAAASUVORK5CYII=);
   background-attachment: scroll;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-input, button{
+input,
+button,
+body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
@@ -33,7 +65,7 @@ html,
 body,
 .page {
   scrollbar-width: auto;
-  scrollbar-color: #222 transparent;
+  scrollbar-color: var(--app-scrollbar-color) transparent;
   scrollbar-gutter: stable;
 }
 
@@ -47,7 +79,7 @@ body,
 }
 
 *::-webkit-scrollbar-button,
-*::-webkit-resizer  {
+*::-webkit-resizer {
   display: none;
   width: 0px;
   height: 0px;
@@ -59,7 +91,7 @@ body,
   min-height: 800px;
   background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAQAAABLCVATAAAAAXNSR0IArs4c6QAAAWlJREFUeNqlloFtwzAMBFU0PxF34k5eoUtktBZVnBysixEEUWBD+idpUnrTGXNkhPvt18awXZjKyE5BE5ix8sw6IEQHfKA1kZoMF5ZNnndqy1k2vae+wTAjMBPIp+sY3QJP1JADaXtvFjv4LR1TFKA5GD4suFSQcGEhjPWRn2+zKpRLT0hBwSo3lRerdpScpbMQCgZS2cH4tHQwerJVPIQjUVBH9wFTPOMgxnRwObhWLLkKlpaJA8TnpDxBwEv1r8Uo+ImegDVX4DBXKKWt3mQnZRRMlxZ7vfxDra6j0vD8vKUtKvJ79Pt1X9W6XxZNTvphhYxcGEjneWncGVH3pM2kAs6Qlq4XDIus4x2qDKieYEsz0nTAYd96MelYZEEgElZxnJtEa4mefZpr7hHGsLLmS2uDVgPGEUadgBxwrn3zwRwGhkU2NVqy6fUEbRs1CruoCM5zlPaIIL6/biLs0edft/d7IfjhT9gfL6wnSxDYPyIAAAAASUVORK5CYII=);
   background-attachment: scroll;
-  background-color: #111;
+  background-color: var(--page-background);
   margin: 0 auto;
   padding-top: 32px;
   padding-bottom: 38px;
@@ -72,18 +104,18 @@ body,
 }
 
 
-@media screen and (max-width: 580px){
-  :root{
+@media screen and (max-width: 580px) {
+  :root {
     --is-mobile: 1;
   }
 }
 
 
 
-.loading{
+.loading {
   width: 20px;
   height: 20px;
-  border: 3px solid #ddd;
+  border: 3px solid var(--color-light-100);
   border-top-color: transparent;
   border-radius: 50%;
   animation: 1s spin linear infinite;
@@ -94,7 +126,7 @@ body,
 }
 
 @keyframes spin {
-  100%{
+  100% {
     transform: rotate(360deg);
   }
 }

@@ -11,6 +11,34 @@
 </head>
 
 <body>
+  <script>
+    (function () {
+      const isConfig = window.localStorage.getItem('chapter-style');
+      const isDarkModePref = window.matchMedia('(prefers-color-scheme: dark)').matches
+      const root = document.documentElement;
+
+      if (!isConfig && !isDarkModePref) {
+        root.classList.add('light')
+        root.classList.remove('dark')
+        return;
+      }
+
+      const { isDarkMode } = isConfig ? JSON.parse(isConfig) : {}
+
+      if (typeof isDarkMode === 'undefined') {
+        if (!isDarkModePref) {
+          root.classList.add('light')
+          root.classList.remove('dark')
+        }
+        return;
+      }
+
+      if (isDarkMode === false) {
+        root.classList.add('light')
+        root.classList.remove('dark')
+      }
+    }())
+  </script>
   <main class="notFound">
     <h1>Page not found</h1>
     <a href="/">Back to homepage</a>

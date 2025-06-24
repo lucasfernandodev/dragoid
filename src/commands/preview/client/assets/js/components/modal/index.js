@@ -77,7 +77,7 @@ export class Modal {
   show = () => {
     this.#modal.setAttribute("data-hidden", false);
     this.#modal.focus()
-    this.#onShowCallback(this.#modal).catch(console.error)
+    this.#onShowCallback(this.#modal)?.catch(console.error)
   }
 
   hidden = () => {

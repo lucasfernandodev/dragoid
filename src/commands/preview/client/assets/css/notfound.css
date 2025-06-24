@@ -1,9 +1,28 @@
+html {
+  /* Not found page */
+  --not-found-background: var(--color-dark-400);
+  --not-found-link-background: var(--color-dark-700);
+  --not-found-link-hover-background: var(--color-dark-900);
+  --not-found-link-color: var(--color-gray-600);
+  --not-found-link-hover-color: var(--color-light-100);
+}
+
+
+html.light {
+  --not-found-background: var(--color-white);
+  --not-found-link-background: transparent;
+  --not-found-link-hover-background: var(--color-light-100);
+  --not-found-link-color: var(--color-dark-700);
+  --not-found-link-hover-color: var(--color-dark-700);
+  --not-found-link-border-color: var(--color-light-100)
+}
+
 .notFound {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #111;
+  background-color: var(--not-found-background);
   padding: 32px;
   border-radius: 28px;
   display: flex;
@@ -16,15 +35,16 @@
   width: 230px;
   height: 48px;
   border-radius: 12px;
-  background: #1f1f1f;
-  color: #aaa;
+  background: var(--not-found-link-background);
+  color: var(--not-found-link-color);
+  border: 1px solid var(--not-found-link-border-color);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: 300ms linear;
 
   &:hover {
-    background-color: #2f2f2f;
-    color: #ddd;
+    background-color: var(--not-found-link-hover-background);
+    color: var(--not-found-link-hover-color);
   }
 }

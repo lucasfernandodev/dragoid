@@ -1,24 +1,43 @@
+html .modal{
+  /* Base Modal */
+  --modal-background: rgba(0, 0, 0, 0.8);
+  --modal-wrapper-background: var(--color-dark-200);
+  --modal-wrapper-border-color: var(--color-dark-900);
+  --modal-heading-border-color: var(--color-dark-700);
+  --modal-button-close-color: var(--color-dark-900);
+  --modal-button-close-hover-color: var(--color-gray-500);
+}
+
+html.light .modal{
+  /* Base Modal */
+  --modal-background: rgba(0, 0, 0, 0.8);
+  --modal-wrapper-background: var(--color-white);
+  --modal-wrapper-border-color: var(--color-light-200);
+  --modal-heading-border-color: var(--color-light-200);
+  --modal-button-close-color: var(--color-light-100);
+  --modal-button-close-hover-color: var(--color-gray-500);
+}
 
 .modal {
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--modal-background);
   top: 0px;
   left: 0px;
   z-index: 1000;
 
-  &[data-hidden=true]{
+  &[data-hidden=true] {
     display: none;
   }
 }
 
 
-.modal .wrapper {
+.modal > .wrapper {
   padding: 24px;
   border-radius: 8px;
-  background: #0f0f0f;
-  border: 1px solid #2f2f2f;
+  background: var(--modal-wrapper-background);
+  border: 1px solid var(--modal-wrapper-border-color);
   display: flex;
   flex-direction: column;
   gap: 24px;
@@ -32,18 +51,18 @@
 }
 
 @media screen and (max-width: 540px) {
-  .modal .wrapper {
+  .modal > .wrapper {
     padding: 24px 8px;
     width: min(550px, calc(100% - 16px));
   }
 }
 
-.modal .wrapper .heading {
+.modal > .wrapper > .heading {
   width: 100%;
   display: flex;
   justify-content: space-between;
   padding-bottom: 8px;
-  border-bottom: 1px solid #1f1f1f;
+  border-bottom: 1px solid var(--modal-heading-border-color);
 
   & .title {
     font-weight: 400;
@@ -54,11 +73,11 @@
     background: none;
     border: none;
     cursor: pointer;
-    color: #2f2f2f;
+    color: var(--modal-button-close-color);
     cursor: pointer;
 
     &:hover {
-      color: #999;
+      color: var(--modal-button-close-hover-color);
     }
   }
 }
