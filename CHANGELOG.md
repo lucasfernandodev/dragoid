@@ -1,3 +1,12 @@
+# [0.33.0](https://github.com/lucasfernandodev/dragoid/compare/v0.32.1...v0.33.0) (2025-06-24)
+
+
+### Features
+
+* implement light mode option ([4f6ffaa](https://github.com/lucasfernandodev/dragoid/commit/4f6ffaa4a493187ffe1b530ce1679f88d2d5e2a3))
+
+
+
 ## [0.32.1](https://github.com/lucasfernandodev/dragoid/compare/v0.32.0...v0.32.1) (2025-06-24)
 
 
@@ -32,15 +41,6 @@
 ### Features
 
 * Improving reader novel cover ([f56442d](https://github.com/lucasfernandodev/dragoid/commit/f56442d9e518119d15203731e81c77fd485f7222))
-
-
-
-# [0.29.0](https://github.com/lucasfernandodev/dragoid/compare/v0.28.0...v0.29.0) (2025-06-17)
-
-
-### Features
-
-* Add support to open single chapters on preview command ([768974b](https://github.com/lucasfernandodev/dragoid/commit/768974bb4e453c2a09b19d51a87d2600822a014e))
 
 
 
