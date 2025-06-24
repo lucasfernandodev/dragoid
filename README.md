@@ -12,6 +12,14 @@ A tool for downloading web novels online for offline reading in various formats.
 npm install -g dragoid
 ```
 
+## Puppeteer
+
+Some bots use Puppeteer with Chrome to retrieve information (novel or chapter). If Chrome is not found in `~/.cache/puppeteer`, try installing it manually using the following command:
+
+```bash
+npx puppeteer browsers install chrome
+```
+
 ## Usage
 
 ```bash
