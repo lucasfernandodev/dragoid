@@ -1,3 +1,12 @@
+# [0.34.0](https://github.com/lucasfernandodev/dragoid/compare/v0.33.0...v0.34.0) (2025-06-25)
+
+
+### Features
+
+* **reader:** implement two new fonts to read chapter ([46b6c91](https://github.com/lucasfernandodev/dragoid/commit/46b6c91264071d40a7ac0d8da48eb17b13006545))
+
+
+
 # [0.33.0](https://github.com/lucasfernandodev/dragoid/compare/v0.32.1...v0.33.0) (2025-06-24)
 
 
@@ -32,15 +41,6 @@
 ### Features
 
 * implement chapter read history ([82069e5](https://github.com/lucasfernandodev/dragoid/commit/82069e512c05c8d2a1d31c3d6808c7817507a0b3))
-
-
-
-# [0.30.0](https://github.com/lucasfernandodev/dragoid/compare/v0.29.0...v0.30.0) (2025-06-18)
-
-
-### Features
-
-* Improving reader novel cover ([f56442d](https://github.com/lucasfernandodev/dragoid/commit/f56442d9e518119d15203731e81c77fd485f7222))
 
 
 
