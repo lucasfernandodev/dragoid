@@ -4,7 +4,7 @@
   --paragraph-gap: 2.4rem;
 }
 
-html .cover{
+html .cover {
   --cover-border-color: var(--color-dark-700);
   --source-link-color: var(--color-gray-400);
   --author-color: var(--color-gray-600);
@@ -16,7 +16,7 @@ html .cover{
   --divider-col-right-bottom-background: linear-gradient(to top, transparent, var(--color-dark-900));
 }
 
-html.light .cover{
+html.light .cover {
   --cover-border-color: var(--color-light-100);
   --source-link-color: var(--color-gray-100);
   --author-color: var(--color-gray-100);
@@ -220,6 +220,7 @@ html.light .cover{
 
   & .title {
     font-size: 2rem;
+    font-family: var(--chapter-font-current);
   }
 
   & .content {
@@ -229,6 +230,7 @@ html.light .cover{
     font-size: var(--font-size);
     line-height: var(--line-height);
     color: var(--page-content-color);
+    font-family: var(--chapter-font-current);
   }
 
   & .navigation-chapters {

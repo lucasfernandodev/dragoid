@@ -1,32 +1,30 @@
 import { ChapterStyleSettingStorage } from '../../core/chapter-style-setting/storage.js'
+import { generateNumber } from '../../utils/generate-number.js';
 import { makeElement } from "../../utils/make-element.js";
 
-const generateNumber = (initial, end, step = 2) => {
-  const result = [];
-  for (let i = initial; i <= end; i += step) {
-    result.push(i);
-  }
-  return result;
-}
+
 
 const retriveValues = (id) => {
   const container = document.getElementById(id);
   const selects = container.querySelectorAll('select');
-  const values = (Array.from(selects)).map(select => Number.parseInt(select.value));
+  const values = (Array.from(selects)).map(select => {
+    if (!isNaN(Number.parseInt(select.value))) {
+      return Number.parseInt(select.value)
+    }
+    return select.value
+  });
   return values;
 }
 
 const generateOptions = (label, id, values = [], selectedValue = 0) => {
   const labelEl = makeElement('label', { class: 'label', for: id }, label);
-  const options = values.map(v => makeElement(
-    'option',
-    { value: v, selected: selectedValue === v ? true : false },
-    v
-  ))
+  const options = values.map(v => {
+    const attributes = { value: v, selected: selectedValue === v ? true : false }
+    return makeElement('option', attributes, v)
+  })
 
   const select = makeElement('select', { class: 'select', id }, options);
-  const group = makeElement('div', { class: 'group' });
-  group.append(labelEl, select);
+  const group = makeElement('div', { class: 'group' }, [labelEl, select]);
   return group;
 }
 
@@ -60,7 +58,7 @@ export const chapterStyleSetting = () => {
     valuesSaved.paragraphGap
   )
 
-  const usignDarkTheme = () => {
+  const selectDarkTheme = () => {
     const label = makeElement('label', { class: 'label', for: '#dark-mode' }, 'Dark theme:')
     const input = makeElement('input', {
       class: 'switch',
@@ -74,21 +72,44 @@ export const chapterStyleSetting = () => {
     return group;
   }
 
+  const selectFontFamily = (currentfontFamily = '') => {
+    const makeOption = (label, value, currentfontFamily) => {
+      return makeElement('option', { value: value, selected: value === currentfontFamily }, label)
+    }
+
+    const label = makeElement('label', { class: 'label', for: '#fontFamily' }, 'Select font family:')
+    const select = makeElement('select', { class: 'select', id: '#fontFamily' }, [
+      makeOption('Merriweather', "--chapter-font-primary", currentfontFamily),
+      makeOption('Nunito', "--chapter-font-secondary", currentfontFamily)
+    ]);
+
+    const group = makeElement('div', { class: 'group' }, [label, select]);
+    return group
+  }
+
   // Submit
   const btnSubmit = makeElement('button', { type: 'submit', class: 'btn-submit' }, 'Save Changes')
 
   btnSubmit.onclick = () => {
     const values = retriveValues(viewSettingId);
-    const isDarkModeActive = document.getElementById('dark-mode');
     storage.add({
       fontSize: values[0],
       lineHeight: values[1],
       paragraphGap: values[2],
-      isDarkMode: isDarkModeActive.checked
+      isDarkMode: document.getElementById('dark-mode')?.checked || false,
+      fontFamily: values[3]
     })
   }
 
-  container.append(fontsize, lineHeight, paragraphGap, usignDarkTheme(), btnSubmit);
+
+  container.append(
+    fontsize,
+    lineHeight,
+    paragraphGap,
+    selectFontFamily(valuesSaved?.fontFamily),
+    selectDarkTheme(),
+    btnSubmit
+  );
 
   return container;
 }

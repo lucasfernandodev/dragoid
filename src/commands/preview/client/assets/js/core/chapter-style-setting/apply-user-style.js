@@ -1,72 +1,60 @@
 import { ChapterStyleSettingStorage } from "./storage.js";
 
-const setTheme = () => {
-  const isConfig = window.localStorage.getItem('chapter-style');
-  const isDarkModePref = window.matchMedia('(prefers-color-scheme: dark)').matches
-  const root = document.documentElement;
-
-  // Não há configuração / e a preferencia é lighmode
-  if (!isConfig && !isDarkModePref) {
-    root.classList.add('light')
-    root.classList.remove('dark')
-    return;
-  }
-
-  const { isDarkMode } = isConfig ? JSON.parse(isConfig) : {}
-
-  // A opção darkmode não existe / user prefere ligh mode
-  if (typeof isDarkMode === 'undefined') {
-    if (!isDarkModePref) {
-      root.classList.add('light')
-      root.classList.remove('dark')
-    }
-    return;
-  }
-
-  // O darkMode está desativado
-  if (isDarkMode === false) {
-    root.classList.add('light')
-    root.classList.remove('dark')
-  }else{
-    root.classList.remove('light')
-    root.classList.add('dark')
-  }
-}
-
 export const applyUserStyles = () => {
   const updateCss = () => {
+    const root = document.documentElement;
+    const parseValues = (value) => (value / 10).toString()
     const storage = new ChapterStyleSettingStorage();
     const data = storage.get()
 
     if (!data) return;
 
-    const root = document.documentElement;
-
-    const parseValues = (value) => (value / 10).toString()
-
     // Set fontSize
     if (data?.fontSize) {
       const value = `${parseValues(data?.fontSize)}rem`;
-      root.style.setProperty("--font-size", value)
+      const currentValue = root.style.getPropertyValue("--font-size")
+      value !== currentValue && root.style.setProperty("--font-size", value)
     }
 
     if (data?.lineHeight) {
       const value = `${parseValues(data?.lineHeight)}rem`;
-      root.style.setProperty("--line-height", value)
+      const currentValue = root.style.getPropertyValue("--line-height")
+      value !== currentValue && root.style.setProperty("--line-height", value)
     }
 
     if (data?.paragraphGap) {
       const value = `${parseValues(data?.paragraphGap)}rem`;
-      root.style.setProperty("--paragraph-gap", value)
+      const currentValue = root.style.getPropertyValue("--paragraph-gap")
+      currentValue !== value && root.style.setProperty("--paragraph-gap", value)
     }
 
-    setTheme()
+    if (data?.fontFamily) {
+      const value = `var(${data?.fontFamily})`
+      const currentValue = root.style.getPropertyValue("--chapter-font-current")
+      value !== currentValue && root.style.setProperty('--chapter-font-current', value)
+    }
+
+    // Dark theme
+    let isDarkModeActive = true;
+    if (typeof data?.isDarkMode !== 'undefined') {
+      isDarkModeActive = data?.isDarkMode
+    }else{
+       if(!window.matchMedia('(prefers-color-scheme: dark)').matches){
+        isDarkModeActive = false;
+       }
+    }
+
+    if (isDarkModeActive === false) {
+      root.classList.add('light')
+      root.classList.remove('dark')
+    } else {
+      root.classList.remove('light')
+      root.classList.add('dark')
+    } 
   }
 
   updateCss();
 
-  window.addEventListener('storage-chapter-style', () => {
-    updateCss();
-  })
+  window.addEventListener('storage-chapter-style', updateCss)
 }
 

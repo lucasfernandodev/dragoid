@@ -16,27 +16,48 @@
 
   <script>
     (function () {
-      const isConfig = window.localStorage.getItem('chapter-style');
-      const isDarkModePref = window.matchMedia('(prefers-color-scheme: dark)').matches
-      const root = document.documentElement;
-
-      if (!isConfig && !isDarkModePref) {
-        root.classList.add('light')
-        root.classList.remove('dark')
-        return;
+      const root = document.documentElement
+      let isActiveDarkTheme = true;
+      if (!window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        isActiveDarkTheme = false;
       }
 
-      const { isDarkMode } = isConfig ? JSON.parse(isConfig) : {}
+      if (window.localStorage.getItem('chapter-style')) {
+        try {
+          const config = JSON.parse(window.localStorage.getItem('chapter-style'));
+          if (typeof config?.isDarkMode !== 'undefined') {
+            isActiveDarkTheme = config?.isDarkMode
+          }
 
-      if (typeof isDarkMode === 'undefined') {
-        if (!isDarkModePref) {
-          root.classList.add('light')
-          root.classList.remove('dark')
+          const parseValues = (value) => (value / 10).toString()
+
+          // Set fontSize
+          if (config?.fontSize) {
+            const value = `${parseValues(config?.fontSize)}rem`;
+            root.style.setProperty("--font-size", value)
+          }
+
+          if (config?.lineHeight) {
+            const value = `${parseValues(config?.lineHeight)}rem`;
+            root.style.setProperty("--line-height", value)
+          }
+
+          if (config?.paragraphGap) {
+            const value = `${parseValues(config?.paragraphGap)}rem`;
+            root.style.setProperty("--paragraph-gap", value)
+          }
+
+          if (config?.fontFamily) {
+            root.style.setProperty('--chapter-font-current', `var(${config?.fontFamily})`)
+          }
+
+        } catch (error) {
+          console.error('Chapter style config found, but invalid')
+          window.localStorage.removeItem('chapter-style')
         }
-        return;
       }
 
-      if (isDarkMode === false) {
+      if (!isActiveDarkTheme) {
         root.classList.add('light')
         root.classList.remove('dark')
       }
@@ -59,8 +80,8 @@
   </header>
 
   <main class="page" data-novel-title="<%= novelTitle %>">
-    <section>
-      <h1>
+    <section id="chapter">
+      <h1 class="title">
         <%= title %>
       </h1>
       <div class="content">
@@ -70,6 +91,33 @@
           </p>
           <% } %>
       </div>
+      <!-- Chapter Footer Navigation -->
+      <div class="navigation">
+        <a class="nav-prev" data-id="<%= chapter_prev_id %>" href="/chapter/?id=<%= chapter_prev_id %>"
+          data-disabled="<%= chapter_prev_id === null ? 'true' : 'false' %>">
+          Prev chapter
+        </a>
+        <div class="divider"></div>
+        <button class="option toggle-dialog-chapter-list">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M9 6l11 0" />
+            <path d="M9 12l11 0" />
+            <path d="M9 18l11 0" />
+            <path d="M5 6l0 .01" />
+            <path d="M5 12l0 .01" />
+            <path d="M5 18l0 .01" />
+          </svg>
+        </button>
+        <div class="divider"></div>
+        <a class="nav-next" data-id="<%= chapter_next_id %>" href="/chapter/?id=<%= chapter_next_id %>"
+          data-disabled="<%= chapter_next_id === null ? 'true' : 'false' %>">
+          Next chapter
+        </a>
+      </div>
+
+      <!-- Floating Navigation -->
       <div class="floating-navigation">
         <a role="button" aria-label="Prev Chapter" class="option" href="/chapter/?id=<%= chapter_prev_id %>"
           title="Prev chapter" data-disabled="<%= chapter_prev_id === null ? 'true' : 'false' %>">
@@ -123,34 +171,6 @@
             <path d="M7 7l5 5l-5 5" />
             <path d="M13 7l5 5l-5 5" />
           </svg>
-        </a>
-      </div>
-
-
-
-      <!-- Chapter Footer Navigation -->
-      <div class="navigation">
-        <a class="nav-prev" data-id="<%= chapter_prev_id %>" href="/chapter/?id=<%= chapter_prev_id %>"
-          data-disabled="<%= chapter_prev_id === null ? 'true' : 'false' %>">
-          Prev chapter
-        </a>
-        <div class="divider"></div>
-        <button class="option toggle-dialog-chapter-list">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M9 6l11 0" />
-            <path d="M9 12l11 0" />
-            <path d="M9 18l11 0" />
-            <path d="M5 6l0 .01" />
-            <path d="M5 12l0 .01" />
-            <path d="M5 18l0 .01" />
-          </svg>
-        </button>
-        <div class="divider"></div>
-        <a class="nav-next" data-id="<%= chapter_next_id %>" href="/chapter/?id=<%= chapter_next_id %>"
-          data-disabled="<%= chapter_next_id === null ? 'true' : 'false' %>">
-          Next chapter
         </a>
       </div>
     </section>

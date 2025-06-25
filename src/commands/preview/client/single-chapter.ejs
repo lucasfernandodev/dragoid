@@ -15,27 +15,48 @@
 <body>
   <script>
     (function () {
-      const isConfig = window.localStorage.getItem('chapter-style');
-      const isDarkModePref = window.matchMedia('(prefers-color-scheme: dark)').matches
-      const root = document.documentElement;
-
-      if (!isConfig && !isDarkModePref) {
-        root.classList.add('light')
-        root.classList.remove('dark')
-        return;
+      const root = document.documentElement
+      let isActiveDarkTheme = true;
+      if (!window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        isActiveDarkTheme = false;
       }
 
-      const { isDarkMode } = isConfig ? JSON.parse(isConfig) : {}
+      if (window.localStorage.getItem('chapter-style')) {
+        try {
+          const config = JSON.parse(window.localStorage.getItem('chapter-style'));
+          if (typeof config?.isDarkMode !== 'undefined') {
+            isActiveDarkTheme = config?.isDarkMode
+          }
 
-      if (typeof isDarkMode === 'undefined') {
-        if (!isDarkModePref) {
-          root.classList.add('light')
-          root.classList.remove('dark')
+          const parseValues = (value) => (value / 10).toString()
+
+          // Set fontSize
+          if (config?.fontSize) {
+            const value = `${parseValues(config?.fontSize)}rem`;
+            root.style.setProperty("--font-size", value)
+          }
+
+          if (config?.lineHeight) {
+            const value = `${parseValues(config?.lineHeight)}rem`;
+            root.style.setProperty("--line-height", value)
+          }
+
+          if (config?.paragraphGap) {
+            const value = `${parseValues(config?.paragraphGap)}rem`;
+            root.style.setProperty("--paragraph-gap", value)
+          }
+
+          if (config?.fontFamily) {
+            root.style.setProperty('--chapter-font-current', `var(${config?.fontFamily})`)
+          }
+
+        } catch (error) {
+          console.error('Chapter style config found, but invalid')
+          window.localStorage.removeItem('chapter-style')
         }
-        return;
       }
 
-      if (isDarkMode === false) {
+      if (!isActiveDarkTheme) {
         root.classList.add('light')
         root.classList.remove('dark')
       }
@@ -50,8 +71,8 @@
   </header>
 
   <main class="page">
-    <section>
-      <h1>
+    <section  id="chapter">
+      <h1 class="title">
         <%= title %>
       </h1>
       <div class="content">
