@@ -4,7 +4,7 @@ A tool for downloading web novels online for offline reading in various formats.
 
 ## Requirements
 
-- Node.js v22.13.1 or higher.
+- Node.js v22.17.0 or higher.
 
 ## Installation
 

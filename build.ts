@@ -5,7 +5,7 @@ esbuild.build({
   entryPoints: ['./src/dragoid.ts'],
   bundle: true,
   platform: 'node',
-  target: 'node22.13.1',
+  target: 'node22.17.0',
   outfile: './bin/dragoid',
   format: 'esm',
   banner: {
