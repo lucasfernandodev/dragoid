@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import { BotError } from "../../../errors/bot-error.ts";
 import type { Bot, DownloadNovelOptions } from "../../../types/bot.ts";
-import { logger } from "../../../utils/logger.ts"; 
+import { logger } from "../../../utils/logger.ts";
 import { generateOutputFile } from "../output.ts";
 
 export const downloadNovelService = async (
