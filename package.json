@@ -56,7 +56,7 @@
     "zod": "^3.25.67"
   },
   "devDependencies": {
-    "@types/node": "^22.15.32",
+    "@types/node": "^24.0.3",
     "@types/yargs": "^17.0.33"
   },
   "optionalDependencies": {
