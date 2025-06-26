@@ -9,12 +9,12 @@ import { ShortcutKeyboardNavigation } from "../core/shortcuts/keyboard/navigatio
 import { ShortcutTouchShowFloatingNavigation } from "../core/shortcuts/touch/show-floating-navigation.js";
 
 
-const initChapterPage = async () => { 
+const initChapterPage = async () => {
 
   // === Attach modais ===
-  modalChapterStyle() 
+  modalChapterStyle()
   modalReplacement()
-  modalChapterList() 
+  modalChapterList()
 
 
 
@@ -23,7 +23,7 @@ const initChapterPage = async () => {
   applyUserStyles()
 
   const info = window.dragoid_info;
-  if(info){
+  if (info) {
     const history = new ChapterHistory()
 
     history.add(info.novelTitle, {
@@ -44,7 +44,10 @@ const initChapterPage = async () => {
   })
 
   // Shortcut to showing float navigation menu (mobile)
-  new ShortcutTouchShowFloatingNavigation() 
+  new ShortcutTouchShowFloatingNavigation()
 }
 
-await initChapterPage()
+
+window.onload = async () => {
+  await initChapterPage()
+}

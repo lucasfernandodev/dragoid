@@ -15,7 +15,6 @@ html {
   --float-option-disable-color: var(--color-gray-100);
 }
 
-
 html.light {
 
   --page-header-background: var(--color-white);
@@ -37,8 +36,6 @@ html.light {
   --line-height: 3rem;
   --paragraph-gap: 2.4rem;
 }
-
-
 
 .page section {
   padding: 32px 0px;
@@ -116,64 +113,71 @@ NAVIGATION
 ===================
 */
 
-@media (min-width: 581px) {
-  .navigation {
-    margin-top: 64px;
-    display: flex;
-    width: 100%;
-    height: 54px;
-    border-radius: 28px;
-    background: var(--page-navigation-background);
-    overflow: hidden;
-    align-items: center;
-    display: flex !important;
+.navigation {
+  margin-top: 64px;
+  display: flex;
+  width: 100%;
+  height: 54px;
+  border-radius: 28px;
+  background: var(--page-navigation-background);
+  overflow: hidden;
+  align-items: center;
+  display: flex !important;
 
-    & .divider {
-      height: calc(50%);
-      width: 2px;
-      user-select: none;
-      cursor: default;
-      pointer-events: none;
-      background: var(--page-navigation-divider-background);
+  & .divider {
+    height: calc(50%);
+    width: 2px;
+    user-select: none;
+    cursor: default;
+    pointer-events: none;
+    background: var(--page-navigation-divider-background);
+  }
+
+  & .option {
+    width: auto;
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--app-color);
+    text-decoration: none;
+    cursor: pointer;
+    transition: 300ms linear;
+    background: transparent;
+    border: none;
+    text-align: center;
+
+    &:hover {
+      background: var(--page-navigation-houver-background);
     }
 
-    & a,
-    & .option {
-      width: calc((100% / 2) - 2px);
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--app-color);
-      text-decoration: none;
-      cursor: pointer;
-      transition: 300ms linear;
-      background: transparent;
-      border: none;
+    &:is(button){
+      flex-shrink: 0;
+      min-width: 42px;
+    }
+
+    &[data-disabled="true"] {
+      cursor: default;
+      user-select: none;
+      pointer-events: none;
+      color: var(--page-navigation-disable-background);
 
       &:hover {
-        background: var(--page-navigation-houver-background);
-      }
-
-      &[data-disabled="true"] {
-        cursor: default;
-        user-select: none;
-        pointer-events: none;
-        color: var(--page-navigation-disable-background);
-
-        &:hover {
-          background: inherit;
-          color: inherit;
-        }
+        background: inherit;
+        color: inherit;
       }
     }
   }
+}
 
-
+@media (min-width: 981px) {
   .floating-navigation {
+    --floating-position: calc(-50% + (var(--chapter-width) / 2) + (72px / 2));
     position: fixed;
     top: calc(100vh / 4);
-    right: calc(((100vw - 736px) - 100vw / 4) - 64px);
+    left: 50%;
+    transform: translateX(calc(var(--floating-position) + 12px));
     background: var(--float-navigation-background);
     height: fit-content;
     width: 72px;
@@ -224,75 +228,13 @@ NAVIGATION
           background: inherit;
           color: inherit;
         }
-      }
-
+      } 
     }
   }
 }
 
 
-@media (max-width: 580px) {
-  .navigation {
-    margin-top: 64px;
-    display: flex;
-    width: 100%;
-    height: 54px;
-    background: var(--page-navigation-background);
-    border-radius: 28px;
-    overflow: hidden;
-    align-items: center;
-    display: flex !important;
-    justify-content: center;
-
-    & .divider {
-      height: calc(50%);
-      width: 2px;
-      margin: 0px 2px;
-      user-select: none;
-      cursor: default;
-      pointer-events: none;
-      background: var(--page-navigation-divider-background);
-    }
-
-    & a,
-    & .option {
-      width: calc((100% / 3) - 2px);
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      cursor: pointer;
-      transition: 300ms linear;
-      background: transparent;
-      border: none;
-      text-align: center;
-      flex-grow: 1;
-      color: var(--app-color);
-
-      &:is(button) {
-        max-width: 54px;
-        flex-grow: 0;
-      }
-
-      &:hover {
-        background: var(--page-navigation-houver-background);
-      }
-
-      &[data-disabled="true"] {
-        cursor: default;
-        user-select: none;
-        pointer-events: none;
-        color: var(--page-navigation-disable-background);
-
-        &:hover {
-          background: inherit;
-          color: inherit;
-        }
-      }
-    }
-  }
-
+@media (max-width: 980px) { 
   .floating-navigation {
     position: fixed;
     bottom: 0px;

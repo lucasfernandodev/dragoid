@@ -144,11 +144,12 @@
   </main>
 
   <script type="module">
-    const lastChar = window.location.href.slice(-1)
+    const lastChar = window.location.href.slice(-1);
+    const href = window.location.href
     window.dragoid_info = {
       novelTitle: "<%= title %>",
       chapterTitle: "<%= chapterTitle %>",
-      chapterUrl: lastChar === '/' ? window.location.href + 'chapter/?id=0' : window.location.href + '/chapter/?id=0'
+      chapterUrl: lastChar === '/' ? `${href}chapter/?id=0` : `href/chapter/?id=0`
     }
   </script>
 
