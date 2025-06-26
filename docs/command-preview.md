@@ -22,7 +22,7 @@ In addition to offline navigation directly from the JSON file, the reader offers
   Allows you to define lists of terms to be automatically replaced before or after Google Translate translations in Chrome.
 
 - Layout customization:
-  Adjust font size, line spacing, and paragraph spacing for an optimal reading experience.
+  Adjust theme, font family, font size, line spacing, and paragraph spacing for an optimal reading experience.
 
 - Keyboard navigation:
   Move forward and backward through chapters using only keyboard shortcuts, without clicking.
