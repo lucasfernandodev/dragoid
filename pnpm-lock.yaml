@@ -48,8 +48,8 @@ importers:
         specifier: ^5.8.3
         version: 5.8.3
       wasm-vips:
-        specifier: ^0.0.11
-        version: 0.0.11
+        specifier: ^0.0.13
+        version: 0.0.13
       yargs:
         specifier: ^18.0.0
         version: 18.0.0
@@ -1580,8 +1580,8 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  wasm-vips@0.0.11:
-    resolution: {integrity: sha512-bzFU7WcimMY4WeqnZk7whKVpSXxpagISXPJwsk2VHF4lgIN9rl4uUo5sF9x6jOlACuCH6ITZUJ7QPTYmy60NCQ==}
+  wasm-vips@0.0.13:
+    resolution: {integrity: sha512-aQT7pF8CNGEO9YLbcMZ2WLalnZsSO4ZoLAvVn4FUWr0vdqcpDCAYPadTxSeGpaLKlGr4wD22jdcDxwSKUM5g9w==}
     engines: {node: '>=16.4.0'}
 
   whatwg-encoding@3.1.1:
@@ -3259,7 +3259,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  wasm-vips@0.0.11: {}
+  wasm-vips@0.0.13: {}
 
   whatwg-encoding@3.1.1:
     dependencies:
