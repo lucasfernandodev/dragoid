@@ -1,3 +1,12 @@
+# [0.35.0](https://github.com/lucasfernandodev/dragoid/compare/v0.34.1...v0.35.0) (2025-06-26)
+
+
+### Features
+
+* **reader:** Improving responsiveness ([f5a8847](https://github.com/lucasfernandodev/dragoid/commit/f5a8847dfed252f74f26deae4cf8ed43d21ddcc2))
+
+
+
 ## [0.34.1](https://github.com/lucasfernandodev/dragoid/compare/v0.34.0...v0.34.1) (2025-06-26)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * Fixing reader files wrong path on build ([b559034](https://github.com/lucasfernandodev/dragoid/commit/b559034ef3338c59d52bbea2a7919312bf4d3a9d))
-
-
-
-# [0.32.0](https://github.com/lucasfernandodev/dragoid/compare/v0.31.0...v0.32.0) (2025-06-21)
-
-
-### Features
-
-* Add novel source link to reader homepage ([9912546](https://github.com/lucasfernandodev/dragoid/commit/99125463734a31aaf724531253375f5fede667ec))
-* Add source links bot return ([e9c1f54](https://github.com/lucasfernandodev/dragoid/commit/e9c1f541750417a7ced4fe362bb2df278842be58))
 
 
 

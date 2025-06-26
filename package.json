@@ -1,6 +1,6 @@
 {
   "name": "dragoid",
-  "version": "0.34.1",
+  "version": "0.35.0",
   "description": "Download and read novels offline",
   "bin": {
     "dragoid": "./bin/dragoid"
