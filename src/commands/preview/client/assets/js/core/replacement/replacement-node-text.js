@@ -29,11 +29,11 @@ export class ReplacementNodeText {
         for (const [original, replacement] of Object.entries(replacementList)) {
           if (newString.includes(original)) {
             newString = newString.replaceAll(original, replacement)
+            node.parentElement.dataset.processed = true
           }
-        }
 
-        node.nodeValue = newString;
-        node.parentElement.dataset.processed = "true"
+          node.nodeValue = newString; 
+        }
       }
     }
   }

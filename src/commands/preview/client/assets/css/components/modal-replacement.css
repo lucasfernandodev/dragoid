@@ -369,10 +369,17 @@ section.section-replacement .container-terms .list-terms {
 section.section-replacement .container-terms .list-terms .group-input {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 6px;
 
-  & input {
+  & .error-message {
     width: 100%;
+    color: #fa506c;
+    font-size: 1.2rem;
+  }
+
+  & input {
+    width: auto;
     flex-grow: 1;
     height: 42px;
     border-radius: 4px;
@@ -380,6 +387,10 @@ section.section-replacement .container-terms .list-terms .group-input {
     border: 1px solid var(--terms-input-border-color);
     color: var(--terms-input-color);
     background: var(--terms-input-background);
+
+    &:is(.invalid) {
+      border-color: #fa506c;
+    }
 
     &:focus {
       outline: 1px solid var(--terms-input-focus-outline);
@@ -423,24 +434,31 @@ section.section-replacement .container-actions button {
   border: 1px solid var(--terms-btnSave-border-color);
   border-radius: 4px;
   font-size: 1.5rem;
-  text-transform: capitalize; 
+  text-transform: capitalize;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
 
+  &.btn-save:disabled { 
+    cursor: default;
+    user-select: none;
+    pointer-events: none;
+    opacity: 0.5; 
+  }
+
   &.btn-back {
     background: none;
     color: var(--terms-btnBack-color);
-    border: 1px solid var(--terms-btnBack-border-color); 
+    border: 1px solid var(--terms-btnBack-border-color);
   }
 
   &.btn-back:hover {
     color: var(--terms-btnBack-hover-color);
-    background: var(--terms-btnBack-hover-background); 
+    background: var(--terms-btnBack-hover-background);
   }
 
-  &.btn-save:hover{
+  &.btn-save:hover {
     opacity: 0.9;
   }
 }

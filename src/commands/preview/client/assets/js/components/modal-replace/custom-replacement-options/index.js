@@ -1,98 +1,110 @@
 import { makeElement } from "../../../utils/make-element.js";
-import { iconBack, iconDelete, iconPlus, iconSave } from "../../icons.js";
+import { iconBack, iconPlus, iconSave } from "../../icons.js";
 import { ReplacementStorage } from "../../../core/replacement/storage.js";
+import { htmlToElement } from "../../../utils/html-to-element.js";
+import { TermsReplacementList, createReplacementListItem } from "./list.js";
 
-const addTerm = (original = '', replacement = '') => {
-  const groupInput = makeElement('div', { class: 'group-input' })
-  const originalInput = makeElement('input', { class: 'input-original', placeholder: 'Original term' });
-  originalInput.value = original
-  const replacementInput = makeElement('input', { class: 'input-replacement', placeholder: 'New term' });
-  replacementInput.value = replacement
-  const divider = makeElement('span', {}, '/');
-  const buttonDelete = makeElement('button', { class: 'btn-delete' })
-  buttonDelete.innerHTML = iconDelete
 
-  buttonDelete.onclick = () => {
-    groupInput.remove()
+
+
+export const TermsListManagerView = (
+  listId,
+  onSaveSuccess = () => { }
+) => {
+  const storage = new ReplacementStorage();
+  const list = Object.entries(storage.get(listId) || {});
+
+  const ButtonAddTerm = makeElement(
+    'button',
+    { class: 'btn-add', 'aria-label': 'Add new term' },
+    [htmlToElement(iconPlus), makeElement('span', {}, 'New replacement term')]
+  );
+
+
+  const List = TermsReplacementList(list);
+
+  const ListWrapper = makeElement(
+    'div',
+    { class: 'container-terms' },
+    [ButtonAddTerm, List]
+  );
+
+  const ButtonBack = makeElement(
+    'button',
+    { class: 'btn-back' },
+    [htmlToElement(iconBack), makeElement('span', {}, 'Back')]
+  )
+
+  const ButtonSave = makeElement(
+    'button',
+    { class: 'btn-save' },
+    [htmlToElement(iconSave), makeElement('span', {}, 'Save')]
+  )
+
+  const Footer = makeElement('div', { class: 'container-actions' }, [ButtonBack, ButtonSave])
+
+
+  const createNewReplacementTerm = () => {
+    const ReplacementTerm = createReplacementListItem("", "");
+    List.appendChild(ReplacementTerm)
+    List.querySelector('li:last-child input:first-of-type')?.focus()
   }
 
-  groupInput.append(originalInput, divider, replacementInput, buttonDelete);
-  return groupInput;
-}
+  const saveTermReplacementList = () => {
+    const storage = new ReplacementStorage();
+    const originalList = storage.get(listId) || {}
+    const newList = {}
 
-const saveList = (id) => {
-  const storage = new ReplacementStorage();
-  const list = {};
-  const listHTML = document.querySelector('.list-terms');
-  const itens = listHTML.querySelectorAll('.group-input');
-  for (const element of itens) {
-    const original = element.querySelector('.input-original');
-    const replacement = element.querySelector('.input-replacement')
+    const listEl = document.querySelector(`.${List.className}`);
+    const fields = Array.from(listEl.querySelectorAll('li'));
 
-    if (original && replacement) {
-      if (original.value.length !== 0 && replacement.value.length !== 0) {
-        list[original.value] = replacement.value
+    for (const field of fields) {
+      const term = field.querySelector('input:first-of-type')
+      const replacement = field.querySelector('input:last-of-type')
+      const errorElement = field.querySelector('p');
+
+      // Reset errors
+      replacement.classList.remove('invalid')
+      term.classList.remove('invalid')
+      errorElement.textContent = ''
+
+      // Start validation
+      if (term.value.trim() === "" || replacement.value.trim() === '') {
+        replacement.classList.add('invalid')
+        term.classList.add('invalid')
+        errorElement.textContent = 'The term or replacement cannot be empty'
+        break;
+      }
+
+      if (term.value.trim() === replacement.value.trim()) {
+        replacement.classList.add('invalid')
+        term.classList.add('invalid')
+        errorElement.textContent = 'Invalid values. Identical terms are not allowed'
+        break;
+      }
+
+      newList[term.value.trim()] = replacement.value.trim()
+    }
+
+    if (fields.length === Object.entries(newList).length) {
+      // Check if list modified 
+      if (JSON.stringify(originalList) !== JSON.stringify(newList)) {
+        storage.update(listId, newList);
+        ButtonSave.textContent = 'List Updated!'
+        setTimeout(onSaveSuccess, 250)
       }
     }
   }
-  storage.update(id, list);
-}
-
-const generateReplacementItems = (id) => {
-  const storage = new ReplacementStorage();
-  const list = storage.get(id);
-  if (!list) return [];
-  const terms = Object.entries(list).map(row => {
-    const [key, value] = row;
-    const el = addTerm(key, value);
-    return el;
-  })
-  return terms;
-}
 
 
+  // Register functions
+  ButtonAddTerm.onclick = createNewReplacementTerm;
+  ButtonSave.onclick = saveTermReplacementList;
 
-export const customReplacementOptions = (id) => {
-  const section = makeElement('section', { class: 'section-replacement' })
-
-  const replacementContainer = makeElement('div', { class: 'container-terms' });
-
-  const addButton = makeElement('button', { class: 'btn-add', 'aria-label': 'Add' });
-  addButton.innerHTML = iconPlus;
-  addButton.append(makeElement('span', {}, 'New replacement term'))
-
-  addButton.onclick = () => {
-    const item = makeElement('li')
-    const term = addTerm();
-    item.appendChild(term)
-    replacementList.appendChild(term);
-  }
-
-  const replacementList = makeElement(
-    'ul',
-    { class: 'list-terms' },
-    [...generateReplacementItems(id)]
-  )
-
-  replacementContainer.append(addButton, replacementList)
-
-
-  const containerActions = makeElement('div', { class: 'container-actions' });
-  const backButton = makeElement('button', { class: 'btn-back' });
-  backButton.innerHTML = iconBack;
-  backButton.appendChild(makeElement('span', {}, 'Back'))
-
-  const saveButton = makeElement('button', { class: 'btn-save' });
-  saveButton.innerHTML = iconSave
-  saveButton.append(makeElement('span', {}, 'Save'))
-  saveButton.onclick = () => {
-    saveList(id);
-    saveButton.innerHTML = ''
-    saveButton.textContent = 'List Updated!'
-  }
-
-  containerActions.append(backButton, saveButton)
-
-  section.append(replacementContainer, containerActions)
-  return section
+  const View = makeElement(
+    'section',
+    { class: 'section-replacement' },
+    [ListWrapper, Footer]
+  );
+  return View;
 }

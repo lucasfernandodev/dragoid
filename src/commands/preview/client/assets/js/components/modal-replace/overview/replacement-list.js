@@ -1,64 +1,117 @@
 import { makeElement } from "../../../utils/make-element.js"
 import { iconDelete, iconEdit } from "../../icons.js";
 import { ReplacementStorage } from "../../../core/replacement/storage.js"
+import { htmlToElement } from "../../../utils/html-to-element.js";
+
+const setReplacementListActive = (id) => {
+  if (id) {
+    window.localStorage.setItem('replacement-list-active', id)
+    window.location.reload()
+  }
+}
+
+const getReplacementListActive = () => {
+  return window.localStorage.getItem('replacement-list-active')
+}
+
+const removeReplacementListActive = () => {
+  window.localStorage.removeItem('replacement-list-active');
+  window.location.reload()
+}
+
+
+const ButtonEdit = (id) => {
+  return makeElement(
+    'button',
+    { class: 'btn-edit', 'data-id': id },
+    [htmlToElement(iconEdit), makeElement('span', {}, 'Edit')]
+  )
+}
+
+const ButtonDelete = (onDelete = () => { }) => {
+  const btnDelete = makeElement(
+    'button',
+    { class: 'btn-delete', 'aria-label': 'Delete' },
+    [htmlToElement(iconDelete)]
+  )
+
+  btnDelete.onclick = onDelete;
+
+  return btnDelete
+}
+
+const ButtonSelect = (isActive = false, onClick = () => { }) => {
+  const btnSelect = makeElement(
+    'button',
+    {
+      class: `btn-select ${isActive ? 'active' : ''}`,
+      'aria-label': 'Select'
+    },
+    makeElement('span', { 'aria-hidden': true })
+  );
+
+  btnSelect.onclick = (ev) => onClick(ev, btnSelect);
+  return btnSelect
+}
+
+
+
 
 export const replacementList = () => {
-  const list = makeElement('ul', { class: 'overview-list' });
+  const List = makeElement('ul', { class: 'overview-list' });
 
   const generateList = () => {
     const storage = new ReplacementStorage();
-    const isCurrectListActive = window.localStorage.getItem('replacement-list-active');
+    const isCurrectListActive = getReplacementListActive();
 
     const item = (id) => {
-      const container = makeElement('li', { 'data-id': id, class: 'item' })
-      const label = makeElement('p', { class: 'label' }, id)
-      const containerButtons = makeElement('div', { class: 'group-buttons' })
-      const btnEdit = makeElement('button', {
-        class: 'btn-edit',
-        'data-id': id
-      })
+      const Container = makeElement('li', { 'data-id': id, class: 'item' })
+      const Label = makeElement('p', { class: 'label' }, id)
 
-      btnEdit.innerHTML = iconEdit;
-      btnEdit.appendChild(makeElement('span', {}, 'Edit'))
-
-      const btnDelete = makeElement('button', { class: 'btn-delete', 'aria-label': 'Delete' })
-      btnDelete.innerHTML = iconDelete
-
-      btnDelete.onclick = () => {
+      function onDeleteHandle() {
         storage.delete(id);
         if (isCurrectListActive === id) {
-          window.localStorage.removeItem('replacement-list-active')
+          removeReplacementListActive()
         }
       }
 
+      function onSelectHandle(_, Button) {
+        document.querySelectorAll(
+          '.overview-list .group-buttons .btn-select'
+        ).forEach(btn => btn.classList.remove('active'));
 
-      const btnSelect = makeElement(
-        'button',
-        {
-          class: `btn-select ${isCurrectListActive === id ? 'active' : ''}`,
-          'aria-label': 'Select'
-        },
-        makeElement('span', { 'aria-hidden': true })
-      );
-      btnSelect.onclick = () => {
-        const buttons = document.querySelectorAll('.overview-list .group-buttons .btn-select');
-        buttons.forEach(btn => btn.classList.remove('active'))
-        btnSelect.classList.add('active')
-        window.localStorage.setItem('replacement-list-active', id)
+        const isActive = getReplacementListActive();
+
+        if (isActive) {
+          removeReplacementListActive();
+          return;
+        }
+
+        Button.classList.add('active')
+        setReplacementListActive(id)
       }
 
+      const ContainerButtons = makeElement(
+        'div',
+        { class: 'group-buttons' },
+        [
+          ButtonEdit(id),
+          ButtonDelete(onDeleteHandle),
+          ButtonSelect(isCurrectListActive === id, onSelectHandle)
+        ]
+      )
 
-      containerButtons.append(btnEdit, btnDelete, btnSelect)
-      container.append(label, containerButtons)
-      return container;
+      Container.append(Label, ContainerButtons)
+      return Container;
     }
 
-    const emptyItem = makeElement('li', { class: 'empty-message' },
+
+    const EmptyItem = makeElement('li', { class: 'empty-message' },
       'No substitution lists created yet. Start by adding your first one!'
     )
 
     if (storage.size() === 0) {
-      return [emptyItem];
+      return [EmptyItem];
     }
 
     const ids = storage.getAllIds()
@@ -66,12 +119,12 @@ export const replacementList = () => {
     return ids.map(id => item(id));
   }
 
-  list.append(...generateList());
+  List.append(...generateList());
 
   window.addEventListener('storage-replacement', () => {
-    list.innerHTML = '';
-    list.append(...generateList());
+    List.innerHTML = '';
+    List.append(...generateList());
   })
 
-  return list;
+  return List;
 }

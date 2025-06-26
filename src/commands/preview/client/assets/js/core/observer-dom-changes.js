@@ -15,13 +15,14 @@ export const observerDomChanges = (rootNode, callback = () => { }) => {
   // Configura os tipos de mutações que você quer observar
   const config = {
     childList: true,      // observar a adição/remoção de elementos filhos
-    subtree: true,        // observar a árvore completa abaixo de targetNode
+    subtree: true, 
+    characterData: true, 
   };
 
   // Callback a ser executado quando uma mutação for detectada
   const observerCallback = function (mutationsList, observer) {
     for (const mutation of mutationsList) {
-      if (mutation.type === 'childList') {
+      if (mutation.type === 'childList' || mutation.type === 'characterData') {
         clearTimeout(timer);
         timer = setTimeout(() => {
           observer.disconnect();

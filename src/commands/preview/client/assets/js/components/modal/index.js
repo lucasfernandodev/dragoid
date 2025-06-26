@@ -67,7 +67,17 @@ export class Modal {
 
 
 
-  // Seleciona um elemento para abrir o modal[target = htmlElement]
+
+  /**
+   * add a listener to the target event, when clicked open the modal
+   * 
+   * @method
+   * @name attach
+   * @kind property
+   * @memberof Modal
+   * @param {any} target
+   * @returns {void}
+   */
   attach = (target) => {
     target.addEventListener('click', () => {
       this.show()
@@ -84,6 +94,17 @@ export class Modal {
     this.#modal.setAttribute("data-hidden", true);
   }
 
+   
+  /**
+   * Description
+   * 
+   * @method
+   * @name onShow
+   * @kind property
+   * @memberof Modal
+   * @param {(modal: HTMLElement) => void} callback?
+   * @returns {void}
+   */
   onShow = (callback = () => { }) => {
     this.#onShowCallback = callback;
   }

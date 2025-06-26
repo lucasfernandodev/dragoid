@@ -1,42 +1,43 @@
 import { Modal } from "../modal/index.js";
-import { customReplacementOptions } from "./custom-replacement-options/index.js";
+import { TermsListManagerView } from "./custom-replacement-options/index.js";
 import { replacementOverview } from "./overview/index.js";
 
 
 export const modalReplacement = () => {
-  const modal = new Modal(
-    'modal-replacement',
-    'Substitution Lists Overview',
-    replacementOverview()
-  )
+  const modalId = 'modal-replacement'
+  const buttonTrigger = document.querySelector('.btn-open-replacement-modal')
 
-  modal.attach(document.querySelector('.btn-open-replacement-modal'))
+  const modal = new Modal(modalId, 'Substitution Lists Overview', replacementOverview())
+  modal.attach(buttonTrigger)
 
-  const modalHtml = modal.getModal();
-  modalHtml.setAttribute('translate', 'no')
+  const modalHTML = modal.getModal()
 
-  const swapViewToCustomReplacementOptionsView = (ev) => {
-    const isCorrectTarget = ev.target.closest('.btn-edit');
-    if (!isCorrectTarget) {
-      return; // clique fora de um item “.item”
-    }
+  modalHTML.setAttribute('translate', 'no')
 
-    const listId = isCorrectTarget.getAttribute('data-id');
-    const customReplacementOptionsView = customReplacementOptions(listId)
-    modal.setView(
-      'Edit Substitution List',
-      customReplacementOptionsView
-    )
 
-    const backButton = customReplacementOptionsView.querySelector('.btn-back')
-    backButton.addEventListener('click', () => {
+  // Toggle for next view
+  const showListManagerView = (listId) => {
+    // Creating view with callback to return on success
+    const termsListManagerView = TermsListManagerView(listId, () => {
       modal.setView('Substitution Lists Overview', replacementOverview())
-      const overviewList = modalHtml.querySelector('.overview-list');
-      overviewList.addEventListener('click', swapViewToCustomReplacementOptionsView)
     })
+
+    // Add event to back view on click
+    termsListManagerView.querySelector('.btn-back').addEventListener('click', () => {
+      modal.setView('Substitution Lists Overview', replacementOverview())
+    })
+
+    // set new view
+    modal.setView('Edit Substitution List', termsListManagerView)
   }
 
 
-  const overviewList = modalHtml.querySelector('.overview-list');
-  overviewList.addEventListener('click', swapViewToCustomReplacementOptionsView)
+  // if click to edit loading next view
+  modalHTML.addEventListener('click', ev => {
+    const btn = ev.target.closest('.btn-edit');
+    if (!btn) return;
+
+    const listId = btn.getAttribute('data-id');
+    showListManagerView(listId)
+  })
 }
