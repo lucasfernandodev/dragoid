@@ -1,3 +1,12 @@
+## [0.36.1](https://github.com/lucasfernandodev/dragoid/compare/v0.36.0...v0.36.1) (2025-06-27)
+
+
+### Bug Fixes
+
+* add husky config ([dcefedf](https://github.com/lucasfernandodev/dragoid/commit/dcefedf6657f2c385dec257e867062d4a686092e))
+
+
+
 # [0.36.0](https://github.com/lucasfernandodev/dragoid/compare/v0.35.2...v0.36.0) (2025-06-27)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * **reader:** Improving responsiveness ([f5a8847](https://github.com/lucasfernandodev/dragoid/commit/f5a8847dfed252f74f26deae4cf8ed43d21ddcc2))
-
-
-
-## [0.34.1](https://github.com/lucasfernandodev/dragoid/compare/v0.34.0...v0.34.1) (2025-06-26)
-
-
-### Bug Fixes
-
-* fixing replacement list not detecting text change ([d464ac9](https://github.com/lucasfernandodev/dragoid/commit/d464ac901982ba57a562d66e9733dc45a5a17350))
 
 
 
