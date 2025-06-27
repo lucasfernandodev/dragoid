@@ -1,3 +1,12 @@
+# [0.36.0](https://github.com/lucasfernandodev/dragoid/compare/v0.35.2...v0.36.0) (2025-06-27)
+
+
+### Features
+
+* **bot:** Improving collect data validation ([f8f4068](https://github.com/lucasfernandodev/dragoid/commit/f8f4068f40cbceacd13df7ce17217aa1a2f42ae2))
+
+
+
 ## [0.35.2](https://github.com/lucasfernandodev/dragoid/compare/v0.35.1...v0.35.2) (2025-06-27)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * fixing replacement list not detecting text change ([d464ac9](https://github.com/lucasfernandodev/dragoid/commit/d464ac901982ba57a562d66e9733dc45a5a17350))
-
-
-
-# [0.34.0](https://github.com/lucasfernandodev/dragoid/compare/v0.33.0...v0.34.0) (2025-06-25)
-
-
-### Features
-
-* **reader:** implement two new fonts to read chapter ([46b6c91](https://github.com/lucasfernandodev/dragoid/commit/46b6c91264071d40a7ac0d8da48eb17b13006545))
 
 
 
