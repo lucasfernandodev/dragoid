@@ -7,6 +7,7 @@ import { readerNovelRoutes } from './routes/ejs/novel/index.ts';
 import { getLocalIPAddress } from '../../utils/get-local-ip.ts';  
 import { apiNovelRoutes } from './routes/api/novel/index.ts';
 import { readerSingleChapterRoutes } from './routes/ejs/single-chapter/index.ts';
+import chalk from 'chalk';
 
 interface ServerOptions {
   isPublic: boolean;
@@ -75,10 +76,10 @@ export class Server {
     const urlLocal = `http://127.0.0.1:${this.opt.port}`;
     logger.info('[*] Server started successfully.');
     logger.info('[-] You can start reading your novel at the url:');
-    logger.info(urlLocal, 'blue');
+    logger.info(chalk.blueBright(urlLocal));
     if (this.opt.isPublic) {
       const ip = getLocalIPAddress()
-      ip && logger.info(`http://${ip}:${this.opt.port}`, 'blue');
+      ip && logger.info(chalk.blueBright(`http://${ip}:${this.opt.port}`));
     }
   }
 
