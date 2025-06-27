@@ -9,7 +9,7 @@ export const validatePreviewInput = (data: Partial<PreviewArgs>) => {
   // Set only options allowed
   for (const [option, flag] of Object.entries(CMD_PREVIEW_PROXY_FLAGS)) {
     const value = data[flag]
-    options[option] = value
+    options[option as keyof PreviewOptionsMapped] = value as never
   }
 
   if (!options?.file) {

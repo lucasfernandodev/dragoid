@@ -6,22 +6,23 @@ const puppeteerInstance = async () => {
     const StealthPluginDefault = StealthPlugin.default;
     const puppeteerDefault = puppeteer.default
 
-    if (puppeteerDefault?.use && StealthPluginDefault) {
+    if ('use' in puppeteerDefault && StealthPluginDefault) {
       const steald = StealthPluginDefault()
       steald.enabledEvasions.delete('iframe.contentWindow')
-      puppeteerDefault.use(steald)
+      if (typeof puppeteerDefault.use === 'function') {
+        puppeteerDefault.use(steald)
+      }
     }
 
-    if (!puppeteerDefault?.launch) {
+    if (!('launch' in puppeteerDefault)) {
       console.error('System not supported by puppetter, try another bot');
       process.exit(1);
-    }
-
-
+    } 
 
     return puppeteerDefault
 
-  } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_) {
     console.error('System not supported by puppetter, try another bot');
     process.exit(1);
   }

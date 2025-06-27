@@ -13,7 +13,7 @@ import {
 } from './options.ts';
 import { validatePreviewInput } from './validate-input.ts';
 import { chapterScheme } from "../../core/schemas/chapter.ts";
-import { ZodError } from "zod";
+import { ZodError } from "zod"; 
 
 interface PreviewFiles {
   novel: INovelData | null;
@@ -38,7 +38,8 @@ export class Preview implements DefaultCommand {
     // Map CLI flag values from argv to internal option keys
     for (const [proxyName, flag] of Object.entries(CMD_PREVIEW_PROXY_FLAGS)) {
       const value = argv[flag]
-      this.options[proxyName] = value
+      const proxy = proxyName as keyof PreviewOptionsMapped
+      this.options[proxy] = value as never
     }
 
     const file = await readFile<INovelData>(this.options.file as string)

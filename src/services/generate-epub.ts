@@ -50,6 +50,7 @@ export class GenerateEpubService {
    */
   private silenceExecutate = async (options: EpubOptions, target: string) => {
     return new Promise((resolve, reject) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let epub: any = null;
       const preserveNormalLog = console.log;
       const preserveErrorLog = console.error;
@@ -151,8 +152,7 @@ export class GenerateEpubService {
   private deleteTmpCover = (path: string) => {
     fs.unlink(path, (err) => {
       if (err) {
-        logger.error('Remove cover image file from tmp folder failed');
-        logger.error(err)
+        logger.error('Remove cover image file from tmp folder failed', err);
         return;
       }
     });
@@ -221,7 +221,8 @@ export class GenerateEpubService {
 
     try {
       await this.silenceExecutate(this.options, target)
-    } catch (error) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       throw new ApplicationError(`Generation of EPUB file failed. ${error.message}`, error)
     } finally {
       this.deleteTmpCover(this.options.cover)

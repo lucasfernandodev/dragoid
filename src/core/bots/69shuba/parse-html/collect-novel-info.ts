@@ -1,34 +1,34 @@
-import type { INovelMeta } from "../../../../types/bot.ts";
+import type { INovelData } from "../../../../types/bot.ts";
 
-interface INovel69shuba extends Omit<INovelMeta, 'language'>{
+interface INovel69shuba extends Omit<INovelData, 'chapters' | 'language'> {
   chapterListPageUrl: string;
 }
 
 export const collectNovelInfo69shuba = () => {
   const getParagraphsContent = (paragraphs: NodeListOf<Element>) => {
     const resultData: string[] = [];
-  
+
     const parseParagraph = (paragraph: Element) => {
       let currentTextRow = '';
       const childrens = paragraph.childNodes as NodeListOf<Element>;
-  
+
       childrens.forEach((node) => {
         const isBrTag = node.nodeType === Node.ELEMENT_NODE && node?.tagName === 'BR';
-  
+
         // Break row
         if (isBrTag) {
           const currentTextRowParsed = currentTextRow.trim();
-          currentTextRowParsed && resultData.push(currentTextRowParsed);
+          if (currentTextRowParsed) resultData.push(currentTextRowParsed);
           currentTextRow = '';
         } else {
           currentTextRow += node.textContent
         }
       })
-  
+
       const currentTextRowParsed = currentTextRow.trim();
-      currentTextRowParsed && resultData.push(currentTextRowParsed)
+      if (currentTextRowParsed) resultData.push(currentTextRowParsed);
     }
-  
+
     paragraphs.forEach(parseParagraph)
     return resultData;
   }
@@ -49,16 +49,16 @@ export const collectNovelInfo69shuba = () => {
 
   if (authorHtml.length > 0 && authorHtml[0]?.textContent) {
     const isMultiAuthor = authorHtml[0].textContent.includes(",");
-    if(isMultiAuthor){
+    if (isMultiAuthor) {
       data.author = authorHtml[0].textContent.split(",");
-    }else{
+    } else {
       data.author = [authorHtml[0].textContent]
-    } 
+    }
   }
 
   if (descHtml.length > 0) {
     const desc = getParagraphsContent(descHtml);
-    if(desc.length > 0){
+    if (desc.length > 0) {
       data.description = desc;
     }
   }
@@ -71,25 +71,25 @@ export const collectNovelInfo69shuba = () => {
         return genres.includes(',') ? genres.split(",") : [genres];;
       }
     });
-    if(genresArray.length > 0){
+    if (genresArray.length > 0) {
       data.genres = genresArray.flat().filter(content => content !== undefined) as string[];
     }
   }
 
-  if(statusHTML.length > 0){
+  if (statusHTML.length > 0) {
     const statusEl = Array.from(statusHTML).filter(el => el?.textContent?.includes('|'));
-    if(statusEl.length > 0){
+    if (statusEl.length > 0) {
       const elText = statusEl[0]?.textContent || ''
       const status = elText.split("|")[1].trim()
-      if(status.length > 0){
+      if (status.length > 0) {
         data.status = status;
       }
-    } 
+    }
   }
 
   if (thumbnailHtml) {
     const url = thumbnailHtml.getAttribute('src');
-    if(url){
+    if (url) {
       data.thumbnail = url
     }
   }
@@ -103,7 +103,7 @@ export const collectNovelInfo69shuba = () => {
   }
 
 
-  if(Object.values(data).length === 0){
+  if (Object.values(data).length === 0) {
     return null
   }
 

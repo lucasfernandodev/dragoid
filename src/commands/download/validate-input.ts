@@ -28,14 +28,14 @@ const validateDownloadCommandFlags = z.object({
     message: `Invalid value for option '--${CMD_DOWNLOAD_PROXY_FLAGS.limit}'. Option must be 1 or greater`
   }).optional(),
   path: z.string()
-  .min(1, {
-    message: `Invalid value for option '--${CMD_DOWNLOAD_PROXY_FLAGS.path}'. Option must not be left empty`
-  }).refine(p => isDir(p), {
-    message: `Invalid value for option '--${CMD_DOWNLOAD_PROXY_FLAGS.path}'. Provided path does not exist or is not a directory`
-  }).optional(),
+    .min(1, {
+      message: `Invalid value for option '--${CMD_DOWNLOAD_PROXY_FLAGS.path}'. Option must not be left empty`
+    }).refine(p => isDir(p), {
+      message: `Invalid value for option '--${CMD_DOWNLOAD_PROXY_FLAGS.path}'. Provided path does not exist or is not a directory`
+    }).optional(),
 }).superRefine((data, ctx) => {
   const allowed = outputSupported[data.mode];
-  if (!allowed.includes(data.outputFormat as any)) {
+  if (!allowed.includes(data.outputFormat as never)) {
     ctx.addIssue({
       code: ZodIssueCode.custom,
       path: ["outputFormat"],
@@ -56,11 +56,13 @@ export const validateInput = (data: Partial<DownloadArgs>) => {
   // Set only options allowed
   for (const [option, flag] of Object.entries(CMD_DOWNLOAD_PROXY_FLAGS)) {
     const value = data[flag]
-    options[option] = value
+    options[option as keyof DownloadOptionsMap] = value as never
   }
- 
 
-  const optionsKeys = Object.keys(options).filter(key => typeof options[key] !== 'undefined');
+
+  const optionsKeys = Object.keys(options).filter(
+    (key) => typeof options[key as keyof DownloadOptionsMap] !== 'undefined'
+  );
 
   // Check if there are conflicting options
   if (options.listOutputFormats) {

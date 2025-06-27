@@ -25,7 +25,7 @@ export interface DownloadArgs {
 }
 
 export type DownloadOptionsMap = {
-  [k in keyof typeof CMD_DOWNLOAD_PROXY_FLAGS]: DownloadArgs[typeof CMD_DOWNLOAD_PROXY_FLAGS[k]]
+  -readonly [k in keyof typeof CMD_DOWNLOAD_PROXY_FLAGS]: DownloadArgs[typeof CMD_DOWNLOAD_PROXY_FLAGS[k]]
 }
 
 /**

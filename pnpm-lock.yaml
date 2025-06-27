@@ -60,6 +60,9 @@ importers:
       '@eslint/js':
         specifier: ^9.29.0
         version: 9.29.0
+      '@types/epub-gen':
+        specifier: ^0.1.2
+        version: 0.1.2
       '@types/node':
         specifier: ^24.0.3
         version: 24.0.3
@@ -379,6 +382,9 @@ packages:
 
   '@types/ejs@3.1.5':
     resolution: {integrity: sha512-nv+GSx77ZtXiJzwKdsASqi+YQ5Z7vwHsTP0JY2SiQgjGckkBRKZnk8nIM+7oUZ1VCtuTz0+By4qVR7fqzp/Dfg==}
+
+  '@types/epub-gen@0.1.2':
+    resolution: {integrity: sha512-uB145eBAhOMsBvEVwyWSgpB3WKLgp1joMS0PjbZtLHyeqEg84K8EG1RnOZhmWD598i4mEAnN3SHyZKU9aWBsmA==}
 
   '@types/estree@1.0.8':
     resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
@@ -2285,6 +2291,8 @@ snapshots:
     optional: true
 
   '@types/ejs@3.1.5': {}
+
+  '@types/epub-gen@0.1.2': {}
 
   '@types/estree@1.0.8': {}
 

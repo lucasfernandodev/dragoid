@@ -32,7 +32,7 @@ export async function readerNovelHomepage(app: FastifyInstance){
       chapterContent: app.novel.chapters[0].content,
       status: app.novel.status,
       language: app.novel.language,
-      thumbnail: `data:image/jpeg;base64,${app.novel.thumbnail}` || '',
+      thumbnail: `data:image/jpeg;base64,${app.novel.thumbnail}`,
       chapter_next_id: app.novel.chapters.length > 1 ? 1 : null,
       source: app.novel?.source || null,
       favicon_path: FAVICON_PATH

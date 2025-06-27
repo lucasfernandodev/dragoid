@@ -15,7 +15,7 @@ export interface PreviewArgs {
 }
 
 export type PreviewOptionsMapped = {
-  [k in keyof typeof CMD_PREVIEW_PROXY_FLAGS]: PreviewArgs[typeof CMD_PREVIEW_PROXY_FLAGS[k]]
+  -readonly [k in keyof typeof CMD_PREVIEW_PROXY_FLAGS]: PreviewArgs[typeof CMD_PREVIEW_PROXY_FLAGS[k]]
 }
 
 

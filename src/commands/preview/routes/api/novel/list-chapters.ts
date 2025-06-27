@@ -11,7 +11,7 @@ export async function listChapters(app: FastifyInstance) {
     }
 
     return reply.send({
-      chapters: app.novel.chapters.map((ch, index) => ({
+      chapters: app.novel.chapters.map((ch) => ({
         title: ch.title,
       }))
     })
