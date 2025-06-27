@@ -1,3 +1,12 @@
+## [0.35.2](https://github.com/lucasfernandodev/dragoid/compare/v0.35.1...v0.35.2) (2025-06-27)
+
+
+### Bug Fixes
+
+* type inference incorrectly sets all fields as optional by default ([cc346bc](https://github.com/lucasfernandodev/dragoid/commit/cc346bc066f89a8a3dde9a0424af17d68004dc43))
+
+
+
 ## [0.35.1](https://github.com/lucasfernandodev/dragoid/compare/v0.35.0...v0.35.1) (2025-06-27)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * **reader:** implement two new fonts to read chapter ([46b6c91](https://github.com/lucasfernandodev/dragoid/commit/46b6c91264071d40a7ac0d8da48eb17b13006545))
-
-
-
-# [0.33.0](https://github.com/lucasfernandodev/dragoid/compare/v0.32.1...v0.33.0) (2025-06-24)
-
-
-### Features
-
-* implement light mode option ([4f6ffaa](https://github.com/lucasfernandodev/dragoid/commit/4f6ffaa4a493187ffe1b530ce1679f88d2d5e2a3))
 
 
 
