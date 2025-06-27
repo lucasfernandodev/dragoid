@@ -5,10 +5,10 @@ export const logger = {
    * Logs an informational message to the console in blue color.
    *
    * @param {string} message - The main message to log.
-   * @param {...any} optionalParams - Additional parameters to append to the log.
+   * @param {...unknown} optionalParams - Additional parameters to append to the log.
    * @returns {void}
    */
-  info: (message: string, ...optionalParams: any[]): void => {
+  info: (message: string, ...optionalParams: unknown[]): void => {
     console.info(chalk.white(message, ...optionalParams));
   },
 
@@ -16,10 +16,10 @@ export const logger = {
    * Logs a warning message to the console in yellow color.
    *
    * @param {string} message - The warning message to log.
-   * @param {...any} optionalParams - Additional parameters to append to the warning.
+   * @param {...unknown} optionalParams - Additional parameters to append to the warning.
    * @returns {void}
    */
-  warning: (message: string, ...optionalParams: any[]): void => {
+  warning: (message: string, ...optionalParams: unknown[]): void => {
     console.warn(chalk.yellow(message, ...optionalParams));
   },
 
@@ -27,10 +27,10 @@ export const logger = {
     * Logs an error message to the console in red color.
     *
     * @param {string} message - The error message to log.
-    * @param {...any} optionalParams - Additional parameters to append to the error output.
+    * @param {...unknown} optionalParams - Additional parameters to append to the error output.
     * @returns {void}
     */
-  error: (message: string, ...optionalParams: any[]): void => {
+  error: (message: string, ...optionalParams: unknown[]): void => {
     console.error(chalk.red(message, ...optionalParams));
   },
 
@@ -38,10 +38,10 @@ export const logger = {
    * Logs a debug message to the console in gray color if debugging is enabled.
    *
    * @param {string} message - The debug message to log.
-   * @param {...any} optionalParams - Additional parameters to append to the debug output.
+   * @param {...unknown} optionalParams - Additional parameters to append to the debug output.
    * @returns {void}
    */
-  debug: (message: string, ...optionalParams: any[]): void => {
+  debug: (message: string, ...optionalParams: unknown[]): void => {
     if (process.env.DEBUG === 'true') {
       console.log(chalk.gray(message, ...optionalParams));
     }

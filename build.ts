@@ -20,6 +20,7 @@ esbuild.build({
     'typescript',
     'puppeteer',
     'puppeteer-extra',
-    'puppeteer-extra-plugin-stealth'
+    'puppeteer-extra-plugin-stealth',
+    'eslint'
   ]
 }).catch(() => process.exit(1));

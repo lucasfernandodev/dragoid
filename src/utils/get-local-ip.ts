@@ -1,7 +1,7 @@
 import os from 'node:os';
 
 export function getLocalIPAddress() {
-  const interfaces = os.networkInterfaces() as any;
+  const interfaces = os.networkInterfaces();
 
   for (const interfaceName in interfaces) {
     for (const iface of interfaces[interfaceName]) {

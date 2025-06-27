@@ -25,7 +25,8 @@ export async function fileExists(filePath: string) {
   try {
     await fs.access(filePath);
     return true;
-  } catch (error) {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_) {
     return false;
   }
 }

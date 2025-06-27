@@ -2,9 +2,9 @@ import { logger } from '../../utils/logger.ts';
 import { fastifyInstance } from './../../lib/fastify.ts';
 import { ApplicationError } from './../../errors/application-error.ts';
 import type { IChapterData, INovelData } from '../../types/bot.ts';
-import type { FastifyInstance } from 'fastify';
+import type { FastifyError, FastifyInstance } from 'fastify';
 import { readerNovelRoutes } from './routes/ejs/novel/index.ts';
-import { getLocalIPAddress } from '../../utils/get-local-ip.ts';  
+import { getLocalIPAddress } from '../../utils/get-local-ip.ts';
 import { apiNovelRoutes } from './routes/api/novel/index.ts';
 import { readerSingleChapterRoutes } from './routes/ejs/single-chapter/index.ts';
 import chalk from 'chalk';
@@ -14,7 +14,7 @@ interface ServerOptions {
   port: number;
 }
 
-type ServerRoutes  = 'novel' | 'chapter'
+type ServerRoutes = 'novel' | 'chapter'
 
 interface IServer {
   files: {
@@ -78,12 +78,15 @@ export class Server {
     logger.info('[-] You can start reading your novel at the url:');
     logger.info(chalk.blueBright(urlLocal));
     if (this.opt.isPublic) {
-      const ip = getLocalIPAddress()
-      ip && logger.info(chalk.blueBright(`http://${ip}:${this.opt.port}`));
+      if (getLocalIPAddress()) {
+        const ip = getLocalIPAddress();
+        const port = this.opt.port
+        logger.info(chalk.blueBright(`http://${ip}:${port}`))
+      }
     }
   }
 
-  private handleInitError = (err: any) => {
+  private handleInitError = (err: FastifyError) => {
     if (err?.code === 'EADDRINUSE') {
       throw new ApplicationError(
         `Server initialization failed. Port ${this.opt.port} is already in use by another process.`,
@@ -106,8 +109,6 @@ export class Server {
 
     this.logStartup()
   }
-
-
 
 
 

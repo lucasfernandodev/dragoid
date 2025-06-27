@@ -8,8 +8,8 @@ export const isDir = (path: string): boolean => {
   try {
     const stat = lstatSync(resolveUserPath(path));
     return stat.isDirectory();
-  } catch (e) {
-    // lstatSync throws an error if path doesn't exist
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  } catch (_) { 
     return false;
   }
 }
