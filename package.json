@@ -18,6 +18,11 @@
     "prepublishOnly": "npm run build",
     "lint": "eslint . --ext .ts"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "pnpm lint"
+    }
+  },
   "keywords": [
     "novel",
     "bot",
@@ -63,6 +68,7 @@
     "@types/yargs": "^17.0.33",
     "eslint": "^9.29.0",
     "globals": "^16.2.0",
+    "husky": "^9.1.7",
     "typescript-eslint": "^8.35.0"
   },
   "optionalDependencies": {
