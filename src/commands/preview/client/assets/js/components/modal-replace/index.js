@@ -1,43 +1,38 @@
+import { ui } from "../../utils/ui.js";
 import { Modal } from "../modal/index.js";
-import { TermsListManagerView } from "./custom-replacement-options/index.js";
-import { replacementOverview } from "./overview/index.js";
+import { Dashboard } from "./Dashboard/index.js";
+import { ReplacementListEditor } from "./Editor/index.js";
 
 
-export const modalReplacement = () => {
+export const ModalReplace = () => {
+  const { div } = ui();
   const modalId = 'modal-replacement'
   const buttonTrigger = document.querySelector('.btn-open-replacement-modal')
 
-  const modal = new Modal(modalId, 'Substitution Lists Overview', replacementOverview())
+  const modal = new Modal(
+    {
+      id: modalId,
+      title: 'Substitution Lists',
+      content: div('loading'),
+      attr: {
+        translate: 'no'
+      }
+    }
+  )
+
   modal.attach(buttonTrigger)
 
-  const modalHTML = modal.getModal()
-
-  modalHTML.setAttribute('translate', 'no')
-
-
-  // Toggle for next view
-  const showListManagerView = (listId) => {
-    // Creating view with callback to return on success
-    const termsListManagerView = TermsListManagerView(listId, () => {
-      modal.setView('Substitution Lists Overview', replacementOverview())
-    })
-
-    // Add event to back view on click
-    termsListManagerView.querySelector('.btn-back').addEventListener('click', () => {
-      modal.setView('Substitution Lists Overview', replacementOverview())
-    })
-
-    // set new view
-    modal.setView('Edit Substitution List', termsListManagerView)
+  const showDashboard = () => {
+    const DashboardView = Dashboard(showEditor)
+    modal.setView('Substitution List', DashboardView)
   }
 
+  const showEditor = (listId) => {
+    const EditorView = ReplacementListEditor(listId, showDashboard)
+    modal.setView(`Substituion Editor: ${listId}`, EditorView)
+  }
 
-  // if click to edit loading next view
-  modalHTML.addEventListener('click', ev => {
-    const btn = ev.target.closest('.btn-edit');
-    if (!btn) return;
-
-    const listId = btn.getAttribute('data-id');
-    showListManagerView(listId)
+  modal.onShow(() => {
+    showDashboard()
   })
 }

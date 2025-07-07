@@ -1,16 +1,20 @@
-import { makeElement } from "../../utils/make-element.js";
+
+import { ui } from "../../utils/ui.js";
 import { Modal } from "../modal/index.js";
 import { chapterListView } from "./chapter-list-view.js";
 
 export const modalChapterList = () => {
+  const { span } = ui()
   const modalTitle = 'Chapters List'
   const buttonstoOpenModal = document.querySelectorAll('.toggle-dialog-chapter-list');
   const currentChapterId = Number.parseInt(window.location.search.replace("?id=", ""));
 
   const modal = new Modal(
-    'modal-chapter-list',
-    modalTitle,
-    makeElement('span', { class: 'loading' }, '') // loading
+    {
+      id: 'modal-chapter-list',
+      title: modalTitle,
+      content: span({ class: 'loading' })
+    }
   )
 
   modal.onShow(async () => {

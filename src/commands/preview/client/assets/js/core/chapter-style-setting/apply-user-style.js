@@ -38,23 +38,43 @@ export const applyUserStyles = () => {
     let isDarkModeActive = true;
     if (typeof data?.isDarkMode !== 'undefined') {
       isDarkModeActive = data?.isDarkMode
-    }else{
-       if(!window.matchMedia('(prefers-color-scheme: dark)').matches){
+    } else {
+      if (!window.matchMedia('(prefers-color-scheme: dark)').matches) {
         isDarkModeActive = false;
-       }
+      }
     }
 
     if (isDarkModeActive === false) {
+      root.querySelectorAll('*').forEach(el => {
+        el.classList.remove('dark');
+        el.classList.add('light');
+      });
       root.classList.add('light')
       root.classList.remove('dark')
     } else {
+      root.querySelectorAll('*').forEach(el => {
+        el.classList.add('dark');
+        el.classList.remove('light');
+      });
       root.classList.remove('light')
       root.classList.add('dark')
-    } 
+    }
   }
 
   updateCss();
 
-  window.addEventListener('storage-chapter-style', updateCss)
+  window.addEventListener('storage-chapter-style', updateCss);
+  const observer = new MutationObserver(muts => {
+  muts.forEach(m => {
+    m.addedNodes.forEach(node => {
+      if (node.nodeType === 1) { // só elementos
+        updateCss()
+      }
+    });
+  });
+});
+
+// observa inserções em todo o <body>
+observer.observe(document.body, { childList: true, subtree: true });
 }
 

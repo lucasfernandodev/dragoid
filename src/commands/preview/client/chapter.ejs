@@ -58,6 +58,10 @@
       }
 
       if (!isActiveDarkTheme) {
+        root.querySelectorAll('*').forEach(el => {
+          el.classList.remove('dark');
+          el.classList.add('light');
+        });
         root.classList.add('light')
         root.classList.remove('dark')
       }

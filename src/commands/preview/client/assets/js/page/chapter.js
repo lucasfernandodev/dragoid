@@ -1,19 +1,21 @@
 import { modalChapterList } from "../components/modal-chapter-list/index.js";
 import { modalChapterStyle } from "../components/modal-chapter-style/index.js";
-import { modalReplacement } from "../components/modal-replace/index.js";
+import { ModalReplace } from "../components/modal-replace/index.js";
 import { applyUserStyles } from "../core/chapter-style-setting/apply-user-style.js";
 import { ChapterHistory } from "../core/history/chapter-history.js";
 import { applyUserReplacements } from "../core/replacement/apply-user-replacements.js";
 import { ShortcutKeyboardNavigation } from "../core/shortcuts/keyboard/navigation.js";
 
-import { ShortcutTouchShowFloatingNavigation } from "../core/shortcuts/touch/show-floating-navigation.js";
+import {
+  ShortcutTouchShowFloatingNavigation
+} from "../core/shortcuts/touch/show-floating-navigation.js";
 
 
 const initChapterPage = async () => {
 
   // === Attach modais ===
   modalChapterStyle()
-  modalReplacement()
+  ModalReplace()
   modalChapterList()
 
 

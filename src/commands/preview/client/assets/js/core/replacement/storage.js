@@ -21,12 +21,13 @@ export class ReplacementStorage {
 
   create = (id, list = {}) => {
     const isExistId = id in this.#storage;
-    if (isExistId) {
-      throw new Error('Id exist')
-    }
 
     if (id.length === 0) {
-      throw new Error('Id invalid')
+      throw new Error('Invalid Id: value cannot be empty.')
+    }
+
+    if (isExistId) {
+      throw new Error(`Id "${id}" already exists.`)
     }
 
     this.#storage[id] = list;
