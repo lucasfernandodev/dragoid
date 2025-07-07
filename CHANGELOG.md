@@ -1,3 +1,12 @@
+# [0.37.0](https://github.com/lucasfernandodev/dragoid/compare/v0.36.1...v0.37.0) (2025-07-07)
+
+
+### Features
+
+* **reader:** Add new replacement modal style ([945b839](https://github.com/lucasfernandodev/dragoid/commit/945b839df9751c9f7b3b982f9dc70aeb9ee7ffd5))
+
+
+
 ## [0.36.1](https://github.com/lucasfernandodev/dragoid/compare/v0.36.0...v0.36.1) (2025-06-27)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * **reader:** resolving server init log issue with wrong colors and text ([c6506d4](https://github.com/lucasfernandodev/dragoid/commit/c6506d4dcc65324e8adc5b3691d0b2af934f0e1a))
-
-
-
-# [0.35.0](https://github.com/lucasfernandodev/dragoid/compare/v0.34.1...v0.35.0) (2025-06-26)
-
-
-### Features
-
-* **reader:** Improving responsiveness ([f5a8847](https://github.com/lucasfernandodev/dragoid/commit/f5a8847dfed252f74f26deae4cf8ed43d21ddcc2))
 
 
 
