@@ -231,7 +231,7 @@
   max-height: 400px;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 8px;
+  padding: 8px 0px;
   padding-left: 0px;
 }
 
@@ -263,7 +263,6 @@
   flex-direction: column;
   gap: 12px;
   padding: 10px 8px;
-  padding-right: 6px;
   border: 1px solid var(--p-item-border-color);
   border-radius: 6px;
   background: var(--p-item-background);
@@ -324,9 +323,15 @@
     }
 
     & span {
-      position: relative;
-      top: -0.1px;
+      display: none;
+
+      @media (min-width: 390px) {
+        position: relative;
+        top: -0.1px;
+      }
     }
+
+
 
     &:last-child {
       height: 40px;
@@ -604,7 +609,7 @@
 
   & .button {
     height: 42px;
-    width: 180px;
+    width: 116px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -615,6 +620,14 @@
     cursor: pointer;
     background-color: var(--p-button-background);
     color: var(--p-button-color);
+
+    @media (min-width: 390px) {
+      width: 140px;
+    }
+
+    @media (min-width: 410px) {
+      width: 180px;
+    }
   }
 
   & .button:is(:disabled) {

@@ -18,7 +18,7 @@ html.dark {
 
   /* ChapterPage */
   --page-background: var(--color-dark-400);
-  --page-content-color: var(--color-light-400);
+  --page-content-color: var(--color-light-500);
   --page-navigation-background: var(--color-dark-700);
   --page-navigation-divider-background: var(--color-dark-900);
   --page-navigation-houver-background: var(--color-dark-900);
