@@ -1,3 +1,12 @@
+## [0.37.1](https://github.com/lucasfernandodev/dragoid/compare/v0.37.0...v0.37.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **reader:** Fix wrong style ([e065224](https://github.com/lucasfernandodev/dragoid/commit/e06522416443abfe355669a66bc9665df2be5d20))
+
+
+
 # [0.37.0](https://github.com/lucasfernandodev/dragoid/compare/v0.36.1...v0.37.0) (2025-07-07)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * type inference incorrectly sets all fields as optional by default ([cc346bc](https://github.com/lucasfernandodev/dragoid/commit/cc346bc066f89a8a3dde9a0424af17d68004dc43))
-
-
-
-## [0.35.1](https://github.com/lucasfernandodev/dragoid/compare/v0.35.0...v0.35.1) (2025-06-27)
-
-
-### Bug Fixes
-
-* **reader:** resolving server init log issue with wrong colors and text ([c6506d4](https://github.com/lucasfernandodev/dragoid/commit/c6506d4dcc65324e8adc5b3691d0b2af934f0e1a))
 
 
 
