@@ -2,7 +2,7 @@ import type { FastifyInstance } from "fastify";
 import { ApplicationError } from "../../../../../errors/application-error.ts";
 
 export async function listChapters(app: FastifyInstance) {
-  app.get("/api/chapters", async (req, reply) => {
+  app.get("/api/chapters", async (_, reply) => {
     if (!app?.novel) {
       throw new ApplicationError(
         "Chapters cannot be retrieved because novel data is not loaded.\

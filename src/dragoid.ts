@@ -49,7 +49,7 @@ _yargs
       type: 'boolean',
     }
   })
-  .fail((msg, err) => {
+  .fail((_, err) => {
     if (err) {
       errorHandle(err)
       return;

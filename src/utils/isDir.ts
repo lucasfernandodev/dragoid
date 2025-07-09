@@ -1,4 +1,4 @@
-import {lstatSync} from 'node:fs'; 
+import { lstatSync } from 'node:fs';
 import { resolveUserPath } from './path.ts';
 /**
  * @param {string} path - The path.
@@ -8,8 +8,7 @@ export const isDir = (path: string): boolean => {
   try {
     const stat = lstatSync(resolveUserPath(path));
     return stat.isDirectory();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (_) { 
+  } catch (_) {
     return false;
   }
 }

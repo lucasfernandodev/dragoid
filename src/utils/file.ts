@@ -19,13 +19,12 @@ export const readFile = async <T>(filepath: string) => {
     throw new ApplicationError(`Unable to read file. Check existence and permissions.`, error);
   }
 }
- 
+
 
 export async function fileExists(filePath: string) {
   try {
     await fs.access(filePath);
     return true;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   } catch (_) {
     return false;
   }

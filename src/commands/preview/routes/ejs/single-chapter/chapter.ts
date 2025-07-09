@@ -5,15 +5,15 @@ import { ApplicationError } from "../../../../../errors/application-error.ts";
 
 
 export async function readerSingleChapter(app: FastifyInstance){
-  app.register(function (instance, options, done) {
-    instance.setNotFoundHandler(function (request, reply) {
+  app.register(function (instance, _, done) {
+    instance.setNotFoundHandler(function (_, reply) {
       return reply.view("not-found.ejs", { favicon_path: FAVICON_PATH })
     })
     done()
   })
 
 
-  app.get('/', async (request, reply) => {
+  app.get('/', async (_, reply) => {
 
     if (!app?.chapter) {
       throw new ApplicationError(
