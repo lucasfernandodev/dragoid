@@ -1,6 +1,6 @@
 import { BotError } from "../../../errors/bot-error.ts";
 import { puppeteerInstance } from "../../../lib/puppeteer.ts";
-import type { DownloadNovelOptions, IChapterData, INovelData } from "../../../types/bot.ts";
+import type { MultiDownloadChapterOptions, IChapterData, INovelData } from "../../../types/bot.ts";
 import { delay } from "../../../utils/delay.ts";
 import { logger } from "../../../utils/logger.ts";
 import { ThumbnailProcessor } from "../../download-thumbnail.ts";
@@ -11,7 +11,7 @@ import { collectNovelInfo } from "./parse-html/collect-novel-info.ts";
 
 export const _getNovel = async (
   url: string,
-  opt: DownloadNovelOptions
+  opt: MultiDownloadChapterOptions
 ): Promise<INovelData> => {
 
   const LANGUAGE = 'english';

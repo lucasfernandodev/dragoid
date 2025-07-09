@@ -2,14 +2,14 @@ import { ThumbnailProcessor } from './../../download-thumbnail.ts';
 import axios from 'axios';
 import { type CheerioAPI, load } from 'cheerio';
 import { readnovelfullGetChapter } from './_get-chapter.ts';
-import type { DownloadNovelOptions, INovelData } from '../../../types/bot.ts';
+import type { MultiDownloadChapterOptions, INovelData } from '../../../types/bot.ts';
 import { BotError } from '../../../errors/bot-error.ts';
 import { processChaptersList } from '../../process-chapter-list.ts';
 
 
 export const readnovelfullGetNovel = async (
   url: string,
-  opt: DownloadNovelOptions = {}
+  opt: MultiDownloadChapterOptions = {}
 ): Promise<INovelData> => {
 
   const LANGUAGE = 'english'

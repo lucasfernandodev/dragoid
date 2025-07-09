@@ -17,7 +17,9 @@
     "postbuild": "cp -r ./src/commands/preview/client ./bin/ && cp ./node_modules/wasm-vips/lib/vips-node.mjs ./bin",
     "prepublishOnly": "npm run build",
     "lint": "eslint . --ext .ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "pretest": "NODE_NO_WARNINGS=1  node --experimental-transform-types ./tests/fetch-assets.ts",
+    "test": "NODE_NO_WARNINGS=1 node --experimental-transform-types --test"
   },
   "keywords": [
     "novel",

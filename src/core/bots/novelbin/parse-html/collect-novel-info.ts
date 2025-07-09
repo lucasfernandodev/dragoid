@@ -1,4 +1,4 @@
-import type { INovelData } from "../../../../types/bot";
+import type { INovelData } from "../../../../types/bot.ts";
 
 interface CollectDataReturn extends Omit<INovelData, 'language'> {
   chapterListPageUrl: string

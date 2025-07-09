@@ -1,16 +1,19 @@
 import { DefaultCommand } from "../../types/command.ts";
-import { downloadNovelService } from './options/download-novel.ts';
+import { downloadNovelService, type DownloadNovelOutputFormat } from './options/download-novel.ts';
 import { validateInput } from "./validate-input.ts";
 import { Bot } from "../../types/bot.ts";
 import { ApplicationError } from "../../errors/application-error.ts";
 import {
-  type DownloadArgs,
   CMD_DOWNLOAD_PROXY_FLAGS,
   setDownloadOptions,
+  type DownloadArgs,
   type DownloadOptionsMap
 } from "./options.ts";
 import { getSiteName } from "../../utils/get-site-name.ts";
-import { downloadChapterService } from './options/download-chapter.ts';
+import {
+  downloadChapterService,
+  type DownChapterOuputFormat
+} from './options/download-chapter.ts';
 import { listCrawlersService } from './options/list-crawlers.ts';
 import { listOutputFormatsService } from './options/list-output-formats.ts';
 import type { Argv } from "yargs";
@@ -42,7 +45,8 @@ export class Download implements DefaultCommand {
     // Map CLI flag values from argv to internal option keys
     for (const [proxyName, flag] of Object.entries(CMD_DOWNLOAD_PROXY_FLAGS)) {
       const value = argv[flag]
-      this.options[proxyName] = value
+      const proxy = proxyName as keyof DownloadOptionsMap
+      this.options[proxy] = value as never
     }
 
     return options;
@@ -76,14 +80,19 @@ export class Download implements DefaultCommand {
     // Is download mode?
     if (mode && url && outputFormat) {
       const siteName = getSiteName(url);
-      const bot = this.bots.find(bot => bot.name === siteName);
+      const bot = this.bots.find(bot => bot.options.name === siteName);
 
       if (!bot) {
         throw new ApplicationError('Website not supported');
       }
 
       if (mode === 'chapter') {
-        await downloadChapterService(bot, url, outputFormat, path || null)
+        await downloadChapterService(
+          bot,
+          url,
+          outputFormat as DownChapterOuputFormat,
+          path
+        )
       }
 
       if (mode === 'novel') {
@@ -92,7 +101,13 @@ export class Download implements DefaultCommand {
           skip
         }
 
-        await downloadNovelService(bot, url, outputFormat, path || null, opt)
+        await downloadNovelService(
+          bot,
+          url,
+          outputFormat as DownloadNovelOutputFormat,
+          path,
+          opt
+        )
       }
     }
   }

@@ -31,6 +31,9 @@ export const logger = {
     * @returns {void}
     */
   error: (message: string, ...optionalParams: unknown[]): void => {
+    if (typeof message !== 'string') {
+      message = JSON.stringify(message, null, 2)
+    }
     console.error(chalk.red(message, ...optionalParams));
   },
 
@@ -68,7 +71,7 @@ export const logger = {
 export function printChaptersDownloadProgress(current: number, total: number) {
   if (process.env.DEBUG !== 'true') {
     logger.infoProgress(`[+] Downloaded ${current}/${total} chapters`, current === total);
-  } else { 
+  } else {
     logger.debug(`[DEBUG] Download ${current}/${total} of chapters`)
   }
 }

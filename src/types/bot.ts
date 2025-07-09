@@ -10,41 +10,54 @@ export interface INovelData {
   source?: string;
 }
 
-export interface IChapterData{
+export interface INovelMeta {
+  title: string
+  description: string[]
+  genres: string[];
+  author: string[];
+  source?: string;
+  thumbnail?: string;
+  language: string;
+  chapterList: string;
+  status: string;
+}
+
+export interface IChapterData {
   title: string;
   content: string[];
 }
 
-type BotHelp = {
-  scraping_tool: string;
-  site: string;
+export type ChapterListItem = {
+  title?: string;
+  url: string;
 }
 
-export type DownloadNovelOptions = Partial<{
+export type ChapterList = ChapterListItem[]
+
+export interface MultiDownloadChapterOptions {
   limit: number;
   skip: number;
-  chapterDownloadDelay: number;
-}>
+  delay: number;
+} 
 
 
-/**
- * Web crawlers responsible for navigate to websites and download a novel or a single chapter
- */
-export abstract class Bot{
-  public name!: string;
-  public help!: BotHelp;
+export interface BotOptions {
+  name: string;
+  help: {
+    scraping_tool: string;
+    site: string;
+  },
+  imageDownloader: (url: string, quality?: number) => Promise<string | null>,
+  collect: {
+    novelInfo: (html: string) => INovelMeta;
+    chapterList: (html: string) => ChapterList;
+    chapter: (html: string) => IChapterData;
+  }
+}
 
-  /**
-   * Fetches novel data from the given URL.
-   * @param {string} url - The URL of the novel page.
-   * @returns {Promise<INovelData | null>} A promise resolving to novel data or null if not found.
-   */
-  getNovel!: (url: string, opt: DownloadNovelOptions) => Promise<INovelData | null>;
-
-  /**
-   * Fetches a single chapter from the given URL.
-   * @param {string} url - The URL of the chapter page.
-   * @returns {Promise<IChapterData | null>} A promise resolving to chapter data or null if not found.
-   */
-  getChapter!: (url: string) => Promise<IChapterData | null>;
+export abstract class Bot {
+  public options!: BotOptions
+  public getNovel!: (url: string, opt: Partial<MultiDownloadChapterOptions>) => Promise<INovelData>
+  public getChapter!: (url: string) => Promise<IChapterData>
+  public getAllChapter!: (chapterList: ChapterList, opt: Partial<MultiDownloadChapterOptions>) => Promise<IChapterData[]>
 }

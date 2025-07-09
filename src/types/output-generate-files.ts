@@ -8,9 +8,9 @@ type SupportedKeys = keyof typeof outputSupported;
 export type OutputSupportedType = {
   [K in SupportedKeys]: {
     [F in (typeof outputSupported)[K][number]]: K extends "novel"
-      ? (filename:string,novel: INovelData) => Promise<void>
+      ? (filename:string,novel: INovelData, path?: string) => Promise<void>
       : K extends "chapter"
-      ? (filename:string,chapter: IChapterData) => Promise<void>
+      ? (filename:string,chapter: IChapterData, path?: string) => Promise<void>
       : never;
   };
 };

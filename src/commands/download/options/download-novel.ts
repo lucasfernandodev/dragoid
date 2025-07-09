@@ -1,15 +1,19 @@
 import chalk from "chalk";
 import { BotError } from "../../../errors/bot-error.ts";
-import type { Bot, DownloadNovelOptions } from "../../../types/bot.ts";
+import type { Bot, MultiDownloadChapterOptions } from "../../../types/bot.ts";
 import { logger } from "../../../utils/logger.ts";
 import { generateOutputFile } from "../output.ts";
+import type { Writeable } from "../../../types/writeable.ts";
+import type { outputSupported } from "../../../core/configurations.ts";
+
+export type DownloadNovelOutputFormat = Writeable<typeof outputSupported.novel[number]>
 
 export const downloadNovelService = async (
   bot: Bot,
   url: string,
-  outputFormat: string,
-  outputFolder: string | null,
-  opts: DownloadNovelOptions
+  outputFormat: DownloadNovelOutputFormat,
+  outputFolder?: string,
+  opts: Partial<MultiDownloadChapterOptions> = {}
 ) => {
   logger.info('[-] Starting retrive novel')
   const novel = await bot.getNovel(url, opts);
