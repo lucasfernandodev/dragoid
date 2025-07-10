@@ -9,14 +9,17 @@ import { language } from "./core/configurations.ts";
 import { getCurrentVersion } from "./utils/get-current-version.ts";
 import type { DownloadArgs } from "./commands/download/options.ts";
 import type { PreviewArgs } from "./commands/preview/options.ts";
-import { createBot69shubaInstance } from "./core/rebots/69shuba/factory.ts";
+import { createBot69shubaInstance } from "./commands/download/rebots/69shuba/factory.ts";
+import { createBotNovelBinInstance } from "./commands/download/rebots/novelbin/factorio.ts";
 
 const _yargs = yargs(process.argv.slice(2))
 
 const bot69shuba = createBot69shubaInstance()
+const botNovelBin = createBotNovelBinInstance()
 
 const bots = [
-  bot69shuba
+  bot69shuba,
+  botNovelBin
 ]
 
 const downloadClient = new Download(bots)

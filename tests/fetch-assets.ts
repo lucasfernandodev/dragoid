@@ -2,7 +2,7 @@ import fs, { writeFile } from 'node:fs/promises';
 import path from "path";
 import { createFetcher } from "../src/tools/fetcher/factorio.ts"
 import { logger } from '../src/utils/logger.ts';
-import { testPages } from './assets/pages.ts';
+import { testPages } from './pages.ts';
 
 async function ensureDir(dir: string) {
   await fs.mkdir(dir, { recursive: true });

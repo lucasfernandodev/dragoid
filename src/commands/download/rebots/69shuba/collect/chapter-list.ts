@@ -1,6 +1,6 @@
 import { load } from "cheerio"
-import type { ChapterList } from "../../../../types/bot.ts";
-import { BotError } from "../../../../errors/bot-error.ts";
+import type { ChapterList } from "../../../../../types/bot.ts";
+import { BotError } from "../../../../../errors/bot-error.ts";
 
 export const collectChapterList = (page: string) => {
   const $ = load(page);

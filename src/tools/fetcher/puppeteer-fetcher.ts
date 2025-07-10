@@ -22,7 +22,6 @@ export class PuppetterFetcher implements IFecherPupeetter {
         args: [
           '--no-sandbox',
           '--disable-setuid-sandbox',
-          '--disable-dev-shm-usage',
           '--disable-gpu',
           '--no-zygote',
           '--disable-software-rasterizer',
@@ -57,15 +56,15 @@ export class PuppetterFetcher implements IFecherPupeetter {
     });
 
     try {
-      await page.goto(url, { timeout: 60000, waitUntil: 'networkidle2' })
-      const title = await page.waitForSelector('h1', { timeout: 60000 });
+      await page.goto(url, { timeout: 60000 })
+      const body = await page.waitForSelector('body', { timeout: 60000 });
 
-      if (!title) {
+      if (!body) {
         await delay(5000)
         await page.reload()
-        await page.waitForSelector('h1', { timeout: 10000 })
+        await page.waitForSelector('body', { timeout: 10000 })
       }
-      
+
 
       await page.evaluate(() => {
         window.localStorage.clear()

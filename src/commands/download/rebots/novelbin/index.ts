@@ -1,21 +1,32 @@
-import { BotError } from "../../../errors/bot-error.ts";
-import { createFetcher } from "../../../tools/fetcher/factorio.ts";
-import type { IChapterData, ChapterList, BotOptions, MultiDownloadChapterOptions, Bot } from "../../../types/bot.ts";
-import { delay } from "../../../utils/delay.ts";
-import { logger } from "../../../utils/logger.ts";
-import { processChaptersList } from "../../process-chapter-list.ts";
+import { processChaptersList } from "../../../../core/process-chapter-list.ts";
+import { BotError } from "../../../../errors/bot-error.ts";
+import { createFetcher } from "../../../../tools/fetcher/factorio.ts";
+import type {
+  Bot,
+  BotOptions,
+  ChapterList,
+  IChapterData,
+  MultiDownloadChapterOptions
+} from "../../../../types/bot.ts";
+import { delay } from "../../../../utils/delay.ts";
+import { logger } from "../../../../utils/logger.ts";
 
-export class Bot69shuba implements Bot {
-  public options!: BotOptions;
+
+export class BotNovelBin implements Bot {
+  public options: BotOptions;
   public fetcher = createFetcher('browser')
 
   constructor(options: BotOptions) {
     this.options = options;
   }
 
-  public getNovel = async (url: string, opt: Partial<MultiDownloadChapterOptions>) => {
+  public getNovel = async (
+    url: string,
+    opt: Partial<MultiDownloadChapterOptions>
+  ) => {
     const meta = await this.getNovelInfo(url);
-
+    logger.debug('Meta info collect:\n', JSON.stringify(meta, null, 2))
+    
     if (!meta.chapterList) {
       throw new BotError('Unable to retrieve chapter list page url')
     }
@@ -36,7 +47,8 @@ export class Bot69shuba implements Bot {
     }
 
     return novel;
-  }
+  };
+
 
   private getNovelInfo = async (url: string) => {
     const { collect } = this.options;

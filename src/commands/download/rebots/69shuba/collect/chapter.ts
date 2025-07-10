@@ -1,5 +1,5 @@
 import { load } from "cheerio"
-import { BotError } from "../../../../errors/bot-error.ts";
+import { BotError } from "../../../../../errors/bot-error.ts";
 
 export const collectChapter = (page: string) => {
   const $ = load(page);

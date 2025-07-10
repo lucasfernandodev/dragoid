@@ -1,7 +1,7 @@
 import { load } from "cheerio";
-import type { INovelMeta } from "../../../../types/bot.ts";
-import { BotError } from "../../../../errors/bot-error.ts";
-import { logger } from "../../../../utils/logger.ts";
+import type { INovelMeta } from "../../../../../types/bot.ts";
+import { BotError } from "../../../../../errors/bot-error.ts";
+import { logger } from "../../../../../utils/logger.ts";
 
 
 export const collectNovelInfo = (page: string): INovelMeta => {

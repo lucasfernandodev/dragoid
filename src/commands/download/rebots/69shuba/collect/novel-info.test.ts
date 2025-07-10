@@ -1,12 +1,12 @@
 import fs from 'node:fs/promises';
 import { describe, it } from "node:test";
 import { collectNovelInfo } from "./novel-info.ts";
-import { TEST_ASSETS_HTML_PATH } from '../../../configurations.ts'; 
+import { TEST_ASSETS_HTML_PATH } from '../../../../../core/configurations.ts'; 
 import assert from 'node:assert';
 import { load } from 'cheerio';
-import { testPages } from '../../../../../tests/assets/pages.ts';
+import { testPages } from '../../../../../../tests/pages.ts';
 
-describe('69shuba - Test collect information from the novel', async () => {
+describe('69shuba - Test parse html information from the novel', async () => {
   const path = TEST_ASSETS_HTML_PATH
   const filename = testPages['69shuba-novel'].targetName
   const content = await fs.readFile(`${path}/${filename}.html`, 'utf-8');
