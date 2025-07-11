@@ -1,3 +1,13 @@
+# [0.38.0](https://github.com/lucasfernandodev/dragoid/compare/v0.37.1...v0.38.0) (2025-07-11)
+
+
+### Features
+
+* Add test command for husky ([5a05bd0](https://github.com/lucasfernandodev/dragoid/commit/5a05bd05372b53f7beaeba2aaef0a72d1476ed31))
+* refactor bot and add tests ([425554a](https://github.com/lucasfernandodev/dragoid/commit/425554a31ce5b21e9abcbfed5e728a1bdeb3f5dd))
+
+
+
 ## [0.37.1](https://github.com/lucasfernandodev/dragoid/compare/v0.37.0...v0.37.1) (2025-07-08)
 
 
@@ -31,15 +41,6 @@
 ### Features
 
 * **bot:** Improving collect data validation ([f8f4068](https://github.com/lucasfernandodev/dragoid/commit/f8f4068f40cbceacd13df7ce17217aa1a2f42ae2))
-
-
-
-## [0.35.2](https://github.com/lucasfernandodev/dragoid/compare/v0.35.1...v0.35.2) (2025-06-27)
-
-
-### Bug Fixes
-
-* type inference incorrectly sets all fields as optional by default ([cc346bc](https://github.com/lucasfernandodev/dragoid/commit/cc346bc066f89a8a3dde9a0424af17d68004dc43))
 
 
 
