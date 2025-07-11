@@ -1,7 +1,7 @@
 import fs from 'node:fs/promises';
 import { describe, it } from "node:test";
 import { collectNovelInfo } from "./novel-info.ts";
-import { TEST_ASSETS_HTML_PATH } from '../../../../../core/configurations.ts'; 
+import { TEST_ASSETS_HTML_PATH } from '../../../../../core/configurations.ts';
 import assert from 'node:assert';
 import { load } from 'cheerio';
 import { testPages } from '../../../../../../tests/pages.ts';
@@ -36,6 +36,11 @@ describe('69shuba - Test parse html information from the novel', async () => {
 
     const expectedMeta = collectNovelInfo(content)
     assert.deepStrictEqual(meta, expectedMeta);
+  })
+
+  it('Must return a valid title that is not empty', () => {
+    const result = collectNovelInfo(content)
+    assert.ok(typeof result.title !== 'undefined' && result.title.length > 0)
   })
 
   it('Should throw when the title is not found.', () => {

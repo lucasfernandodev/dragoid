@@ -3,9 +3,9 @@ import { logger } from "../../../utils/logger.ts";
 
 export const listCrawlersService = (bots: Bot[]) => {
   const content = bots.map(bot => {
-    const name = bot.name;
-    const tool = bot.help.scraping_tool;
-    const site = bot.help.site;
+    const name = bot.options.name;
+    const tool = bot.options.help.scraping_tool;
+    const site = bot.options.help.site;
 
     return `Bot ${name} \n` + `Tool: ${tool} \n` + `Site: ${site} \n\n`;
   });

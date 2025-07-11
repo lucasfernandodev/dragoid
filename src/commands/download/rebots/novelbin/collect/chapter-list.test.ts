@@ -6,13 +6,14 @@ import { collectChapterList } from './chapter-list.ts';
 import assert from 'node:assert';
 import { load } from 'cheerio';
 
-describe('NovelBin - Test parse html chapter list', async () => {
+describe('NovelBin - Extract the list of chapters from an html', async () => {
   const path = TEST_ASSETS_HTML_PATH
   const filename = testPages['novelbin-chapterList'].targetName
   const content = await fs.readFile(`${path}/${filename}.html`, 'utf-8');
 
-  it('Should return at least one chapter', () => {
+  it('Should return a non-empty array', () => {
     const result = collectChapterList(content);
+    assert.ok(Array.isArray(result))
     assert.ok(result.length >= 1)
   })
 

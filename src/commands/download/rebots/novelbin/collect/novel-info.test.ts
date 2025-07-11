@@ -47,6 +47,11 @@ describe('NovelBin - Test parse html information from the novel', async () => {
     assert.deepStrictEqual(meta, expectedMeta);
   })
 
+  it('Must return a valid title that is not empty', () => {
+    const result = collectNovelInfo(content)
+    assert.ok(typeof result.title !== 'undefined' && result.title.length > 0)
+  })
+
   it('Should throw when the title is not found.', () => {
     const $ = load(content);
     // Delete title

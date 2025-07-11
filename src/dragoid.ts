@@ -11,15 +11,17 @@ import type { DownloadArgs } from "./commands/download/options.ts";
 import type { PreviewArgs } from "./commands/preview/options.ts";
 import { createBot69shubaInstance } from "./commands/download/rebots/69shuba/factory.ts";
 import { createBotNovelBinInstance } from "./commands/download/rebots/novelbin/factorio.ts";
+import { createBotReadNovelFull } from "./commands/download/rebots/readnovelfull/factorio.ts";
 
 const _yargs = yargs(process.argv.slice(2))
 
 const bot69shuba = createBot69shubaInstance()
 const botNovelBin = createBotNovelBinInstance()
-
+const botReadNovelFull = createBotReadNovelFull()
 const bots = [
   bot69shuba,
-  botNovelBin
+  botNovelBin,
+  botReadNovelFull
 ]
 
 const downloadClient = new Download(bots)
