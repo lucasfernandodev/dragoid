@@ -1,3 +1,12 @@
+# [0.39.0](https://github.com/lucasfernandodev/dragoid/compare/v0.38.0...v0.39.0) (2025-07-12)
+
+
+### Features
+
+* add shortcut for show navigation menu in small scripts without touch only mouse ([890eecf](https://github.com/lucasfernandodev/dragoid/commit/890eecf8c22e5aed2baac668ac53ba3cf7251bcd))
+
+
+
 # [0.38.0](https://github.com/lucasfernandodev/dragoid/compare/v0.37.1...v0.38.0) (2025-07-11)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * add husky config ([dcefedf](https://github.com/lucasfernandodev/dragoid/commit/dcefedf6657f2c385dec257e867062d4a686092e))
-
-
-
-# [0.36.0](https://github.com/lucasfernandodev/dragoid/compare/v0.35.2...v0.36.0) (2025-06-27)
-
-
-### Features
-
-* **bot:** Improving collect data validation ([f8f4068](https://github.com/lucasfernandodev/dragoid/commit/f8f4068f40cbceacd13df7ce17217aa1a2f42ae2))
 
 
 
