@@ -152,7 +152,7 @@ NAVIGATION
       background: var(--page-navigation-houver-background);
     }
 
-    &:is(button){
+    &:is(button) {
       flex-shrink: 0;
       min-width: 42px;
     }
@@ -171,8 +171,67 @@ NAVIGATION
   }
 }
 
+
+
+
+.floating-navigation {
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  background: var(--float-navigation-background);
+  width: 100vw;
+  flex-shrink: 0;
+  flex-grow: 0;
+  overflow: hidden;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  display: none;
+
+  &.show {
+    display: flex;
+  }
+
+  & .option {
+    text-decoration: none;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--float-options-color);
+    height: 54px;
+    padding: 0px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+
+    &.a svg {
+      display: none;
+    }
+
+    &:hover {
+      background: var(--float-option-houver-background);
+      color: var(--float-option-hover-color);
+    }
+
+    &[data-disabled="true"] {
+      cursor: default;
+      user-select: none;
+      pointer-events: none;
+      color: var(--float-option-disable-color);
+
+      &:hover {
+        background: inherit;
+        color: inherit;
+      }
+    }
+  }
+}
+
+
 @media (min-width: 981px) {
-  .floating-navigation {
+  .floating-navigation { 
     --floating-position: calc(-50% + (var(--chapter-width) / 2) + (72px / 2));
     position: fixed;
     top: calc(100vh / 4);
@@ -229,60 +288,6 @@ NAVIGATION
           color: inherit;
         }
       } 
-    }
-  }
-}
-
-
-@media (max-width: 980px) { 
-  .floating-navigation {
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    background: var(--float-navigation-background);
-    width: 100vw;
-    flex-shrink: 0;
-    flex-grow: 0;
-    overflow: hidden;
-    height: 54px;
-    display: flex;
-    align-items: center;
-    display: none;
-
-    & .option {
-      text-decoration: none;
-      flex-grow: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100%;
-      color: var(--float-options-color);
-      height: 54px;
-      padding: 0px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-
-      &.a svg {
-        display: none;
-      }
-
-      &:hover {
-        background: var(--float-option-houver-background);
-        color: var(--float-option-hover-color);
-      }
-
-      &[data-disabled="true"] {
-        cursor: default;
-        user-select: none;
-        pointer-events: none;
-        color: var(--float-option-disable-color);
-
-        &:hover {
-          background: inherit;
-          color: inherit;
-        }
-      }
     }
   }
 }

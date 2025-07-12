@@ -5,6 +5,7 @@ import { applyUserStyles } from "../core/chapter-style-setting/apply-user-style.
 import { ChapterHistory } from "../core/history/chapter-history.js";
 import { applyUserReplacements } from "../core/replacement/apply-user-replacements.js";
 import { ShortcutKeyboardNavigation } from "../core/shortcuts/keyboard/navigation.js";
+import { showFlotMenuShortcut } from "../core/shortcuts/keyboard/show-float-menu.js";
 
 import {
   ShortcutTouchShowFloatingNavigation
@@ -47,6 +48,7 @@ const initChapterPage = async () => {
 
   // Shortcut to showing float navigation menu (mobile)
   new ShortcutTouchShowFloatingNavigation()
+  showFlotMenuShortcut()
 }
 
 
