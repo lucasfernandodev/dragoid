@@ -21,6 +21,9 @@ esbuild.build({
     'puppeteer',
     'puppeteer-extra',
     'puppeteer-extra-plugin-stealth',
-    'eslint'
+    'eslint',
+    'globals',
+    'husky',
+    'typescript-eslint'
   ]
 }).catch(() => process.exit(1));
