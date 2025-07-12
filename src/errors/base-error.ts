@@ -1,10 +1,12 @@
+
+
 export class BaseError {
   public message: string;
   public name: string;
   public exitCode: number;
-  public debugMessage: Error | null | unknown;
+  public debugMessage: string | object;
 
-  constructor(name: string, message: string, debugMessage: Error | null | unknown, exitCode = 1) {
+  constructor(name: string, message: string, debugMessage: string | object, exitCode = 1) {
     this.name = name;
     this.message = message;
     this.debugMessage = debugMessage;
