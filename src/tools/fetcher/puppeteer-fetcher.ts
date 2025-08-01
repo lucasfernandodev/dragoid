@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import * as puppeteer from "puppeteer-core";
 import type { IFetcher } from "./IFetcher.ts";
 import { logger } from "../../utils/logger.ts";
@@ -9,11 +10,21 @@ export interface IFecherPupeetter extends IFetcher<string> {
   closeBrowser: () => Promise<void>
 }
 
+
+
 export class PuppetterFetcher implements IFecherPupeetter {
   private browser?: puppeteer.Browser;
   private launching: Promise<puppeteer.Browser> | null = null;
 
   private getBrowser = async (): Promise<puppeteer.Browser> => {
+
+    // Custom browser path
+    const PUPPETEER_BROWSER_PATH = process.env.PUPPETEER_BROWSER_PATH || null;
+    const customBrowser = {} as {'executablePath': string};
+    if(PUPPETEER_BROWSER_PATH && PUPPETEER_BROWSER_PATH.trim()){
+      customBrowser.executablePath = PUPPETEER_BROWSER_PATH
+    }
+
     if (this.browser) return this.browser;
     if (!this.launching) {
       const puppeteerIntance = await puppeteerInstance() as unknown as typeof puppeteer
@@ -28,6 +39,7 @@ export class PuppetterFetcher implements IFecherPupeetter {
           '--disable-features=VizDisplayCompositor'
         ],
         protocolTimeout: 60000 * 4,
+        ...customBrowser
       });
     }
     this.browser = await this.launching;

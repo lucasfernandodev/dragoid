@@ -8,5 +8,7 @@
      "erasableSyntaxOnly": true,
      "verbatimModuleSyntax": true,
      "allowImportingTsExtensions": true,
+     "jsx": "react-jsx",
+     "outDir": "bin"
   }
 } 

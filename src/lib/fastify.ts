@@ -1,14 +1,5 @@
-import ejs from 'ejs'
-import fastifyStaticFiles from '@fastify/static';
-import fastifyView from "@fastify/view";
-import Fastify, { type FastifyInstance } from "fastify";
-import path from "path";
-import { fileURLToPath } from "url";
-import type { IChapterData, INovelData } from '../types/bot.ts';
-import { isBuild } from '../core/configurations.ts';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+import Fastify, { type FastifyInstance } from "fastify"; 
+import type { IChapterData, INovelData } from '../types/bot.ts';  
 
 declare module 'fastify' {
   interface FastifyInstance {
@@ -34,20 +25,7 @@ export const fastifyInstance = (files: ReaderFiles): FastifyInstance => {
   app.decorate('chapter', files.chapter)
   app.decorate('novel', files.novel);
 
-  // Loading EJS Files
-  app.register(fastifyView, {
-    engine: {
-      ejs
-    },
-    root: path.join(__dirname, isBuild ? 'client': '../commands/preview/client')
-  })
-
-
-  // Loading static files
-  app.register(fastifyStaticFiles, {
-    root: path.join(__dirname, isBuild ? "/client/assets" : "../commands/preview/client/assets"),
-    prefix: "/assets/",
-  })
+   
 
   return app
 }

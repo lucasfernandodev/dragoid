@@ -3,18 +3,18 @@ import { fastifyInstance } from './../../lib/fastify.ts';
 import { ApplicationError } from './../../errors/application-error.ts';
 import type { IChapterData, INovelData } from '../../types/bot.ts';
 import type { FastifyError, FastifyInstance } from 'fastify';
-import { readerNovelRoutes } from './routes/ejs/novel/index.ts';
 import { getLocalIPAddress } from '../../utils/get-local-ip.ts';
-import { apiNovelRoutes } from './routes/api/novel/index.ts';
-import { readerSingleChapterRoutes } from './routes/ejs/single-chapter/index.ts';
 import chalk from 'chalk';
+import fastifyVite from '@fastify/vite';
+import { fileURLToPath } from 'url';
+import path from 'path';
+import { isBuild } from '../../core/configurations.ts';
 
 interface ServerOptions {
   isPublic: boolean;
   port: number;
 }
-
-type ServerRoutes = 'novel' | 'chapter'
+ 
 
 interface IServer {
   files: {
@@ -27,8 +27,10 @@ interface IServer {
   }
 }
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 export class Server {
-  private routesTo: ServerRoutes = 'novel'
   private fastify: FastifyInstance;
   private opt: ServerOptions = {
     isPublic: false,
@@ -39,36 +41,20 @@ export class Server {
   constructor({ files, opt }: IServer) {
     this.fastify = fastifyInstance(files)
     this.opt = { ...opt };
-
-    if (files.chapter) {
-      this.routesTo = 'chapter'
-    }
   }
-
-
-  private registerNovelRoutes = async () => {
-    this.fastify.register(readerNovelRoutes);
-    this.fastify.register(apiNovelRoutes)
-  }
-
-
-
-
-  private registerSingleChapterRoutes = async () => {
-    this.fastify.register(readerSingleChapterRoutes)
-  }
-
-
 
 
   private handleRoutes = async () => {
-    if (this.routesTo === 'chapter') {
-      await this.registerSingleChapterRoutes()
-    }
+    const devPath = path.resolve(__dirname, '..', '..', '..');  
+    await this.fastify.register(fastifyVite, {
+      root: !isBuild ? devPath : __dirname, // where to look for vite.config.js
+      dev: !isBuild,
+      spa: true
+    })
 
-    if (this.routesTo === 'novel') {
-      await this.registerNovelRoutes()
-    }
+    this.fastify.get('/', (_, reply) => {
+      return reply.html()
+    })
   }
 
 
@@ -102,6 +88,7 @@ export class Server {
 
   private startServer = async () => {
     await this.handleRoutes();
+    await this.fastify.vite.ready()
     await this.fastify.listen({
       host: this.opt.isPublic ? '0.0.0.0' : '127.0.0.1',
       port: this.opt.port
@@ -116,7 +103,7 @@ export class Server {
     try {
       await this.startServer()
     } catch (err) {
-      this.handleInitError(err)
+      this.handleInitError(err as FastifyError)
     }
   }
 }

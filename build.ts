@@ -24,6 +24,8 @@ esbuild.build({
     'eslint',
     'globals',
     'husky',
-    'typescript-eslint'
+    'typescript-eslint',
+    'lightningcss',
+    'html-rewriter-wasm'
   ]
 }).catch(() => process.exit(1));
