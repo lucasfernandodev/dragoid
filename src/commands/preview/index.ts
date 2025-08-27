@@ -27,6 +27,7 @@ export class Preview implements DefaultCommand {
     novel: null,
     chapter: null,
   };
+  
   private options = {} as PreviewOptionsMapped
 
   parserInputs = async (args: Argv<PreviewArgs>) => {

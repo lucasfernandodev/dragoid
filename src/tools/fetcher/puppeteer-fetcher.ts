@@ -23,7 +23,7 @@ export class PuppetterFetcher implements IFecherPupeetter {
     const customBrowser = {} as {'executablePath': string};
     if(PUPPETEER_BROWSER_PATH && PUPPETEER_BROWSER_PATH.trim()){
       customBrowser.executablePath = PUPPETEER_BROWSER_PATH
-    }
+    } 
 
     if (this.browser) return this.browser;
     if (!this.launching) {

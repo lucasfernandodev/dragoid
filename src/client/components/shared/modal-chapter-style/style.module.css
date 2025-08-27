@@ -1,0 +1,62 @@
+.modal_wrapper {
+  width: min(360px, calc(100% - 32px));
+}
+
+ 
+
+.form {
+  width: 100%;
+  gap: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 8px;
+}
+
+.group label {
+  width: 100%;
+}
+
+.select {
+  text-transform: capitalize;
+}
+
+.select_option {
+  text-transform: capitalize;
+}
+
+.actions {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  padding-top: 24px;
+
+  & .button {
+    min-width: 120px;
+    cursor: pointer;
+    padding: 0px 24px;
+    height: 38px;
+    background: hsla(214, 89%, 62%, 90%);
+    color: hsl(0, 0%, 100%);
+    border: none;
+    font-weight: 400;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:is(data-disabled="true"){
+      cursor: pointer;
+      pointer-events: none;
+    }
+
+    &:not([data-disabled="true"]):hover {
+      opacity: 0.8;
+    }
+  }
+}

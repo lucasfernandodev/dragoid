@@ -1,0 +1,61 @@
+.chapter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 42px;
+}
+
+.chapter .bredcrumb {
+  padding: 0px 32px;
+  display: flex;
+  gap: 8px;
+  padding: 0px 32px;
+  justify-content: flex-start;
+  align-items: center;
+  height: 64px;
+  border: 1px solid #1f1f1f;
+  width: 100%;
+  border-left: none;
+  border-right: none;
+  line-height: 3.2rem;
+
+  & svg {
+    color: hsla(0, 0%, 100%, 45%);
+    flex-shrink: 0;
+  }
+
+  & a:not(:last-child) {
+    color: hsla(0, 0%, 100%, 45%);
+    text-decoration: none;
+  } 
+
+  & svg {
+    width: 18px;
+    position: relative;
+    top: 1.2px;
+  }
+
+  & span {
+    width: fit-content;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  & a:hover {
+    color: hsla(0, 0%, 100%, 105%);
+    text-decoration: underline;
+  }
+}
+
+.chapter .content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0px 16px;
+  width: calc(100% - 32px);
+  margin: 0 auto;
+}

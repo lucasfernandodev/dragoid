@@ -1,0 +1,241 @@
+.button {
+  background: none;
+  cursor: pointer;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 4px;
+  height: 42px;
+  min-width: 140px;
+  padding: 0px 24px;
+  flex-grow: 1;
+  outline: none;
+  box-shadow: none;
+  border: none;
+}
+
+.creating_list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  & .form {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+
+  & .error {
+    font-size: 1.4rem;
+    color: #F67683;
+    padding: 4px 6px;
+    font-style: italic;
+  }
+
+  & .actions {
+    width: 100%;
+    display: flex;
+    gap: 12px;
+  }
+
+  & .upload_error {
+    font-size: 1.6rem;
+    color: #F67683;
+    padding: 16px;
+    background: #350E0E;
+    min-height: 40px;
+    margin-top: 16px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    width: 100%;
+
+    & span {
+      max-width: calc(100% - 32px - 42px);
+    }
+
+    & .button {
+      width: 32px;
+      height: 32px;
+      min-width: unset;
+      flex-grow: 0;
+      flex-shrink: 0;
+      padding: 0px;
+
+      &:hover {
+        background: hsla(354, 88%, 71%, 25%);
+      }
+    }
+  }
+}
+
+.creating_list .form {
+  & label {
+    margin-bottom: 4px;
+  }
+
+  & input {
+    height: 42px;
+    background: none;
+    border: 1px solid hsl(0, 0%, 18%);
+    border-radius: 4px;
+    padding: 0px 12px;
+
+    &:is(:hover, :focus, :ative) {
+      box-shadow: none;
+      outline: none;
+    }
+
+    &:is([data-error="true"]) {
+      border: 1px solid #F67683;
+    }
+  }
+}
+
+.creating_list .form .form_actions {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 8px;
+  gap: 8px;
+
+  & .button {
+    background: transparent;
+    border: 1px solid hsl(0, 0%, 18%);
+
+    &:is(:first-child) {
+      background: hsla(214, 89%, 62%, 90%);
+      border-color: hsla(214, 89%, 62%, 90%);
+
+      &:hover {
+        opacity: 0.85;
+      }
+    }
+
+    &:not(:first-child):hover {
+      background: hsl(0, 0%, 18%);
+    }
+  }
+}
+
+.creating_list .actions .button {
+  background: transparent;
+  border: 1px solid hsl(0, 0%, 18%);
+
+  &:is(:first-child) {
+    background: hsla(214, 89%, 62%, 90%);
+    border-color: hsla(214, 89%, 62%, 90%);
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  &:not(:first-child):hover {
+    background: hsl(0, 0%, 18%);
+  }
+}
+
+.replacement_overview {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border-top: 1px solid hsl(0, 0%, 18%);
+  padding: 16px 0px;
+  border-radius: 4px;
+  align-items: center;
+  gap: 24px;
+
+  & li {
+    width: 100%;
+    padding: 12px;
+    min-height: 40px;
+    border: 1px solid hsl(0, 0%, 18%);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    & svg{
+      flex-shrink: 0;
+    }
+
+    & label{
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background: hsl(0, 0%, 8%);
+    }
+  }
+
+  & h3 {
+    font-weight: 400;
+    font-size: 1.8rem;
+    color: #fff;
+  }
+
+  & li .actions {
+    display: flex;
+    width: 100%;
+    gap: 8px;
+  }
+
+  & li .actions .button {
+    border: 1px solid hsl(0, 0%, 18%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-width: unset;
+    min-width: 40px;
+    border-radius: 4px;
+    cursor: pointer;
+
+    & svg {
+      max-width: 18px;
+    }
+
+    &:hover {
+      background: hsl(0, 0%, 12%);
+    }
+  }
+
+  & li .select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    cursor: pointer;
+
+    & input {
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid hsl(0, 0%, 30%);
+      cursor: pointer;
+    }
+
+    & input:checked {
+      border-color: hsla(214, 89%, 62%, 90%);
+    }
+
+    &:has(input:checked)::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: hsla(214, 89%, 62%, 90%);
+      border-radius: 50%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

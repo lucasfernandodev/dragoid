@@ -1,0 +1,163 @@
+.app{
+  display: flex;
+  flex-direction: column;
+  gap: 54px;
+}
+
+.app_thumbnail {
+  width: calc(100% - 54px);
+  height: calc(800px - 64px);
+  border-radius: 28px;
+  border: 1px solid var(--app-border-color);
+  margin: 0 auto;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  overflow: hidden;
+}
+
+.app_thumbnail .thumbnail {
+  flex-shrink: 0;
+  height: 190px;
+  width: 150px;
+  border-radius: 6px;
+  background: hsl(0, 0%, 12%);
+  display: block;
+  margin-bottom: 32px;
+  overflow: hidden;
+  color: transparent;
+
+
+  & img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+}
+
+.app_thumbnail .title {
+  font-size: 3.2rem;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.app_thumbnail .author {
+  color: var(--author-color);
+  margin-bottom: 42px;
+}
+
+.app_thumbnail .book_details {
+  display: flex;
+  width: 100%;
+  margin-bottom: 54px;
+  height: auto;
+
+  & li {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% / 3);
+    text-align: center;
+
+    & h3,
+    span {
+      font-weight: 400;
+      font-size: 1.6rem;
+      height: 40px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    &:is(:nth-child(even)) h3::before {
+      content: "";
+      position: absolute;
+      height: 20px;
+      background: linear-gradient(to top, hsl(0, 0%, 18%), transparent);
+      width: 1px;
+      bottom: 0px;
+      left: 0px;
+    }
+
+    &:is(:nth-child(even)) h3::after {
+      content: "";
+      position: absolute;
+      height: 20px;
+      background: linear-gradient(to top, hsl(0, 0%, 18%), transparent);
+      width: 1px;
+      bottom: 0px;
+      right: 0px;
+    }
+
+    &:is(:nth-child(even)) span::before {
+      content: "";
+      position: absolute;
+      height: 20px;
+      background: linear-gradient(to bottom, hsl(0, 0%, 18%), transparent);
+      width: 1px;
+      top: 0px;
+      left: 0px;
+    }
+
+    &:is(:nth-child(even)) span::after {
+      content: "";
+      position: absolute;
+      height: 20px;
+      background: linear-gradient(to bottom, hsl(0, 0%, 18%), transparent);
+      width: 1px;
+      top: 0px;
+      right: 0px;
+    }
+
+    & span {
+      border-top: 1px solid hsl(0, 0%, 18%);
+    }
+  }
+}
+
+.app_thumbnail .sinopse {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  line-height: 3rem;
+  width: 100%;
+}
+
+.app_thumbnail .source_link {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-decoration: none;
+  transition: 300ms linear;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: hsl(0, 0%, 65%);
+
+  & svg {
+    stroke-width: 1px;
+  }
+
+  &:hover {
+    color: hsl(0, 0%, 100%);
+  }
+}
+
+.chapter{
+  padding: 0px 16px;
+  width: calc(100% - 32px);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0 auto;
+}

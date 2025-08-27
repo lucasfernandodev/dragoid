@@ -9,6 +9,9 @@
      "verbatimModuleSyntax": true,
      "allowImportingTsExtensions": true,
      "jsx": "react-jsx",
-     "outDir": "bin"
-  }
+     "outDir": "bin",
+     "lib": ["DOM", "DOM.Iterable", "ESNext"],
+     "isolatedModules": true,
+  },
+"include": ["src/**/*"]
 } 

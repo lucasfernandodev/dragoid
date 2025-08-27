@@ -1,0 +1,55 @@
+.options {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  width: 72px;
+  background: #1f1f1f;
+  border-radius: 8px;
+  overflow: hidden;
+
+  &:is([data-type="bar"]) {
+    width: 100%;
+    flex-direction: row;
+
+    & .option {
+      width: 100%;
+    }
+
+    & .option button,
+    & .option a {
+      width: 100%;
+      height: 54px;
+    }
+  }
+}
+
+.options .option {
+  & button,
+  & a {
+    background: none;
+    border: 1px solid transparent;
+    width: 72px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: hsl(0, 0%, 50%);
+
+    &:is([data-enabled="false"]){
+      color: hsl(0, 0%, 18%);
+      cursor: default;
+      pointer-events: none;
+    }
+
+    &:not([data-enabled="false"]):hover {
+      color: hsl(0, 0%, 100%);
+      background: hsl(0, 0%, 18%);
+    }
+  }
+
+  &:is(:nth-child(even)) button {
+    border-top-color: #333;
+    border-bottom-color: #333;
+  }
+}

@@ -9,12 +9,15 @@ import fastifyVite from '@fastify/vite';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { isBuild } from '../../core/configurations.ts';
+import { ApiAppRouter } from './api/app/index.ts';
+import { ApiChapterRouter } from './api/chapter/index.ts';
+import { ApiNovelRouter } from './api/novel/index.ts';
 
 interface ServerOptions {
   isPublic: boolean;
   port: number;
 }
- 
+
 
 interface IServer {
   files: {
@@ -30,6 +33,8 @@ interface IServer {
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+
+
 export class Server {
   private fastify: FastifyInstance;
   private opt: ServerOptions = {
@@ -41,11 +46,17 @@ export class Server {
   constructor({ files, opt }: IServer) {
     this.fastify = fastifyInstance(files)
     this.opt = { ...opt };
+    if (files.chapter !== null) {
+      this.settingClientEnvMode('onlyChapter')
+    }
+
+    if (files.novel !== null) {
+      this.settingClientEnvMode('novel')
+    }
   }
 
-
-  private handleRoutes = async () => {
-    const devPath = path.resolve(__dirname, '..', '..', '..');  
+  private registerClientRouter = async () => {
+    const devPath = path.resolve(__dirname, '..', '..', '..');
     await this.fastify.register(fastifyVite, {
       root: !isBuild ? devPath : __dirname, // where to look for vite.config.js
       dev: !isBuild,
@@ -55,6 +66,25 @@ export class Server {
     this.fastify.get('/', (_, reply) => {
       return reply.html()
     })
+  }
+
+  private registerApiRouter = async () => {
+    this.fastify.register(ApiAppRouter)
+    this.fastify.register(ApiChapterRouter)
+    this.fastify.register(ApiNovelRouter)
+
+    this.fastify.get('/*', (req, reply) => {
+      if (req.url.startsWith('/api/')) {
+        return reply.callNotFound()
+      }
+      return reply.html()
+    })
+  }
+
+
+  private handleRoutes = async () => {
+    await this.registerClientRouter()
+    await this.registerApiRouter()
   }
 
 
@@ -84,7 +114,15 @@ export class Server {
   }
 
 
+  private settingClientEnvMode = (mode: 'novel' | 'onlyChapter') => {
+    if (mode !== 'novel' && mode !== 'onlyChapter') {
+      throw new ApplicationError(
+        `Setting front-end eviroment mode error! Mode ${mode} is invalid`
+      )
+    }
 
+    process.env.VITE_APP_MODE = mode
+  }
 
   private startServer = async () => {
     await this.handleRoutes();

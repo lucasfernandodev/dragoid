@@ -1,13 +1,5 @@
-import React from 'react';
-import { useState } from "react";
+import { HomepageDefaultTemplate } from "../../components/templates/homepage/default/index.tsx"
 
-export const Homepage = () => {
-const [count, setCount] = React.useState(0);
-  
-  return (
-    <>
-      <p>{count}</p>
-      <button onClick={() => setCount(v => v + 1)}>count</button>
-    </>
-  )
+export const HomePage = () => {
+  return <HomepageDefaultTemplate />
 }
