@@ -27,5 +27,6 @@ esbuild.build({
     'typescript-eslint',
     'lightningcss',
     'html-rewriter-wasm'
-  ]
+  ],
+
 }).catch(() => process.exit(1));

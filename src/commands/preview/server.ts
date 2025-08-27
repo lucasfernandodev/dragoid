@@ -44,15 +44,11 @@ export class Server {
 
 
   constructor({ files, opt }: IServer) {
-    this.fastify = fastifyInstance(files)
+    this.fastify = fastifyInstance({
+      ...files,
+      mode: files.chapter !== null ? 'onlyChapter' : 'novel'
+    })
     this.opt = { ...opt };
-    if (files.chapter !== null) {
-      this.settingClientEnvMode('onlyChapter')
-    }
-
-    if (files.novel !== null) {
-      this.settingClientEnvMode('novel')
-    }
   }
 
   private registerClientRouter = async () => {
@@ -111,17 +107,6 @@ export class Server {
     }
 
     throw new ApplicationError('Server initialization failed.', err)
-  }
-
-
-  private settingClientEnvMode = (mode: 'novel' | 'onlyChapter') => {
-    if (mode !== 'novel' && mode !== 'onlyChapter') {
-      throw new ApplicationError(
-        `Setting front-end eviroment mode error! Mode ${mode} is invalid`
-      )
-    }
-
-    process.env.VITE_APP_MODE = mode
   }
 
   private startServer = async () => {

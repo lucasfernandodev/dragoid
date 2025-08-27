@@ -1,0 +1,32 @@
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+
+  & p {
+    font-size: 2rem;
+  }
+}
+
+.dots {
+  animation: dots 1s linear infinite;
+
+  &:nth-child(2) {
+    animation-delay: 200ms;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 400ms;
+  }
+}
+
+@keyframes dots {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
