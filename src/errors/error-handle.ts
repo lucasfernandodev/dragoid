@@ -7,7 +7,7 @@ import { ZodError } from 'zod';
 const printStack = (error = {}) => {
   if (process.env.DEBUG !== 'true') return;
 
-  if ('stack' in error) {
+  if (error && 'stack' in error) {
     logger.error(JSON.stringify(error.stack, null, 2))
   }
 }

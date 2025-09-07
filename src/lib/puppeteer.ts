@@ -9,25 +9,25 @@ const puppeteerInstance = async () => {
     const puppeteerDefault = puppeteer.default
 
     if ('use' in puppeteerDefault && StealthPluginDefault) {
-      const steald = StealthPluginDefault()
-      steald.enabledEvasions.delete('iframe.contentWindow')
+      const stealth = StealthPluginDefault()
+      stealth.enabledEvasions.delete('iframe.contentWindow')
       if (typeof puppeteerDefault.use === 'function') {
-        puppeteerDefault.use(steald)
-        logger.info("Puppetter is now using steald mode")
+        puppeteerDefault.use(stealth)
+        logger.debug("Puppeteer is now using stealth mode")
       } else {
-        logger.info("Puppetter not using steald mode")
+        logger.debug("Puppeteer not using stealth mode")
       }
     }
 
     if (!('launch' in puppeteerDefault)) {
-      console.error('System not supported by puppetter, try another bot');
+      console.error('System not supported by puppeteer, try another bot');
       process.exit(1);
     }
 
     return puppeteerDefault
 
   } catch (_) {
-    console.error('System not supported by puppetter, try another bot');
+    console.error('System not supported by puppeteer, try another bot');
     process.exit(1);
   }
 }

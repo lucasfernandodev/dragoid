@@ -72,7 +72,7 @@ export class Bot69shuba implements Bot {
       const chapter = collect.chapter(page);
       chapters.push(chapter)
 
-      if (index !== 0 && index % 100 === 0) {
+      if (index !== 0 && index % 30 === 0) {
         await delay(30000);
         logger.debug(`processChaptersList: Downloaded ${index} chapters. `)
         logger.debug('processChaptersList: Waiting 30 seconds to avoid rate limits...')

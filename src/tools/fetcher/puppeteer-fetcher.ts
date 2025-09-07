@@ -6,29 +6,30 @@ import { FetcherError } from "../../errors/fetcher-error.ts";
 import { puppeteerInstance } from "../../lib/puppeteer.ts";
 import { delay } from "../../utils/delay.ts";
 
-export interface IFecherPupeetter extends IFetcher<string> {
+export interface IFetcherPuppeteer extends IFetcher<string> {
   closeBrowser: () => Promise<void>
 }
 
 
 
-export class PuppetterFetcher implements IFecherPupeetter {
+export class PuppeteerFetcher implements IFetcherPuppeteer {
   private browser?: puppeteer.Browser;
   private launching: Promise<puppeteer.Browser> | null = null;
+  private cookieStore: Record<string, unknown> | null = null;
 
   private getBrowser = async (): Promise<puppeteer.Browser> => {
 
     // Custom browser path
     const PUPPETEER_BROWSER_PATH = process.env.PUPPETEER_BROWSER_PATH || null;
-    const customBrowser = {} as {'executablePath': string};
-    if(PUPPETEER_BROWSER_PATH && PUPPETEER_BROWSER_PATH.trim()){
+    const customBrowser = {} as { 'executablePath': string };
+    if (PUPPETEER_BROWSER_PATH && PUPPETEER_BROWSER_PATH.trim()) {
       customBrowser.executablePath = PUPPETEER_BROWSER_PATH
-    } 
+    }
 
     if (this.browser) return this.browser;
     if (!this.launching) {
-      const puppeteerIntance = await puppeteerInstance() as unknown as typeof puppeteer
-      this.launching = puppeteerIntance.launch({
+      const _puppeteerInstance = await puppeteerInstance() as unknown as typeof puppeteer
+      this.launching = _puppeteerInstance.launch({
         headless: true,
         args: [
           '--no-sandbox',
@@ -43,7 +44,7 @@ export class PuppetterFetcher implements IFecherPupeetter {
       });
     }
     this.browser = await this.launching;
-    logger.debug('PuppetterFetcher: Browser started')
+    logger.debug('PuppeteerFetcher: Browser started')
     return this.browser;
   }
 
@@ -52,19 +53,26 @@ export class PuppetterFetcher implements IFecherPupeetter {
       await this.browser.close();
       this.browser = undefined;
       this.launching = null;
-      logger.debug('PuppetterFetcher: Browser close')
+      logger.debug('PuppeteerFetcher: Browser close')
     }
   };
 
   public fetch = async (url: string): Promise<string> => {
     const browser = await this.getBrowser();
-    const page = await browser.newPage();
-    const cookies = await browser.cookies();
-    await browser.deleteCookie(...cookies);
+    let page = await browser.newPage();
 
+    if (this.cookieStore) {
+      await page.setCookie(...Object.values(this.cookieStore as unknown as puppeteer.CookieParam));
+    }
+
+    await page.setExtraHTTPHeaders({
+      "accept-language": "en-US,en;q=0.9",
+    });
+
+    // viewport plausível
     await page.setViewport({
-      width: Math.floor(1024 + Math.random() * 100),
-      height: Math.floor(768 + Math.random() * 100),
+      width: 1200,
+      height: 800,
     });
 
     try {
@@ -72,15 +80,67 @@ export class PuppetterFetcher implements IFecherPupeetter {
       const body = await page.waitForSelector('body', { timeout: 60000 });
 
       if (!body) {
-        await delay(5000)
+        await delay(30000)
         await page.reload()
         await page.waitForSelector('body', { timeout: 10000 })
       }
 
+      try {
+        const cookies = await page.cookies();
+        // armazene de forma simples
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        this.cookieStore = cookies.reduce((acc: Record<string, unknown>, c: any) => {
+          acc[c.name] = c;
+          return acc;
+        }, {});
+      } catch (_) {
+        // ignore
+      }
 
-      await page.evaluate(() => {
-        window.localStorage.clear()
-      })
+      const isTitle = await page.title() || ''
+
+      if (isTitle.trim().length === 0) {
+        logger.debug('Puppeteer return empty page');
+        await page.close()
+        await this.closeBrowser()
+
+        await delay(5000)
+
+        const browser = await this.getBrowser();
+        page = await browser.newPage();
+
+        try {
+          await page.goto(url, { timeout: 60000 })
+          const body = await page.waitForSelector('body', { timeout: 60000 });
+
+          if (!body) {
+            await delay(30000)
+            await page.reload()
+            await page.waitForSelector('body', { timeout: 10000 })
+          }
+
+          try {
+            const cookies = await page.cookies();
+            // armazene de forma simples
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            this.cookieStore = cookies.reduce((acc: Record<string, unknown>, c: any) => {
+              acc[c.name] = c;
+              return acc;
+            }, {});
+          } catch (_) {
+            // ignore
+          }
+
+          const content = await page.content();
+
+          await page.close()
+          return content;
+        } catch (error: unknown) {
+          await page.close()
+          await this.closeBrowser()
+          throw new FetcherError(`PuppeteerFetcher: Request for ${url} failed`, error)
+        }
+      }
 
       const content = await page.content();
 
@@ -89,7 +149,7 @@ export class PuppetterFetcher implements IFecherPupeetter {
     } catch (error: unknown) {
       await page.close()
       await this.closeBrowser()
-      throw new FetcherError(`PuppetterFetcher: Request for ${url} failed`, error)
+      throw new FetcherError(`PuppeteerFetcher: Request for ${url} failed`, error)
     }
   }
 }
