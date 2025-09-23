@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import S from './style.module.css';
-import { IconAB2, IconChevronLeft, IconChevronRight, IconList, IconPalette } from '@tabler/icons-react';
+import { IconAB2, IconBooks, IconChevronLeft, IconChevronRight, IconList, IconPalette } from '@tabler/icons-react';
 import { ModalChapterList } from '../modal-chapter-list/index.tsx';
 import { useState } from 'react';
 import { FloatMenu } from '../float-menu/index.tsx';
@@ -44,6 +44,11 @@ export const AppMenu = ({
             <IconChevronLeft />
           </button>
         </li>
+        <div className={S.option}>
+          <button className={S.button} onClick={() => navigate('/library')}>
+            <IconBooks />
+          </button>
+        </div>
         <li className={S.option}>
           <button className={S.button} onClick={openReplacementModal}>
             <IconAB2 />

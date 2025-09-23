@@ -4,16 +4,13 @@ import type { IChapter } from "../../components/templates/homepage/default/index
 import { SkeletonChapter } from "../../components/shared/skeleton/index.tsx";
 import { ChapterNotFound } from "../../components/templates/chapter/notfound/index.tsx";
 import { OnlyChapterTemplate } from "../../components/templates/only-chapter/index.tsx";
+import { getUniqueChapter } from "../../api/get-unique-chapter.ts";
 
 export const OnlyChapter = () => {
 
   const { isLoading, data, success, errorMessage } = useFetch({
     queryKey: ['chapter'],
-    queryFn: async ({ signal }) => {
-      const response = await fetch(`/api/chapter/unique`, { signal });
-      const data = await response.json();
-      return data as { chapter: IChapter | null }
-    },
+    queryFn: getUniqueChapter,
   })
 
 

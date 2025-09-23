@@ -1,0 +1,175 @@
+.book {
+  width: 100%;
+  max-width: 320px;
+  border: 1px solid #1d1d1d;
+  border-radius: 16px;
+  background: #0d0d0d;
+  padding: 16px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+
+  &:hover::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background: hsla(0, 0%, 10%, 25%);
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+  }
+
+  &:hover .inner_read_placeholder {
+    display: flex;
+  }
+}
+
+.thumbnail {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px 8px 0px 0px;
+  position: relative;
+  position: relative;
+
+  & .inner_read_placeholder {
+    display: none;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    background: hsla(0, 0%, 10%, 25%);
+
+    & p {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 12px;
+      border-radius: 16px;
+      background: #1d1d1d;
+      gap: 6px;
+      font-size: 1.3rem;
+      border: 1px solid #2f2f2f;
+      box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.5);
+
+      & svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  & .statusBar {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    gap: 6px;
+  }
+
+  & .status {
+    padding: 4px 8px;
+    border-radius: 24px;
+    background: #00a692;
+    border: 1px solid #00a692;
+    color: #111;
+    font-size: 1.2rem;
+    display: flex;
+    gap: 4px;
+    align-items: center;
+
+    & svg {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+
+  & .open_status {
+    padding: 4px 8px;
+    border-radius: 24px;
+    background: #32ff7e;
+    border: 1px solid #32ff7e;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    color: hsl(141, 75%, 16%);
+
+    & svg {
+      width: 1.6rem;
+      height: 1.6rem;
+    }
+  }
+}
+
+.inner_thumbnail {
+  width: 100%;
+  max-height: 200px;
+  overflow: hidden;
+
+  & img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0px 16px;
+  gap: 8px;
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .author {
+    font-size: 1.4rem;
+    color: #aaa;
+    margin-bottom: 16px;
+  }
+
+  & .progress {
+    display: flex;
+    flex-direction: column;
+
+    & label {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  & .group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & .pages {
+      display: flex;
+      gap: 6px;
+    }
+
+    & .btn_download {
+      width: 42px;
+      height: 42px;
+      background: none;
+      border-radius: 8px;
+      background: #0a0a0a;
+      border: 1px solid #1d1d1d;
+      position: relative;
+      z-index: 50;
+
+      &:hover {
+        background: #121212;
+      }
+    }
+  }
+}

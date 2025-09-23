@@ -61,6 +61,7 @@
     "esbuild": "^0.25.5",
     "fastify": "^5.4.0",
     "html-rewriter-wasm": "^0.4.1",
+    "idb": "^8.0.3",
     "puppeteer-core": "^24.10.2",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

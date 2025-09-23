@@ -56,10 +56,11 @@ export class Server {
     await this.fastify.register(fastifyVite, {
       root: !isBuild ? devPath : __dirname, // where to look for vite.config.js
       dev: !isBuild,
-      spa: true
+      spa: true,
     })
 
     this.fastify.get('/', (_, reply) => {
+      reply.header('Cache-Control', 'public, max-age=3600')
       return reply.html()
     })
   }

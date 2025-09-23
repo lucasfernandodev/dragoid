@@ -5,6 +5,7 @@ import { NotFound } from "./pages/notfound/index.tsx"
 import { OnlyChapter } from "./pages/only-chapter/index.tsx"
 import { useContext } from "react"
 import { ServerModeContext } from "./context/ServerMode/context.ts"
+import { LibraryPage } from "./pages/library/index.tsx"
 
 const NovelRouter = () => {
   return (
@@ -12,6 +13,7 @@ const NovelRouter = () => {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/chapter" element={<ChapterPage />} />
+        <Route path="/library" element={<LibraryPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

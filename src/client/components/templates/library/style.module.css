@@ -1,0 +1,133 @@
+.main {
+  width: calc(100% - 32px);
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+
+  & .header {
+    height: 92px;
+    align-items: center;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #2d2d2d;
+  }
+}
+
+.header {
+  & h1 {
+    font-size: 2.8rem;
+  }
+
+  .group {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+  }
+
+  & .btn_back {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: 1px solid #2d2d2d;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #aaa;
+    transition: ease-in-out 300ms;
+
+    &:hover {
+      background-color: #2d2d2d;
+      color: #fff;
+    }
+  }
+}
+
+.section_browser_offline_books {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 8px;
+  gap: 16px;
+
+  & h2 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    display: block;
+    width: 100%;
+  }
+}
+
+.library_list {
+  display: flex;
+  gap: 24px;
+}
+
+.list_card {
+  width: 264px;
+  padding: 16px;
+  background: transparent;
+  border-radius: 12px;
+  border: 1px solid #1d1d1d;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+
+  & .thumbnail {
+    width: 100%;
+  }
+
+  & .thumbnail img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 4px;
+  }
+
+  & .actions {
+    width: 100%;
+    display: flex;
+    margin-top: 8px;
+    gap: 12px;
+
+    & button {
+      background: none;
+      border: none;
+      flex-grow: 1;
+      height: 40px;
+      border-radius: 4px;
+      min-width: 92px;
+
+      &:hover {
+        opacity: 0.85;
+      }
+    }
+  }
+
+  & .actions .btn_add,
+  & .actions .btn_read {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    background: #0053B2;
+    border: 1px solid #0053B2;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  & .actions .btn_delete {
+    background: #F67683;
+    border: 1px solid #F67683;
+    color: #111;
+  }
+}

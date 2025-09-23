@@ -1,12 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import S from './style.module.css';
 import { useFetch } from '../../../../hooks/useFetch.ts';
 import { IconExternalLink } from '@tabler/icons-react'
 import { ChapterContent } from '../../../shared/chapter-content/index.tsx';
 import { ChapterNavigation } from '../../../shared/chapter-navigation/index.tsx';
 import { AppMenu } from '../../../shared/app-menu/index.tsx';
-import { HomeDefaultSkeleton } from '../../../shared/skeleton/home-default-skeleton/index.tsx';
 import { App } from '../../../atoms/App/index.tsx';
+import type { FC } from '../../../../../types/front-end/fc.ts';
+import { Loading } from '../../../shared/loading/index.tsx';
+import { getFirstChapter } from '../../../../api/get-first-chapter.ts';
+import { LOCAL_STORAGE_KEYS } from '../../../../consts/local-storage.ts';
+import { useBrowserLibraryManager } from '../../../../hooks/library-offline-manager.ts';
+
 export interface INovel {
   thumbnail: string;
   title: string;
@@ -32,55 +37,80 @@ export interface IChapter {
   chapter_next_id: number | null
 }
 
-export const HomepageDefaultTemplate = () => {
 
-  const [novel, setNovel] = useState<INovel | null>(null);
-  const [chapter, setChapter] = useState<IChapter | null>(null);
+interface HomeDefaultProps {
+  novel: INovel
+}
+
+const Chapter = ({ ref }: { ref: React.RefObject<HTMLElement | null> }) => {
+
+  const { findOneBook } = useBrowserLibraryManager()
+  const { isLoading, data } = useFetch({
+    queryKey: ['getFirstChapter'],
+    queryFn: async () => {
+      const isReadingTitle = window.localStorage.getItem(LOCAL_STORAGE_KEYS.currentNovelReading);
+
+      if (!isReadingTitle) {
+        return await getFirstChapter()
+      }
+
+      const result = await findOneBook(isReadingTitle);
+
+      if (result.success && result.data) {
+        return { chapter: result.data.chapters[0] }
+      }
+    }
+  })
+
+  if (isLoading) {
+    return (
+      <section className={S.chapter}>
+        <Loading />
+      </section>
+    )
+  }
+
+  if (!data?.chapter) {
+    return (
+      <section className={S.chapter}>
+        Chapter Notfound
+      </section>
+    )
+  }
+
+  const { chapter } = data;
+
+  return (
+    <section className={S.chapter}>
+      <ChapterContent title={chapter.title} content={chapter.content} />
+      <ChapterNavigation
+        chapterId={0}
+        next={chapter.chapter_next_id}
+        prev={chapter.chapter_prev_id}
+      />
+      <AppMenu
+        chapterId={0}
+        target={ref}
+        prev={chapter?.chapter_prev_id ?? null}
+        next={chapter?.chapter_next_id ?? null}
+      />
+    </section>
+  )
+}
+
+export const HomepageDefaultTemplate: FC<HomeDefaultProps> = ({
+  novel
+}) => {
+
   const chapterRef = useRef<HTMLElement>(null)
 
-  const getNovel = async () => {
-    const response = await fetch('/api/novel');
-    const data = await response.json();
-    return data as { novel: INovel | null }
-  }
-
-  const getFirstChapter = async () => {
-    const response = await fetch('/api/chapter/?id=0');
-    const data = await response.json();
-    return data as { chapter: IChapter | null }
-  }
-
-  const { isLoading, data } = useFetch({
-    queryKey: ['getNovel'],
-    queryFn: getNovel
-  })
-
-
-
   useEffect(() => {
-    if (!isLoading && data) {
-      if (data?.novel) {
-        setNovel(data.novel)
-      }
+    if (!novel?.title || !novel?.title?.trim()) {
+      console.log('Novel title is empty! Unable to register the current novel being read')
     }
-  }, [isLoading, data])
 
-  const chapterResponse = useFetch({
-    queryKey: ['getFirstChapter'],
-    queryFn: getFirstChapter
-  })
-
-  useEffect(() => {
-    if (!chapterResponse.isLoading && chapterResponse.data) {
-      if (chapterResponse.data.chapter) {
-        setChapter(chapterResponse.data.chapter)
-      }
-    }
-  }, [chapterResponse])
-
-  if (!novel || isLoading) {
-    return <HomeDefaultSkeleton />
-  }
+    window.localStorage.currentNovel = novel.title
+  }, [novel?.title])
 
   return (
     <App className={S.app} appTitle={`Dragoid | ${novel.title}`} ref={chapterRef}>
@@ -105,20 +135,7 @@ export const HomepageDefaultTemplate = () => {
           </span>
         </a>
       </section>
-      <section className={S.chapter}>
-        {chapter && <ChapterContent title={chapter.title} content={chapter.content} />}
-        {chapter && <ChapterNavigation
-          chapterId={0}
-          next={chapter.chapter_next_id}
-          prev={chapter.chapter_prev_id}
-        />}
-        {<AppMenu
-          chapterId={0}
-          target={chapterRef}
-          prev={chapter?.chapter_prev_id ?? null}
-          next={chapter?.chapter_next_id ?? null}
-        />}
-      </section>
+      <Chapter ref={chapterRef} />
     </App>
   )
 }

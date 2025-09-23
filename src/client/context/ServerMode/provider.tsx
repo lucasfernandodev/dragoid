@@ -1,6 +1,6 @@
 import type React from "react"
 import { ServerModeContext } from "./context.ts"
-import type { ReactNode } from "react"
+import { useEffect, type ReactNode } from "react"
 import { useFetch } from "../../hooks/useFetch.ts"
 import { AppLoading } from "../../components/templates/AppLoading/index.tsx"
 
