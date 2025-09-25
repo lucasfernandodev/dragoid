@@ -1,3 +1,12 @@
+## [0.40.1](https://github.com/lucasfernandodev/dragoid/compare/v0.40.0...v0.40.1) (2025-09-25)
+
+
+### Bug Fixes
+
+* Removing .env variable of test command ([d92393e](https://github.com/lucasfernandodev/dragoid/commit/d92393e64a4e970493efe549390f5c8be997ce72))
+
+
+
 # [0.40.0](https://github.com/lucasfernandodev/dragoid/compare/v0.39.0...v0.40.0) (2025-09-25)
 
 
@@ -33,15 +42,6 @@
 ### Bug Fixes
 
 * **reader:** Fix wrong style ([e065224](https://github.com/lucasfernandodev/dragoid/commit/e06522416443abfe355669a66bc9665df2be5d20))
-
-
-
-# [0.37.0](https://github.com/lucasfernandodev/dragoid/compare/v0.36.1...v0.37.0) (2025-07-07)
-
-
-### Features
-
-* **reader:** Add new replacement modal style ([945b839](https://github.com/lucasfernandodev/dragoid/commit/945b839df9751c9f7b3b982f9dc70aeb9ee7ffd5))
 
 
 
