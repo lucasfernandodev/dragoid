@@ -20,7 +20,7 @@
     "lint": "eslint . --ext .ts",
     "prepare": "husky",
     "pretest": "NODE_NO_WARNINGS=1  node --experimental-transform-types ./tests/fetch-assets.ts",
-    "test": "NODE_NO_WARNINGS=1 node --env-file=.env --experimental-transform-types --test"
+    "test": "NODE_NO_WARNINGS=1 node --experimental-transform-types --test"
   },
   "keywords": [
     "novel",
