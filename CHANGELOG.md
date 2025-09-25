@@ -1,3 +1,13 @@
+# [0.40.0](https://github.com/lucasfernandodev/dragoid/compare/v0.39.0...v0.40.0) (2025-09-25)
+
+
+### Features
+
+* Change front-end ejs to react+vite ([a16e661](https://github.com/lucasfernandodev/dragoid/commit/a16e661236c0e231b522325e0ae6f44447f54150))
+* re-implement all client ejs features in react ([e8ec46a](https://github.com/lucasfernandodev/dragoid/commit/e8ec46aa55e83a3c8cb3e2121eedfc57abc4dea8))
+
+
+
 # [0.39.0](https://github.com/lucasfernandodev/dragoid/compare/v0.38.0...v0.39.0) (2025-07-12)
 
 
@@ -32,15 +42,6 @@
 ### Features
 
 * **reader:** Add new replacement modal style ([945b839](https://github.com/lucasfernandodev/dragoid/commit/945b839df9751c9f7b3b982f9dc70aeb9ee7ffd5))
-
-
-
-## [0.36.1](https://github.com/lucasfernandodev/dragoid/compare/v0.36.0...v0.36.1) (2025-06-27)
-
-
-### Bug Fixes
-
-* add husky config ([dcefedf](https://github.com/lucasfernandodev/dragoid/commit/dcefedf6657f2c385dec257e867062d4a686092e))
 
 
 
