@@ -70,6 +70,20 @@
     justify-content: space-between;
     height: fit-content;
 
+    @media screen and (max-width: 575px) {
+      & {
+        flex-direction: column;
+      }
+
+      & .divider {
+        display: none;
+      }
+
+      & .button.btn_delete {
+        width: 100%;
+      }
+    }
+
     & input {
       background: none;
       height: 42px;

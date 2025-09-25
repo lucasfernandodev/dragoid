@@ -7,8 +7,7 @@ interface Props extends ComponentProps<'main'> {
   ref?: RefObject<HTMLElement | null>;
 }
 
-export const App = ({appTitle, ...props}: Props) => {
-
+export const App = ({ appTitle, ...props }: Props) => {
   useEffect(() => {
     if (appTitle) {
       document.title = appTitle

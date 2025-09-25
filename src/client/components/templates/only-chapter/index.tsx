@@ -18,9 +18,9 @@ export const OnlyChapterTemplate: FC<ChapterTemplateDefaultProps> = ({
   return (
     <App appTitle={`Dragoid | ${chapter.title}`} className={S.chapter} ref={ref}>
       <section className={S.content}>
-        {chapter && <ChapterContent title={chapter.title} content={chapter.content} />} 
+        {chapter && <ChapterContent title={chapter.title} content={chapter.content} />}
       </section>
-      {<AppMenu 
+      {<AppMenu
         target={ref}
         prev={null}
         next={null}

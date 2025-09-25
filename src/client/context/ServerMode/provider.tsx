@@ -1,4 +1,3 @@
-import type React from "react"
 import { ServerModeContext } from "./context.ts"
 import type { ReactNode } from "react"
 import { useFetch } from "../../hooks/useFetch.ts"
@@ -7,8 +6,8 @@ import { AppLoading } from "../../components/templates/AppLoading/index.tsx"
 export const ServerModeProvider = ({ children }: { children: ReactNode }) => {
 
   const { data, isLoading, success, errorMessage } = useFetch({
-    queryFn: async ({ signal }) => {
-      const response = await fetch('/api/mode', { signal });
+    queryFn: async () => {
+      const response = await fetch('/api/mode');
       const result = await response.json()
       return result;
     },
@@ -20,6 +19,7 @@ export const ServerModeProvider = ({ children }: { children: ReactNode }) => {
   }
 
   if (!success && !isLoading) {
+    console.log(errorMessage)
     return (
       <>
         <p>Get Server mode Failed</p>

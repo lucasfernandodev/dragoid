@@ -1,14 +1,16 @@
-.app{
+.app {
   background: transparent;
+  min-height: unset;
   height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
+  padding: 0px;
 }
 
-.container{
-  background: var(--app-background);
+.container {
+  background: linear-gradient(to right bottom, var(--app-background), #0f0f0f);
   padding: 24px;
   min-width: min(500px, calc(100% - 32px));
   border-radius: 12px;
@@ -18,16 +20,22 @@
   justify-content: center;
   gap: 24px;
 
-  & button{
+  & p {
+    max-width: 340px;
+    text-align: center;
+    line-height: 2.6rem;
+  }
+
+  & button {
     padding: 12px 24px;
     background: transparent;
     cursor: pointer;
     border: 1px solid #1f1f1f;
-   color: #dfdfdf;
+    color: #dfdfdf;
     border-radius: 6px;
 
-    &:hover{
-       color: #fff;
+    &:hover {
+      color: #fff;
       background: #1f1f1f;
     }
   }

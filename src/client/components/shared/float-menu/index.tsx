@@ -1,6 +1,6 @@
-import S from './style.module.css'; 
+import S from './style.module.css';
 import { createPortal } from 'react-dom';
-import { Children, cloneElement, isValidElement, useEffect, useRef, useState, type ReactElement } from 'react'; 
+import { Children, cloneElement, isValidElement, useEffect, useRef, useState, type ReactElement } from 'react';
 
 
 
@@ -87,7 +87,7 @@ const useSetPosition = ({ target, floatMenuRef }: UseSetPosition) => {
       const { top, left, width } = el.getBoundingClientRect();
 
       const nX = left + width + 16
-      const nY = top + 120;
+      const nY = top < 0 ? 120 : top + 120;
 
       const {
         width: floatMenuWidth,
@@ -142,7 +142,7 @@ export const FloatMenu = ({ target, children }: FloatMenuProps) => {
     onTripleClickTimeout: () => setIsBarHidden(true),
     target: target,
     type: type
-  }) 
+  })
 
   const childrenWithProps = Children.map(children, child => {
     // Verifica se o child é um elemento React válido antes de clonar
@@ -158,9 +158,9 @@ export const FloatMenu = ({ target, children }: FloatMenuProps) => {
     <div
       className={S.float_menu}
       style={{
-         transform: `translateX(${position.x}px) translateY(${position.y}px)`,
-         opacity: position.x !== 0 && position.y !== 0 ? '1' : '0',
-        }}
+        transform: `translateX(${position.x}px) translateY(${position.y}px)`,
+        opacity: position.x !== 0 && position.y !== 0 ? '1' : '0',
+      }}
       data-type={type}
       data-bar-hidden={isBarHidden}
       ref={floatMenuRef}

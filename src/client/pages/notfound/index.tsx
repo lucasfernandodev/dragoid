@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 
 export const NotFound = () => {
 
-  const to = useNavigate()
+  const navigate = useNavigate()
 
   return (
-    <App className={S.app} appTitle='Dragoind | Page not found'>
+    <App className={S.app} appTitle='Dragoid | Page not found'>
       <section className={S.container}>
         <h1>Page Not Found</h1>
-        <button onClick={() => to('/')}>Return to home</button>
+        <p>It looks like the content you’re trying to access doesn’t exist or the request is invalid.</p>
+        <button onClick={() => navigate('/')}>Back main page</button>
       </section>
     </App>
   )

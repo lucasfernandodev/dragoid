@@ -29,22 +29,29 @@ interface ChapterListItemProps {
   ch: IChapterList
   isRead: boolean
   isActive: boolean
-  ref: React.RefObject<HTMLLIElement | null> | null
+  ref: React.RefObject<HTMLLIElement | null> | null;
+  onChapterSelect: () => void
 }
 
 interface ChapterListProps {
-  currentId: number, novelTitle: string, list: IResult['chapterList']
+  currentId: number, novelTitle: string, list: IResult['chapterList'];
+  onChapterSelect: () => void
 }
 
 const ChapterListItem = ({
   ch,
   isActive,
   isRead = false,
-  ref
+  ref,
+  onChapterSelect
 }: ChapterListItemProps) => {
+
+  const onSelected = () => {
+    setTimeout(onChapterSelect, 300)
+  }
   return (
     <li className={S.item} ref={ref} tabIndex={-1}>
-      <Link data-active={isActive} title={ch.title} to={`/chapter/?id=${ch.id}`} >
+      <Link onClick={onSelected} data-active={isActive} title={ch.title} to={`/chapter/?id=${ch.id}`} >
         <span title={ch.title}>{ch.title}</span>
         {isRead && (
           <span title="Chapter read" className={S.chapter_read_checked}>
@@ -56,12 +63,16 @@ const ChapterListItem = ({
   )
 }
 
-const ChapterList = memo(({ currentId, novelTitle, list }: ChapterListProps) => {
+const ChapterList = memo(({
+  currentId,
+  onChapterSelect,
+  novelTitle,
+  list
+}: ChapterListProps) => {
   const { isRead: checkIsRead } = useReadProgress()
   const itemActiveFocusRef = useRef<HTMLLIElement>(null)
 
   useEffect(() => {
-    console.log(itemActiveFocusRef.current)
     if (itemActiveFocusRef.current) {
       itemActiveFocusRef.current.focus()
     }
@@ -83,6 +94,7 @@ const ChapterList = memo(({ currentId, novelTitle, list }: ChapterListProps) => 
               isActive={ch.id === currentId}
               isRead={isRead}
               ref={ch.id === currentId ? itemActiveFocusRef : null}
+              onChapterSelect={onChapterSelect}
             />
           )
         })}
@@ -90,18 +102,15 @@ const ChapterList = memo(({ currentId, novelTitle, list }: ChapterListProps) => 
   )
 })
 
-export const ModalChapterList = ({ closeModal, isOpen, id }: ModalChapterListProps) => { 
-
-
-  const getChapterList = async () => {
-    const response = await fetch('/api/chapter');
-    const data = await response.json();
-    return data as IResult
-  }
+export const ModalChapterList = ({ closeModal, isOpen, id }: ModalChapterListProps) => {
 
   const { isLoading, data: result } = useFetch({
     queryKey: ['getChapterList'],
-    queryFn: getChapterList,
+    queryFn: async () => {
+      const response = await fetch('/api/chapter');
+      const data = await response.json();
+      return data as IResult
+    },
     isEnabled: isOpen && typeof id === 'number'
   })
 
@@ -117,6 +126,7 @@ export const ModalChapterList = ({ closeModal, isOpen, id }: ModalChapterListPro
         <Modal.Content className={S.content}>
           {isLoading && !result && <SkeletonChapterListItens />}
           {result && <ChapterList
+            onChapterSelect={closeModal}
             list={result?.chapterList}
             novelTitle={result?.title}
             currentId={id}

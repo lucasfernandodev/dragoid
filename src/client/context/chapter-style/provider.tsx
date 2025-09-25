@@ -2,7 +2,7 @@ import { useState, type ReactNode, useEffect } from "react"
 import { ChapterStyleContext } from "./context.ts"
 import { ModalChapterStyle } from "../../components/shared/modal-chapter-style/index.tsx";
 
-export interface ChapterStyleProprerties {
+export interface ChapterStyleProperties {
   fontSize: number,
   fontFamily: string,
   lineHeight: number,
@@ -30,7 +30,7 @@ export const ChapterStyleProvider = ({ children }: { children: ReactNode }) => {
   }
 
   const [isOpen, setIsOpen] = useState(false);
-  const [styleSetting, setStyleSetting] = useState<ChapterStyleProprerties>(defaultStyle)
+  const [styleSetting, setStyleSetting] = useState<ChapterStyleProperties>(defaultStyle)
 
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export const ChapterStyleProvider = ({ children }: { children: ReactNode }) => {
   const closeModal = () => setIsOpen(false)
 
 
-  const changeSetting = (options: Partial<ChapterStyleProprerties>) => {
+  const changeSetting = (options: Partial<ChapterStyleProperties>) => {
     setStyleSetting(old => ({ ...old, ...options }))
   }
 
@@ -65,7 +65,7 @@ export const ChapterStyleProvider = ({ children }: { children: ReactNode }) => {
         openModal: openModal,
         isOpen: isOpen,
         updateStyle: changeSetting,
-        saveStyle: (styleSetting: ChapterStyleProprerties) => {
+        saveStyle: (styleSetting: ChapterStyleProperties) => {
           window.localStorage.setItem('style-setting', JSON.stringify(styleSetting))
         },
         style: styleSetting

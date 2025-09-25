@@ -1,13 +1,13 @@
 import { createContext } from "react";
-import type { ChapterStyleProprerties } from "./provider.tsx";
+import type { ChapterStyleProperties } from "./provider.tsx";
 
 export interface ChapterStyleContextProps {
-  updateStyle: (options: Partial<ChapterStyleProprerties>) => void;
+  updateStyle: (options: Partial<ChapterStyleProperties>) => void;
   openModal: () => void;
   closeModal: () => void;
-  saveStyle: (style: ChapterStyleProprerties) => void;
+  saveStyle: (style: ChapterStyleProperties) => void;
   isOpen: boolean;
-  style: ChapterStyleProprerties
+  style: ChapterStyleProperties
 }
 
 export const ChapterStyleContext = createContext<ChapterStyleContextProps>(null!)

@@ -4,8 +4,15 @@
   list-style: none;
   width: 72px;
   background: #1f1f1f;
-  border-radius: 8px;
   overflow: hidden;
+
+  @media screen and (min-width: 576px) {
+    border-radius: 8px;
+  }
+
+  @media screen and (max-width: 575px) {
+    border-top: 1px solid #333;
+  }
 
   &:is([data-type="bar"]) {
     width: 100%;
@@ -24,6 +31,7 @@
 }
 
 .options .option {
+
   & button,
   & a {
     background: none;
@@ -36,7 +44,7 @@
     cursor: pointer;
     color: hsl(0, 0%, 50%);
 
-    &:is([data-enabled="false"]){
+    &:is([data-enabled="false"]) {
       color: hsl(0, 0%, 18%);
       cursor: default;
       pointer-events: none;
@@ -48,8 +56,10 @@
     }
   }
 
-  &:is(:nth-child(even)) button {
-    border-top-color: #333;
-    border-bottom-color: #333;
+  @media screen and (min-width: 576px) {
+    &:is(:nth-child(even)) button {
+      border-top-color: #333;
+      border-bottom-color: #333;
+    }
   }
 }

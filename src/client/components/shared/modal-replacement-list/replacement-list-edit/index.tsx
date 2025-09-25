@@ -2,7 +2,7 @@ import { IconPlus, IconTrash } from '@tabler/icons-react';
 import type { FC } from '../../../../../types/front-end/fc.ts';
 import type { ReplacementList } from '../../../../../types/front-end/replacement-list.ts';
 import S from './style.module.css';
-import { useState } from 'react'; 
+import { useState } from 'react';
 import { replacementListScheme } from '../../../../schema/replacement-list.ts';
 import { useReplacementList } from '../../../../hooks/useReplacementList.tsx';
 import { cn } from '../../../../utils/cn.ts';
@@ -123,7 +123,7 @@ export const ReplacementListEdit: FC<ReplacementListEdit> = ({
           const [itemKey, itemValue] = Object.entries(itens[parsedKey])[0]
 
           return (
-            <div  className={S.group} key={index} data-invalid={error.index === parsedKey}>
+            <div className={S.group} key={index} data-invalid={error.index === parsedKey}>
               <div>
                 <input
                   onChange={e => updateKey(parsedKey, e.currentTarget.value)}
@@ -140,7 +140,7 @@ export const ReplacementListEdit: FC<ReplacementListEdit> = ({
                   value={itemValue}
                   placeholder='replacement'
                 />
-                <button onClick={() => removeItem(parsedKey)} type="button" className={S.button}><IconTrash /></button>
+                <button onClick={() => removeItem(parsedKey)} type="button" className={cn(S.button, S.btn_delete)}><IconTrash /></button>
               </div>
               {error.index === parsedKey && <p className={S.error}>{error.message}</p>}
             </div>
