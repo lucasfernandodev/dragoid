@@ -1,6 +1,6 @@
 
 import { ReplacementListcontext } from "./context.ts"
-import type { ReplacementList } from "../../../types/front-end/replacement-list.ts"
+import type { ReplacementList } from "../../types/replacement-list.ts"
 import { useLocalStorage } from "../../hooks/useLocalStorage.ts";
 import { useCallback } from "react";
 

@@ -2,10 +2,10 @@ import S from './style.module.css';
 import { useEffect, useState } from "react";
 import { CreateReplacementList } from "./create-replacement-list.tsx"
 import type { FC } from "../../../../../types/front-end/fc.ts";
-import type { ReplacementList } from '../../../../../types/front-end/replacement-list.ts';
+import type { ReplacementList } from '../../../../types/replacement-list.ts';
 import { IconDownload, IconEdit, IconPlus, IconTrash, IconUpload, IconX } from '@tabler/icons-react';
 import { replacementListScheme } from '../../../../schema/replacement-list.ts';
-import { parseFileToJson } from '../../../../../utils/parse-file-to-json.ts'; 
+import { parseFileToJson } from '../../../../../utils/parse-file-to-json.ts';
 import { useReplacementList } from '../../../../hooks/useReplacementList.tsx';
 import { cn } from '../../../../utils/cn.ts';
 
@@ -144,7 +144,7 @@ export const Overview: FC<OverviewProps> = ({
                   id={`list-select:${list.id}`}
                   checked={activeListId === list.id}
                   onClick={() => actions.onActive(list.id)}
-                  onChange={() => {}}
+                  onChange={() => { }}
                 />
               </label>
             </div>

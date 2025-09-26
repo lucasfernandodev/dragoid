@@ -4,7 +4,7 @@ import { Modal } from '../modal/index.tsx';
 import { ReplacementListOverview } from './replacement-list-overview/index.tsx';
 import { ReplacementListEdit } from './replacement-list-edit/index.tsx';
 import { useState } from 'react';
-import type { ReplacementList } from '../../../../types/front-end/replacement-list.ts';
+import type { ReplacementList } from '../../../types/replacement-list.ts';
 import { useReplacementList } from '../../../hooks/useReplacementList.tsx';
 
 interface ModalReplacementListProps {
