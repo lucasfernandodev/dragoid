@@ -12,6 +12,7 @@ import type { PreviewArgs } from "./commands/preview/options.ts";
 import { createBot69shubaInstance } from "./commands/download/rebots/69shuba/factory.ts";
 import { createBotNovelBinInstance } from "./commands/download/rebots/novelbin/factorio.ts";
 import { createBotReadNovelFull } from "./commands/download/rebots/readnovelfull/factorio.ts";
+import { yargsFailHandle } from "./errors/yargs-fail-handle.ts";
 
 const _yargs = yargs(process.argv.slice(2))
 
@@ -53,13 +54,11 @@ _yargs
       alias: 'v',
       type: 'boolean',
     }
-  })
-  .fail((_, err) => {
-    if (err) {
-      errorHandle(err)
-      return;
-    }
-  }).parse()
+  }).strict()
+  .demandCommand(1, "COMMAND_EMPTY")
+  .fail(yargsFailHandle).parse()
+
+
 
 if ((_yargs.argv as Record<string, unknown>).version === true) {
   logger.info(process.env.VERSION_PLACEHOLDER || await getCurrentVersion() || '')

@@ -1,5 +1,3 @@
-
-
 export class BaseError {
   public message: string;
   public name: string;

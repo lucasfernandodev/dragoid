@@ -3,6 +3,7 @@ import { ValidationError } from './validation-error.ts';
 import { BotError } from './bot-error.ts';
 import { ApplicationError } from './application-error.ts';
 import { ZodError } from 'zod';
+import { CommandError } from './command-error.ts';
 
 const printStack = (error = {}) => {
   if (process.env.DEBUG !== 'true') return;
@@ -16,6 +17,12 @@ export const errorHandle = (error: unknown) => {
 
   if (error instanceof ApplicationError) {
     logger.error(`Application error: ${error?.message}`);
+    printStack(error?.debugMessage)
+    process.exit(error.exitCode)
+  }
+
+  if (error instanceof CommandError) {
+    logger.error(`Command error: ${error?.message}`);
     printStack(error?.debugMessage)
     process.exit(error.exitCode)
   }
