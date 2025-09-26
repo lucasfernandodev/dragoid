@@ -18,7 +18,7 @@ const parseYargsMessage = (text: string): ParsedYargsMessage => {
   }
 
   if (text.includes('Unknown argument:')) {
-    const values = text.replace('Unknown arguments:', "").trim();
+    const values = text.replace('Unknown argument:', "").trim();
     return { kind: 'UNKNOWN_ARGS', args: [values] }
   }
 

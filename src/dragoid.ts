@@ -45,18 +45,24 @@ _yargs.command<PreviewArgs>(
   previewClient.handler
 )
 
-_yargs
-  .locale(language)
-  .help()
-  .version(false)
-  .option({
-    version: {
-      alias: 'v',
-      type: 'boolean',
-    }
-  }).strict()
-  .demandCommand(1, "COMMAND_EMPTY")
-  .fail(yargsFailHandle).parse()
+_yargs.locale(language);
+_yargs.help();
+_yargs.version(false);
+
+
+
+_yargs.option({
+  version: {
+    alias: 'v',
+    type: 'boolean',
+  },
+});
+
+_yargs.strict();
+_yargs.demandCommand(1, 'COMMAND_EMPTY');
+_yargs.fail(yargsFailHandle);
+
+_yargs.parse();
 
 
 
