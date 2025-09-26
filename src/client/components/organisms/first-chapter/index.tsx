@@ -5,7 +5,7 @@ import { ChapterNavigation } from '../../shared/chapter-navigation/index.tsx';
 import { Loading } from '../../shared/loading/index.tsx';
 import type { IChapter } from '../../templates/homepage/default/index.tsx';
 import S from './style.module.css';
-import type { FC } from '../../../../types/front-end/fc.ts';
+import type { FC } from '../../../types/fc.ts';
 
 interface FirstChapterProps {
   appMenuRef: {

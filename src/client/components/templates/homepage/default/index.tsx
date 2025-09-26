@@ -6,7 +6,7 @@ import { ChapterContent } from '../../../shared/chapter-content/index.tsx';
 import { ChapterNavigation } from '../../../shared/chapter-navigation/index.tsx';
 import { AppMenu } from '../../../shared/app-menu/index.tsx';
 import { App } from '../../../atoms/App/index.tsx';
-import type { FC } from '../../../../../types/front-end/fc.ts';
+import type { FC } from '../../../../types/fc.ts';
 import { FirstChapter } from '../../../organisms/first-chapter/index.tsx';
 export interface INovel {
   thumbnail: string;

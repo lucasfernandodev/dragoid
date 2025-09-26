@@ -1,5 +1,5 @@
 import { IconPlus, IconTrash } from '@tabler/icons-react';
-import type { FC } from '../../../../../types/front-end/fc.ts';
+import type { FC } from '../../../../types/fc.ts';
 import type { ReplacementList } from '../../../../types/replacement-list.ts';
 import S from './style.module.css';
 import { useState } from 'react';

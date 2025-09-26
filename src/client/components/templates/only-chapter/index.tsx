@@ -1,4 +1,4 @@
-import type { FC } from '../../../../types/front-end/fc.ts';
+import type { FC } from '../../../types/fc.ts';
 import { App } from '../../atoms/App/index.tsx';
 import type { IChapter } from '../homepage/default/index.tsx';
 import S from './style.module.css';

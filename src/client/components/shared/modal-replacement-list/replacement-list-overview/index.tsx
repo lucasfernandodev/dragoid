@@ -1,7 +1,7 @@
 import S from './style.module.css';
 import { useEffect, useState } from "react";
 import { CreateReplacementList } from "./create-replacement-list.tsx"
-import type { FC } from "../../../../../types/front-end/fc.ts";
+import type { FC } from "../../../../types/fc.ts";
 import type { ReplacementList } from '../../../../types/replacement-list.ts';
 import { IconDownload, IconEdit, IconPlus, IconTrash, IconUpload, IconX } from '@tabler/icons-react';
 import { replacementListScheme } from '../../../../schema/replacement-list.ts';
