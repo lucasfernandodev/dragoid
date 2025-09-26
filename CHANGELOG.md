@@ -1,3 +1,12 @@
+# [0.41.0](https://github.com/lucasfernandodev/dragoid/compare/v0.40.1...v0.41.0) (2025-09-26)
+
+
+### Features
+
+* Add new validation for cli input ([7eddafb](https://github.com/lucasfernandodev/dragoid/commit/7eddafb6700641a88aad0df6ca1d048b7ab92554))
+
+
+
 ## [0.40.1](https://github.com/lucasfernandodev/dragoid/compare/v0.40.0...v0.40.1) (2025-09-25)
 
 
@@ -33,15 +42,6 @@
 
 * Add test command for husky ([5a05bd0](https://github.com/lucasfernandodev/dragoid/commit/5a05bd05372b53f7beaeba2aaef0a72d1476ed31))
 * refactor bot and add tests ([425554a](https://github.com/lucasfernandodev/dragoid/commit/425554a31ce5b21e9abcbfed5e728a1bdeb3f5dd))
-
-
-
-## [0.37.1](https://github.com/lucasfernandodev/dragoid/compare/v0.37.0...v0.37.1) (2025-07-08)
-
-
-### Bug Fixes
-
-* **reader:** Fix wrong style ([e065224](https://github.com/lucasfernandodev/dragoid/commit/e06522416443abfe355669a66bc9665df2be5d20))
 
 
 
