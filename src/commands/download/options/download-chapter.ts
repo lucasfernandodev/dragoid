@@ -14,14 +14,14 @@ export const downloadChapterService = async (
   outputFormat: DownChapterOuputFormat,
   outputFolder?: string,
 ) => {
-  logger.info('[-] Starting retrive chapter');
+  logger.info('[-] Starting retrieve chapter');
   const chapter = await bot.getChapter(url);
 
   if (!chapter) {
     throw new BotError('Collect chapter data failed')
   }
 
-  logger.info('[✔] Chapter retrive with sucess;');
+  logger.info('[✔] Chapter retrieve with sucess;');
   logger.info("[-] Starting generate output file");
 
   await generateOutputFile.chapter[outputFormat](

@@ -15,17 +15,17 @@ export const downloadNovelService = async (
   outputFolder?: string,
   opts: Partial<MultiDownloadChapterOptions> = {}
 ) => {
-  logger.info('[-] Starting retrive novel')
+  logger.info('[-] Starting retrieve novel')
   const novel = await bot.getNovel(url, opts);
 
   if (!novel) {
     throw new BotError('Collect novel data failed')
   }
 
-  logger.info('[✔] Novel Retrive with success');
+  logger.info('[✔] Novel retrieve with success');
   logger.info("[-] Starting generate output file");
 
-  if(!novel.thumbnail){
+  if (!novel.thumbnail) {
     logger.warning('Novel thumbnail failed');
     novel.thumbnail = '<image-url>'
   }

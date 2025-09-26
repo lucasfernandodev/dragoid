@@ -48,7 +48,7 @@ export class GenerateEpubService {
    * @param target - Output path for the generated EPUB file.
    * @returns Promise that resolves when EPUB generation is complete.
    */
-  private silenceExecutate = async (options: EpubOptions, target: string) => {
+  private silenceExecutable = async (options: EpubOptions, target: string) => {
     return new Promise((resolve, reject) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let epub: any = null;
@@ -220,8 +220,8 @@ export class GenerateEpubService {
     const target = join(outdir, `${filename}.epub`);
 
     try {
-      await this.silenceExecutate(this.options, target)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      await this.silenceExecutable(this.options, target)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       throw new ApplicationError(`Generation of EPUB file failed. ${error.message}`, error)
     } finally {

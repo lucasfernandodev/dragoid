@@ -1,5 +1,5 @@
 import { join } from "path";
-import { chapterScheme } from "../../core/schemas/chapter.ts"; 
+import { chapterScheme } from "../../core/schemas/chapter.ts";
 import { ApplicationError } from "../../errors/application-error.ts";
 import type { IChapterData, INovelData } from "../../types/bot.ts";
 import type { OutputSupportedType } from "../../types/output-generate-files.ts";
@@ -15,7 +15,7 @@ export const generateOutputFile: OutputSupportedType = {
       const jsonData = JSON.stringify(data, null, 2);
       const isValidData = novelSchema.safeParse(data);
       if (!isValidData.success) {
-        throw new ApplicationError('Generate file error, retrive novel data invalid', isValidData.error)
+        throw new ApplicationError('Generate file error, retrieve novel data invalid', isValidData.error)
       }
 
       const outdir = path ? resolveUserPath(path) : process.cwd()
@@ -46,7 +46,7 @@ export const generateOutputFile: OutputSupportedType = {
       const jsonData = JSON.stringify(data, null, 2);
       const isValidData = chapterScheme.safeParse(data);
       if (!isValidData.success) {
-        throw new ApplicationError('Generate file error, retrive chapter data invalid', isValidData.error)
+        throw new ApplicationError('Generate file error, retrieve chapter data invalid', isValidData.error)
       }
 
       const outdir = path ? resolveUserPath(path) : process.cwd()
