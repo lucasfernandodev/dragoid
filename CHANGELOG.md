@@ -1,3 +1,12 @@
+## [0.41.1](https://github.com/lucasfernandodev/dragoid/compare/v0.41.0...v0.41.1) (2025-09-26)
+
+
+### Bug Fixes
+
+* Fixing yargs error message parse ([1381b73](https://github.com/lucasfernandodev/dragoid/commit/1381b73e1c90b927368f78f93e4ab919b9cca4ec))
+
+
+
 # [0.41.0](https://github.com/lucasfernandodev/dragoid/compare/v0.40.1...v0.41.0) (2025-09-26)
 
 
@@ -32,16 +41,6 @@
 ### Features
 
 * add shortcut for show navigation menu in small scripts without touch only mouse ([890eecf](https://github.com/lucasfernandodev/dragoid/commit/890eecf8c22e5aed2baac668ac53ba3cf7251bcd))
-
-
-
-# [0.38.0](https://github.com/lucasfernandodev/dragoid/compare/v0.37.1...v0.38.0) (2025-07-11)
-
-
-### Features
-
-* Add test command for husky ([5a05bd0](https://github.com/lucasfernandodev/dragoid/commit/5a05bd05372b53f7beaeba2aaef0a72d1476ed31))
-* refactor bot and add tests ([425554a](https://github.com/lucasfernandodev/dragoid/commit/425554a31ce5b21e9abcbfed5e728a1bdeb3f5dd))
 
 
 
