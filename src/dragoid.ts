@@ -46,7 +46,9 @@ _yargs.command<PreviewArgs>(
 )
 
 _yargs.locale(language);
-_yargs.help();
+_yargs
+  .help('help')        // ativa --help
+  .alias('help', 'h');
 _yargs.version(false);
 
 
@@ -60,7 +62,7 @@ _yargs.option({
 
 _yargs.strict();
 _yargs.demandCommand(1, 'COMMAND_EMPTY');
-_yargs.fail(yargsFailHandle);
+_yargs.fail((msg, err) => yargsFailHandle(msg, err, _yargs));
 
 _yargs.parse();
 

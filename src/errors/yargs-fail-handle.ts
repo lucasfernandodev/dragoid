@@ -1,3 +1,4 @@
+import type { Argv } from "yargs";
 import { CommandError } from "./command-error.ts";
 import { errorHandle } from "./error-handle.ts";
 
@@ -25,11 +26,16 @@ const parseYargsMessage = (text: string): ParsedYargsMessage => {
   return { kind: 'OTHER', raw: text };
 }
 
-export const yargsFailHandle = (message: unknown, error: Error) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const yargsFailHandle = (message: unknown, error: Error, yargs: Argv<any>) => {
   if (error) {
     errorHandle(error)
     return;
   }
+
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const _argv = (yargs as any).parsed.argv
 
   if (typeof message !== 'string') return;
 
@@ -37,6 +43,7 @@ export const yargsFailHandle = (message: unknown, error: Error) => {
 
   switch (parsed.kind) {
     case 'COMMAND_EMPTY': {
+      if (_argv?.version || _argv?.v || _argv?.help || _argv?.h) return
       const error = new CommandError(
         `You need to provide a valid command. Use --help for more information.`
       )
