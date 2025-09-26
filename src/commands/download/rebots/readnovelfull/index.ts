@@ -1,6 +1,6 @@
 import { processChaptersList } from "../../../../core/process-chapter-list.ts";
 import { BotError } from "../../../../errors/bot-error.ts";
-import { createFetcher } from "../../../../tools/fetcher/factorio.ts";
+import { createFetcher } from "../../../../services/fetcher/factorio.ts";
 import type {
   Bot,
   BotOptions,

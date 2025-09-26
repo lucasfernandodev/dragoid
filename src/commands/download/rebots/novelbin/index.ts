@@ -1,6 +1,6 @@
 import { processChaptersList } from "../../../../core/process-chapter-list.ts";
 import { BotError } from "../../../../errors/bot-error.ts";
-import { createFetcher } from "../../../../tools/fetcher/factorio.ts";
+import { createFetcher } from "../../../../services/fetcher/factorio.ts";
 import type {
   Bot,
   BotOptions,
@@ -26,7 +26,7 @@ export class BotNovelBin implements Bot {
   ) => {
     const meta = await this.getNovelInfo(url);
     logger.debug('Meta info collect:\n', JSON.stringify(meta, null, 2))
-    
+
     if (!meta.chapterList) {
       throw new BotError('Unable to retrieve chapter list page url')
     }

@@ -1,6 +1,6 @@
+import { createFetcher } from './../src/services/fetcher/factorio.ts';
 import fs, { writeFile } from 'node:fs/promises';
 import path from "path";
-import { createFetcher } from "../src/tools/fetcher/factorio.ts"
 import { logger } from '../src/utils/logger.ts';
 import { testPages } from './pages.ts';
 
@@ -12,7 +12,7 @@ export const main = async () => {
   logger.info("Starting pretest..")
   const assetsDir = path.resolve('.', 'tests', 'assets', 'html');
   // Cria as pastas necessarias caso não exista
-  await ensureDir(assetsDir) 
+  await ensureDir(assetsDir)
 
 
   const fetcher = createFetcher('browser');

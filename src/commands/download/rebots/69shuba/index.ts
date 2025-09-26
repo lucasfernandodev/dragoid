@@ -1,5 +1,5 @@
 import { BotError } from "../../../../errors/bot-error.ts";
-import { createFetcher } from "../../../../tools/fetcher/factorio.ts";
+import { createFetcher } from "../../../../services/fetcher/factorio.ts";
 import type { IChapterData, ChapterList, BotOptions, MultiDownloadChapterOptions, Bot } from "../../../../types/bot.ts";
 import { delay } from "../../../../utils/delay.ts";
 import { logger } from "../../../../utils/logger.ts";
