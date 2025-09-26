@@ -114,4 +114,6 @@ export const validateInput = (data: Partial<DownloadArgs>) => {
     limit: options.limit,
     path: options.path
   })
+
+  return true
 }

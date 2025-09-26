@@ -1,10 +1,6 @@
 import { useRef } from 'react';
 import S from './style.module.css';
-import { useFetch } from '../../../../hooks/useFetch.ts';
 import { IconExternalLink } from '@tabler/icons-react'
-import { ChapterContent } from '../../../shared/chapter-content/index.tsx';
-import { ChapterNavigation } from '../../../shared/chapter-navigation/index.tsx';
-import { AppMenu } from '../../../shared/app-menu/index.tsx';
 import { App } from '../../../atoms/App/index.tsx';
 import type { FC } from '../../../../types/fc.ts';
 import { FirstChapter } from '../../../organisms/first-chapter/index.tsx';
