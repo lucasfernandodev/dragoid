@@ -1,3 +1,12 @@
+## [0.41.2](https://github.com/lucasfernandodev/dragoid/compare/v0.41.1...v0.41.2) (2025-09-26)
+
+
+### Bug Fixes
+
+* ensure validateInput returns true on success ([b2e6828](https://github.com/lucasfernandodev/dragoid/commit/b2e6828db0ba9d96f6de2a2fe69e0a8ba510e941))
+
+
+
 ## [0.41.1](https://github.com/lucasfernandodev/dragoid/compare/v0.41.0...v0.41.1) (2025-09-26)
 
 
@@ -32,15 +41,6 @@
 
 * Change front-end ejs to react+vite ([a16e661](https://github.com/lucasfernandodev/dragoid/commit/a16e661236c0e231b522325e0ae6f44447f54150))
 * re-implement all client ejs features in react ([e8ec46a](https://github.com/lucasfernandodev/dragoid/commit/e8ec46aa55e83a3c8cb3e2121eedfc57abc4dea8))
-
-
-
-# [0.39.0](https://github.com/lucasfernandodev/dragoid/compare/v0.38.0...v0.39.0) (2025-07-12)
-
-
-### Features
-
-* add shortcut for show navigation menu in small scripts without touch only mouse ([890eecf](https://github.com/lucasfernandodev/dragoid/commit/890eecf8c22e5aed2baac668ac53ba3cf7251bcd))
 
 
 
