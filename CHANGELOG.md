@@ -1,3 +1,12 @@
+## [0.41.3](https://github.com/lucasfernandodev/dragoid/compare/v0.41.2...v0.41.3) (2025-09-26)
+
+
+### Bug Fixes
+
+* prevent errors from being triggered on valid inputs ([0042dca](https://github.com/lucasfernandodev/dragoid/commit/0042dca6fcc741d35d520fb00a09f8b8e8f75006))
+
+
+
 ## [0.41.2](https://github.com/lucasfernandodev/dragoid/compare/v0.41.1...v0.41.2) (2025-09-26)
 
 
@@ -31,16 +40,6 @@
 ### Bug Fixes
 
 * Removing .env variable of test command ([d92393e](https://github.com/lucasfernandodev/dragoid/commit/d92393e64a4e970493efe549390f5c8be997ce72))
-
-
-
-# [0.40.0](https://github.com/lucasfernandodev/dragoid/compare/v0.39.0...v0.40.0) (2025-09-25)
-
-
-### Features
-
-* Change front-end ejs to react+vite ([a16e661](https://github.com/lucasfernandodev/dragoid/commit/a16e661236c0e231b522325e0ae6f44447f54150))
-* re-implement all client ejs features in react ([e8ec46a](https://github.com/lucasfernandodev/dragoid/commit/e8ec46aa55e83a3c8cb3e2121eedfc57abc4dea8))
 
 
 
