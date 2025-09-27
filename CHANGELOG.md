@@ -1,3 +1,12 @@
+## [0.41.4](https://github.com/lucasfernandodev/dragoid/compare/v0.41.3...v0.41.4) (2025-09-27)
+
+
+### Bug Fixes
+
+* try to make front-end working ([04709b6](https://github.com/lucasfernandodev/dragoid/commit/04709b63946670ed6be8b1d969edf5efd2f5d00c))
+
+
+
 ## [0.41.3](https://github.com/lucasfernandodev/dragoid/compare/v0.41.2...v0.41.3) (2025-09-26)
 
 
@@ -31,15 +40,6 @@
 ### Features
 
 * Add new validation for cli input ([7eddafb](https://github.com/lucasfernandodev/dragoid/commit/7eddafb6700641a88aad0df6ca1d048b7ab92554))
-
-
-
-## [0.40.1](https://github.com/lucasfernandodev/dragoid/compare/v0.40.0...v0.40.1) (2025-09-25)
-
-
-### Bug Fixes
-
-* Removing .env variable of test command ([d92393e](https://github.com/lucasfernandodev/dragoid/commit/d92393e64a4e970493efe549390f5c8be997ce72))
 
 
 
