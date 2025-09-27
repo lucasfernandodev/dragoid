@@ -1,3 +1,12 @@
+## [0.41.5](https://github.com/lucasfernandodev/dragoid/compare/v0.41.4...v0.41.5) (2025-09-27)
+
+
+### Bug Fixes
+
+* try to make front-end working ([2bba089](https://github.com/lucasfernandodev/dragoid/commit/2bba0892c7e90fa64bc63db846a461a243646246))
+
+
+
 ## [0.41.4](https://github.com/lucasfernandodev/dragoid/compare/v0.41.3...v0.41.4) (2025-09-27)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * Fixing yargs error message parse ([1381b73](https://github.com/lucasfernandodev/dragoid/commit/1381b73e1c90b927368f78f93e4ab919b9cca4ec))
-
-
-
-# [0.41.0](https://github.com/lucasfernandodev/dragoid/compare/v0.40.1...v0.41.0) (2025-09-26)
-
-
-### Features
-
-* Add new validation for cli input ([7eddafb](https://github.com/lucasfernandodev/dragoid/commit/7eddafb6700641a88aad0df6ca1d048b7ab92554))
 
 
 
