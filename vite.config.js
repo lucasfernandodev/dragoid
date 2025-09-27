@@ -2,6 +2,11 @@ import { resolve } from 'node:path'
 import viteFastify from '@fastify/vite/plugin'
 import viteReact from '@vitejs/plugin-react'
 import { defineConfig } from 'vite';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig(({ mode }) => ({
   root: resolve(import.meta.dirname, 'src', 'client'),
@@ -12,6 +17,7 @@ export default defineConfig(({ mode }) => ({
   plugins: [
     viteFastify({
       spa: true,
+      useRelativePaths: true
     }),
     viteReact({ jsxRuntime: 'automatic' }),
   ],
