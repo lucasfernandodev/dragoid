@@ -1,3 +1,12 @@
+## [0.41.7](https://github.com/lucasfernandodev/dragoid/compare/v0.41.6...v0.41.7) (2025-09-29)
+
+
+### Bug Fixes
+
+* try to make @fastify/vite path resolv better ([89e0daf](https://github.com/lucasfernandodev/dragoid/commit/89e0daf36c2e3fb68a1b370371f7b618ccaea86e))
+
+
+
 ## [0.41.6](https://github.com/lucasfernandodev/dragoid/compare/v0.41.5...v0.41.6) (2025-09-29)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * prevent errors from being triggered on valid inputs ([0042dca](https://github.com/lucasfernandodev/dragoid/commit/0042dca6fcc741d35d520fb00a09f8b8e8f75006))
-
-
-
-## [0.41.2](https://github.com/lucasfernandodev/dragoid/compare/v0.41.1...v0.41.2) (2025-09-26)
-
-
-### Bug Fixes
-
-* ensure validateInput returns true on success ([b2e6828](https://github.com/lucasfernandodev/dragoid/commit/b2e6828db0ba9d96f6de2a2fe69e0a8ba510e941))
 
 
 
