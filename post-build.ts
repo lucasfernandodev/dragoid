@@ -20,7 +20,7 @@ export async function executePostBuild() {
 
     source = source.replaceAll(
       `isAbsolute${IS_ABSOLUTE_NUM}(p${PARAM}) ? p${PARAM} : resolve${RESOLVE_NUM}(root${ROOT_NUM}, p${PARAM});`,
-      `isAbsolute${IS_ABSOLUTE_NUM}(p${PARAM}) ? p${PARAM} : root${ROOT_NUM} === 'undefined' ? ${newResolvPath} : resolve${RESOLVE_NUM}(root${ROOT_NUM}, p${PARAM})`
+      `isAbsolute${IS_ABSOLUTE_NUM}(p${PARAM}) ? p${PARAM} : typeof root${ROOT_NUM} === 'undefined' ? ${newResolvPath} : resolve${RESOLVE_NUM}(root${ROOT_NUM}, p${PARAM})`
     );
 
     console.log("PostBuild fixing server paths width success!")
