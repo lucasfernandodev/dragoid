@@ -1,3 +1,12 @@
+## [0.41.6](https://github.com/lucasfernandodev/dragoid/compare/v0.41.5...v0.41.6) (2025-09-29)
+
+
+### Bug Fixes
+
+* try to make front-end working ([3e610d1](https://github.com/lucasfernandodev/dragoid/commit/3e610d1cad10081cb04cdab687579d8a9f049f44))
+
+
+
 ## [0.41.5](https://github.com/lucasfernandodev/dragoid/compare/v0.41.4...v0.41.5) (2025-09-27)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * ensure validateInput returns true on success ([b2e6828](https://github.com/lucasfernandodev/dragoid/commit/b2e6828db0ba9d96f6de2a2fe69e0a8ba510e941))
-
-
-
-## [0.41.1](https://github.com/lucasfernandodev/dragoid/compare/v0.41.0...v0.41.1) (2025-09-26)
-
-
-### Bug Fixes
-
-* Fixing yargs error message parse ([1381b73](https://github.com/lucasfernandodev/dragoid/commit/1381b73e1c90b927368f78f93e4ab919b9cca4ec))
 
 
 
