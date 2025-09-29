@@ -1,5 +1,8 @@
+
 import esbuild from 'esbuild';
 import { getCurrentVersion } from './src/utils/get-current-version.ts';
+
+
 
 esbuild.build({
   entryPoints: ['./src/dragoid.ts'],
@@ -13,7 +16,7 @@ esbuild.build({
   },
   define: {
     'process.env.VERSION_PLACEHOLDER': `'${await getCurrentVersion()}'`,
-    '__IS_BUILD__': 'true'
+    '__IS_BUILD__': 'true',
   },
   external: [
     'tslib',
@@ -28,5 +31,4 @@ esbuild.build({
     'lightningcss',
     'html-rewriter-wasm'
   ],
-
 }).catch(() => process.exit(1));

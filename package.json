@@ -15,7 +15,7 @@
     "prebuild": "rm -rf ./bin",
     "build": "pnpm build:client && NODE_NO_WARNINGS=1 node --experimental-transform-types ./build.ts ",
     "build:client": "vite build",
-    "postbuild": "cp ./node_modules/wasm-vips/lib/vips-node.mjs ./bin",
+    "postbuild": "cp ./node_modules/wasm-vips/lib/vips-node.mjs ./bin && node --experimental-transform-types ./post-build.ts",
     "prepublishOnly": "npm run build",
     "lint": "eslint . --ext .ts",
     "prepare": "husky",

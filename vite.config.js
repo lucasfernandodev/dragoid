@@ -9,10 +9,10 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 export default defineConfig(({ mode }) => ({
-  root: resolve(import.meta.dirname, 'src', 'client'),
+  root: resolve(__dirname, 'src', 'client'),
   build: {
     emptyOutDir: true,
-    outDir: resolve(import.meta.dirname, 'bin', 'client', 'dist'),
+    outDir: resolve(__dirname, 'bin', 'client', 'dist'),
   },
   plugins: [
     viteFastify({
