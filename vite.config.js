@@ -12,12 +12,12 @@ export default defineConfig(({ mode }) => ({
   root: resolve(__dirname, 'src', 'client'),
   build: {
     emptyOutDir: true,
-    outDir: resolve(__dirname, 'bin', 'client', 'dist'),
+    outDir: resolve(import.meta.dirname, 'bin'),
   },
   plugins: [
     viteFastify({
       spa: true,
-      useRelativePaths: true
+      useRelativePaths: true,
     }),
     viteReact({ jsxRuntime: 'automatic' }),
   ],

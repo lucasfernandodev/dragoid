@@ -1,17 +1,22 @@
 {
   "compilerOptions": {
     "strict": true,
-     "noEmit": true, // Optional - see note below
-     "target": "esnext",
-     "module": "nodenext",
-     "rewriteRelativeImportExtensions": true,
-     "erasableSyntaxOnly": true,
-     "verbatimModuleSyntax": true,
-     "allowImportingTsExtensions": true,
-     "jsx": "react-jsx",
-     "outDir": "bin",
-     "lib": ["DOM", "DOM.Iterable", "ESNext"],
-     "isolatedModules": true,
+    "noEmit": true, // Optional - see note below
+    "target": "esnext",
+    "module": "nodenext",
+    "rewriteRelativeImportExtensions": true,
+    "erasableSyntaxOnly": true,
+    "verbatimModuleSyntax": true,
+    "allowImportingTsExtensions": true,
+    "jsx": "react-jsx",
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
+    "isolatedModules": true,
   },
-"include": ["src/**/*"]
-} 
+  "include": [
+    "src/**/*"
+  ]
+}
