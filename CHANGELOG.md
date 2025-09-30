@@ -1,3 +1,12 @@
+## [0.41.9](https://github.com/lucasfernandodev/dragoid/compare/v0.41.8...v0.41.9) (2025-09-30)
+
+
+### Bug Fixes
+
+* correct novel language property ([9e8d32d](https://github.com/lucasfernandodev/dragoid/commit/9e8d32d8fc3b688d8611fd4c50240dc9cf843bff))
+
+
+
 ## [0.41.8](https://github.com/lucasfernandodev/dragoid/compare/v0.41.7...v0.41.8) (2025-09-29)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * try to make front-end working ([2bba089](https://github.com/lucasfernandodev/dragoid/commit/2bba0892c7e90fa64bc63db846a461a243646246))
-
-
-
-## [0.41.4](https://github.com/lucasfernandodev/dragoid/compare/v0.41.3...v0.41.4) (2025-09-27)
-
-
-### Bug Fixes
-
-* try to make front-end working ([04709b6](https://github.com/lucasfernandodev/dragoid/commit/04709b63946670ed6be8b1d969edf5efd2f5d00c))
 
 
 
