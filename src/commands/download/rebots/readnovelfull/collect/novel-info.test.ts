@@ -13,7 +13,7 @@ describe('ReadNovelFull - Test parse html information from the novel', async () 
 
   it('Should retrieve the novel information correctly.', () => {
     const meta = {
-      "language": "english",
+      "language": "English",
       "thumbnail": "https://img.readnovelfull.com/thumb/t-300x439/Ancient-Godly-Monarch-UO7LThI0Am.jpg",
       "title": "Ancient Godly Monarch",
       "description": [

@@ -29,7 +29,7 @@ describe('69shuba - Test parse html information from the novel', async () => {
         "历史军事"
       ],
       "status": "全本",
-      "language": "chinese",
+      "language": "Chinese",
       "thumbnail": "https://static.69shuba.com/files/article/image/30/30539/30539s.jpg",
       "chapterList": "https://www.69shuba.com/book/30539/"
     }

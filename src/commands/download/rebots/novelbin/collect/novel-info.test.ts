@@ -15,7 +15,7 @@ describe('NovelBin - Test parse html information from the novel', async () => {
   it('Should retrieve the novel information correctly.', () => {
     const meta = {
       "thumbnail": "https://novelbin.com/media/novel/my-house-of-horrors.jpg",
-      "language": "ingles",
+      "language": "English",
       "chapterList": "https://novelbin.com/ajax/chapter-archive?novelId=my-house-of-horrors",
       "title": "My House of Horrors",
       "description": [
