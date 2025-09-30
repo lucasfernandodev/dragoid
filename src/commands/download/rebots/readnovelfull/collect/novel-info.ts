@@ -94,7 +94,7 @@ export const collectNovelInfo = (page: string): INovelMeta => {
   }
 
   return {
-    language: 'english',
+    language: 'English',
     thumbnail: parsed.thumbnail,
     title: parsed.title,
     description: parsed.description,

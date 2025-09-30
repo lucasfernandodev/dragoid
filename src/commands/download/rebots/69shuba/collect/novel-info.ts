@@ -1,7 +1,6 @@
 import { load } from "cheerio";
 import type { INovelMeta } from "../../../../../types/bot.ts";
 import { BotError } from "../../../../../errors/bot-error.ts";
-import { logger } from "../../../../../utils/logger.ts";
 
 
 export const collectNovelInfo = (page: string): INovelMeta => {
@@ -87,8 +86,6 @@ export const collectNovelInfo = (page: string): INovelMeta => {
     }
   }
 
-  logger.debug('Bot collected info:\n', JSON.stringify(parsed, null, 2))
-
   return {
     thumbnail: parsed.thumbnail,
     title: parsed.title,
@@ -97,6 +94,6 @@ export const collectNovelInfo = (page: string): INovelMeta => {
     genres: parsed.genres,
     status: parsed.status,
     chapterList: parsed.chapterList,
-    language: 'chinese'
+    language: 'Chinese'
   }
 }

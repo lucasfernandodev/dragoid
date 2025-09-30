@@ -25,7 +25,6 @@ export class BotNovelBin implements Bot {
     opt: Partial<MultiDownloadChapterOptions>
   ) => {
     const meta = await this.getNovelInfo(url);
-    logger.debug('Meta info collect:\n', JSON.stringify(meta, null, 2))
 
     if (!meta.chapterList) {
       throw new BotError('Unable to retrieve chapter list page url')
