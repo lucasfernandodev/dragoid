@@ -1,3 +1,12 @@
+## [0.41.10](https://github.com/lucasfernandodev/dragoid/compare/v0.41.9...v0.41.10) (2025-10-01)
+
+
+### Bug Fixes
+
+* fixing error assets not include on push ([c21d421](https://github.com/lucasfernandodev/dragoid/commit/c21d421fb967ead222a61f6abe93160f1c5df2df))
+
+
+
 ## [0.41.9](https://github.com/lucasfernandodev/dragoid/compare/v0.41.8...v0.41.9) (2025-09-30)
 
 
@@ -31,15 +40,6 @@
 ### Bug Fixes
 
 * try to make front-end working ([3e610d1](https://github.com/lucasfernandodev/dragoid/commit/3e610d1cad10081cb04cdab687579d8a9f049f44))
-
-
-
-## [0.41.5](https://github.com/lucasfernandodev/dragoid/compare/v0.41.4...v0.41.5) (2025-09-27)
-
-
-### Bug Fixes
-
-* try to make front-end working ([2bba089](https://github.com/lucasfernandodev/dragoid/commit/2bba0892c7e90fa64bc63db846a461a243646246))
 
 
 
