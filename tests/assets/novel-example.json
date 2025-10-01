@@ -1,0 +1,18 @@
+{
+  "thumbnail": "",
+  "title": "Novel Example",
+  "description": [
+    "Description",
+    "Created"
+  ],
+  "genres": [
+    "action",
+    "si-fi"
+  ],
+  "author": [
+    "john doe"
+  ],
+  "chapters": [],
+  "status": "in progress",
+  "language": "English"
+}

@@ -20,4 +20,4 @@ node_modules/
 bin
 novels/
 .pnp.*
-tests/assets/*
+tests/assets/html/*
