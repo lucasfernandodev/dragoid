@@ -84,6 +84,9 @@ importers:
       react-router-dom:
         specifier: ^7.7.1
         version: 7.7.1(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+      stream-concat:
+        specifier: ^2.0.0
+        version: 2.0.0
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -2161,6 +2164,10 @@ packages:
   statuses@2.0.1:
     resolution: {integrity: sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==}
     engines: {node: '>= 0.8'}
+
+  stream-concat@2.0.0:
+    resolution: {integrity: sha512-+ej0PKKGS/hegFlIZoGrzoVzvYr//8sKrKTGxXNX10Z4bGkI5IXyrNk+yYjCuEOACjiqQlREueZfEGvBSVM13A==}
+    engines: {node: '>=12'}
 
   streamx@2.23.0:
     resolution: {integrity: sha512-kn+e44esVfn2Fa/O0CPFcex27fjIL6MkVae0Mm6q+E6f0hWv578YCERbv+4m02cjxvDsPKLnmxral/rR6lBMAg==}
@@ -4590,6 +4597,8 @@ snapshots:
   split2@4.2.0: {}
 
   statuses@2.0.1: {}
+
+  stream-concat@2.0.0: {}
 
   streamx@2.23.0:
     dependencies:

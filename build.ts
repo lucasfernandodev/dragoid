@@ -29,6 +29,9 @@ esbuild.build({
     'husky',
     'typescript-eslint',
     'lightningcss',
-    'html-rewriter-wasm'
+    'html-rewriter-wasm',
+    'stream-concat',
+    'ejs',
+    '@eslint/js'
   ],
 }).catch(() => process.exit(1));
