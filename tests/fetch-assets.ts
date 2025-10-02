@@ -9,7 +9,8 @@ async function ensureDir(dir: string) {
 }
 
 export const main = async () => {
-  logger.info("Starting pretest..")
+  logger.info("Setting up the environment for bot testing.")
+
   const assetsDir = path.resolve('.', 'tests', 'assets', 'html');
   // Cria as pastas necessarias caso não exista
   await ensureDir(assetsDir)
@@ -25,6 +26,7 @@ export const main = async () => {
     await writeFile(path.join(assetsDir, `${targetName}.html`), html, 'utf-8');
   }
   await fetcher.closeBrowser()
+  logger.info("All files download with success.\n")
 }
 
 main().catch(err => {
