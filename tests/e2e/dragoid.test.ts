@@ -68,10 +68,10 @@ describe('Dragoid E2E', async () => {
 
     assert.match(shortFlagResponse.stdout, /Server started successfully/)
     assert.match(shortFlagResponse.stdout, /http:\/\/127\.0\.0\.1:3010/)
-    assert.match(shortFlagResponse.stdout, /http:\/\/192\.168\.\d{1,3}\.\d{1,3}:3010/);
+    assert.match(shortFlagResponse.stdout, /http:\/\/(?:\d{1,3}\.){3}\d{1,3}:3010/);
 
     assert.match(longFlagResponse.stdout, /Server started successfully/)
     assert.match(longFlagResponse.stdout, /http:\/\/127\.0\.0\.1:3010/)
-    assert.match(longFlagResponse.stdout, /http:\/\/192\.168\.\d{1,3}\.\d{1,3}:3010/);
+    assert.match(longFlagResponse.stdout, /http:\/\/(?:\d{1,3}\.){3}\d{1,3}:3010/);
   })
 })
