@@ -1,3 +1,13 @@
+## [0.41.11](https://github.com/lucasfernandodev/dragoid/compare/v0.41.10...v0.41.11) (2025-10-02)
+
+
+### Bug Fixes
+
+* **tests:** Fixing unity tests not running ([708319a](https://github.com/lucasfernandodev/dragoid/commit/708319ab7332a7a23071aa0584573558e49ed593))
+* **tests:** Fixing unity tests not running ([8979fe6](https://github.com/lucasfernandodev/dragoid/commit/8979fe630d52b6e3f702f8bd6e40d5cc59f01fd0))
+
+
+
 ## [0.41.10](https://github.com/lucasfernandodev/dragoid/compare/v0.41.9...v0.41.10) (2025-10-01)
 
 
@@ -31,15 +41,6 @@
 ### Bug Fixes
 
 * try to make @fastify/vite path resolv better ([89e0daf](https://github.com/lucasfernandodev/dragoid/commit/89e0daf36c2e3fb68a1b370371f7b618ccaea86e))
-
-
-
-## [0.41.6](https://github.com/lucasfernandodev/dragoid/compare/v0.41.5...v0.41.6) (2025-09-29)
-
-
-### Bug Fixes
-
-* try to make front-end working ([3e610d1](https://github.com/lucasfernandodev/dragoid/commit/3e610d1cad10081cb04cdab687579d8a9f049f44))
 
 
 
