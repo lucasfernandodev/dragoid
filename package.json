@@ -20,7 +20,7 @@
     "lint": "eslint . --ext .ts",
     "prepare": "husky",
     "pretest": "NODE_NO_WARNINGS=1  node --experimental-transform-types ./tests/fetch-assets.ts",
-    "test": "pnpm test:e2e && NODE_NO_WARNINGS=1 node --experimental-transform-types --test",
+    "test": "pnpm test:e2e && NODE_NO_WARNINGS=1 node --experimental-transform-types --test './src/*.test.ts'",
     "test:e2e": "NODE_NO_WARNINGS=1 node --experimental-transform-types --test './tests/e2e/*.test.ts'"
   },
   "keywords": [

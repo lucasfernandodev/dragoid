@@ -4,6 +4,7 @@ interface Options {
   env?: Record<string, string>;
   resolveOnStdout?: RegExp | null;
   readinessTimeoutMs?: number
+  killOnResolve?: boolean
 }
 
 type Response = Promise<{
@@ -28,50 +29,81 @@ export const executeCMD = (path: string, args: string[] = [], opts: Options = {}
   child.stdout.on('data', (chunk: Buffer) => stdoutChunks.push(chunk));
   child.stderr.on('data', (chunk: Buffer) => stderrChunks.push(chunk));
 
+
+
   return new Promise((resolve, reject) => {
     let readinessTimer: NodeJS.Timeout | null = null;
+    let settled = false;
+
+    const getOutput = () => ({
+      stdout: Buffer.concat(stdoutChunks).toString(),
+      stderr: Buffer.concat(stderrChunks).toString(),
+    });
 
     const cleanup = () => {
       if (readinessTimer) {
         clearTimeout(readinessTimer)
         readinessTimer = null
       }
+
+      child.removeAllListeners(); // Simplificado para remover todos os listeners do 'child'
+      child.stdout.removeAllListeners();
+      child.stderr.removeAllListeners();
     }
 
-    child.on('error', (err) => {
-      // erro ao spawn — devolve info útil
+    const onError = (error: Error, code: number | null = null) => {
+      if (settled) return;
+      settled = true;
+      reject({ error, ...getOutput(), code })
       cleanup()
-      reject({ error: err, stdout: Buffer.concat(stdoutChunks).toString(), stderr: Buffer.concat(stderrChunks).toString(), code: null });
-    });
+    }
+
+    const onSuccess = (code: number | null) => {
+      if (settled) return;
+      settled = true;
+      resolve({ ...getOutput(), code, child })
+      cleanup()
+    }
+
+    child.on('error', onError);
 
     if (opts.resolveOnStdout) {
       const regex = opts.resolveOnStdout;
-      const onStdout = () => {
-        const current = Buffer.concat(stdoutChunks).toString()
+
+      const onStdout = (chunk: Buffer) => {
+        stdoutChunks.push(chunk);
+        const current = getOutput().stdout
         if (regex.test(current)) {
-          cleanup()
-          resolve({ stdout: current, stderr: Buffer.concat(stderrChunks).toString(), code: null, child })
+          child.stdout.off('data', onStdout);
+          if (opts.killOnResolve && !child.killed) {
+            child.kill('SIGTERM');
+          }
+          onSuccess(null)
         }
       }
+      child.stdout.removeAllListeners('data');
       child.stdout.on('data', onStdout)
 
       if (opts.readinessTimeoutMs && opts.readinessTimeoutMs > 0) {
         readinessTimer = setTimeout(() => {
-          child.stdout.off('data', onStdout);
-          reject({ error: new Error('readiness timeout'), stdout: Buffer.concat(stdoutChunks).toString(), stderr: Buffer.concat(stderrChunks).toString(), code: null });
+          if (settled) return;
+          child.kill('SIGTERM')
+          const error = new Error(`Readiness timeout of ${opts.readinessTimeoutMs}ms exceeded`);
+          onError(error, null);
         }, opts.readinessTimeoutMs)
+      } else {
+        child.stdout.on('data', (chunk: Buffer) => stdoutChunks.push(chunk));
       }
     }
 
     child.on('close', (code, signal) => {
-      cleanup()
-      const stdout = Buffer.concat(stdoutChunks).toString();
-      const stderr = Buffer.concat(stderrChunks).toString();
+      if (settled) return;
 
       if (code === 0) {
-        resolve({ stdout, stderr, code, child });
+        onSuccess(code)
       } else {
-        reject({ error: new Error(`Process exited with code ${code}${signal ? `, signal ${signal}` : ''}`), stdout, stderr, code });
+        const error = new Error(`Process exited with code ${code}${signal ? `, signal ${signal}` : ''}`);
+        onError(error, code);
       }
     });
   });
