@@ -30,8 +30,6 @@ esbuild.build({
     'typescript-eslint',
     'lightningcss',
     'html-rewriter-wasm',
-    'stream-concat',
-    'ejs',
     '@eslint/js'
   ],
 }).catch(() => process.exit(1));
