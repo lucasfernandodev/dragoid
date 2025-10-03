@@ -1,3 +1,12 @@
+## [0.41.12](https://github.com/lucasfernandodev/dragoid/compare/v0.41.11...v0.41.12) (2025-10-03)
+
+
+### Bug Fixes
+
+* fix help message of preview command ([60527ce](https://github.com/lucasfernandodev/dragoid/commit/60527cee2f9f0771d0487483303f417efc60b26a))
+
+
+
 ## [0.41.11](https://github.com/lucasfernandodev/dragoid/compare/v0.41.10...v0.41.11) (2025-10-02)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * try to make @fastify/vite path resolv better ([3d57ba8](https://github.com/lucasfernandodev/dragoid/commit/3d57ba85dc459f5158b97eabcef07ec7973ffc04))
-
-
-
-## [0.41.7](https://github.com/lucasfernandodev/dragoid/compare/v0.41.6...v0.41.7) (2025-09-29)
-
-
-### Bug Fixes
-
-* try to make @fastify/vite path resolv better ([89e0daf](https://github.com/lucasfernandodev/dragoid/commit/89e0daf36c2e3fb68a1b370371f7b618ccaea86e))
 
 
 
