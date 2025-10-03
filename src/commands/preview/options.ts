@@ -31,7 +31,7 @@ export const setPreviewOptions = (command: Argv<PreviewArgs>) => {
     public: publicFlagKey,
   } = CMD_PREVIEW_PROXY_FLAGS
 
-  const options = command.usage('$0 download [options]')
+  const options = command.usage('$0 preview [options]')
     .options({
       [help]: { alias: 'h', description: 'Show help', },
       [file]: {
@@ -52,5 +52,5 @@ export const setPreviewOptions = (command: Argv<PreviewArgs>) => {
       }
     })
 
-    return options
+  return options
 }
