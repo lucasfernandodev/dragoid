@@ -99,4 +99,14 @@ describe('Dragoid E2E', async () => {
     assert.match(longFlagResponse.stdout, /http:\/\/127\.0\.0\.1:3010/)
     assert.match(longFlagResponse.stdout, /http:\/\/(?:\d{1,3}\.){3}\d{1,3}:3010/);
   })
+
+  it('should display help content for the preview command when the "-h" or "--help" args is used with the "preview" command', async () => {
+    const shortArgs = ['preview', "-h"]
+    const longArgs = ['preview', "--help"]
+
+    const shortFlagResponse = await executeCMD(cliPath, shortArgs)
+    const longFlagResponse = await executeCMD(cliPath, longArgs)
+    assert.match(shortFlagResponse.stdout, /preview \[options\]/)
+    assert.match(longFlagResponse.stdout, /preview \[options\]/)
+  })
 })
