@@ -74,6 +74,15 @@ export const validateInput = (data: Partial<DownloadArgs>) => {
     return true;
   }
 
+  const isModeChapter = options.mode === 'chapter';
+  const isLimitOrSkipSettled = typeof options.skip !== 'undefined' || typeof options.limit !== 'undefined'
+
+  if (isModeChapter && isLimitOrSkipSettled) {
+    throw new ValidationError(
+      `Argument conflict: The arguments --${CMD_DOWNLOAD_PROXY_FLAGS.limit} and --${CMD_DOWNLOAD_PROXY_FLAGS.skip} are supported only by '--mode=novel'`
+    )
+  }
+
   if (options.listCrawlers) {
     if (optionsKeys.length !== 1) {
       throw new ValidationError(
