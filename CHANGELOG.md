@@ -1,3 +1,12 @@
+## [0.41.13](https://github.com/lucasfernandodev/dragoid/compare/v0.41.12...v0.41.13) (2025-10-05)
+
+
+### Bug Fixes
+
+* Add error for argument conflict ([a41322e](https://github.com/lucasfernandodev/dragoid/commit/a41322e6bd73ad5135d043f0775cbaed5faf9199))
+
+
+
 ## [0.41.12](https://github.com/lucasfernandodev/dragoid/compare/v0.41.11...v0.41.12) (2025-10-03)
 
 
@@ -32,15 +41,6 @@
 ### Bug Fixes
 
 * correct novel language property ([9e8d32d](https://github.com/lucasfernandodev/dragoid/commit/9e8d32d8fc3b688d8611fd4c50240dc9cf843bff))
-
-
-
-## [0.41.8](https://github.com/lucasfernandodev/dragoid/compare/v0.41.7...v0.41.8) (2025-09-29)
-
-
-### Bug Fixes
-
-* try to make @fastify/vite path resolv better ([3d57ba8](https://github.com/lucasfernandodev/dragoid/commit/3d57ba85dc459f5158b97eabcef07ec7973ffc04))
 
 
 
