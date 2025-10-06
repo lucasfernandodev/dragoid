@@ -48,7 +48,7 @@
     "@fastify/view": "^11.1.0",
     "@fastify/vite": "^8.2.0",
     "@tabler/icons-react": "^3.34.1",
-    "@vitejs/plugin-react": "^4.7.0",
+    "@vitejs/plugin-react": "^5.0.4",
     "axios": "^1.10.0",
     "chalk": "^5.4.1",
     "cheerio": "^1.1.0",
