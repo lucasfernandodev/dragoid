@@ -21,7 +21,7 @@ export const downloadChapterService = async (
     throw new BotError('Collect chapter data failed')
   }
 
-  logger.info('[✔] Chapter retrieve with sucess;');
+  logger.info('[✔] Chapter retrieve with success;');
   logger.info("[-] Starting generate output file");
 
   await generateOutputFile.chapter[outputFormat](

@@ -38,7 +38,7 @@ export interface MultiDownloadChapterOptions {
   limit: number;
   skip: number;
   delay: number;
-} 
+}
 
 
 export interface BotOptions {

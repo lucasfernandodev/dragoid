@@ -13,19 +13,26 @@ import { createBot69shubaInstance } from "./commands/download/rebots/69shuba/fac
 import { createBotNovelBinInstance } from "./commands/download/rebots/novelbin/factorio.ts";
 import { createBotReadNovelFull } from "./commands/download/rebots/readnovelfull/factorio.ts";
 import { yargsFailHandle } from "./errors/yargs-fail-handle.ts";
+import { createBotMockInstance } from "./commands/download/rebots/mock/factory.ts";
 
 const _yargs = yargs(process.argv.slice(2))
 
 const bot69shuba = createBot69shubaInstance()
 const botNovelBin = createBotNovelBinInstance()
 const botReadNovelFull = createBotReadNovelFull()
+// Mock for tests
+const botMock = createBotMockInstance()
 const bots = [
   bot69shuba,
   botNovelBin,
-  botReadNovelFull
+  botReadNovelFull,
 ]
 
-const downloadClient = new Download(bots)
+
+const downloadClient = new Download(
+  process.env.USE_BOT_MOCK ? [...bots, botMock] : bots
+)
+
 const previewClient = new Preview()
 
 

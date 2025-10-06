@@ -14,6 +14,13 @@ type Response = Promise<{
   child: ChildProcessWithoutNullStreams
 }>
 
+export type Rejected = {
+  error: Error;
+  stdout: string;
+  stderr: string;
+  code: number | null;
+};
+
 export const executeCMD = (path: string, args: string[] = [], opts: Options = {}): Response => {
   const env = Object.assign({ NODE_ENV: 'test', NODE_NO_WARNINGS: 1 }, opts.env ?? {});
   // chama 'node' separando comando de args
