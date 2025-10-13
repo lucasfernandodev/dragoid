@@ -8,6 +8,9 @@ on:
     types: [opened, synchronize, reopened]
     branches: [main]
 
+permissions:
+  contents: write
+
 jobs:
   run-tests:
     name: Running unit tests
