@@ -19,4 +19,3 @@ dragoid download [options]
 | --list-crawlers | Lists all supported websites and crawlers | boolean | false |
 | --list-output-formats | Lists all supported output formats | boolean | false |
 | -h, --help | Shows help for this specific command | boolean | - |
-| -v, --version | Shows the CLI version | boolean | - |

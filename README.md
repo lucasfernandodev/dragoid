@@ -1,9 +1,10 @@
 # Dragoid
 
-A tool for downloading web novels online for offline reading in various formats.
+Downloading novels for offline reading.
 
 ## Requirements
 
+- Linux
 - Node.js v22.17.0 or higher.
 
 ## Installation
@@ -12,7 +13,7 @@ A tool for downloading web novels online for offline reading in various formats.
 npm install -g dragoid
 ```
 
-## Puppeteer
+### Puppeteer
 
 Some bots use Puppeteer with Chrome to retrieve information (novel or chapter). If Chrome is not found in `~/.cache/puppeteer`, try installing it manually using the following command:
 
@@ -42,14 +43,13 @@ dragoid --version
 
 ### Download:
 
-Download the first 5 chapters of a novel in EPUB:
+Download a novel and save it in EPUB format:
 
 ```bash
 dragoid download \
   --mode=novel \
   --url="https://site.com/my-novel" \
-  --format=epub \
-  --limit=5
+  --format=epub
 ```
 
 Before downloading, check if the site is supported using:
@@ -64,14 +64,13 @@ List supported output formats:
 dragoid download --list-output-formats
 ```
 
-Download a specific chapter:
+Download only a specific chapter of the novel:
 
 ```bash
 dragoid download \
   --mode=chapter \
   --url="https://site.com/my-novel/cap-10" \
-  --format=json \
-  --path="./downloads"
+  --format=json
 ```
 
 For more information about the download command, <a href="./docs/command-download.md">click here</a>.

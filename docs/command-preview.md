@@ -13,7 +13,7 @@ dragoid preview --file=<novel-file>
 | -f, --file | Path to the novel JSON file | string | (required) |
 | -p, --public | Makes the server accessible to other devices on the same network | boolean | false |
 | -h, --help | Shows help for this specific command | boolean | - |
-| -v, --version | Shows the CLI version | boolean | - |
+| --port | Port to bind the server | number | 3010 |
 
 ## What features does the reader offer?
 
