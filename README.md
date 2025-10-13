@@ -52,7 +52,7 @@ dragoid download \
   --format=epub
 ```
 
-Before downloading, check if the site is supported using:
+Check if the site is supported using:
 
 ```bash
 dragoid download --list-crawlers
