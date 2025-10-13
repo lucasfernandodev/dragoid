@@ -1,6 +1,6 @@
 # Dragoid
 
-Downloading novels for offline reading.
+Download novels to read offline.
 
 ## Requirements
 
