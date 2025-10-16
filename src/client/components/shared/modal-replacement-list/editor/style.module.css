@@ -1,0 +1,138 @@
+.editor {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding-bottom: 16px;
+}
+
+.editor>button:first-child {
+  width: 100%;
+}
+
+.editor .rules .list {
+  max-height: 400px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+  overflow-y: auto;
+}
+
+.editor .rules .list .list_item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #1f1f1f;
+  gap: 12px;
+
+  &:is([data-invalid="true"]) {
+    border-color: #F67683;
+  }
+
+  & .row {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+
+    &:is(:first-child) {
+      align-items: center;
+    }
+  }
+
+  & .title {
+    color: #fff;
+    font-weight: 600;
+    flex-grow: 1;
+    display: flex;
+  }
+
+  & .actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  & .group {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 8px);
+    gap: 8px;
+
+    &:last-child {
+      margin-left: 16px;
+    }
+  }
+
+  & input {
+    background: transparent;
+    height: 42px;
+    width: auto;
+    padding: 0px 12px;
+    border: 1px solid #1F1F1F;
+    outline: none;
+    box-shadow: none;
+    border-radius: 4px;
+
+    &:is([data-invalid="true"]) {
+      border-color: #F67683;
+    }
+  }
+
+
+  & .source_error,
+  & .target_error,
+  & .list_item_error {
+    color: #F67683;
+    font-style: italic;
+    font-size: 1.4rem;
+    line-height: 1.6rem;
+
+    &.list_item_error {
+      margin-top: 4px;
+      width: 100%;
+    }
+  }
+}
+
+.editor>.actions {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  justify-content: flex-end;
+  align-items: center;
+
+  & button {
+    min-width: 120px;
+  }
+
+  & button svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.empty_rule {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  text-align: center;
+  color: #aaa;
+}
+
+.listNotFound {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px;
+  background: #350e0e;
+
+  & p {
+    color: #F67683;
+    line-height: 2.6rem;
+  }
+}

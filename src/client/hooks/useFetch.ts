@@ -11,7 +11,7 @@ interface FetchState<T> {
 type FetchAction<T> = { type: 'FETCH_START' } | { type: 'FETCH_SUCCESS', payload: T } | { type: 'FETCH_ERROR', message: unknown }
 
 const fetchReducer = <T>(state: FetchState<T>, action: FetchAction<T>): FetchState<T> => {
-   
+
   switch (action.type) {
     case "FETCH_START":
       if (state.isLoading) return state;
@@ -56,7 +56,7 @@ export const useFetch = <TResponse>({
       const response = await fnRef.current({ signal: controller.signal });
       dispatch({ type: "FETCH_SUCCESS", payload: response })
     } catch (error: any) {
-      if (error?.name !== 'AbortCleaning') { 
+      if (error?.name !== 'AbortCleaning') {
         dispatch({ type: 'FETCH_ERROR', message: error?.message })
       };
     }

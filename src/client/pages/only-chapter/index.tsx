@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
 import { useFetch } from "../../hooks/useFetch.ts";
 import type { IChapter } from "../../components/templates/homepage/default/index.tsx";
 import { SkeletonChapter } from "../../components/shared/skeleton/index.tsx";
-import { ChapterNotFound } from "../../components/templates/chapter/notfound/index.tsx";
 import { OnlyChapterTemplate } from "../../components/templates/only-chapter/index.tsx";
+import { ServerOfflineTemplate } from "../../components/templates/server-offline/index.tsx";
 
 export const OnlyChapter = () => {
 
@@ -19,18 +18,9 @@ export const OnlyChapter = () => {
 
   if (isLoading) return <SkeletonChapter />
 
-  if (!isLoading && !success && errorMessage) {
-    return (
-      <>
-        Chapter Loading Failed: {errorMessage}
-      </>
-    )
-  }
+  if (!success && errorMessage || !data?.chapter) {
+    return <ServerOfflineTemplate />
+  };
 
-  return (
-    <>
-      {!data?.chapter && <ChapterNotFound />}
-      {data?.chapter && <OnlyChapterTemplate chapter={data.chapter} />}
-    </>
-  )
+  return <OnlyChapterTemplate chapter={data.chapter} />
 }

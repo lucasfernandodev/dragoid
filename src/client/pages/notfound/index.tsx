@@ -1,18 +1,45 @@
+import { Link, useNavigate } from 'react-router-dom';
 import S from './style.module.css';
-import { App } from "../../components/atoms/App/index.tsx"
-import { useNavigate } from 'react-router-dom';
+import { IconRefresh, IconArrowLeft, IconHome, IconError404 } from '@tabler/icons-react';
+import { App } from '../../components/atoms/App/index.tsx';
 
 export const NotFound = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
-    <App className={S.app} appTitle='Dragoid | Page not found'>
-      <section className={S.container}>
-        <h1>Page Not Found</h1>
-        <p>It looks like the content you’re trying to access doesn’t exist or the request is invalid.</p>
-        <button onClick={() => navigate('/')}>Back main page</button>
-      </section>
+    <App appTitle='Dragoid | Page not found' className={S.app}>
+      <div className={S.container}>
+        <div className={S.icon}>
+          <IconError404 />
+        </div>
+        <div className={S.heading}>
+          <h1 className={S.title}>Page not found</h1>
+          <p className={S.desc}>
+            It looks like the content you’re trying to access doesn’t exist or the request is invalid.
+          </p>
+        </div>
+
+        <div className={S.actions_group}>
+          <button className={S.btn} onClick={() => window.location.reload()}>
+            <IconRefresh />
+            <span>Try Again</span>
+          </button>
+          <button className={S.btn} onClick={() => navigate(-1)}>
+            <IconArrowLeft />
+            <span>Go Back</span>
+          </button>
+          <button className={S.btn} onClick={() => navigate("/")}>
+            <IconHome />
+            <span>Home</span>
+          </button>
+        </div>
+
+        <div className={S.footer}>
+          <p>
+            Think this error shouldn't appear? Let us know by <Link to="https://github.com/lucasfernandodev/dragoid/issues" target='_blank'>opening an issue</Link> on GitHub!
+          </p>
+        </div>
+      </div>
     </App>
   )
 }

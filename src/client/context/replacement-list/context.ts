@@ -5,10 +5,10 @@ export interface IReplacementListContext {
   getCollection: () => ReplacementList[]
   getList: (id: string) => ReplacementList | null;
   getActiveList: () => ReplacementList | null;
-  toggleListActive: (id: string) => void;
+  toggleListActive: (id?: string) => void;
   updateList: (id: string, data: ReplacementList['list']) => void;
   deleteList: (id: string) => void;
   addList: (id: string, data?: ReplacementList['list']) => void;
 }
 
-export const ReplacementListcontext = createContext<IReplacementListContext>(null!)
+export const ReplacementListContext = createContext<IReplacementListContext>(null!)

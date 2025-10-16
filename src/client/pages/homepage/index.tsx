@@ -1,5 +1,6 @@
 import { HomeDefaultSkeleton } from "../../components/shared/skeleton/home-default-skeleton/index.tsx";
 import { HomepageDefaultTemplate, type INovel } from "../../components/templates/homepage/default/index.tsx"
+import { ServerOfflineTemplate } from "../../components/templates/server-offline/index.tsx";
 import { useFetch } from "../../hooks/useFetch.ts";
 
 export const HomePage = () => {
@@ -18,7 +19,7 @@ export const HomePage = () => {
   }
 
   if (!data || !data?.novel) {
-    return <>Server offline ou novel not found!</>
+    return <ServerOfflineTemplate />
   }
 
   return <HomepageDefaultTemplate book={data.novel} />

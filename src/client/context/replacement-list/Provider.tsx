@@ -1,5 +1,5 @@
 
-import { ReplacementListcontext } from "./context.ts"
+import { ReplacementListContext } from "./context.ts"
 import type { ReplacementList } from "../../types/replacement-list.ts"
 import { useLocalStorage } from "../../hooks/useLocalStorage.ts";
 import { useCallback } from "react";
@@ -27,7 +27,12 @@ export const ReplacementListProvider = ({ children }: { children: React.ReactNod
     ))
   }
 
-  const toggleListActive = (id: string) => {
+  const toggleListActive = (id?: string) => {
+    if (!id) {
+      setActiveList(null)
+      return;
+    }
+
     if (activeList === id) {
       setActiveList(null)
     } else {
@@ -38,7 +43,7 @@ export const ReplacementListProvider = ({ children }: { children: React.ReactNod
   const getAtiveList = useCallback(() => collection.find(list => list.id === activeList) || null, [activeList, collection])
 
   return (
-    <ReplacementListcontext.Provider value={{
+    <ReplacementListContext.Provider value={{
       getList: getList,
       getCollection: getCollection,
       addList: addList,
@@ -48,6 +53,6 @@ export const ReplacementListProvider = ({ children }: { children: React.ReactNod
       updateList: updateList
     }}>
       {children}
-    </ReplacementListcontext.Provider>
+    </ReplacementListContext.Provider>
   )
 }

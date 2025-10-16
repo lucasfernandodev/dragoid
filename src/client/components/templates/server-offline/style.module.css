@@ -22,14 +22,14 @@
 }
 
 .icon {
-  background: hsla(359, 100%, 70%, 10%);
+  background: hsla(28, 100%, 70%, 10%);
   border-radius: 50%;
   padding: 16px;
 
   & svg {
     width: 42px;
     height: 42px;
-    color: #FF6467;
+    color: #FFAC64;
   }
 }
 
@@ -56,6 +56,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  width: 100%;
 
   & button {
     cursor: pointer;
@@ -66,30 +67,15 @@
     gap: 8px;
     border-radius: 8px;
     height: 42px;
+    width: 100%;
 
-    &:is(:first-child) {
-      color: #171717;
-      width: 100%;
-      background: #E5E5E5;
-      border: 1px solid #E5E5E5;
+    color: #171717;
+    background: #E5E5E5;
+    border: 1px solid #E5E5E5;
 
-      &:hover {
-        background-color: #DBDBDB;
-        border-color: #DBDBDB;
-      }
-    }
-
-    &:not(:first-child) {
-      background: none;
-      border: 1px solid #1f1f1f;
-      color: #DBDBDB;
-      padding: 0px 16px;
-      flex-grow: 1;
-
-      &:hover {
-        background-color: #292929;
-        color: #fff;
-      }
+    &:hover {
+      background-color: #DBDBDB;
+      border-color: #DBDBDB;
     }
   }
 }

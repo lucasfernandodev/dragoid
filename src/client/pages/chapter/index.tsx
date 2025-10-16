@@ -15,7 +15,7 @@ export const ChapterPage = () => {
 
   const { isLoading, success, errorMessage, data, } = useFetch({
     queryKey: ['chapter', id],
-    queryFn: async ({ signal }) => {
+    queryFn: async () => {
       const response = await fetch(`/api/chapter/?id=${id}`);
       const data = await response.json();
       return data as { chapter: IChapter | null }
@@ -29,8 +29,8 @@ export const ChapterPage = () => {
 
   if (!isNumber(id)) {
     return <ChapterError
-      title="Chapter loading error"
-      description={'Id invalid. Check the chapter ID and try again.'}
+      title="Invalid chapter id"
+      description={'The chapter ID you entered is not valid. Please check the URL and try again.'}
     />
   }
 
