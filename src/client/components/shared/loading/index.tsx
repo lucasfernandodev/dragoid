@@ -1,7 +1,11 @@
+import type { FC } from '../../../types/fc.ts';
 import S from './style.module.css';
 
-export const Loading = () => {
+interface Props {
+  variant?: 'primary' | 'secondary'
+}
+export const Loading: FC<Props> = ({ variant = 'primary' }) => {
   return (
-    <span className={S.spinner}></span>
+    <span data-variant={variant} className={S.spinner}></span>
   )
 }

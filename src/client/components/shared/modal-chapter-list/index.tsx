@@ -4,7 +4,7 @@ import { useFetch } from '../../../hooks/useFetch.ts';
 import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { SkeletonChapterListItens } from '../skeleton/index.tsx';
 import { Modal } from '../modal/index.tsx';
-import { IconCheck, IconX } from '@tabler/icons-react';
+import { IconCheck, IconList, IconX } from '@tabler/icons-react';
 import { useReadProgress } from '../../../hooks/useReadProgress.tsx';
 import { _fetch } from '../../../utils/fetch.ts';
 
@@ -118,7 +118,10 @@ export const ModalChapterList = ({ closeModal, isOpen, id }: ModalChapterListPro
     <Modal.Root isOpen={isOpen}>
       <Modal.Wrapper className={S.wrapper}>
         <Modal.Header>
-          <Modal.Title>Chapter List</Modal.Title>
+          <Modal.HeaderGroup>
+            <IconList />
+            <Modal.Title>Chapter List</Modal.Title>
+          </Modal.HeaderGroup>
           <Modal.CloseButton onClick={closeModal}>
             <IconX />
           </Modal.CloseButton>

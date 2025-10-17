@@ -1,4 +1,4 @@
-import { IconPalette, IconX } from '@tabler/icons-react';
+import { IconDeviceFloppy, IconPalette, IconX } from '@tabler/icons-react';
 import { Select } from '../Select/index.tsx';
 import { Modal } from '../modal/index.tsx';
 import S from './style.module.css';
@@ -6,17 +6,16 @@ import { useChapterStyle } from '../../../hooks/useChapterStyle.tsx';
 import { ChapterStyleSelectOptions } from '../../../context/chapter-style/provider.tsx';
 import { Loading } from '../loading/index.tsx';
 import { useState } from 'react';
+import { Button } from '../../atoms/button/index.tsx';
 
 interface ModalChapterStyleProps {
   isOpen: boolean,
   closeModal: () => void;
 }
 
-
-
 export const ModalChapterStyle = ({ closeModal, isOpen }: ModalChapterStyleProps) => {
 
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(false);
   const { style, saveStyle, updateStyle } = useChapterStyle()
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -24,7 +23,7 @@ export const ModalChapterStyle = ({ closeModal, isOpen }: ModalChapterStyleProps
     setIsLoading(true)
     saveStyle(style)
     setTimeout(() => {
-      setIsLoading(false) 
+      setIsLoading(false)
     }, 150)
   }
 
@@ -34,9 +33,12 @@ export const ModalChapterStyle = ({ closeModal, isOpen }: ModalChapterStyleProps
     <Modal.Root isOpen={isOpen}>
       <Modal.Wrapper className={S.modal_wrapper}>
         <Modal.Header>
-          <Modal.Title className={S.modal_title}> 
-            <span>Chapter Style</span>
-          </Modal.Title>
+          <Modal.HeaderGroup>
+            <IconPalette />
+            <Modal.Title className={S.modal_title}>
+              Chapter Style
+            </Modal.Title>
+          </Modal.HeaderGroup>
           <Modal.CloseButton onClick={closeModal}>
             <IconX />
           </Modal.CloseButton>
@@ -93,9 +95,14 @@ export const ModalChapterStyle = ({ closeModal, isOpen }: ModalChapterStyleProps
               />
             </div>
             <div className={S.actions}>
-              <button className={S.button} data-disabled={isLoading}>
-                {isLoading ? <Loading /> : <span>Update Changes</span>} 
-              </button>
+              <Button className={S.button} data-disabled={isLoading}>
+                {isLoading ? <Loading /> : (
+                  <>
+                    <IconDeviceFloppy className={S.icon} />
+                    <span>Save</span>
+                  </>
+                )}
+              </Button>
             </div>
           </form>
         </Modal.Content>

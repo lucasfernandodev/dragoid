@@ -1,19 +1,19 @@
 import S from './style.module.css';
-import { IconX } from '@tabler/icons-react';
+import { IconTextWrap, IconX } from '@tabler/icons-react';
 import { Modal } from '../modal/index.tsx';
 import { useState } from 'react';
 import { TextReplacementOverview } from './overview/index.tsx';
 import { TextReplacementEditor } from './editor/index.tsx';
 
-interface ModalReplacementListProps {
+interface ModalTextReplacementProps {
   isOpen: boolean;
   closeModal: () => void
 }
 
-export const ModalReplacementList = ({
+export const ModalTextReplacement = ({
   isOpen,
   closeModal
-}: ModalReplacementListProps) => {
+}: ModalTextReplacementProps) => {
 
   const [editorListId, setEditorListId] = useState<string | null>(null)
 
@@ -25,9 +25,12 @@ export const ModalReplacementList = ({
     <Modal.Root isOpen={isOpen}>
       <Modal.Wrapper className={S.modal_wrapper}>
         <Modal.Header>
-          <Modal.Title>
-            Replacement Chapter Content
-          </Modal.Title>
+          <Modal.HeaderGroup>
+            <IconTextWrap />
+            <Modal.Title>
+              Text replacement manager
+            </Modal.Title>
+          </Modal.HeaderGroup>
           <Modal.CloseButton onClick={closeModal}>
             <IconX />
           </Modal.CloseButton>

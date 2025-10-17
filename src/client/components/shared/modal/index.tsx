@@ -8,6 +8,7 @@ interface RootProps extends ComponentProps<'div'> {
 }
 
 interface HeaderProps extends ComponentProps<'div'> { }
+interface HeaderGroupProps extends ComponentProps<'div'> { }
 interface WrapperProps extends ComponentProps<'div'> { }
 interface ContentProps extends ComponentProps<'div'> { }
 interface ButtonProps extends ComponentProps<'button'> { }
@@ -64,6 +65,18 @@ const Header = ({ ...props }: HeaderProps) => {
 }
 
 // ================================================
+// Modal Header Group
+// ================================================
+
+const HeaderGroup = ({ ...props }: HeaderGroupProps) => {
+  return (
+    <div {...props} className={[S.header_group, props.className].join(" ")}>
+      {props.children}
+    </div>
+  )
+}
+
+// ================================================
 // Modal Title
 // ================================================
 const Title = ({ ...props }: TitleProps) => {
@@ -100,6 +113,7 @@ export const Modal = Object.freeze({
   Root,
   Wrapper,
   Header,
+  HeaderGroup,
   Title,
   CloseButton,
   Content,

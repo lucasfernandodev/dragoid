@@ -1,8 +1,8 @@
 .modal_wrapper {
-  width: min(360px, calc(100% - 32px));
+  width: min(400px, calc(100% - 32px));
 }
 
- 
+
 
 .form {
   width: 100%;
@@ -50,7 +50,12 @@
     align-items: center;
     justify-content: center;
 
-    &:is(data-disabled="true"){
+    & .icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    &:is(data-disabled="true") {
       cursor: pointer;
       pointer-events: none;
     }

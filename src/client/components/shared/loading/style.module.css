@@ -10,6 +10,30 @@
   animation: rotate 1s linear infinite;
   display: block;
   max-width: 18px;
+
+  &:is([data-variant="primary"]) {
+
+    &::before,
+    &::after {
+      border: 3px solid #1f1f1f;
+    }
+
+    &::after {
+      border-color: #1f1f1fcc;
+    }
+  }
+
+  &:is([data-variant="secondary"]) {
+
+    &::before,
+    &::after {
+      border: 3px solid #e5e5e5;
+    }
+
+    &::after {
+      border-color: #e5e5e5cc;
+    }
+  }
 }
 
 .spinner::before,
@@ -19,13 +43,11 @@
   position: absolute;
   inset: 0px;
   border-radius: 50%;
-  border: 3px solid #FFF;
   animation: prixClipFix 2s linear infinite;
 }
 
 .spinner::after {
   transform: rotate3d(90, 90, 0, 180deg);
-  border-color: hsl(0, 0%, 75%);
 }
 
 @keyframes rotate {

@@ -5,7 +5,7 @@ import { ModalChapterList } from '../modal-chapter-list/index.tsx';
 import { useState } from 'react';
 import { FloatMenu } from '../float-menu/index.tsx';
 import { useChapterStyle } from '../../../hooks/useChapterStyle.tsx';
-import { ModalReplacementList } from '../modal-replacement-list/index.tsx';
+import { ModalTextReplacement } from '../modal-text-replacement/index.tsx';
 
 interface AppMenuProps {
   next: number | null;
@@ -48,7 +48,7 @@ export const AppMenu = ({
           <button className={S.button} onClick={openReplacementModal}>
             <IconAB2 />
           </button>
-          <ModalReplacementList
+          <ModalTextReplacement
             isOpen={activeModal === 'modal-replacement'}
             closeModal={closeModal}
           />
