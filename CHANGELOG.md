@@ -1,3 +1,14 @@
+# [0.42.0](https://github.com/lucasfernandodev/dragoid/compare/v0.41.13...v0.42.0) (2025-10-17)
+
+
+### Features
+
+* add custom error message for fetch mode failed ([86df565](https://github.com/lucasfernandodev/dragoid/commit/86df56525f3b18f9aac3f1b65d3fc5247901373f))
+* Improve modal style ([f4be1ef](https://github.com/lucasfernandodev/dragoid/commit/f4be1ef484943f289531f56009c0ab56842a97a0))
+* Improving style and fix text replacement modal not validation ([40810c6](https://github.com/lucasfernandodev/dragoid/commit/40810c670185092ad5b6caa30e702d901ddb5c8f))
+
+
+
 ## [0.41.13](https://github.com/lucasfernandodev/dragoid/compare/v0.41.12...v0.41.13) (2025-10-05)
 
 
@@ -32,15 +43,6 @@
 ### Bug Fixes
 
 * fixing error assets not include on push ([c21d421](https://github.com/lucasfernandodev/dragoid/commit/c21d421fb967ead222a61f6abe93160f1c5df2df))
-
-
-
-## [0.41.9](https://github.com/lucasfernandodev/dragoid/compare/v0.41.8...v0.41.9) (2025-09-30)
-
-
-### Bug Fixes
-
-* correct novel language property ([9e8d32d](https://github.com/lucasfernandodev/dragoid/commit/9e8d32d8fc3b688d8611fd4c50240dc9cf843bff))
 
 
 
