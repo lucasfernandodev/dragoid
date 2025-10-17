@@ -5,7 +5,7 @@ import { AppLoading } from "../../components/templates/AppLoading/index.tsx"
 
 export const ServerModeProvider = ({ children }: { children: ReactNode }) => {
 
-  const { data, isLoading, success, errorMessage } = useFetch({
+  const { data, isLoading, success } = useFetch({
     queryFn: async () => {
       const response = await fetch('/api/mode');
       const result = await response.json()
@@ -19,12 +19,10 @@ export const ServerModeProvider = ({ children }: { children: ReactNode }) => {
   }
 
   if (!success && !isLoading) {
-    console.log(errorMessage)
     return (
-      <>
-        <p>Get Server mode Failed</p>
-        <p>{errorMessage as string}</p>
-      </>
+      <ServerModeContext.Provider value={{ mode: 'offline' }}>
+        {children}
+      </ServerModeContext.Provider>
     )
   }
 
