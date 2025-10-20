@@ -5,12 +5,17 @@ import { testPages } from '../../../../../../tests/pages.ts';
 import { collectNovelInfo } from './novel-info.ts';
 import assert from 'node:assert';
 import { load } from 'cheerio';
+import { logger } from '../../../../../utils/logger.ts';
 
 describe('NovelBin - Test parse html information from the novel', async () => {
   const path = TEST_ASSETS_HTML_PATH
   const filename = testPages['novelbin-novel'].targetName
   const content = await fs.readFile(`${path}/${filename}.html`, 'utf-8');
 
+  if (content.includes('cloudflare')) {
+    logger.info('Cloudflare page, skip testes')
+    return;
+  }
 
   it('Should retrieve the novel information correctly.', () => {
     const meta = {
