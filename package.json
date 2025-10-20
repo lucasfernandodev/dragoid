@@ -19,8 +19,10 @@
     "prepublishOnly": "npm run build",
     "lint": "eslint . --ext .ts",
     "prepare": "husky",
+    "pre-commit": "pnpm lint && pnpm test",
     "test": "pnpm test:e2e && pnpm test:unity",
-    "test:unity": "NODE_NO_WARNINGS=1  node --experimental-transform-types ./tests/fetch-assets.ts && NODE_NO_WARNINGS=1 node --experimental-transform-types --test ./src/**/*.test.ts",
+    "test:unity": "NODE_NO_WARNINGS=1 node --experimental-transform-types --test './src/**/*.test.ts'",
+    "test:providers": "NODE_NO_WARNINGS=1 node --experimental-transform-types --test './tests/providers/**/*.test.ts'",
     "test:e2e": "NODE_NO_WARNINGS=1 node --experimental-transform-types --test ./tests/e2e/*.test.ts"
   },
   "keywords": [

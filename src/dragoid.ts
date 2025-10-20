@@ -9,11 +9,11 @@ import { language } from "./core/configurations.ts";
 import { getCurrentVersion } from "./utils/get-current-version.ts";
 import type { DownloadArgs } from "./commands/download/options.ts";
 import type { PreviewArgs } from "./commands/preview/options.ts";
-import { createBot69shubaInstance } from "./commands/download/rebots/69shuba/factory.ts";
-import { createBotNovelBinInstance } from "./commands/download/rebots/novelbin/factorio.ts";
-import { createBotReadNovelFull } from "./commands/download/rebots/readnovelfull/factorio.ts";
+import { createBot69shubaInstance } from "./commands/download/providers/69shuba/factory.ts";
+import { createBotNovelBinInstance } from "./commands/download/providers/novelbin/factorio.ts";
+import { createBotReadNovelFull } from "./commands/download/providers/readnovelfull/factorio.ts";
 import { yargsFailHandle } from "./errors/yargs-fail-handle.ts";
-import { createBotMockInstance } from "./commands/download/rebots/mock/factory.ts";
+import { createBotMockInstance } from "./commands/download/providers/mock/factory.ts";
 
 const _yargs = yargs(process.argv.slice(2))
 
