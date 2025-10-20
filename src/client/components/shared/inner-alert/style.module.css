@@ -1,0 +1,41 @@
+.alert {
+  width: 100%;
+  display: flex;
+  border-radius: 8px;
+  padding: 12px;
+  gap: 8px;
+
+  &:is([data-variant="error"]) {
+    background: hsla(359, 100%, 70%, 10%);
+    border: 1px solid #FF6467;
+    color: #FF6467;
+  }
+
+  & svg {
+    color: currentColor;
+  }
+}
+
+.alert .icon {
+  display: flex;
+  align-items: flex-start;
+  align-self: stretch;
+}
+
+.alert .details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.alert .title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.alert .message {
+  font-size: 1.6rem;
+  color: #fff;
+  line-height: 2.4rem;
+}

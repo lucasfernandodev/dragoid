@@ -57,9 +57,13 @@
   }
 
   @media screen and (min-width: 576px) {
-    &:is(:nth-child(even)) button {
+    &:is(:nth-child(even)):not(:last-child) button {
       border-top-color: #333;
       border-bottom-color: #333;
+    }
+
+    &:is(:nth-child(even)):is(:last-child) button {
+      border-top-color: #333;
     }
   }
 }

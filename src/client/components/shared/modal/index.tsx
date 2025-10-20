@@ -1,6 +1,7 @@
 import S from './style.module.css';
 import { createPortal } from 'react-dom';
 import { useEffect, type ComponentProps, useState } from 'react';
+import { cn } from '../../../utils/cn.ts';
 
 
 interface RootProps extends ComponentProps<'div'> {
@@ -35,7 +36,7 @@ const Root = ({ isOpen, ...props }: RootProps) => {
   }, [isOpen])
 
   return createPortal(
-    <div {...props} data-hidden={!isOpen} className={[S.modal, props.className].join(" ")}>
+    <div {...props} data-hidden={!isOpen} className={cn(S.modal, props.className)}>
       {props.children}
     </div>,
     document.body

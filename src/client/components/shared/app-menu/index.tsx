@@ -1,11 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import S from './style.module.css';
-import { IconAB2, IconChevronLeft, IconChevronRight, IconList, IconPalette } from '@tabler/icons-react';
+import { IconAB2, IconChevronLeft, IconChevronRight, IconList, IconPalette, IconShare } from '@tabler/icons-react';
 import { ModalChapterList } from '../modal-chapter-list/index.tsx';
 import { useState } from 'react';
 import { FloatMenu } from '../float-menu/index.tsx';
 import { useChapterStyle } from '../../../hooks/useChapterStyle.tsx';
 import { ModalTextReplacement } from '../modal-text-replacement/index.tsx';
+import { ModalShareExport } from '../modal-share-export/index.tsx';
 
 interface AppMenuProps {
   next: number | null;
@@ -30,11 +31,18 @@ export const AppMenu = ({
     setActiveModal('chapter-list')
   }
 
+  const openModalShareExport = () => {
+    setActiveModal('modal-share-export')
+  }
+
   const openReplacementModal = () => {
     setActiveModal('modal-replacement')
   }
 
-  const closeModal = () => setActiveModal(null)
+  const closeModal = () => {
+    console.log(`Close ${activeModal} Modal!`)
+    setActiveModal(null)
+  }
 
   return (
     <FloatMenu target={target}>
@@ -68,6 +76,15 @@ export const AppMenu = ({
             <IconPalette />
           </button>
         </li>
+        {typeof chapterId !== 'undefined' && <li className={S.option}>
+          <button className={S.button} onClick={openModalShareExport}>
+            <IconShare />
+          </button>
+          <ModalShareExport
+            isOpen={activeModal === 'modal-share-export'}
+            closeModal={closeModal}
+          />
+        </li>}
         <li className={S.option}>
           <button data-enabled={!!next} className={S.button} onClick={() => navigate(`/chapter/?id=${next}`)}>
             <IconChevronRight />

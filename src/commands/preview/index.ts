@@ -13,7 +13,7 @@ import {
 } from './options.ts';
 import { validatePreviewInput } from './validate-input.ts';
 import { chapterScheme } from "../../core/schemas/chapter.ts";
-import { ZodError } from "zod"; 
+import { ZodError } from "zod";
 
 interface PreviewFiles {
   novel: INovelData | null;
@@ -27,7 +27,7 @@ export class Preview implements DefaultCommand {
     novel: null,
     chapter: null,
   };
-  
+
   private options = {} as PreviewOptionsMapped
 
   parserInputs = async (args: Argv<PreviewArgs>) => {
@@ -83,7 +83,6 @@ export class Preview implements DefaultCommand {
 
 
   public handler = async () => {
-
     if (this.files.novel || this.files.chapter) {
       const server = new Server({
         files: this.files,

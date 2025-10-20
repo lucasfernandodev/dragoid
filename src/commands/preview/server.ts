@@ -46,7 +46,8 @@ export class Server {
   constructor({ files, opt }: IServer) {
     this.fastify = fastifyInstance({
       ...files,
-      mode: files.chapter !== null ? 'onlyChapter' : 'novel'
+      mode: files.chapter !== null ? 'onlyChapter' : 'novel',
+      isPublic: opt.isPublic
     })
     this.opt = { ...opt };
   }
