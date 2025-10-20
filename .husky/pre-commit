@@ -1,7 +1,7 @@
 pnpm pre-commit || {
   echo ''
   echo '===================================================='
-  echo 'pre-commit checks failed.
+  echo 'pre-commit checks failed.'
   echo '===================================================='
   exit 1
 }
