@@ -1,3 +1,12 @@
+# [0.43.0](https://github.com/lucasfernandodev/dragoid/compare/v0.42.0...v0.43.0) (2025-10-20)
+
+
+### Features
+
+* implement qrcode/link novel share ([1cf67e7](https://github.com/lucasfernandodev/dragoid/commit/1cf67e78dd708f9cede61bb8340f5df484509626))
+
+
+
 # [0.42.0](https://github.com/lucasfernandodev/dragoid/compare/v0.41.13...v0.42.0) (2025-10-17)
 
 
@@ -34,15 +43,6 @@
 
 * **tests:** Fixing unity tests not running ([708319a](https://github.com/lucasfernandodev/dragoid/commit/708319ab7332a7a23071aa0584573558e49ed593))
 * **tests:** Fixing unity tests not running ([8979fe6](https://github.com/lucasfernandodev/dragoid/commit/8979fe630d52b6e3f702f8bd6e40d5cc59f01fd0))
-
-
-
-## [0.41.10](https://github.com/lucasfernandodev/dragoid/compare/v0.41.9...v0.41.10) (2025-10-01)
-
-
-### Bug Fixes
-
-* fixing error assets not include on push ([c21d421](https://github.com/lucasfernandodev/dragoid/commit/c21d421fb967ead222a61f6abe93160f1c5df2df))
 
 
 
