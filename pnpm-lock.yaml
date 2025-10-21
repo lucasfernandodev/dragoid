@@ -79,8 +79,8 @@ importers:
         specifier: ^7.7.1
         version: 7.7.1(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       wasm-vips:
-        specifier: ^0.0.13
-        version: 0.0.13
+        specifier: ^0.0.15
+        version: 0.0.15
       yargs:
         specifier: ^18.0.0
         version: 18.0.0
@@ -2431,8 +2431,8 @@ packages:
       yaml:
         optional: true
 
-  wasm-vips@0.0.13:
-    resolution: {integrity: sha512-aQT7pF8CNGEO9YLbcMZ2WLalnZsSO4ZoLAvVn4FUWr0vdqcpDCAYPadTxSeGpaLKlGr4wD22jdcDxwSKUM5g9w==}
+  wasm-vips@0.0.15:
+    resolution: {integrity: sha512-UzdzISO0Hebk4PZBZEHBRUjqjcsIimlegXZtTAdSOE0fHD71xoZvuJeQz/7zgT2oMn/CLw0Pjt3VDTmqI+BruQ==}
     engines: {node: '>=16.4.0'}
 
   webdriver-bidi-protocol@0.2.11:
@@ -4961,7 +4961,7 @@ snapshots:
       '@types/node': 24.7.0
       fsevents: 2.3.3
 
-  wasm-vips@0.0.13: {}
+  wasm-vips@0.0.15: {}
 
   webdriver-bidi-protocol@0.2.11: {}
 
