@@ -61,18 +61,20 @@ describe('Dragoid E2E', async () => {
     })
 
     it('Should give an error when command is called without args', async () => {
-      await assert.rejects(executeCMD(cliPath, ['preview']), (err: Rejected) => {
-        assert.equal(err.code, 1)
-        assert.match(
-          err.stderr,
-          /Validation error: Missing required argument '--file'. Please provide the path to a JSON file./
-        )
-        return true
-      })
+      await assert.rejects(
+        executeCMD(cliPath, ['preview']),
+        (err: Rejected) => {
+          assert.equal(err.code, 1)
+          assert.match(
+            err.stderr,
+            /Validation error: Missing required argument '--file'. Please provide the path to a JSON file./
+          )
+          return true
+        }
+      )
     })
 
     it('Should error on command start without file', async () => {
-
       await assert.rejects(
         executeCMD(cliPath, ['preview', '--file=']),
         (err: Rejected) => {
