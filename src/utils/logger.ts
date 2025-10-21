@@ -1,4 +1,4 @@
-import chalk from "chalk"
+import chalk from 'chalk'
 
 export const logger = {
   /**
@@ -9,7 +9,7 @@ export const logger = {
    * @returns {void}
    */
   info: (message: string, ...optionalParams: unknown[]): void => {
-    console.info(chalk.white(message, ...optionalParams));
+    console.info(chalk.white(message, ...optionalParams))
   },
 
   /**
@@ -20,21 +20,21 @@ export const logger = {
    * @returns {void}
    */
   warning: (message: string, ...optionalParams: unknown[]): void => {
-    console.warn(chalk.yellow(message, ...optionalParams));
+    console.warn(chalk.yellow(message, ...optionalParams))
   },
 
   /**
-    * Logs an error message to the console in red color.
-    *
-    * @param {string} message - The error message to log.
-    * @param {...unknown} optionalParams - Additional parameters to append to the error output.
-    * @returns {void}
-    */
+   * Logs an error message to the console in red color.
+   *
+   * @param {string} message - The error message to log.
+   * @param {...unknown} optionalParams - Additional parameters to append to the error output.
+   * @returns {void}
+   */
   error: (message: string, ...optionalParams: unknown[]): void => {
     if (typeof message !== 'string') {
       message = JSON.stringify(message, null, 2)
     }
-    console.error(chalk.red(message, ...optionalParams));
+    console.error(chalk.red(message, ...optionalParams))
   },
 
   /**
@@ -46,7 +46,7 @@ export const logger = {
    */
   debug: (message: string, ...optionalParams: unknown[]): void => {
     if (process.env.DEBUG === 'true') {
-      console.log(chalk.gray(message, ...optionalParams));
+      console.log(chalk.gray(message, ...optionalParams))
     }
   },
 
@@ -60,17 +60,18 @@ export const logger = {
    * @returns {void}
    */
   infoProgress: (message: string, isEnd: boolean = true): void => {
-    process.stdout.clearLine(0);
-    process.stdout.cursorTo(0);
+    process.stdout.clearLine(0)
+    process.stdout.cursorTo(0)
     process.stdout.write(chalk.white(`${message}${isEnd ? '\n' : ''}`))
-  }
+  },
 }
-
-
 
 export function printChaptersDownloadProgress(current: number, total: number) {
   if (process.env.DEBUG !== 'true') {
-    logger.infoProgress(`[+] Downloaded ${current}/${total} chapters`, current === total);
+    logger.infoProgress(
+      `[+] Downloaded ${current}/${total} chapters`,
+      current === total
+    )
   } else {
     logger.debug(`[DEBUG] Download ${current}/${total} of chapters`)
   }

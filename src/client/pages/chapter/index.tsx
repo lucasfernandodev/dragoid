@@ -1,51 +1,60 @@
-import { useSearchParams } from "react-router-dom"
-import { ChapterTemplateDefault } from "../../components/templates/chapter/default/index.tsx";
-import { ChapterNotFound } from "../../components/templates/chapter/notfound/index.tsx";
-import { useEffect } from "react";
-import { useFetch } from "../../hooks/useFetch.ts";
-import type { IChapter } from "../../components/templates/homepage/default/index.tsx";
-import { SkeletonChapter } from "../../components/shared/skeleton/index.tsx";
-import { isNumber } from "../../utils/is-number.ts";
-import { ChapterError } from "../../components/templates/chapter/Error/index.tsx";
+import { useSearchParams } from 'react-router-dom'
+import { ChapterTemplateDefault } from '../../components/templates/chapter/default/index.tsx'
+import { ChapterNotFound } from '../../components/templates/chapter/notfound/index.tsx'
+import { useEffect } from 'react'
+import { useFetch } from '../../hooks/useFetch.ts'
+import type { IChapter } from '../../components/templates/homepage/default/index.tsx'
+import { SkeletonChapter } from '../../components/shared/skeleton/index.tsx'
+import { isNumber } from '../../utils/is-number.ts'
+import { ChapterError } from '../../components/templates/chapter/Error/index.tsx'
 
 export const ChapterPage = () => {
-
   const [params] = useSearchParams()
-  const id = params.get('id');
+  const id = params.get('id')
 
-  const { isLoading, success, errorMessage, data, } = useFetch({
+  const { isLoading, success, errorMessage, data } = useFetch({
     queryKey: ['chapter', id],
     queryFn: async () => {
-      const response = await fetch(`/api/chapter/?id=${id}`);
-      const data = await response.json();
+      const response = await fetch(`/api/chapter/?id=${id}`)
+      const data = await response.json()
       return data as { chapter: IChapter | null }
     },
     isEnabled: isNumber(id),
   })
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-  }, [id]);
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
+  }, [id])
 
   if (!isNumber(id)) {
-    return <ChapterError
-      title="Invalid chapter id"
-      description={'The chapter ID you entered is not valid. Please check the URL and try again.'}
-    />
+    return (
+      <ChapterError
+        title="Invalid chapter id"
+        description={
+          'The chapter ID you entered is not valid. Please check the URL and try again.'
+        }
+      />
+    )
   }
 
   if (isLoading) return <SkeletonChapter />
 
   if (!isLoading && !success && errorMessage) {
-    return <ChapterError
-      title="Chapter request error"
-      description={errorMessage as string}
-    />
+    return (
+      <ChapterError
+        title="Chapter request error"
+        description={errorMessage as string}
+      />
+    )
   }
 
   if (!data || !data.chapter) {
     return <ChapterNotFound />
   }
 
-  return <ChapterTemplateDefault chapter={{ ...data.chapter, id: Number.parseInt(id as string) }} />
+  return (
+    <ChapterTemplateDefault
+      chapter={{ ...data.chapter, id: Number.parseInt(id as string) }}
+    />
+  )
 }

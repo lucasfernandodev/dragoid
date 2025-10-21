@@ -91,7 +91,7 @@ For more information about the preview command, <a href="./docs/command-preview.
 
 ## Supported Download Formats
 
-| Type | JSON | EPUB | TXT |
-| --- | --- | --- | --- |
-| Novel | ✅ | ✅ | ✅ |
-| Chapter | ✅ | - | ✅ |
+| Type    | JSON | EPUB | TXT |
+| ------- | ---- | ---- | --- |
+| Novel   | ✅   | ✅   | ✅  |
+| Chapter | ✅   | -    | ✅  |

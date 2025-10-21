@@ -14,7 +14,7 @@
     border-top: 1px solid #333;
   }
 
-  &:is([data-type="bar"]) {
+  &:is([data-type='bar']) {
     width: 100%;
     flex-direction: row;
 
@@ -31,7 +31,6 @@
 }
 
 .options .option {
-
   & button,
   & a {
     background: none;
@@ -44,13 +43,13 @@
     cursor: pointer;
     color: hsl(0, 0%, 50%);
 
-    &:is([data-enabled="false"]) {
+    &:is([data-enabled='false']) {
       color: hsl(0, 0%, 18%);
       cursor: default;
       pointer-events: none;
     }
 
-    &:not([data-enabled="false"]):hover {
+    &:not([data-enabled='false']):hover {
       color: hsl(0, 0%, 100%);
       background: hsl(0, 0%, 18%);
     }

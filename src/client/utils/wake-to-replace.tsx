@@ -1,4 +1,4 @@
-import type { ReplacementList } from "../types/replacement-list.ts";
+import type { ReplacementList } from '../types/replacement-list.ts'
 
 type List = ReplacementList['list']
 
@@ -9,14 +9,14 @@ export const walkeToReplace = (
   const walker = document.createTreeWalker(
     rootElement,
     NodeFilter.SHOW_TEXT,
-    null,
+    null
   )
 
-  let node;
-  while (node = walker.nextNode()) {
-    let newString = node.nodeValue;
+  let node
+  while ((node = walker.nextNode())) {
+    let newString = node.nodeValue
     for (const [from, to] of Object.entries(replacementList)) {
-      if (!newString) continue;
+      if (!newString) continue
       if (newString.includes(from)) {
         newString = newString.replaceAll(from, to)
         if (node.parentElement) {
@@ -24,7 +24,7 @@ export const walkeToReplace = (
         }
       }
 
-      node.nodeValue = newString;
+      node.nodeValue = newString
     }
   }
 }

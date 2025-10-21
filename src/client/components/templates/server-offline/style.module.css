@@ -18,7 +18,7 @@
   width: min(448px, calc(100% - 32px));
   padding: 32px;
   border-radius: 16px;
-  background: #0F0F0F;
+  background: #0f0f0f;
 }
 
 .icon {
@@ -29,7 +29,7 @@
   & svg {
     width: 42px;
     height: 42px;
-    color: #FFAC64;
+    color: #ffac64;
   }
 }
 
@@ -70,12 +70,12 @@
     width: 100%;
 
     color: #171717;
-    background: #E5E5E5;
-    border: 1px solid #E5E5E5;
+    background: #e5e5e5;
+    border: 1px solid #e5e5e5;
 
     &:hover {
-      background-color: #DBDBDB;
-      border-color: #DBDBDB;
+      background-color: #dbdbdb;
+      border-color: #dbdbdb;
     }
   }
 }
@@ -89,6 +89,6 @@
   line-height: 2rem;
 
   & a {
-    color: #DBDBDB
+    color: #dbdbdb;
   }
 }

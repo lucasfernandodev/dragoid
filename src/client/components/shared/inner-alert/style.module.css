@@ -5,10 +5,10 @@
   padding: 12px;
   gap: 8px;
 
-  &:is([data-variant="error"]) {
+  &:is([data-variant='error']) {
     background: hsla(359, 100%, 70%, 10%);
-    border: 1px solid #FF6467;
-    color: #FF6467;
+    border: 1px solid #ff6467;
+    color: #ff6467;
   }
 
   & svg {

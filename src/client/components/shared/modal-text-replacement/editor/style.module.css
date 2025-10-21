@@ -6,7 +6,7 @@
   padding-bottom: 16px;
 }
 
-.editor>button:first-child {
+.editor > button:first-child {
   width: 100%;
 }
 
@@ -28,8 +28,8 @@
   border: 1px solid #1f1f1f;
   gap: 12px;
 
-  &:is([data-invalid="true"]) {
-    border-color: #F67683;
+  &:is([data-invalid='true']) {
+    border-color: #f67683;
   }
 
   & .row {
@@ -70,21 +70,20 @@
     height: 42px;
     width: auto;
     padding: 0px 12px;
-    border: 1px solid #1F1F1F;
+    border: 1px solid #1f1f1f;
     outline: none;
     box-shadow: none;
     border-radius: 4px;
 
-    &:is([data-invalid="true"]) {
-      border-color: #F67683;
+    &:is([data-invalid='true']) {
+      border-color: #f67683;
     }
   }
-
 
   & .source_error,
   & .target_error,
   & .list_item_error {
-    color: #F67683;
+    color: #f67683;
     font-style: italic;
     font-size: 1.4rem;
     line-height: 1.6rem;
@@ -96,7 +95,7 @@
   }
 }
 
-.editor>.actions {
+.editor > .actions {
   width: 100%;
   display: flex;
   gap: 16px;
@@ -132,7 +131,7 @@
   background: #350e0e;
 
   & p {
-    color: #F67683;
+    color: #f67683;
     line-height: 2.6rem;
   }
 }

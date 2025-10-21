@@ -19,10 +19,10 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: "22.17.0"
-          registry-url: "https://registry.npmjs.org"
-          cache: "pnpm"
-          cache-dependency-path: "**/pnpm-lock.yaml"
+          node-version: '22.17.0'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'pnpm'
+          cache-dependency-path: '**/pnpm-lock.yaml'
       - name: Install dependencies 🔧
         run: pnpm install --no-frozen-lockfile
       - name: Run tests 🧪

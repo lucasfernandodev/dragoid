@@ -1,3 +1,3 @@
 export interface IFetcher<T> {
-  fetch(url: string): Promise<T>; 
+  fetch(url: string): Promise<T>
 }

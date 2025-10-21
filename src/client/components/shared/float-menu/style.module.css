@@ -5,11 +5,11 @@
   opacity: 0;
   z-index: 100;
 
-  &:is([data-type="bar"]):is([data-bar-hidden="true"]){
+  &:is([data-type='bar']):is([data-bar-hidden='true']) {
     display: none;
   }
-  
-  &:is([data-type="bar"]){
+
+  &:is([data-type='bar']) {
     transform: unset !important;
     top: unset;
     bottom: 0px;

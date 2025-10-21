@@ -9,14 +9,14 @@
   justify-content: center;
   border-radius: 8px;
   padding: 0px 16px;
-  letter-spacing: 0.10rem;
+  letter-spacing: 0.1rem;
   font-weight: 600;
 }
 
-.button:is([data-variant="primary"]) {
-  background: #E5E5E5;
+.button:is([data-variant='primary']) {
+  background: #e5e5e5;
   color: #171717;
-  border: 1px solid #E5E5E5;
+  border: 1px solid #e5e5e5;
 
   &:active {
     outline: 1px solid #e5e5e5;
@@ -29,13 +29,13 @@
   }
 }
 
-.button:is([data-variant="secondary"]) {
+.button:is([data-variant='secondary']) {
   background: transparent;
-  color: #E5E5E5;
-  border: 1px solid #1F1F1F;
+  color: #e5e5e5;
+  border: 1px solid #1f1f1f;
 
   &:active {
-    outline: 1px solid #1F1F1F;
+    outline: 1px solid #1f1f1f;
     outline-offset: 2px;
   }
 

@@ -1,6 +1,6 @@
 .chapter {
-  --chapter-font-primary: "merriweather sans";
-  --chapter-font-secondary: "nunito sans";
+  --chapter-font-primary: 'merriweather sans';
+  --chapter-font-secondary: 'nunito sans';
   --font-size: 1.6rem;
   --font-family: var(--chapter-font-primary);
   --line-height: 3.2rem;

@@ -1,3 +1,15 @@
 {
-    "typescript.tsdk": "node_modules/typescript/lib"
+  "typescript.tsdk": "node_modules/typescript/lib",
+  // 🔹 Usar 2 espaços, sem tabs
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  // 🔹 Usar aspas simples e sem ponto e vírgula
+  "prettier.singleQuote": true,
+  "prettier.semi": false,
+  // 🔹 Remover tabs existentes ao salvar
+  "editor.detectIndentation": false,
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  // 🔹 Ativar formatação automática
+  "editor.formatOnSave": true
 }

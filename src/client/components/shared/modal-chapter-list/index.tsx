@@ -1,27 +1,27 @@
-import S from './style.module.css';
-import { memo, useEffect, useRef, useState } from 'react';
-import { useFetch } from '../../../hooks/useFetch.ts';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import { SkeletonChapterListItens } from '../skeleton/index.tsx';
-import { Modal } from '../modal/index.tsx';
-import { IconCheck, IconList, IconX } from '@tabler/icons-react';
-import { useReadProgress } from '../../../hooks/useReadProgress.tsx';
-import { _fetch } from '../../../utils/fetch.ts';
+import S from './style.module.css'
+import { memo, useEffect, useRef, useState } from 'react'
+import { useFetch } from '../../../hooks/useFetch.ts'
+import { Link, useLocation, useSearchParams } from 'react-router-dom'
+import { SkeletonChapterListItens } from '../skeleton/index.tsx'
+import { Modal } from '../modal/index.tsx'
+import { IconCheck, IconList, IconX } from '@tabler/icons-react'
+import { useReadProgress } from '../../../hooks/useReadProgress.tsx'
+import { _fetch } from '../../../utils/fetch.ts'
 
 interface IChapterList {
-  id: number;
+  id: number
   title: string
 }
 
 interface ModalChapterListProps {
-  id: number;
-  isOpen: boolean;
-  closeModal: () => void;
+  id: number
+  isOpen: boolean
+  closeModal: () => void
 }
 
 interface IResult {
-  success: boolean;
-  title: string;
+  success: boolean
+  title: string
   chapterList: IChapterList[]
 }
 
@@ -29,12 +29,14 @@ interface ChapterListItemProps {
   ch: IChapterList
   isRead: boolean
   isActive: boolean
-  ref: React.RefObject<HTMLLIElement | null> | null;
+  ref: React.RefObject<HTMLLIElement | null> | null
   onChapterSelect: () => void
 }
 
 interface ChapterListProps {
-  currentId: number, novelTitle: string, list: IResult['chapterList'];
+  currentId: number
+  novelTitle: string
+  list: IResult['chapterList']
   onChapterSelect: () => void
 }
 
@@ -43,15 +45,19 @@ const ChapterListItem = ({
   isActive,
   isRead = false,
   ref,
-  onChapterSelect
+  onChapterSelect,
 }: ChapterListItemProps) => {
-
   const onSelected = () => {
     setTimeout(onChapterSelect, 300)
   }
   return (
     <li className={S.item} ref={ref} tabIndex={-1}>
-      <Link onClick={onSelected} data-active={isActive} title={ch.title} to={`/chapter/?id=${ch.id}`} >
+      <Link
+        onClick={onSelected}
+        data-active={isActive}
+        title={ch.title}
+        to={`/chapter/?id=${ch.id}`}
+      >
         <span title={ch.title}>{ch.title}</span>
         {isRead && (
           <span title="Chapter read" className={S.chapter_read_checked}>
@@ -63,29 +69,25 @@ const ChapterListItem = ({
   )
 }
 
-const ChapterList = memo(({
-  currentId,
-  onChapterSelect,
-  novelTitle,
-  list
-}: ChapterListProps) => {
-  const { isRead: checkIsRead } = useReadProgress()
-  const itemActiveFocusRef = useRef<HTMLLIElement>(null)
+const ChapterList = memo(
+  ({ currentId, onChapterSelect, novelTitle, list }: ChapterListProps) => {
+    const { isRead: checkIsRead } = useReadProgress()
+    const itemActiveFocusRef = useRef<HTMLLIElement>(null)
 
-  useEffect(() => {
-    if (itemActiveFocusRef.current) {
-      itemActiveFocusRef.current.focus()
-    }
-  }, [])
+    useEffect(() => {
+      if (itemActiveFocusRef.current) {
+        itemActiveFocusRef.current.focus()
+      }
+    }, [])
 
-  return (
-    <ul className={S.chapterList}> {
-      list.map(
-        ch => {
+    return (
+      <ul className={S.chapterList}>
+        {' '}
+        {list.map((ch) => {
           const isRead = checkIsRead({
             novelTitle: novelTitle,
             chapterId: ch.id,
-            chapterTitle: ch.title
+            chapterTitle: ch.title,
           })
           return (
             <ChapterListItem
@@ -98,20 +100,24 @@ const ChapterList = memo(({
             />
           )
         })}
-    </ul>
-  )
-})
+      </ul>
+    )
+  }
+)
 
-export const ModalChapterList = ({ closeModal, isOpen, id }: ModalChapterListProps) => {
-
+export const ModalChapterList = ({
+  closeModal,
+  isOpen,
+  id,
+}: ModalChapterListProps) => {
   const { isLoading, data: result } = useFetch({
     queryKey: ['getChapterList'],
     queryFn: async () => {
-      const response = await fetch('/api/chapter');
-      const data = await response.json();
+      const response = await fetch('/api/chapter')
+      const data = await response.json()
       return data as IResult
     },
-    isEnabled: isOpen && typeof id === 'number'
+    isEnabled: isOpen && typeof id === 'number',
   })
 
   return (
@@ -128,12 +134,14 @@ export const ModalChapterList = ({ closeModal, isOpen, id }: ModalChapterListPro
         </Modal.Header>
         <Modal.Content className={S.content}>
           {isLoading && !result && <SkeletonChapterListItens />}
-          {result && <ChapterList
-            onChapterSelect={closeModal}
-            list={result?.chapterList}
-            novelTitle={result?.title}
-            currentId={id}
-          />}
+          {result && (
+            <ChapterList
+              onChapterSelect={closeModal}
+              list={result?.chapterList}
+              novelTitle={result?.title}
+              currentId={id}
+            />
+          )}
         </Modal.Content>
       </Modal.Wrapper>
     </Modal.Root>

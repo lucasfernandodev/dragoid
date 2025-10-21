@@ -1,55 +1,54 @@
-import { collectNovelInfo } from './../../../../src/commands/download/providers/novelbin/collect/novel-info.ts';
-import fs from 'node:fs/promises';
-import { describe, it } from "node:test";
-import assert from 'node:assert';
-import { load } from 'cheerio';
-import { TEST_ASSETS_HTML_PATH } from '../../../../src/core/configurations.ts';
-import { testPages } from '../../../pages.ts';
-import { logger } from '../../../../src/utils/logger.ts';
+import { collectNovelInfo } from './../../../../src/commands/download/providers/novelbin/collect/novel-info.ts'
+import fs from 'node:fs/promises'
+import { describe, it } from 'node:test'
+import assert from 'node:assert'
+import { load } from 'cheerio'
+import { TEST_ASSETS_HTML_PATH } from '../../../../src/core/configurations.ts'
+import { testPages } from '../../../pages.ts'
+import { logger } from '../../../../src/utils/logger.ts'
 
 describe('NovelBin - Test parse html information from the novel', async () => {
   const path = TEST_ASSETS_HTML_PATH
   const filename = testPages['novelbin-novel'].targetName
-  const content = await fs.readFile(`${path}/${filename}.html`, 'utf-8');
+  const content = await fs.readFile(`${path}/${filename}.html`, 'utf-8')
 
   if (content.includes('cloudflare')) {
     logger.info('Cloudflare page, skip testes')
-    return;
+    return
   }
 
   it('Should retrieve the novel information correctly.', () => {
     const meta = {
-      "thumbnail": "https://novelbin.com/media/novel/my-house-of-horrors.jpg",
-      "language": "English",
-      "chapterList": "https://novelbin.com/ajax/chapter-archive?novelId=my-house-of-horrors",
-      "title": "My House of Horrors",
-      "description": [
-        "The hearse with the weird odor slowed to a stop before the entrance. The sound of pebbles could be heard bouncing on the ceiling.",
-        "There were footsteps coming from the corridor, and there seemed to be someone sawing next door.",
-        "The door knob to the room rattled slightly, and the faucet in the bathroom kept dripping even though it had been screwed shut.",
-        "There was a rubber ball that rolled on its own underneath the bed.",
-        "Wet footsteps started to surface one after another on the floor.",
-        "At 3 am, Chen Ge held a cleaver in his hand as he hid beside the room heater.",
-        "The call he was trying to make was finally answered.",
-        "“Landlord, is this what you meant by ‘the house can be a little crowded at night’!?”"
+      thumbnail: 'https://novelbin.com/media/novel/my-house-of-horrors.jpg',
+      language: 'English',
+      chapterList:
+        'https://novelbin.com/ajax/chapter-archive?novelId=my-house-of-horrors',
+      title: 'My House of Horrors',
+      description: [
+        'The hearse with the weird odor slowed to a stop before the entrance. The sound of pebbles could be heard bouncing on the ceiling.',
+        'There were footsteps coming from the corridor, and there seemed to be someone sawing next door.',
+        'The door knob to the room rattled slightly, and the faucet in the bathroom kept dripping even though it had been screwed shut.',
+        'There was a rubber ball that rolled on its own underneath the bed.',
+        'Wet footsteps started to surface one after another on the floor.',
+        'At 3 am, Chen Ge held a cleaver in his hand as he hid beside the room heater.',
+        'The call he was trying to make was finally answered.',
+        '“Landlord, is this what you meant by ‘the house can be a little crowded at night’!?”',
       ],
-      "genres": [
-        "action",
-        "adventure",
-        "horror",
-        "mature",
-        "mystery",
-        "seinen",
-        "supernatural"
+      genres: [
+        'action',
+        'adventure',
+        'horror',
+        'mature',
+        'mystery',
+        'seinen',
+        'supernatural',
       ],
-      "author": [
-        "I Fix Air-conditioner"
-      ],
-      "status": "Completed"
+      author: ['I Fix Air-conditioner'],
+      status: 'Completed',
     }
 
     const expectedMeta = collectNovelInfo(content)
-    assert.deepStrictEqual(meta, expectedMeta);
+    assert.deepStrictEqual(meta, expectedMeta)
   })
 
   it('Must return a valid title that is not empty', () => {
@@ -58,9 +57,9 @@ describe('NovelBin - Test parse html information from the novel', async () => {
   })
 
   it('Should throw when the title is not found.', () => {
-    const $ = load(content);
+    const $ = load(content)
     // Delete title
     $('h3.title[itemprop="name"]').first().remove()
-    assert.throws(() => collectNovelInfo($.html()));
+    assert.throws(() => collectNovelInfo($.html()))
   })
 })

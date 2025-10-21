@@ -12,9 +12,10 @@
     "lib": [
       "DOM",
       "DOM.Iterable",
-      "ESNext"
+      "ESNext",
+      "ES2021"
     ],
-    "isolatedModules": true,
+    "isolatedModules": true
   },
   "include": [
     "src/**/*"

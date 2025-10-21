@@ -2,8 +2,6 @@
   width: min(400px, calc(100% - 32px));
 }
 
-
-
 .form {
   width: 100%;
   gap: 24px;
@@ -55,12 +53,12 @@
       height: 18px;
     }
 
-    &:is(data-disabled="true") {
+    &:is([data-disabled='true']) {
       cursor: pointer;
       pointer-events: none;
     }
 
-    &:not([data-disabled="true"]):hover {
+    &:not([data-disabled='true']):hover {
       opacity: 0.8;
     }
   }

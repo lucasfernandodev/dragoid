@@ -1,64 +1,60 @@
-import { logger } from '../../utils/logger.ts';
-import { fastifyInstance } from './../../lib/fastify.ts';
-import { ApplicationError } from './../../errors/application-error.ts';
-import type { IChapterData, INovelData } from '../../types/bot.ts';
-import type { FastifyError, FastifyInstance } from 'fastify';
-import { getLocalIPAddress } from '../../utils/get-local-ip.ts';
-import chalk from 'chalk';
-import fastifyVite from '@fastify/vite';
-import { fileURLToPath } from 'url';
-import path from 'path';
-import { isBuild } from '../../core/configurations.ts';
-import { ApiAppRouter } from './api/app/index.ts';
-import { ApiChapterRouter } from './api/chapter/index.ts';
-import { ApiNovelRouter } from './api/novel/index.ts';
+import { logger } from '../../utils/logger.ts'
+import { fastifyInstance } from './../../lib/fastify.ts'
+import { ApplicationError } from './../../errors/application-error.ts'
+import type { IChapterData, INovelData } from '../../types/bot.ts'
+import type { FastifyError, FastifyInstance } from 'fastify'
+import { getLocalIPAddress } from '../../utils/get-local-ip.ts'
+import chalk from 'chalk'
+import fastifyVite from '@fastify/vite'
+import { fileURLToPath } from 'url'
+import path from 'path'
+import { isBuild } from '../../core/configurations.ts'
+import { ApiAppRouter } from './api/app/index.ts'
+import { ApiChapterRouter } from './api/chapter/index.ts'
+import { ApiNovelRouter } from './api/novel/index.ts'
 
 interface ServerOptions {
-  isPublic: boolean;
-  port: number;
+  isPublic: boolean
+  port: number
 }
-
 
 interface IServer {
   files: {
-    novel: null | INovelData;
-    chapter: null | IChapterData;
-  };
+    novel: null | INovelData
+    chapter: null | IChapterData
+  }
   opt: {
-    isPublic: boolean;
-    port: number;
+    isPublic: boolean
+    port: number
   }
 }
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 export class Server {
-  private fastify: FastifyInstance;
+  private fastify: FastifyInstance
   private opt: ServerOptions = {
     isPublic: false,
-    port: 3010
+    port: 3010,
   }
-
 
   constructor({ files, opt }: IServer) {
     this.fastify = fastifyInstance({
       ...files,
       mode: files.chapter !== null ? 'onlyChapter' : 'novel',
-      isPublic: opt.isPublic
+      isPublic: opt.isPublic,
     })
-    this.opt = { ...opt };
+    this.opt = { ...opt }
   }
 
   private registerClientRouter = async () => {
-    const devPath = path.resolve(__dirname, '..', '..', '..');
+    const devPath = path.resolve(__dirname, '..', '..', '..')
     await this.fastify.register(fastifyVite, {
       root: !isBuild ? devPath : __dirname, // where to look for vite.config.js
       dev: !isBuild,
       spa: true,
-      distDir: __dirname
+      distDir: __dirname,
     })
 
     this.fastify.get('/', (_, reply) => {
@@ -79,21 +75,19 @@ export class Server {
     })
   }
 
-
   private handleRoutes = async () => {
     await this.registerClientRouter()
     await this.registerApiRouter()
   }
 
-
   private logStartup = () => {
-    const urlLocal = `http://127.0.0.1:${this.opt.port}`;
-    logger.info('[*] Server started successfully.');
-    logger.info('[-] You can start reading your novel at the url:');
-    logger.info(chalk.blueBright(urlLocal));
+    const urlLocal = `http://127.0.0.1:${this.opt.port}`
+    logger.info('[*] Server started successfully.')
+    logger.info('[-] You can start reading your novel at the url:')
+    logger.info(chalk.blueBright(urlLocal))
     if (this.opt.isPublic) {
       if (getLocalIPAddress()) {
-        const ip = getLocalIPAddress();
+        const ip = getLocalIPAddress()
         const port = this.opt.port
         logger.info(chalk.blueBright(`http://${ip}:${port}`))
       }
@@ -112,17 +106,15 @@ export class Server {
   }
 
   private startServer = async () => {
-    await this.handleRoutes();
+    await this.handleRoutes()
     await this.fastify.vite.ready()
     await this.fastify.listen({
       host: this.opt.isPublic ? '0.0.0.0' : '127.0.0.1',
-      port: this.opt.port
-    });
+      port: this.opt.port,
+    })
 
     this.logStartup()
   }
-
-
 
   public init = async () => {
     try {

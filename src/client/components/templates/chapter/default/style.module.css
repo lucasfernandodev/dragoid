@@ -27,7 +27,7 @@
   & a:not(:last-child) {
     color: hsla(0, 0%, 100%, 45%);
     text-decoration: none;
-  } 
+  }
 
   & svg {
     width: 18px;

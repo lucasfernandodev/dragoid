@@ -1,9 +1,9 @@
-import { Skeleton } from '../index.tsx';
-import S from './style.module.css';
+import { Skeleton } from '../index.tsx'
+import S from './style.module.css'
 
 export const HomeDefaultSkeleton = () => {
   return (
-    <main className={S.app}> 
+    <main className={S.app}>
       <div className={S.app_thumbnail}>
         <Skeleton className={S.thumbnail} />
         <Skeleton className={S.title} />

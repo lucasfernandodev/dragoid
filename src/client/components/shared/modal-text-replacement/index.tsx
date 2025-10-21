@@ -1,20 +1,19 @@
-import S from './style.module.css';
-import { IconTextWrap, IconX } from '@tabler/icons-react';
-import { Modal } from '../modal/index.tsx';
-import { useState } from 'react';
-import { TextReplacementOverview } from './overview/index.tsx';
-import { TextReplacementEditor } from './editor/index.tsx';
+import S from './style.module.css'
+import { IconTextWrap, IconX } from '@tabler/icons-react'
+import { Modal } from '../modal/index.tsx'
+import { useState } from 'react'
+import { TextReplacementOverview } from './overview/index.tsx'
+import { TextReplacementEditor } from './editor/index.tsx'
 
 interface ModalTextReplacementProps {
-  isOpen: boolean;
+  isOpen: boolean
   closeModal: () => void
 }
 
 export const ModalTextReplacement = ({
   isOpen,
-  closeModal
+  closeModal,
 }: ModalTextReplacementProps) => {
-
   const [editorListId, setEditorListId] = useState<string | null>(null)
 
   const swapToListEditor = (id: string) => {
@@ -27,9 +26,7 @@ export const ModalTextReplacement = ({
         <Modal.Header>
           <Modal.HeaderGroup>
             <IconTextWrap />
-            <Modal.Title>
-              Text replacement manager
-            </Modal.Title>
+            <Modal.Title>Text replacement manager</Modal.Title>
           </Modal.HeaderGroup>
           <Modal.CloseButton onClick={closeModal}>
             <IconX />
@@ -37,9 +34,7 @@ export const ModalTextReplacement = ({
         </Modal.Header>
         <Modal.Content>
           {!editorListId ? (
-            <TextReplacementOverview
-              onEditListActive={swapToListEditor}
-            />
+            <TextReplacementOverview onEditListActive={swapToListEditor} />
           ) : (
             <TextReplacementEditor
               listId={editorListId}

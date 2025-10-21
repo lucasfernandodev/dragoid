@@ -1,7 +1,11 @@
-import { normalize } from "path";
-import { ValidationError } from "../../errors/validation-error.ts";
-import { CMD_PREVIEW_PROXY_FLAGS, type PreviewArgs, type PreviewOptionsMapped } from "./options.ts";
-import { existsSync, statSync } from "fs";
+import { normalize } from 'path'
+import { ValidationError } from '../../errors/validation-error.ts'
+import {
+  CMD_PREVIEW_PROXY_FLAGS,
+  type PreviewArgs,
+  type PreviewOptionsMapped,
+} from './options.ts'
+import { existsSync, statSync } from 'fs'
 
 export const validatePreviewInput = (data: Partial<PreviewArgs>) => {
   const options = {} as PreviewOptionsMapped
@@ -18,29 +22,31 @@ export const validatePreviewInput = (data: Partial<PreviewArgs>) => {
     )
   }
 
-  if (!options.file || typeof options.file !== 'string' || options.file.trim() === '') {
-    throw new ValidationError(
-      `Invalid path provided.`
-    )
+  if (
+    !options.file ||
+    typeof options.file !== 'string' ||
+    options.file.trim() === ''
+  ) {
+    throw new ValidationError(`Invalid path provided.`)
   }
 
   if (options.file.length > 255) {
-    throw new ValidationError('Path too long');
+    throw new ValidationError('Path too long')
   }
 
   if (!options.file.endsWith('.json')) {
-    throw new ValidationError('Expected a .json file');
+    throw new ValidationError('Expected a .json file')
   }
 
-  const safePath = normalize(options.file);
+  const safePath = normalize(options.file)
 
   if (!existsSync(safePath)) {
-    throw new ValidationError(`File path does not exist`);
+    throw new ValidationError(`File path does not exist`)
   }
 
-  const stats = statSync(safePath);
+  const stats = statSync(safePath)
   if (!stats.isFile()) {
-    throw new ValidationError(`Expected a file, but received: ${safePath}`);
+    throw new ValidationError(`Expected a file, but received: ${safePath}`)
   }
 
   if (typeof options?.public !== 'undefined') {
@@ -52,22 +58,26 @@ export const validatePreviewInput = (data: Partial<PreviewArgs>) => {
   }
 
   if (options.port) {
-    if (typeof options.port === 'string' && (options.port as string).trim() === '') {
-      throw new ValidationError('Port must not be empty.');
+    if (
+      typeof options.port === 'string' &&
+      (options.port as string).trim() === ''
+    ) {
+      throw new ValidationError('Port must not be empty.')
     }
-    
-    const port = typeof options.port === 'number' ? options.port : Number(options.port);
-    
+
+    const port =
+      typeof options.port === 'number' ? options.port : Number(options.port)
+
     if (Number.isNaN(port)) {
-      throw new ValidationError('Port must be a number.');
+      throw new ValidationError('Port must be a number.')
     }
 
     if (!Number.isInteger(port)) {
-      throw new Error('Port must be an integer.');
+      throw new Error('Port must be an integer.')
     }
 
     if (port < 2048 || port > 65535) {
-      throw new Error('Port must be between 2048 and 65535.');
+      throw new Error('Port must be between 2048 and 65535.')
     }
   }
 

@@ -1,13 +1,18 @@
-import { Link, useNavigate } from 'react-router-dom';
-import S from './style.module.css';
-import { IconRefresh, IconArrowLeft, IconHome, IconError404 } from '@tabler/icons-react';
-import { App } from '../../components/atoms/App/index.tsx';
+import { Link, useNavigate } from 'react-router-dom'
+import S from './style.module.css'
+import {
+  IconRefresh,
+  IconArrowLeft,
+  IconHome,
+  IconError404,
+} from '@tabler/icons-react'
+import { App } from '../../components/atoms/App/index.tsx'
 
 export const NotFound = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   return (
-    <App appTitle='Dragoid | Page not found' className={S.app}>
+    <App appTitle="Dragoid | Page not found" className={S.app}>
       <div className={S.container}>
         <div className={S.icon}>
           <IconError404 />
@@ -15,7 +20,8 @@ export const NotFound = () => {
         <div className={S.heading}>
           <h1 className={S.title}>Page not found</h1>
           <p className={S.desc}>
-            It looks like the content you’re trying to access doesn’t exist or the request is invalid.
+            It looks like the content you’re trying to access doesn’t exist or
+            the request is invalid.
           </p>
         </div>
 
@@ -28,7 +34,7 @@ export const NotFound = () => {
             <IconArrowLeft />
             <span>Go Back</span>
           </button>
-          <button className={S.btn} onClick={() => navigate("/")}>
+          <button className={S.btn} onClick={() => navigate('/')}>
             <IconHome />
             <span>Home</span>
           </button>
@@ -36,7 +42,14 @@ export const NotFound = () => {
 
         <div className={S.footer}>
           <p>
-            Think this error shouldn't appear? Let us know by <Link to="https://github.com/lucasfernandodev/dragoid/issues" target='_blank'>opening an issue</Link> on GitHub!
+            Think this error shouldn't appear? Let us know by{' '}
+            <Link
+              to="https://github.com/lucasfernandodev/dragoid/issues"
+              target="_blank"
+            >
+              opening an issue
+            </Link>{' '}
+            on GitHub!
           </p>
         </div>
       </div>

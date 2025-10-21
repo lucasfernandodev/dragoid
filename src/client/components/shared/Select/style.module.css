@@ -10,7 +10,7 @@
   }
 
   & input {
-     padding: 0px 12px;
+    padding: 0px 12px;
     caret-color: transparent;
     width: 100%;
     height: 100%;
@@ -26,13 +26,13 @@
     border-radius: 4px;
   }
 
-  &:has(input:focus, input:active){
+  &:has(input:focus, input:active) {
     outline: 2px solid hsl(0, 0%, 12%);
     outline-offset: 2px;
   }
 
   &::after {
-    content: "";
+    content: '';
     width: 12px;
     height: 8px;
     background-color: hsl(0, 0%, 18%);
@@ -46,7 +46,7 @@
     transition: 150ms linear;
   }
 
-  &:is([data-expanded="true"])::after {
+  &:is([data-expanded='true'])::after {
     transform: translateY(-50%) rotate(180deg);
   }
 }
@@ -63,7 +63,7 @@
   z-index: 10000;
   border-radius: 4px;
 
-  &:is([data-hidden="false"]) {
+  &:is([data-hidden='false']) {
     display: flex;
     flex-direction: column;
   }
@@ -82,11 +82,11 @@
       border-bottom: 1px solid hsl(0, 0%, 20%);
     }
 
-    &:is([data-active="true"]) {
+    &:is([data-active='true']) {
       background-color: hsl(0, 0%, 18%);
     }
 
-    &:where(:hover , :focus-within){
+    &:where(:hover, :focus-within) {
       background-color: hsl(0, 0%, 18%);
     }
   }

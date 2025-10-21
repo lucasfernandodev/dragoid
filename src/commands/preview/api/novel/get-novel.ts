@@ -1,4 +1,4 @@
-import type { FastifyInstance } from "fastify"
+import type { FastifyInstance } from 'fastify'
 
 export const getNovelRouter = async (app: FastifyInstance) => {
   app.get('/api/novel', async (_, reply) => {
@@ -13,7 +13,7 @@ export const getNovelRouter = async (app: FastifyInstance) => {
         source: app.novel?.source,
         language: app.novel?.language,
         qtdChapters: (app.novel?.chapters || []).length,
-      }
+      },
     })
   })
 }

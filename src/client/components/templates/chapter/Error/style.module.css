@@ -18,7 +18,7 @@
   width: min(448px, calc(100% - 32px));
   padding: 32px;
   border-radius: 16px;
-  background: #0F0F0F;
+  background: #0f0f0f;
 }
 
 .icon {
@@ -29,7 +29,7 @@
   & svg {
     width: 42px;
     height: 42px;
-    color: #FF6467;
+    color: #ff6467;
   }
 }
 
@@ -70,19 +70,19 @@
     &:is(:first-child) {
       color: #171717;
       width: 100%;
-      background: #E5E5E5;
-      border: 1px solid #E5E5E5;
+      background: #e5e5e5;
+      border: 1px solid #e5e5e5;
 
       &:hover {
-        background-color: #DBDBDB;
-        border-color: #DBDBDB;
+        background-color: #dbdbdb;
+        border-color: #dbdbdb;
       }
     }
 
     &:not(:first-child) {
       background: none;
       border: 1px solid #1f1f1f;
-      color: #DBDBDB;
+      color: #dbdbdb;
       padding: 0px 16px;
       flex-grow: 1;
 
@@ -103,6 +103,6 @@
   line-height: 2rem;
 
   & a {
-    color: #DBDBDB
+    color: #dbdbdb;
   }
 }

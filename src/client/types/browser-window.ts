@@ -1,5 +1,5 @@
 declare global {
   interface Window {
-    mode: 'novel' | 'onlyChapter';
+    mode: 'novel' | 'onlyChapter'
   }
 }

@@ -34,7 +34,6 @@
   overflow: hidden;
   color: transparent;
 
-
   & img {
     width: 100%;
     height: auto;
@@ -79,7 +78,7 @@
     }
 
     &:is(:nth-child(even)) h3::before {
-      content: "";
+      content: '';
       position: absolute;
       height: 20px;
       background: linear-gradient(to top, hsl(0, 0%, 18%), transparent);
@@ -89,7 +88,7 @@
     }
 
     &:is(:nth-child(even)) h3::after {
-      content: "";
+      content: '';
       position: absolute;
       height: 20px;
       background: linear-gradient(to top, hsl(0, 0%, 18%), transparent);
@@ -99,7 +98,7 @@
     }
 
     &:is(:nth-child(even)) span::before {
-      content: "";
+      content: '';
       position: absolute;
       height: 20px;
       background: linear-gradient(to bottom, hsl(0, 0%, 18%), transparent);
@@ -109,7 +108,7 @@
     }
 
     &:is(:nth-child(even)) span::after {
-      content: "";
+      content: '';
       position: absolute;
       height: 20px;
       background: linear-gradient(to bottom, hsl(0, 0%, 18%), transparent);

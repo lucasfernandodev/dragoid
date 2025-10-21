@@ -37,7 +37,7 @@
 
   & p {
     max-width: calc(100% - 16px - 32px);
-    color: #F67683;
+    color: #f67683;
     line-height: 2.6rem;
   }
 
@@ -45,11 +45,11 @@
     padding: 0px;
     width: 32px;
     height: 32px;
-    color: #F67683 !important;
+    color: #f67683 !important;
     border-color: transparent !important;
 
     &:hover {
-      background: #F6768355 !important;
+      background: #f6768355 !important;
     }
   }
 }
@@ -68,19 +68,19 @@
   & .form_input {
     height: 42px;
     background-color: transparent;
-    border: 1px solid #1F1F1F;
+    border: 1px solid #1f1f1f;
     padding: 0px 16px;
     outline: none;
     box-shadow: none;
     border-radius: 4px;
 
-    &:is([data-invalid="true"]) {
-      border-color: #F67683;
+    &:is([data-invalid='true']) {
+      border-color: #f67683;
     }
   }
 
-  & .form_input+.form_error {
-    color: #F67683;
+  & .form_input + .form_error {
+    color: #f67683;
     font-style: italic;
   }
 
@@ -123,7 +123,7 @@
   flex-direction: column;
   padding: 16px;
   gap: 16px;
-  border: 1px solid #1F1F1F;
+  border: 1px solid #1f1f1f;
   border-radius: 8px;
   transition: 300ms linear;
 
@@ -165,7 +165,7 @@
     }
 
     &:has(input:checked)::after {
-      content: "";
+      content: '';
       width: 10px;
       height: 10px;
       background: hsla(214, 89%, 62%, 90%);

@@ -1,7 +1,7 @@
-import type { ComponentProps } from 'react';
-import S from './style.module.css';
-import type { FC } from '../../../types/fc.ts';
-import { cn } from '../../../utils/cn.ts';
+import type { ComponentProps } from 'react'
+import S from './style.module.css'
+import type { FC } from '../../../types/fc.ts'
+import { cn } from '../../../utils/cn.ts'
 
 type AlertTypes = 'Error'
 
@@ -47,11 +47,10 @@ const Message: FC<ComponentProps<'p'>> = ({ ...props }) => {
   )
 }
 
-
 export const InnerAlert = Object.freeze({
   Error,
   Icon,
   Details,
   Title,
-  Message
+  Message,
 })

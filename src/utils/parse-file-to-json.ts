@@ -1,55 +1,57 @@
 export interface ParseFileJsonError {
-  success: false;
+  success: false
   message: string
 }
 
-export const parseFileToJson = <T>(file: File): Promise<{ success: boolean, data?: T, message?: string }> => {
+export const parseFileToJson = <T>(
+  file: File
+): Promise<{ success: boolean; data?: T; message?: string }> => {
   return new Promise((resolve, reject) => {
     if (!file) {
       return reject({
         success: false,
-        message: 'Parse file failed! File not found'
+        message: 'Parse file failed! File not found',
       })
     }
 
-    const reader = new FileReader();
+    const reader = new FileReader()
     reader.onload = (e) => {
       try {
-        const result = e?.target?.result;
+        const result = e?.target?.result
 
         if (!result) {
           return reject({
             success: false,
-            message: 'File parse failed'
+            message: 'File parse failed',
           })
-          return;
+          return
         }
 
         if (typeof result !== 'string') {
           return reject({
             success: false,
-            message: 'File parse invalid type'
+            message: 'File parse invalid type',
           })
-          return;
+          return
         }
 
         const json = JSON.parse(result)
         return resolve({
           success: true,
-          data: json
+          data: json,
         })
       } catch (error) {
         console.log('Parse file to json failed', error)
         if (error instanceof SyntaxError) {
           return reject({
             success: false,
-            message: 'Invalid JSON format'
-          });
+            message: 'Invalid JSON format',
+          })
         } else {
           return reject({
             success: false,
-            message: 'Unknown error while parsing file'
-          });
+            message: 'Unknown error while parsing file',
+          })
         }
       }
     }

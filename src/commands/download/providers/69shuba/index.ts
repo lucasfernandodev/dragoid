@@ -1,29 +1,38 @@
-import { BotError } from "../../../../errors/bot-error.ts";
-import { createFetcher } from "../../../../services/fetcher/factorio.ts";
-import type { IChapterData, ChapterList, BotOptions, MultiDownloadChapterOptions, Bot } from "../../../../types/bot.ts";
-import { delay } from "../../../../utils/delay.ts";
-import { logger } from "../../../../utils/logger.ts";
-import { processChaptersList } from "../../../../core/process-chapter-list.ts";
+import { BotError } from '../../../../errors/bot-error.ts'
+import { createFetcher } from '../../../../services/fetcher/factorio.ts'
+import type {
+  IChapterData,
+  ChapterList,
+  BotOptions,
+  MultiDownloadChapterOptions,
+  Bot,
+} from '../../../../types/bot.ts'
+import { delay } from '../../../../utils/delay.ts'
+import { logger } from '../../../../utils/logger.ts'
+import { processChaptersList } from '../../../../core/process-chapter-list.ts'
 
 export class Bot69shuba implements Bot {
-  public options!: BotOptions;
+  public options!: BotOptions
   public fetcher = createFetcher('browser')
 
   constructor(options: BotOptions) {
-    this.options = options;
+    this.options = options
   }
 
-  public getNovel = async (url: string, opt: Partial<MultiDownloadChapterOptions>) => {
-    const meta = await this.getNovelInfo(url);
+  public getNovel = async (
+    url: string,
+    opt: Partial<MultiDownloadChapterOptions>
+  ) => {
+    const meta = await this.getNovelInfo(url)
 
     if (!meta.chapterList) {
       throw new BotError('Unable to retrieve chapter list page url')
     }
 
     if (meta.thumbnail) {
-      const thumbnail = await this.options.imageDownloader(meta.thumbnail);
+      const thumbnail = await this.options.imageDownloader(meta.thumbnail)
       if (thumbnail) {
-        meta.thumbnail = thumbnail;
+        meta.thumbnail = thumbnail
       }
     }
 
@@ -35,30 +44,29 @@ export class Bot69shuba implements Bot {
       source: url,
     }
 
-    return novel;
+    return novel
   }
 
   private getNovelInfo = async (url: string) => {
-    const { collect } = this.options;
-    const page = await this.fetcher.fetch(url);
-    const meta = collect.novelInfo(page);
-    return meta;
+    const { collect } = this.options
+    const page = await this.fetcher.fetch(url)
+    const meta = collect.novelInfo(page)
+    return meta
   }
 
-
   private getChapterList = async (url: string) => {
-    const { collect } = this.options;
-    const page = await this.fetcher.fetch(url);
+    const { collect } = this.options
+    const page = await this.fetcher.fetch(url)
     const list = collect.chapterList(page)
-    return list;
+    return list
   }
 
   public getChapter = async (url: string) => {
     const { collect } = this.options
-    const page = await this.fetcher.fetch(url);
-    const chapter = collect.chapter(page);
+    const page = await this.fetcher.fetch(url)
+    const chapter = collect.chapter(page)
     await this.fetcher.closeBrowser()
-    return chapter;
+    return chapter
   }
 
   public getAllChapter = async (
@@ -66,19 +74,25 @@ export class Bot69shuba implements Bot {
     opt: Partial<MultiDownloadChapterOptions>
   ) => {
     const { collect } = this.options
-    const chapters = [] as IChapterData[];
-    await processChaptersList(chapterList, async ({ url }, index) => {
-      const page = await this.fetcher.fetch(url);
-      const chapter = collect.chapter(page);
-      chapters.push(chapter)
+    const chapters = [] as IChapterData[]
+    await processChaptersList(
+      chapterList,
+      async ({ url }, index) => {
+        const page = await this.fetcher.fetch(url)
+        const chapter = collect.chapter(page)
+        chapters.push(chapter)
 
-      if (index !== 0 && index % 30 === 0) {
-        await delay(30000);
-        logger.debug(`processChaptersList: Downloaded ${index} chapters. `)
-        logger.debug('processChaptersList: Waiting 30 seconds to avoid rate limits...')
-      }
-    }, opt)
+        if (index !== 0 && index % 30 === 0) {
+          await delay(30000)
+          logger.debug(`processChaptersList: Downloaded ${index} chapters. `)
+          logger.debug(
+            'processChaptersList: Waiting 30 seconds to avoid rate limits...'
+          )
+        }
+      },
+      opt
+    )
     await this.fetcher.closeBrowser()
-    return chapters;
+    return chapters
   }
 }

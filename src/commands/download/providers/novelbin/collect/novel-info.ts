@@ -1,11 +1,15 @@
-import { load } from "cheerio";
-import type { INovelMeta } from "../../../../../types/bot.ts";
-import { BotError } from "../../../../../errors/bot-error.ts";
+import { load } from 'cheerio'
+import type { INovelMeta } from '../../../../../types/bot.ts'
+import { BotError } from '../../../../../errors/bot-error.ts'
 
 export const collectNovelInfo = (page: string): INovelMeta => {
-  const $ = load(page);
+  const $ = load(page)
 
-  const parsed = { description: [], author: [], genres: [] } as unknown as INovelMeta
+  const parsed = {
+    description: [],
+    author: [],
+    genres: [],
+  } as unknown as INovelMeta
 
   const thumbnail = $('meta[property="og:image"]').attr('content') || ''
   if (thumbnail.trim().length > 0) {
@@ -18,49 +22,49 @@ export const collectNovelInfo = (page: string): INovelMeta => {
     const id = novelIdElement.attr('data-novel-id')
     const params = `/ajax/chapter-archive?novelId=${id}`
     const canonicalLink = new URL($('link[rel="canonical"]').attr('href') || '')
-    const hostname = canonicalLink.hostname;
+    const hostname = canonicalLink.hostname
     parsed.chapterList = `https://${hostname}${params}`
   }
 
-  const titleElement = $('h3.title[itemprop="name"]').first();
+  const titleElement = $('h3.title[itemprop="name"]').first()
   if (titleElement.length === 0 || !titleElement.text().trim()) {
-    throw new BotError(
-      'Novel information extraction failed! Title not found.'
-    )
+    throw new BotError('Novel information extraction failed! Title not found.')
   }
 
   parsed.title = titleElement.text()
 
   // Description
-  const descriptionConstainer = $('#tab-description .desc-text');
+  const descriptionConstainer = $('#tab-description .desc-text')
   if (descriptionConstainer.contents().length > 0) {
     descriptionConstainer.contents().each((_, el) => {
-      const ph = $(el);
-      const text = ph.text().trim();
-      if (!text) return;
+      const ph = $(el)
+      const text = ph.text().trim()
+      if (!text) return
       if (text.includes('\n')) {
-        parsed.description = text.split('\n').filter(t => t)
+        parsed.description = text.split('\n').filter((t) => t)
       } else {
         parsed.description.push(text)
       }
     })
   } else {
-    const text = descriptionConstainer.text();
+    const text = descriptionConstainer.text()
     if (text.trim()) {
       if (text.includes('\n')) {
-        parsed.description = text.split('\n').filter(t => t)
+        parsed.description = text.split('\n').filter((t) => t)
       } else {
         parsed.description.push(text)
       }
     }
   }
 
-
   // genres
   const genres = $('meta[property="og:novel:genre"]').attr('content') || ''
   if (genres.trim().length !== 0) {
     if (genres.includes(',')) {
-      parsed.genres = genres.split(',').map(g => g.trim().toLowerCase()).filter(g => g)
+      parsed.genres = genres
+        .split(',')
+        .map((g) => g.trim().toLowerCase())
+        .filter((g) => g)
     } else {
       parsed.genres.push(genres.trim())
     }
@@ -70,7 +74,10 @@ export const collectNovelInfo = (page: string): INovelMeta => {
   const authors = $('meta[property="og:novel:author"]').attr('content') || ''
   if (authors.trim().length !== 0) {
     if (authors.includes(',')) {
-      parsed.author = authors.split(',').map(g => g.trim().toLowerCase()).filter(g => g)
+      parsed.author = authors
+        .split(',')
+        .map((g) => g.trim().toLowerCase())
+        .filter((g) => g)
     } else {
       parsed.author.push(authors.trim())
     }
@@ -82,7 +89,6 @@ export const collectNovelInfo = (page: string): INovelMeta => {
     parsed.status = status
   }
 
-
   return {
     thumbnail: parsed.thumbnail,
     language: 'English',
@@ -91,6 +97,6 @@ export const collectNovelInfo = (page: string): INovelMeta => {
     description: parsed.description,
     genres: parsed.genres,
     author: parsed.author,
-    status: parsed.status
+    status: parsed.status,
   }
 }

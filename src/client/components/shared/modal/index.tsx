@@ -1,25 +1,23 @@
-import S from './style.module.css';
-import { createPortal } from 'react-dom';
-import { useEffect, type ComponentProps, useState } from 'react';
-import { cn } from '../../../utils/cn.ts';
-
+import S from './style.module.css'
+import { createPortal } from 'react-dom'
+import { useEffect, type ComponentProps, useState } from 'react'
+import { cn } from '../../../utils/cn.ts'
 
 interface RootProps extends ComponentProps<'div'> {
   isOpen: boolean
 }
 
-interface HeaderProps extends ComponentProps<'div'> { }
-interface HeaderGroupProps extends ComponentProps<'div'> { }
-interface WrapperProps extends ComponentProps<'div'> { }
-interface ContentProps extends ComponentProps<'div'> { }
-interface ButtonProps extends ComponentProps<'button'> { }
-interface TitleProps extends ComponentProps<'h3'> { }
+interface HeaderProps extends ComponentProps<'div'> {}
+interface HeaderGroupProps extends ComponentProps<'div'> {}
+interface WrapperProps extends ComponentProps<'div'> {}
+interface ContentProps extends ComponentProps<'div'> {}
+interface ButtonProps extends ComponentProps<'button'> {}
+interface TitleProps extends ComponentProps<'h3'> {}
 
 // ================================================
 // Modal Root
 // ================================================
 const Root = ({ isOpen, ...props }: RootProps) => {
-
   const [overflow, setOverflow] = useState<string>('')
 
   useEffect(() => {
@@ -27,16 +25,20 @@ const Root = ({ isOpen, ...props }: RootProps) => {
       setOverflow(document.body.style.overflow)
       document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = overflow;
+      document.body.style.overflow = overflow
     }
 
     return () => {
-      document.body.style.overflow = overflow;
+      document.body.style.overflow = overflow
     }
   }, [isOpen])
 
   return createPortal(
-    <div {...props} data-hidden={!isOpen} className={cn(S.modal, props.className)}>
+    <div
+      {...props}
+      data-hidden={!isOpen}
+      className={cn(S.modal, props.className)}
+    >
       {props.children}
     </div>,
     document.body
@@ -48,7 +50,7 @@ const Root = ({ isOpen, ...props }: RootProps) => {
 // ================================================
 const Wrapper = ({ ...props }: WrapperProps) => {
   return (
-    <div {...props} className={[S.wrapper, props.className].join(" ")}>
+    <div {...props} className={[S.wrapper, props.className].join(' ')}>
       {props.children}
     </div>
   )
@@ -59,7 +61,7 @@ const Wrapper = ({ ...props }: WrapperProps) => {
 // ================================================
 const Header = ({ ...props }: HeaderProps) => {
   return (
-    <div {...props} className={[S.header, props.className].join(" ")}>
+    <div {...props} className={[S.header, props.className].join(' ')}>
       {props.children}
     </div>
   )
@@ -71,7 +73,7 @@ const Header = ({ ...props }: HeaderProps) => {
 
 const HeaderGroup = ({ ...props }: HeaderGroupProps) => {
   return (
-    <div {...props} className={[S.header_group, props.className].join(" ")}>
+    <div {...props} className={[S.header_group, props.className].join(' ')}>
       {props.children}
     </div>
   )
@@ -82,7 +84,7 @@ const HeaderGroup = ({ ...props }: HeaderGroupProps) => {
 // ================================================
 const Title = ({ ...props }: TitleProps) => {
   return (
-    <h3 {...props} className={[S.title, props.className].join(" ")}>
+    <h3 {...props} className={[S.title, props.className].join(' ')}>
       {props.children}
     </h3>
   )
@@ -93,7 +95,7 @@ const Title = ({ ...props }: TitleProps) => {
 // ================================================
 const CloseButton = ({ ...props }: ButtonProps) => {
   return (
-    <button {...props} className={[S.button, props.className].join(" ")}>
+    <button {...props} className={[S.button, props.className].join(' ')}>
       {props.children}
     </button>
   )
@@ -104,7 +106,7 @@ const CloseButton = ({ ...props }: ButtonProps) => {
 // ================================================
 const Content = ({ ...props }: ContentProps) => {
   return (
-    <div {...props} className={[S.content, props.className].join(" ")}>
+    <div {...props} className={[S.content, props.className].join(' ')}>
       {props.children}
     </div>
   )

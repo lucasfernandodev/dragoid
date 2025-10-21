@@ -1,26 +1,30 @@
-import { replacementListScheme } from "../../../../schema/replacement-list.ts";
+import { replacementListScheme } from '../../../../schema/replacement-list.ts'
 
 interface TextReplacementRulesListItem {
   source: {
-    value?: string;
-    error?: string;
-  },
-  target: {
-    value?: string,
+    value?: string
     error?: string
-  },
+  }
+  target: {
+    value?: string
+    error?: string
+  }
   error?: string
 }
 
-export type TextReplacementRulesList = TextReplacementRulesListItem[];
+export type TextReplacementRulesList = TextReplacementRulesListItem[]
 
-export type RuleListErrorType = 'source' | 'target' | 'item';
+export type RuleListErrorType = 'source' | 'target' | 'item'
 
 interface ITextReplacementRulesListSubmitProps {
-  rules: TextReplacementRulesList;
-  clearErrors: () => void;
-  updateError: (type: RuleListErrorType, position: number, message: string) => void;
-  onSaveRulesList: (rules: Record<string, string>) => void;
+  rules: TextReplacementRulesList
+  clearErrors: () => void
+  updateError: (
+    type: RuleListErrorType,
+    position: number,
+    message: string
+  ) => void
+  onSaveRulesList: (rules: Record<string, string>) => void
 }
 
 export const TextReplacementRulesListSubmit = ({
@@ -30,17 +34,17 @@ export const TextReplacementRulesListSubmit = ({
   onSaveRulesList,
 }: ITextReplacementRulesListSubmitProps) => {
   const rulesList = {} as Record<string, string>
-  clearErrors();
-  let isError = false;
+  clearErrors()
+  let isError = false
   for (const [i, rule] of rules.entries()) {
-    isError = false;
+    isError = false
 
     const result = replacementListScheme.shape.list.safeParse({
-      [rule.source.value as string]: rule.target.value
+      [rule.source.value as string]: rule.target.value,
     })
 
     if (!result.success) {
-      const errorMessage = result.error.issues[0].message;
+      const errorMessage = result.error.issues[0].message
       if (errorMessage.startsWith('Source')) {
         updateError('source', i, errorMessage)
         isError = true
@@ -57,10 +61,10 @@ export const TextReplacementRulesListSubmit = ({
     if (typeof rulesList[source] !== 'undefined') {
       updateError('item', i, 'Duplicated source')
       isError = true
-      break;
+      break
     }
 
-    rulesList[source] = target;
+    rulesList[source] = target
   }
 
   if (!isError) {

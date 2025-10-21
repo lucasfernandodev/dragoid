@@ -44,14 +44,13 @@
     padding: 0px 12px;
     color: hsl(0, 0%, 75%);
 
-
     & span {
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
     }
 
-    &:is([data-active="true"]) {
+    &:is([data-active='true']) {
       background: hsl(0, 0%, 12%);
       color: hsl(0, 0%, 100%);
     }
@@ -64,7 +63,7 @@
 }
 
 .item a {
-  &:is([data-active="true"]) .chapter_read_checked {
+  &:is([data-active='true']) .chapter_read_checked {
     background: hsl(0, 0%, 12%);
   }
 
@@ -88,6 +87,4 @@
   pointer-events: none;
   border-radius: 0px 8px 8px 0px;
   color: hsla(145, 53%, 48%, 0.596);
-
-
 }

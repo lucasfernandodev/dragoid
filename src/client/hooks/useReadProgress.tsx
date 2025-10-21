@@ -1,28 +1,28 @@
-import { LOCAL_STORAGE_KEYS } from "../consts/local-storage.ts";
-import { useLocalStorage } from "./useLocalStorage.ts";
+import { LOCAL_STORAGE_KEYS } from '../consts/local-storage.ts'
+import { useLocalStorage } from './useLocalStorage.ts'
 
 interface ChapterReadProgress {
-  id: number;
-  title: string;
-  updatedAt: string;
+  id: number
+  title: string
+  updatedAt: string
 }
 
 interface NovelReadProgress {
-  chapters_read: ChapterReadProgress[],
+  chapters_read: ChapterReadProgress[]
   updatedAt: string
 }
 
 type ReadProgress = Record<string, NovelReadProgress>
 
 interface UpdateHistoryProps {
-  novelTitle: string;
+  novelTitle: string
   chapter: Omit<ChapterReadProgress, 'updatedAt'>
 }
 
 interface IsReadProps {
-  novelTitle: string;
-  chapterId: number;
-  chapterTitle: string;
+  novelTitle: string
+  chapterId: number
+  chapterTitle: string
 }
 
 export const useReadProgress = () => {
@@ -32,60 +32,68 @@ export const useReadProgress = () => {
   )
 
   const getLatestHistory = (): ReadProgress => {
-    const raw = localStorage.getItem(LOCAL_STORAGE_KEYS.novelReadProgress);
-    return raw ? JSON.parse(raw) : {};
-  };
+    const raw = localStorage.getItem(LOCAL_STORAGE_KEYS.novelReadProgress)
+    return raw ? JSON.parse(raw) : {}
+  }
 
-  const updateHistory = ({ novelTitle: title, chapter }: UpdateHistoryProps) => {
-    const isHistory = history[title];
+  const updateHistory = ({
+    novelTitle: title,
+    chapter,
+  }: UpdateHistoryProps) => {
+    const isHistory = history[title]
     if (!isHistory) {
       const now = new Date()
-      setHistory(oldHistories => ({
+      setHistory((oldHistories) => ({
         ...oldHistories,
         [title]: {
           updatedAt: now.toISOString(),
-          chapters_read: [{
-            ...chapter,
-            updatedAt: now.toISOString()
-          }]
+          chapters_read: [
+            {
+              ...chapter,
+              updatedAt: now.toISOString(),
+            },
+          ],
         },
-      }));
-      return;
+      }))
+      return
     }
 
     const isChapterRead = isHistory.chapters_read.find(
-      ch => ch.title === chapter.title && ch.id === ch.id
+      (ch) => ch.title === chapter.title && ch.id === ch.id
     )
 
     if (!isChapterRead) {
       const now = new Date()
-      setHistory(oldHistories => ({
+      setHistory((oldHistories) => ({
         ...oldHistories,
         [title]: {
-          chapters_read: [...isHistory.chapters_read, {
-            ...chapter,
-            updatedAt: now.toISOString()
-          }],
-          updatedAt: now.toISOString()
-        }
+          chapters_read: [
+            ...isHistory.chapters_read,
+            {
+              ...chapter,
+              updatedAt: now.toISOString(),
+            },
+          ],
+          updatedAt: now.toISOString(),
+        },
       }))
     }
   }
 
   const isRead = ({ novelTitle, chapterId, chapterTitle }: IsReadProps) => {
     const storage = getLatestHistory()
-    const isHistory = storage[novelTitle];
-    if (!isHistory) return false;
+    const isHistory = storage[novelTitle]
+    if (!isHistory) return false
 
     const isChapterRead = isHistory.chapters_read.find(
-      ch => ch.title === chapterTitle && ch.id === chapterId
+      (ch) => ch.title === chapterTitle && ch.id === chapterId
     )
 
-    return !!isChapterRead;
+    return !!isChapterRead
   }
 
   return {
     updateHistory,
-    isRead
+    isRead,
   }
 }

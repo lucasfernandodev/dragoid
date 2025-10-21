@@ -11,8 +11,7 @@
   display: block;
   max-width: 18px;
 
-  &:is([data-variant="primary"]) {
-
+  &:is([data-variant='primary']) {
     &::before,
     &::after {
       border: 3px solid #1f1f1f;
@@ -23,8 +22,7 @@
     }
   }
 
-  &:is([data-variant="secondary"]) {
-
+  &:is([data-variant='secondary']) {
     &::before,
     &::after {
       border: 3px solid #e5e5e5;
@@ -38,7 +36,7 @@
 
 .spinner::before,
 .spinner::after {
-  content: "";
+  content: '';
   box-sizing: border-box;
   position: absolute;
   inset: 0px;
@@ -52,25 +50,25 @@
 
 @keyframes rotate {
   0% {
-    transform: rotate(0deg)
+    transform: rotate(0deg);
   }
 
   100% {
-    transform: rotate(360deg)
+    transform: rotate(360deg);
   }
 }
 
 @keyframes prixClipFix {
   0% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
   }
 
   50% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0)
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0);
   }
 
   75%,
   100% {
-    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%)
+    clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%);
   }
 }

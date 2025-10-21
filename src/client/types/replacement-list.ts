@@ -1,4 +1,4 @@
-export interface ReplacementList{
-  id: string;
+export interface ReplacementList {
+  id: string
   list: Record<string, string>
 }

@@ -1,10 +1,10 @@
-import { cn } from '../../../utils/cn.ts';
-import S from './style.module.css';
-import { useEffect, type ComponentProps, type RefObject } from 'react';
+import { cn } from '../../../utils/cn.ts'
+import S from './style.module.css'
+import { useEffect, type ComponentProps, type RefObject } from 'react'
 
 interface Props extends ComponentProps<'main'> {
-  appTitle?: string;
-  ref?: RefObject<HTMLElement | null>;
+  appTitle?: string
+  ref?: RefObject<HTMLElement | null>
 }
 
 export const App = ({ appTitle, ...props }: Props) => {

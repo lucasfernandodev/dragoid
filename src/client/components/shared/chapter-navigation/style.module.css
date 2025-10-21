@@ -20,14 +20,14 @@
     text-decoration: none;
     background: hsl(0, 0%, 12%);
 
-    &:is([data-disabled="true"]) {
+    &:is([data-disabled='true']) {
       cursor: default;
       opacity: 0.5;
       pointer-events: none;
       user-select: none;
     }
 
-    &:not([data-disabled="true"]):hover{
+    &:not([data-disabled='true']):hover {
       background: hsl(0, 0%, 18%);
     }
   }

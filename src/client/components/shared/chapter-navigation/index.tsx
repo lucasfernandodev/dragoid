@@ -1,30 +1,31 @@
-import { Link, useNavigate } from 'react-router-dom';
-import S from './style.module.css';
-import { IconList } from '@tabler/icons-react';
-import { ModalChapterList } from '../modal-chapter-list/index.tsx';
-import { useState } from 'react';
-import { useKeyboardShortcut } from '../../../hooks/useKeyboardShortcut.tsx';
+import { Link, useNavigate } from 'react-router-dom'
+import S from './style.module.css'
+import { IconList } from '@tabler/icons-react'
+import { ModalChapterList } from '../modal-chapter-list/index.tsx'
+import { useState } from 'react'
+import { useKeyboardShortcut } from '../../../hooks/useKeyboardShortcut.tsx'
 
 interface ChapterNavigationProps {
-  prev: null | number;
-  next: null | number;
+  prev: null | number
+  next: null | number
   chapterId: number
 }
 
-export const ChapterNavigation = ({ prev, next, chapterId }: ChapterNavigationProps) => {
-
-  const [isOpen, setIsOpen] = useState(false);
+export const ChapterNavigation = ({
+  prev,
+  next,
+  chapterId,
+}: ChapterNavigationProps) => {
+  const [isOpen, setIsOpen] = useState(false)
   const navigate = useNavigate()
 
-  useKeyboardShortcut(
-    () => navigate(`/chapter/?id=${prev}`),
-    { code: 'ArrowLeft' }
-  )
+  useKeyboardShortcut(() => navigate(`/chapter/?id=${prev}`), {
+    code: 'ArrowLeft',
+  })
 
-  useKeyboardShortcut(
-    () => navigate(`/chapter/?id=${next}`),
-    { code: 'ArrowRight' }
-  )
+  useKeyboardShortcut(() => navigate(`/chapter/?id=${next}`), {
+    code: 'ArrowRight',
+  })
 
   return (
     <ul className={S.navigation}>

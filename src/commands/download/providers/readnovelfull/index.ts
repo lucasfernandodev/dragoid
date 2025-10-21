@@ -1,39 +1,38 @@
-import { processChaptersList } from "../../../../core/process-chapter-list.ts";
-import { BotError } from "../../../../errors/bot-error.ts";
-import { createFetcher } from "../../../../services/fetcher/factorio.ts";
+import { processChaptersList } from '../../../../core/process-chapter-list.ts'
+import { BotError } from '../../../../errors/bot-error.ts'
+import { createFetcher } from '../../../../services/fetcher/factorio.ts'
 import type {
   Bot,
   BotOptions,
   ChapterList,
   IChapterData,
-  MultiDownloadChapterOptions
-} from "../../../../types/bot.ts";
-import { delay } from "../../../../utils/delay.ts";
-import { logger } from "../../../../utils/logger.ts";
-
+  MultiDownloadChapterOptions,
+} from '../../../../types/bot.ts'
+import { delay } from '../../../../utils/delay.ts'
+import { logger } from '../../../../utils/logger.ts'
 
 export class BotReadNovelFull implements Bot {
-  public options: BotOptions;
+  public options: BotOptions
   public fetcher = createFetcher('http')
 
   constructor(options: BotOptions) {
-    this.options = options;
+    this.options = options
   }
 
   public getNovel = async (
     url: string,
     opt: Partial<MultiDownloadChapterOptions>
   ) => {
-    const meta = await this.getNovelInfo(url);
+    const meta = await this.getNovelInfo(url)
 
     if (!meta.chapterList) {
       throw new BotError('Unable to retrieve chapter list page url')
     }
 
     if (meta.thumbnail) {
-      const thumbnail = await this.options.imageDownloader(meta.thumbnail);
+      const thumbnail = await this.options.imageDownloader(meta.thumbnail)
       if (thumbnail) {
-        meta.thumbnail = thumbnail;
+        meta.thumbnail = thumbnail
       }
     }
 
@@ -45,30 +44,28 @@ export class BotReadNovelFull implements Bot {
       source: url,
     }
 
-    return novel;
-  };
-
-
-  private getNovelInfo = async (url: string) => {
-    const { collect } = this.options;
-    const page = await this.fetcher.fetch(url);
-    const meta = collect.novelInfo(page);
-    return meta;
+    return novel
   }
 
+  private getNovelInfo = async (url: string) => {
+    const { collect } = this.options
+    const page = await this.fetcher.fetch(url)
+    const meta = collect.novelInfo(page)
+    return meta
+  }
 
   private getChapterList = async (url: string) => {
-    const { collect } = this.options;
-    const page = await this.fetcher.fetch(url);
+    const { collect } = this.options
+    const page = await this.fetcher.fetch(url)
     const list = collect.chapterList(page)
-    return list;
+    return list
   }
 
   public getChapter = async (url: string) => {
     const { collect } = this.options
-    const page = await this.fetcher.fetch(url);
-    const chapter = collect.chapter(page);
-    return chapter;
+    const page = await this.fetcher.fetch(url)
+    const chapter = collect.chapter(page)
+    return chapter
   }
 
   public getAllChapter = async (
@@ -76,18 +73,24 @@ export class BotReadNovelFull implements Bot {
     opt: Partial<MultiDownloadChapterOptions>
   ) => {
     const { collect } = this.options
-    const chapters = [] as IChapterData[];
-    await processChaptersList(chapterList, async ({ url }, index) => {
-      const page = await this.fetcher.fetch(url);
-      const chapter = collect.chapter(page);
-      chapters.push(chapter)
+    const chapters = [] as IChapterData[]
+    await processChaptersList(
+      chapterList,
+      async ({ url }, index) => {
+        const page = await this.fetcher.fetch(url)
+        const chapter = collect.chapter(page)
+        chapters.push(chapter)
 
-      if (index !== 0 && index % 100 === 0) {
-        await delay(30000);
-        logger.debug(`processChaptersList: Downloaded ${index} chapters. `)
-        logger.debug('processChaptersList: Waiting 30 seconds to avoid rate limits...')
-      }
-    }, opt)
-    return chapters;
+        if (index !== 0 && index % 100 === 0) {
+          await delay(30000)
+          logger.debug(`processChaptersList: Downloaded ${index} chapters. `)
+          logger.debug(
+            'processChaptersList: Waiting 30 seconds to avoid rate limits...'
+          )
+        }
+      },
+      opt
+    )
+    return chapters
   }
 }

@@ -1,19 +1,20 @@
-import { IconArrowLeft, IconExclamationCircle, IconHome, IconRefresh } from '@tabler/icons-react';
-import type { FC } from '../../../../types/fc.ts';
-import { App } from '../../../atoms/App/index.tsx';
-import S from './style.module.css';
-import { Link, useNavigate } from 'react-router-dom';
+import {
+  IconArrowLeft,
+  IconExclamationCircle,
+  IconHome,
+  IconRefresh,
+} from '@tabler/icons-react'
+import type { FC } from '../../../../types/fc.ts'
+import { App } from '../../../atoms/App/index.tsx'
+import S from './style.module.css'
+import { Link, useNavigate } from 'react-router-dom'
 
 interface ChapterErrorProps {
-  title: string;
-  description: string;
+  title: string
+  description: string
 }
 
-export const ChapterError: FC<ChapterErrorProps> = ({
-  title,
-  description
-}) => {
-
+export const ChapterError: FC<ChapterErrorProps> = ({ title, description }) => {
   const navigate = useNavigate()
 
   return (
@@ -36,7 +37,7 @@ export const ChapterError: FC<ChapterErrorProps> = ({
             <IconArrowLeft />
             <span>Go Back</span>
           </button>
-          <button className={S.btn} onClick={() => navigate("/")}>
+          <button className={S.btn} onClick={() => navigate('/')}>
             <IconHome />
             <span>Home</span>
           </button>
@@ -44,7 +45,14 @@ export const ChapterError: FC<ChapterErrorProps> = ({
 
         <div className={S.footer}>
           <p>
-            Think this error shouldn't appear? Let us know by <Link to="https://github.com/lucasfernandodev/dragoid/issues" target='_blank'>opening an issue</Link> on GitHub!
+            Think this error shouldn't appear? Let us know by{' '}
+            <Link
+              to="https://github.com/lucasfernandodev/dragoid/issues"
+              target="_blank"
+            >
+              opening an issue
+            </Link>{' '}
+            on GitHub!
           </p>
         </div>
       </div>

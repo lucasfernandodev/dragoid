@@ -1,30 +1,28 @@
-import S from './style.module.css';
-import { Modal } from "../modal/index.tsx"
-import type { FC } from '../../../types/fc.ts';
-import { IconCopy, IconShare, IconX } from '@tabler/icons-react';
-import { useState } from 'react';
-import { Button } from '../../atoms/button/index.tsx';
-import { useFetch } from '../../../hooks/useFetch.ts';
-import { Loading } from '../loading/index.tsx';
-import { getNovelShareInfo } from '../../../api/get-novel-share-info.ts';
-import { writeToClipboard } from '../../../utils/write-to-clipboard.ts';
-import { GenerateLinkError } from './share-views/generate-link-failed.tsx';
-import { ServerOffline } from './share-views/server-offline.tsx';
-import { ReaderOnlyLocalhost } from './share-views/reader-only-localhost.tsx';
+import S from './style.module.css'
+import { Modal } from '../modal/index.tsx'
+import type { FC } from '../../../types/fc.ts'
+import { IconCopy, IconShare, IconX } from '@tabler/icons-react'
+import { useState } from 'react'
+import { Button } from '../../atoms/button/index.tsx'
+import { useFetch } from '../../../hooks/useFetch.ts'
+import { Loading } from '../loading/index.tsx'
+import { getNovelShareInfo } from '../../../api/get-novel-share-info.ts'
+import { writeToClipboard } from '../../../utils/write-to-clipboard.ts'
+import { GenerateLinkError } from './share-views/generate-link-failed.tsx'
+import { ServerOffline } from './share-views/server-offline.tsx'
+import { ReaderOnlyLocalhost } from './share-views/reader-only-localhost.tsx'
 
 const SharingView = ({ onBack }: { onBack: () => void }) => {
-  let timer: ReturnType<typeof setTimeout>;
-
+  let timer: ReturnType<typeof setTimeout>
 
   const { isLoading, data, success } = useFetch({
     queryKey: ['getShareInfo'],
-    queryFn: getNovelShareInfo
+    queryFn: getNovelShareInfo,
   })
 
   if (isLoading) {
     return <Loading />
   }
-
 
   // Server error
   if (!success) {
@@ -44,26 +42,28 @@ const SharingView = ({ onBack }: { onBack: () => void }) => {
 
   // User using only localhost
   if (data?.success && !data.data?.isPublic) {
-    return <ReaderOnlyLocalhost
-      message={data?.data?.message || ''}
-      onBack={onBack}
-    />
+    return (
+      <ReaderOnlyLocalhost
+        message={data?.data?.message || ''}
+        onBack={onBack}
+      />
+    )
   }
 
+  const copyReaderUrl = async (
+    ev: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    const host = data?.data.host
 
-  const copyReaderUrl = async (ev: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    if (!host) return
 
-    const host = data?.data.host;
-
-    if (!host) return;
-
-    const btn = ev.currentTarget as HTMLButtonElement;
-    const span = btn.querySelector('span');
+    const btn = ev.currentTarget as HTMLButtonElement
+    const span = btn.querySelector('span')
 
     try {
       await writeToClipboard(host)
-      if (!span) return;
-      const oldText = span.textContent;
+      if (!span) return
+      const oldText = span.textContent
       span.innerText = `Copied! 🎉`
       clearTimeout(timer)
       timer = setTimeout(() => {
@@ -79,21 +79,25 @@ const SharingView = ({ onBack }: { onBack: () => void }) => {
     <div className={S.share}>
       <div className={S.qrcode}>
         <img src={data?.data?.qrcode || ''} alt="qrcode" />
-        <p>Scan this QR code to access the novel in others devices in same network</p>
+        <p>
+          Scan this QR code to access the novel in others devices in same
+          network
+        </p>
       </div>
       <div className={S.group_button}>
         <Button onClick={copyReaderUrl}>
           <IconCopy />
           <span>Copy Link</span>
         </Button>
-        <Button variant='secondary' onClick={onBack}>Back</Button>
+        <Button variant="secondary" onClick={onBack}>
+          Back
+        </Button>
       </div>
     </div>
   )
 }
 
 const Content = () => {
-
   const [isSharing, setIsSharing] = useState(false)
 
   if (isSharing) {
@@ -102,7 +106,11 @@ const Content = () => {
 
   return (
     <ul className={S.overview}>
-      <li className={S.list_item} onClick={() => setIsSharing(true)} tabIndex={1}>
+      <li
+        className={S.list_item}
+        onClick={() => setIsSharing(true)}
+        tabIndex={1}
+      >
         <div className={S.icon}>
           <div className={S.frame}>
             <IconShare />
@@ -117,15 +125,14 @@ const Content = () => {
   )
 }
 
-
 interface IModalShareExportProps {
-  isOpen: boolean;
-  closeModal: () => void;
+  isOpen: boolean
+  closeModal: () => void
 }
 
 export const ModalShareExport: FC<IModalShareExportProps> = ({
   isOpen,
-  closeModal
+  closeModal,
 }) => {
   return (
     <Modal.Root isOpen={isOpen}>
