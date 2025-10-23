@@ -2,10 +2,10 @@ import fs from 'node:fs'
 import Epub from 'epub-gen'
 import type { INovelData } from '../types/bot.ts'
 import { join } from 'node:path'
-import { resolveUserPath } from '../utils/path.ts'
 import { base64ToFileUrl } from '../utils/file.ts'
 import { ApplicationError } from '../errors/application-error.ts'
 import { logger } from '../utils/logger.ts'
+import { resolveUserPath } from '../utils/io.ts'
 
 interface Props {
   title: string
@@ -159,7 +159,7 @@ export class GenerateEpubService {
    */
   public execute = async ({ title, novel, filename, outputFolder }: Props) => {
     // Transform thumbnail base64 to file and write in disk to get path
-    const getThumbailFile = async (data?: string): Promise<string> => {
+    const getThumbnailFile = async (data?: string): Promise<string> => {
       if (!data || data === '' || data === '<image-url>') return ''
       const filePath = await base64ToFileUrl(data)
       return filePath
@@ -189,7 +189,7 @@ export class GenerateEpubService {
           margin-left: 6px;
         }
       `,
-      cover: await getThumbailFile(novel.thumbnail),
+      cover: await getThumbnailFile(novel.thumbnail),
       content: [introPage, ...chaptersPage],
     }
 
@@ -198,10 +198,9 @@ export class GenerateEpubService {
 
     try {
       await this.silenceExecutable(this.options, target)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
+    } catch (error) {
       throw new ApplicationError(
-        `Generation of EPUB file failed. ${error.message}`,
+        `Generation of EPUB file failed. ${(error as Error).message}`,
         error
       )
     } finally {

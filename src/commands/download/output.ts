@@ -4,10 +4,10 @@ import { ApplicationError } from '../../errors/application-error.ts'
 import type { IChapterData, INovelData } from '../../types/bot.ts'
 import type { OutputSupportedType } from '../../types/output-generate-files.ts'
 import { writeFile } from '../../utils/file.ts'
-import { resolveUserPath } from '../../utils/path.ts'
 import { GenerateEpubService } from '../../services/generate-epub.ts'
 import { GenerateTxtService } from '../../services/generate-txt.ts'
 import { novelSchema } from '../../core/schemas/novel.ts'
+import { resolveUserPath } from '../../utils/io.ts'
 
 export const generateOutputFile: OutputSupportedType = {
   novel: {

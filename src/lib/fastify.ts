@@ -1,5 +1,26 @@
-import Fastify, { type FastifyInstance } from 'fastify'
+import Fastify, {
+  type FastifyBaseLogger,
+  type FastifyInstance,
+  type RawReplyDefaultExpression,
+  type RawRequestDefaultExpression,
+  type RawServerDefault,
+} from 'fastify'
 import type { IChapterData, INovelData } from '../types/bot.ts'
+import {
+  serializerCompiler,
+  validatorCompiler,
+  type ZodTypeProvider,
+  
+} from 'fastify-type-provider-zod'
+import { fastifyError } from '../errors/libs/fastify-error.ts'
+
+export type FastifyTypedInstance = FastifyInstance<
+  RawServerDefault,
+  RawRequestDefaultExpression,
+  RawReplyDefaultExpression,
+  FastifyBaseLogger,
+  ZodTypeProvider
+>
 
 declare module 'fastify' {
   interface FastifyInstance {
@@ -25,10 +46,15 @@ export const fastifyInstance = (props: ReaderFiles): FastifyInstance => {
     logger: false,
   })
 
+  app.setValidatorCompiler(validatorCompiler)
+  app.setSerializerCompiler(serializerCompiler)
+
   app.decorate('chapter', props.chapter)
   app.decorate('novel', props.novel)
   app.decorate('mode', props.mode)
   app.decorate('isPublic', props.isPublic)
+
+  app.setErrorHandler(fastifyError)
 
   return app
 }

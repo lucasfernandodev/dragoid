@@ -1,6 +1,6 @@
 import type { FastifyInstance } from 'fastify'
 import { ApplicationError } from '../../../../errors/application-error.ts'
-import { hashString } from '../../../../utils/hash-string.ts'
+import { createHash } from 'crypto'
 
 export const getUniqueChapterRouter = async (app: FastifyInstance) => {
   app.get('/api/chapter/unique', async (_, reply) => {
@@ -12,9 +12,9 @@ export const getUniqueChapterRouter = async (app: FastifyInstance) => {
     }
 
     const content = app.chapter.content
-
+    const hash = createHash('md5')
     const contentWidthId = content.map((content, index) => ({
-      id: hashString(content + index),
+      id: hash.update(content + index).digest('hex'),
       paragraph: content,
     }))
 

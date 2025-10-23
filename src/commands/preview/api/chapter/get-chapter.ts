@@ -1,10 +1,16 @@
-import type { FastifyInstance } from 'fastify'
 import { ApplicationError } from '../../../../errors/application-error.ts'
-import { hashString } from '../../../../utils/hash-string.ts'
 import { getChapterScheme } from '../../../../core/schemas/api/get-chapter.ts'
+import type { FastifyTypedInstance } from '../../../../lib/fastify.ts'
+import { createHash } from 'crypto'
 
-export const getChapterRouter = async (app: FastifyInstance) => {
-  app.get('/api/chapter/:id', async (req, reply) => {
+const validation = {
+  schema: {
+    querystring: getChapterScheme,
+  },
+}
+
+export const getChapterRouter = async (app: FastifyTypedInstance) => {
+  app.get('/api/chapter/:id', validation, async (req, reply) => {
     if (!app?.novel) {
       throw new ApplicationError(
         'Chapters cannot be retrieved because novel data is not loaded.\
@@ -12,19 +18,9 @@ export const getChapterRouter = async (app: FastifyInstance) => {
       )
     }
 
-    const query = req.query as { id: string }
-    const { success, error, data } = getChapterScheme.safeParse(query)
-    if (!success) {
-      return reply
-        .send({
-          success: false,
-          errorMessage: error.issues[0].message,
-        })
-        .code(400)
-    }
+    const { id: currentid } = req.query
 
     const chapterListLength = app.novel.chapters.length
-    const currentid = data.id
 
     if (currentid >= chapterListLength) {
       return reply
@@ -40,8 +36,10 @@ export const getChapterRouter = async (app: FastifyInstance) => {
 
     const content = app.novel.chapters[currentid].content
 
+    const hash = createHash('md5')
+
     const contentWidthId = content.map((content, index) => ({
-      id: hashString(content + index),
+      id: hash.update(content + index).digest('hex'),
       paragraph: content,
     }))
 

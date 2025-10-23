@@ -12,6 +12,7 @@ type FetchAction<T> =
   | { type: 'FETCH_START' }
   | { type: 'FETCH_SUCCESS'; payload: T }
   | { type: 'FETCH_ERROR'; message: unknown }
+  | { type: 'RESET'; initialData: FetchState<T> }
 
 const fetchReducer = <T>(
   state: FetchState<T>,
@@ -19,7 +20,6 @@ const fetchReducer = <T>(
 ): FetchState<T> => {
   switch (action.type) {
     case 'FETCH_START':
-      if (state.isLoading) return state
       return {
         isLoading: true,
         isFetching: true,
@@ -52,6 +52,8 @@ const fetchReducer = <T>(
         errorMessage: action.message,
         isFetching: false,
       }
+    case 'RESET':
+      return action.initialData || state
 
     default:
       return state
@@ -69,12 +71,19 @@ export const useFetch = <TResponse>({
   isEnabled,
   queryKey = [],
 }: useFetchProps<TResponse>) => {
+  const initialData = {
+    isLoading: true,
+    data: null,
+    success: false,
+    isFetching: false,
+  }
+
   const [state, dispatch] = useReducer(
     fetchReducer as React.Reducer<
       FetchState<TResponse>,
       FetchAction<TResponse>
     >,
-    { isLoading: true, data: null, success: false, isFetching: false }
+    initialData
   )
 
   const fnRef = useRef(queryFn)
@@ -116,6 +125,8 @@ export const useFetch = <TResponse>({
     }
   }, [isEnabled, ...queryKey])
 
+  const reset = useCallback(() => dispatch({ type: 'RESET', initialData }), [])
+
   return {
     data: state.data,
     isLoading: state.isLoading,
@@ -123,5 +134,6 @@ export const useFetch = <TResponse>({
     success: state.success,
     errorMessage: state.errorMessage,
     isFetching: state.isFetching,
+    clearQuery: reset,
   }
 }

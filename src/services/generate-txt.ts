@@ -1,8 +1,8 @@
 import { join } from 'path'
 import type { IChapterData, INovelData } from '../types/bot.ts'
-import { resolveUserPath } from '../utils/path.ts'
 import { writeFile } from '../utils/file.ts'
 import { ApplicationError } from '../errors/application-error.ts'
+import { resolveUserPath } from '../utils/io.ts'
 
 interface RequiredProps {
   filename: string

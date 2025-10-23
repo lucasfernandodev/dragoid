@@ -7,9 +7,63 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  overflow-y: auto;
+  max-height: 500px;
+  padding-bottom: 8px;
 }
 
-.list_item {
+.item_loading {
+  display: flex;
+  border: 1px solid #1f1f1f;
+  min-height: 72px;
+  width: 100%;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: default;
+  pointer-events: none;
+}
+
+.item_success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid #1f1f1f;
+  border-radius: 8px;
+  padding: 24px 16px;
+
+  & .icon {
+    color: hsl(145, 47%, 40%);
+    background: hsla(145, 47%, 40%, 10%);
+    padding: 12px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  & .icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  & h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  & p {
+    color: #aaa;
+    line-height: 2.2rem;
+    text-align: center;
+  }
+}
+
+.item {
   display: flex;
   padding: 16px 0px;
   border-radius: 8px;

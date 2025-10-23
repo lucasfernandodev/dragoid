@@ -8,7 +8,7 @@ export const outputSupported = {
 export const language = 'en'
 
 declare const __IS_BUILD__: boolean
-export const isBuild =
+export const isProd =
   typeof __IS_BUILD__ !== 'undefined'
     ? __IS_BUILD__
     : process.env.IS_BUILD === 'true'

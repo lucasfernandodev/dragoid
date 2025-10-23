@@ -30,15 +30,6 @@ export const readFile = async <T>(filepath: string) => {
   }
 }
 
-export async function fileExists(filePath: string) {
-  try {
-    await fs.access(filePath)
-    return true
-  } catch (_) {
-    return false
-  }
-}
-
 /**
  * Receives a Base64 string (only the payload, without the data URL prefix) and returns
  * a file:// URL pointing to a temporary file that was just created.

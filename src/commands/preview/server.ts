@@ -8,7 +8,7 @@ import chalk from 'chalk'
 import fastifyVite from '@fastify/vite'
 import { fileURLToPath } from 'url'
 import path from 'path'
-import { isBuild } from '../../core/configurations.ts'
+import { isProd } from '../../core/configurations.ts'
 import { ApiAppRouter } from './api/app/index.ts'
 import { ApiChapterRouter } from './api/chapter/index.ts'
 import { ApiNovelRouter } from './api/novel/index.ts'
@@ -51,8 +51,8 @@ export class Server {
   private registerClientRouter = async () => {
     const devPath = path.resolve(__dirname, '..', '..', '..')
     await this.fastify.register(fastifyVite, {
-      root: !isBuild ? devPath : __dirname, // where to look for vite.config.js
-      dev: !isBuild,
+      root: !isProd ? devPath : __dirname, // where to look for vite.config.js
+      dev: !isProd,
       spa: true,
       distDir: __dirname,
     })

@@ -6,7 +6,7 @@ import {
   type DownloadOptionsMap,
   type DownloadArgs,
 } from './options.ts'
-import { isDir } from '../../utils/isDir.ts'
+import { existDirectory } from '../../utils/io.ts'
 
 const validateDownloadCommandFlags = z
   .object({
@@ -40,7 +40,7 @@ const validateDownloadCommandFlags = z
       .min(1, {
         message: `Invalid value for option '--${CMD_DOWNLOAD_PROXY_FLAGS.path}'. Option must not be left empty`,
       })
-      .refine((p) => isDir(p), {
+      .refine((p) => existDirectory(p), {
         message: `Invalid value for option '--${CMD_DOWNLOAD_PROXY_FLAGS.path}'. Provided path does not exist or is not a directory`,
       })
       .optional(),
