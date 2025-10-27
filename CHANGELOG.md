@@ -1,3 +1,12 @@
+## [0.44.1](https://github.com/lucasfernandodev/dragoid/compare/v0.44.0...v0.44.1) (2025-10-27)
+
+
+### Bug Fixes
+
+* **reader:** Add function to resolve '~' to homedir ([4f22433](https://github.com/lucasfernandodev/dragoid/commit/4f22433f96bb40aeff6a18e1e5b2f0719298c7c0))
+
+
+
 # [0.44.0](https://github.com/lucasfernandodev/dragoid/compare/v0.43.0...v0.44.0) (2025-10-23)
 
 
@@ -33,15 +42,6 @@
 ### Bug Fixes
 
 * Add error for argument conflict ([a41322e](https://github.com/lucasfernandodev/dragoid/commit/a41322e6bd73ad5135d043f0775cbaed5faf9199))
-
-
-
-## [0.41.12](https://github.com/lucasfernandodev/dragoid/compare/v0.41.11...v0.41.12) (2025-10-03)
-
-
-### Bug Fixes
-
-* fix help message of preview command ([60527ce](https://github.com/lucasfernandodev/dragoid/commit/60527cee2f9f0771d0487483303f417efc60b26a))
 
 
 
