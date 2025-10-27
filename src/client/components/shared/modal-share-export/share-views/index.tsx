@@ -1,13 +1,13 @@
-import S from '../style.module.css';
-import { IconCopy } from "@tabler/icons-react"
-import { getNovelShareInfo } from "../../../../api/get-novel-share-info.ts"
-import { useFetch } from "../../../../hooks/useFetch.ts"
-import { writeToClipboard } from "../../../../utils/write-to-clipboard.ts"
-import { Button } from "../../../atoms/button/index.tsx"
-import { Loading } from "../../loading/index.tsx"
-import { GenerateLinkError } from "./generate-link-failed.tsx"
-import { ReaderOnlyLocalhost } from "./reader-only-localhost.tsx"
-import { ServerOffline } from "./server-offline.tsx"
+import S from '../style.module.css'
+import { IconCopy } from '@tabler/icons-react'
+import { getNovelShareInfo } from '../../../../api/get-novel-share-info.ts'
+import { useFetch } from '../../../../hooks/useFetch.ts'
+import { writeToClipboard } from '../../../../utils/write-to-clipboard.ts'
+import { Button } from '../../../atoms/button/index.tsx'
+import { Loading } from '../../loading/index.tsx'
+import { GenerateLinkError } from './generate-link-failed.tsx'
+import { ReaderOnlyLocalhost } from './reader-only-localhost.tsx'
+import { ServerOffline } from './server-offline.tsx'
 
 export const SharingView = ({ onBack }: { onBack: () => void }) => {
   let timer: ReturnType<typeof setTimeout>

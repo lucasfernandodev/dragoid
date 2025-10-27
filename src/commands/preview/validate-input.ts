@@ -6,6 +6,7 @@ import {
   type PreviewOptionsMapped,
 } from './options.ts'
 import { existsSync, statSync } from 'fs'
+import { resolveUserPath } from '../../utils/io.ts'
 
 export const validatePreviewInput = (data: Partial<PreviewArgs>) => {
   const options = {} as PreviewOptionsMapped
@@ -38,7 +39,7 @@ export const validatePreviewInput = (data: Partial<PreviewArgs>) => {
     throw new ValidationError('Expected a .json file')
   }
 
-  const safePath = normalize(options.file)
+  const safePath = normalize(resolveUserPath(options.file))
 
   if (!existsSync(safePath)) {
     throw new ValidationError(`File path does not exist`)

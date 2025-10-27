@@ -2,6 +2,7 @@ import fs from 'node:fs/promises'
 import { ApplicationError } from '../errors/application-error.ts'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { resolveUserPath } from './io.ts'
 
 export const writeFile = async (
   filename: string,
@@ -20,7 +21,7 @@ export const writeFile = async (
 
 export const readFile = async <T>(filepath: string) => {
   try {
-    const data = await fs.readFile(filepath, 'utf-8')
+    const data = await fs.readFile(resolveUserPath(filepath), 'utf-8')
     return JSON.parse(data) as T
   } catch (error) {
     throw new ApplicationError(

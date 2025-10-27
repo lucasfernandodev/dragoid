@@ -10,7 +10,6 @@ import {
   serializerCompiler,
   validatorCompiler,
   type ZodTypeProvider,
-  
 } from 'fastify-type-provider-zod'
 import { fastifyError } from '../errors/libs/fastify-error.ts'
 
