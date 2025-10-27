@@ -17,7 +17,7 @@ import { exportReplacementList } from '../../../../utils/export-replacement-list
 import {
   parseFileToJson,
   type ParseFileJsonError,
-} from '../../../../../utils/parse-file-to-json.ts'
+} from '../../../../utils/parse-file-to-json.ts'
 import type { ReplacementList } from '../../../../types/replacement-list.ts'
 import { replacementListScheme } from '../../../../schema/replacement-list.ts'
 
