@@ -23,13 +23,12 @@ export const getChapterRouter = async (app: FastifyTypedInstance) => {
     const chapterListLength = app.novel.chapters.length
 
     if (currentid >= chapterListLength) {
-      return reply.code(404)
-        .send({
-          success: false,
-          error: {
-            message: 'Chapter not found',
-          },
-        })
+      return reply.code(404).send({
+        success: false,
+        error: {
+          message: 'Chapter not found',
+        },
+      })
     }
 
     const nextId = currentid + 1 >= chapterListLength ? null : currentid + 1
