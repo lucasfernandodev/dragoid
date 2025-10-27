@@ -11,7 +11,7 @@ function escapeRegex(string: string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 }
 
-describe('Dragoid E2E', async () => {
+describe('Test CLI Integration', async () => {
   const cliPath = './src/dragoid.ts'
 
   it('Should error on start without commands or args', async () => {

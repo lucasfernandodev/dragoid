@@ -1,7 +1,7 @@
 import { ApplicationError } from '../../../../errors/application-error.ts'
 import { getChapterScheme } from '../../../../core/schemas/api/get-chapter.ts'
 import type { FastifyTypedInstance } from '../../../../lib/fastify.ts'
-import { createHash } from 'crypto'
+import { hashString } from '../../../../utils/hash-string.ts'
 
 const validation = {
   schema: {
@@ -23,12 +23,13 @@ export const getChapterRouter = async (app: FastifyTypedInstance) => {
     const chapterListLength = app.novel.chapters.length
 
     if (currentid >= chapterListLength) {
-      return reply
+      return reply.code(404)
         .send({
           success: false,
-          errorMessage: 'Chapter not found',
+          error: {
+            message: 'Chapter not found',
+          },
         })
-        .code(404)
     }
 
     const nextId = currentid + 1 >= chapterListLength ? null : currentid + 1
@@ -36,10 +37,8 @@ export const getChapterRouter = async (app: FastifyTypedInstance) => {
 
     const content = app.novel.chapters[currentid].content
 
-    const hash = createHash('md5')
-
     const contentWidthId = content.map((content, index) => ({
-      id: hash.update(content + index).digest('hex'),
+      id: hashString(content + index),
       paragraph: content,
     }))
 

@@ -21,10 +21,10 @@
     "lint:fix": "eslint . --fix",
     "prepare": "husky",
     "pre-commit": "pnpm lint && pnpm format && pnpm test",
-    "test": "pnpm test:e2e && pnpm test:unity",
+    "test": "pnpm test:integration && pnpm test:unity",
     "test:unity": "NODE_NO_WARNINGS=1 node --experimental-transform-types --test './src/**/*.test.ts'",
     "test:providers": "NODE_NO_WARNINGS=1 node --experimental-transform-types --test './tests/providers/**/*.test.ts'",
-    "test:e2e": "NODE_NO_WARNINGS=1 node --experimental-transform-types --test ./tests/e2e/*.test.ts",
+    "test:integration": "NODE_NO_WARNINGS=1 node --experimental-transform-types --test ./tests/integration/**/*.test.ts ./tests/integration/*.test.ts",
     "format": "prettier . --check",
     "format:fix": "prettier . --write"
   },

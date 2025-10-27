@@ -4,7 +4,16 @@
   "description": ["Description", "Created"],
   "genres": ["action", "si-fi"],
   "author": ["john doe"],
-  "chapters": [],
+  "chapters": [
+    {
+      "title": "Chapter 1",
+      "content": ["paragraph 1", "paragraph 2"]
+    },
+    {
+      "title": "Chapter 2",
+      "content": ["paragraph 1", "paragraph 2"]
+    }
+  ],
   "status": "in progress",
   "language": "English"
 }

@@ -20,7 +20,7 @@ export const getNovelShareInfo = async (app: FastifyInstance) => {
 
     const ip = getLocalIPAddress()
     const validateIp = z.ipv4().safeParse(ip)
-    const port = app.addresses()[0].port
+    const port = app.addresses()[0]?.port
 
     if (!validateIp.success) {
       return reply.code(500).send({

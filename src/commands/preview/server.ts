@@ -48,6 +48,11 @@ export class Server {
     this.opt = { ...opt }
   }
 
+  public getInstance = async () => {
+    await this.handleRoutes()
+    return this.fastify
+  }
+
   private registerClientRouter = async () => {
     const devPath = path.resolve(__dirname, '..', '..', '..')
     await this.fastify.register(fastifyVite, {
