@@ -29,15 +29,16 @@ describe('Test API [app] router', async () => {
 
   after(() => app?.close())
 
-  test('GET /api/health-check should return status OK', async () => {
+  test('GET /api/mode should return correct environment mode', async () => {
     const response = await app.inject({
       method: 'GET',
-      url: '/api/health-check',
+      url: '/api/mode',
     })
 
     assert.deepEqual(response.statusCode, 200)
     assert.deepStrictEqual(await response.json(), {
-      status: 'ok',
+      success: true,
+      mode: 'novel',
     })
   })
 })

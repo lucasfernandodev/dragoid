@@ -1,16 +1,10 @@
 import { ApplicationError } from '../../../../errors/application-error.ts'
-import { getChapterScheme } from '../../../../core/schemas/api/get-chapter.ts'
+import { getChapterRouteSchema } from './get-chapter.schema.ts'
 import type { FastifyTypedInstance } from '../../../../lib/fastify.ts'
 import { hashString } from '../../../../utils/hash-string.ts'
 
-const validation = {
-  schema: {
-    querystring: getChapterScheme,
-  },
-}
-
 export const getChapterRouter = async (app: FastifyTypedInstance) => {
-  app.get('/api/chapter/:id', validation, async (req, reply) => {
+  app.get('/api/chapter/:id', getChapterRouteSchema, async (req, reply) => {
     if (!app?.novel) {
       throw new ApplicationError(
         'Chapters cannot be retrieved because novel data is not loaded.\

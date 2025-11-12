@@ -2,9 +2,10 @@ import type { FastifyInstance } from 'fastify'
 import { getLocalIPAddress } from '../../../../utils/get-local-ip.ts'
 import { z } from 'zod'
 import { GenerateQRCode } from '../../../../services/generate-qrcode.ts'
+import { getNovelShareInfoRouteSchema } from './get-novel-share-info.schema.ts'
 
 export const getNovelShareInfo = async (app: FastifyInstance) => {
-  app.get('/api/share', async (_, reply) => {
+  app.get('/api/share', getNovelShareInfoRouteSchema, async (_, reply) => {
     const protocol = 'http'
 
     if (!app.isPublic) {

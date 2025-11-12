@@ -1,8 +1,9 @@
 import type { FastifyInstance } from 'fastify'
 import { ApplicationError } from '../../../../errors/application-error.ts'
+import { getListChaptersRouteSchema } from './get-list-chapters.schema.ts'
 
 export const getListChaptersRouter = async (app: FastifyInstance) => {
-  app.get('/api/chapter', async (_, reply) => {
+  app.get('/api/chapter', getListChaptersRouteSchema, async (_, reply) => {
     if (!app?.novel) {
       throw new ApplicationError(
         'Chapters cannot be retrieved because novel data is not loaded.\
@@ -10,7 +11,7 @@ export const getListChaptersRouter = async (app: FastifyInstance) => {
       )
     }
 
-    return reply.send({
+    return reply.code(200).send({
       success: true,
       title: app.novel.title,
       chapterList: app.novel.chapters.map((ch, index) => ({

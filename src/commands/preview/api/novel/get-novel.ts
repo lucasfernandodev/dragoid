@@ -1,7 +1,8 @@
 import type { FastifyInstance } from 'fastify'
+import { getNovelRouteSchema } from './get-novel.schema.ts'
 
 export const getNovelRouter = async (app: FastifyInstance) => {
-  app.get('/api/novel', async (_, reply) => {
+  app.get('/api/novel', getNovelRouteSchema, async (_, reply) => {
     reply.send({
       success: true,
       novel: {
