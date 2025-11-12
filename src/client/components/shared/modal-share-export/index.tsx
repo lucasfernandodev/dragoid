@@ -33,11 +33,17 @@ export const ModalShareExport: FC<IModalShareExportProps> = ({
 }) => {
   const [isSharing, setIsSharing] = useState(false)
 
-  if (isSharing) {
-    return <SharingView onBack={() => setIsSharing(false)} />
-  }
-
   const swapToShareView = () => setIsSharing(true)
+
+  const Overview = () => {
+    return (
+      <ul className={S.overview}>
+        <ShareNovelOption onOpenShare={swapToShareView} />
+        <ExportNovelOption format="json" />
+        <ExportNovelOption format="epub" />
+      </ul>
+    )
+  }
 
   return (
     <Modal.Root isOpen={isOpen}>
@@ -52,11 +58,11 @@ export const ModalShareExport: FC<IModalShareExportProps> = ({
           </Modal.CloseButton>
         </Modal.Header>
         <Modal.Content className={S.content}>
-          <ul className={S.overview}>
-            <ShareNovelOption onOpenShare={swapToShareView} />
-            <ExportNovelOption format="json" />
-            <ExportNovelOption format="epub" />
-          </ul>
+          {isSharing ? (
+            <SharingView onBack={() => setIsSharing(false)} />
+          ) : (
+            <Overview />
+          )}
         </Modal.Content>
       </Modal.Wrapper>
     </Modal.Root>
