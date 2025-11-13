@@ -63,7 +63,6 @@
     "clone-deep": "^4.0.1",
     "dotenv": "^17.2.1",
     "epub-gen": "^0.1.0",
-    "epub2": "^3.0.2",
     "fastify": "^5.4.0",
     "fastify-type-provider-zod": "^6.0.0",
     "html-rewriter-wasm": "^0.4.1",
@@ -77,6 +76,7 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "epub2": "^3.0.2",
     "@eslint/js": "^9.29.0",
     "@types/ejs": "^3.1.5",
     "@types/epub-gen": "^0.1.2",
