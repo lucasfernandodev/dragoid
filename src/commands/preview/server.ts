@@ -53,7 +53,7 @@ export class Server {
     return this.fastify
   }
 
-  private registerClientRouter = async () => {
+  private prepareClient = async () => {
     const devPath = path.resolve(__dirname, '..', '..', '..')
     await this.fastify.register(fastifyVite, {
       root: !isProd ? devPath : __dirname, // where to look for vite.config.js
@@ -67,7 +67,7 @@ export class Server {
     })
   }
 
-  private registerApiRouter = async () => {
+  private prepareAPI = async () => {
     this.fastify.register(ApiAppRouter)
     this.fastify.register(ApiChapterRouter)
     this.fastify.register(ApiNovelRouter)
@@ -81,8 +81,8 @@ export class Server {
   }
 
   private handleRoutes = async () => {
-    await this.registerClientRouter()
-    await this.registerApiRouter()
+    await this.prepareClient()
+    await this.prepareAPI()
   }
 
   private logStartup = () => {

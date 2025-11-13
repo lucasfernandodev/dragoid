@@ -2,6 +2,9 @@ import fastify, { type FastifyReply, type FastifyRequest } from 'fastify'
 import { ApplicationError } from '../application-error.ts'
 import { hasZodFastifySchemaValidationErrors } from 'fastify-type-provider-zod'
 
+const hasStatusCode = (e: unknown): e is { statusCode: number } =>
+  typeof (e as Record<string, unknown>)?.statusCode === 'number'
+
 export const fastifyError = (
   error: unknown | Error,
   _: FastifyRequest,
@@ -36,6 +39,15 @@ export const fastifyError = (
       error: {
         title: 'Invalid value',
         message: error.validation[0].message,
+      },
+    })
+  }
+
+  if (hasStatusCode(error) && error.statusCode === 429) {
+    return reply.code(429).send({
+      success: false,
+      error: {
+        message: 'Rate limit exceeded, retry in 1 minute',
       },
     })
   }

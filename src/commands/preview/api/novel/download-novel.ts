@@ -9,6 +9,11 @@ import { logger } from '../../../../utils/logger.ts'
 import { downloadNovelRouteSchema } from './download-novel.schema.ts'
 
 export const downloadNovelRouter = async (app: FastifyTypedInstance) => {
+  await app.register(import('@fastify/rate-limit'), {
+    max: 3,
+    timeWindow: '1 minute',
+  })
+
   app.get(
     '/api/novel/download',
     downloadNovelRouteSchema,
