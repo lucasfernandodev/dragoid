@@ -1,10 +1,9 @@
-import fs from 'node:fs'
+import fs from 'node:fs/promises'
 import Epub from 'epub-gen'
 import type { INovelData } from '../types/bot.ts'
 import { join } from 'node:path'
 import { base64ToFileUrl } from '../utils/file.ts'
 import { ApplicationError } from '../errors/application-error.ts'
-import { logger } from '../utils/logger.ts'
 import { resolveUserPath } from '../utils/io.ts'
 
 interface Props {
@@ -138,13 +137,13 @@ export class GenerateEpubService {
    *
    * @param path - Absolute path of the file to be deleted.
    */
-  private deleteTmpCover = (path: string) => {
-    fs.unlink(path, (err) => {
-      if (err) {
-        logger.error('Remove cover image file from tmp folder failed', err)
-        return
-      }
-    })
+  private deleteTmpCover = async (path: string) => {
+    try {
+      await fs.unlink(path)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      //
+    }
   }
 
   /**
@@ -204,7 +203,7 @@ export class GenerateEpubService {
         error
       )
     } finally {
-      this.deleteTmpCover(this.options.cover)
+      await this.deleteTmpCover(this.options.cover)
     }
   }
 }
