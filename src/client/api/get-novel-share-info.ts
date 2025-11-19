@@ -8,7 +8,7 @@ interface ReturnType {
 }
 
 export const getNovelShareInfo = async () => {
-  const response = await fetch('/api/share')
+  const response = await fetch('/api/novel/share')
   const json = await response.json()
   return json as Response<ReturnType>
 }
