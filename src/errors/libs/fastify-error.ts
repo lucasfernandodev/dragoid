@@ -1,20 +1,20 @@
 import fastify, { type FastifyReply, type FastifyRequest } from 'fastify'
 import { ApplicationError } from '../application-error.ts'
 import { hasZodFastifySchemaValidationErrors } from 'fastify-type-provider-zod'
-
-const hasStatusCode = (e: unknown): e is { statusCode: number } =>
-  typeof (e as Record<string, unknown>)?.statusCode === 'number'
+import { hasStatusCode } from '../../utils/has-status-code.ts'
+import { ValidationError } from '../validation-error.ts'
+import { logger } from '../../utils/logger.ts'
 
 export const fastifyError = (
   error: unknown | Error,
   _: FastifyRequest,
   reply: FastifyReply
 ) => {
-  if (error instanceof ApplicationError) {
+  if (error instanceof ApplicationError || error instanceof ValidationError) {
     return reply.code(500).send({
       success: false,
       error: {
-        title: 'Application Error',
+        title: 'Server Error',
         message: error.message,
       },
     })
@@ -52,7 +52,14 @@ export const fastifyError = (
     })
   }
 
-  console.log(error)
+  // Unknown Error
+  logger.error('An unknown error has been found', error)
 
-  reply.send(error)
+  return reply.code(500).send({
+    success: false,
+    error: {
+      title: 'Unknown server error',
+      message: 'An unknown error has been found',
+    },
+  })
 }
