@@ -3,3 +3,4 @@ dist
 bin
 docs
 novels
+pnpm-lock.yaml
