@@ -29,7 +29,7 @@ importers:
         version: 11.1.1
       '@fastify/vite':
         specifier: ^8.2.0
-        version: 8.2.0(fastify@5.6.1)(vite@7.1.11(@types/node@24.7.0)(yaml@2.8.1))
+        version: 8.2.0(fastify@5.6.1)(vite@7.2.2(@types/node@24.7.0)(yaml@2.8.1))
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(@types/react@19.1.9)(react@19.1.1)
@@ -41,7 +41,7 @@ importers:
         version: 1.5.5
       '@vitejs/plugin-react':
         specifier: ^5.0.4
-        version: 5.0.4(vite@7.1.11(@types/node@24.7.0)(yaml@2.8.1))
+        version: 5.0.4(vite@7.2.2(@types/node@24.7.0)(yaml@2.8.1))
       axios:
         specifier: '>=1.12.0'
         version: 1.12.2
@@ -144,7 +144,7 @@ importers:
         version: 8.47.0(eslint@9.39.1)(typescript@5.8.3)
       vite:
         specifier: '>=7.0.7'
-        version: 7.1.11(@types/node@24.7.0)(yaml@2.8.1)
+        version: 7.2.2(@types/node@24.7.0)(yaml@2.8.1)
     optionalDependencies:
       puppeteer:
         specifier: ^24.10.2
@@ -2470,8 +2470,8 @@ packages:
   util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
 
-  vite@7.1.11:
-    resolution: {integrity: sha512-uzcxnSDVjAopEUjljkWh8EIrg6tlzrjFUfMcR1EVsRDGwf/ccef0qQPRyOrROwhrTDaApueq+ja+KLPlzR/zdg==}
+  vite@7.2.2:
+    resolution: {integrity: sha512-BxAKBWmIbrDgrokdGZH1IgkIk/5mMHDreLDmCJ0qpyJaAteP8NvMhkwr/ZCQNqNH97bw/dANTE9PDzqwJghfMQ==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -2951,7 +2951,7 @@ snapshots:
       fastify-plugin: 5.1.0
       toad-cache: 3.7.0
 
-  '@fastify/vite@8.2.0(fastify@5.6.1)(vite@7.1.11(@types/node@24.7.0)(yaml@2.8.1))':
+  '@fastify/vite@8.2.0(fastify@5.6.1)(vite@7.2.2(@types/node@24.7.0)(yaml@2.8.1))':
     dependencies:
       '@fastify/deepmerge': 3.1.0
       '@fastify/middie': 9.0.3
@@ -2963,7 +2963,7 @@ snapshots:
       html-rewriter-wasm: 0.4.1
       klaw: 4.1.0
       package-directory: 8.1.0
-      vite: 7.1.11(@types/node@24.7.0)(yaml@2.8.1)
+      vite: 7.2.2(@types/node@24.7.0)(yaml@2.8.1)
 
   '@humanfs/core@0.19.1': {}
 
@@ -3226,7 +3226,7 @@ snapshots:
       '@typescript-eslint/types': 8.47.0
       eslint-visitor-keys: 4.2.1
 
-  '@vitejs/plugin-react@5.0.4(vite@7.1.11(@types/node@24.7.0)(yaml@2.8.1))':
+  '@vitejs/plugin-react@5.0.4(vite@7.2.2(@types/node@24.7.0)(yaml@2.8.1))':
     dependencies:
       '@babel/core': 7.28.4
       '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.28.4)
@@ -3234,7 +3234,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.38
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 7.1.11(@types/node@24.7.0)(yaml@2.8.1)
+      vite: 7.2.2(@types/node@24.7.0)(yaml@2.8.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -5107,7 +5107,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  vite@7.1.11(@types/node@24.7.0)(yaml@2.8.1):
+  vite@7.2.2(@types/node@24.7.0)(yaml@2.8.1):
     dependencies:
       esbuild: 0.25.11
       fdir: 6.5.0(picomatch@4.0.3)
