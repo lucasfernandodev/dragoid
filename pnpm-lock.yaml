@@ -29,7 +29,7 @@ importers:
         version: 11.1.1
       '@fastify/vite':
         specifier: ^8.2.0
-        version: 8.2.0(fastify@5.6.1)(vite@7.1.11(@types/node@24.7.0)(yaml@2.8.1))
+        version: 8.2.0(fastify@5.6.1)(vite@7.1.11(@types/node@24.10.1)(yaml@2.8.1))
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(@types/react@19.1.9)(react@19.1.1)
@@ -41,7 +41,7 @@ importers:
         version: 1.5.5
       '@vitejs/plugin-react':
         specifier: ^5.0.4
-        version: 5.0.4(vite@7.1.11(@types/node@24.7.0)(yaml@2.8.1))
+        version: 5.0.4(vite@7.1.11(@types/node@24.10.1)(yaml@2.8.1))
       axios:
         specifier: '>=1.12.0'
         version: 1.12.2
@@ -108,7 +108,7 @@ importers:
         version: 0.1.2
       '@types/node':
         specifier: ^24.0.3
-        version: 24.7.0
+        version: 24.10.1
       '@types/react':
         specifier: ^19.1.9
         version: 19.1.9
@@ -144,7 +144,7 @@ importers:
         version: 8.47.0(eslint@9.39.1)(typescript@5.8.3)
       vite:
         specifier: '>=7.0.7'
-        version: 7.1.11(@types/node@24.7.0)(yaml@2.8.1)
+        version: 7.1.11(@types/node@24.10.1)(yaml@2.8.1)
     optionalDependencies:
       puppeteer:
         specifier: ^24.10.2
@@ -619,8 +619,8 @@ packages:
   '@types/ms@2.1.0':
     resolution: {integrity: sha512-GsCCIZDE/p3i96vtEqx+7dBUGXrc7zeSK3wwPHIaRThS+9OhWIXRqzs4d6k1SVU8g91DrNRWxWUGhp5KXQb2VA==}
 
-  '@types/node@24.7.0':
-    resolution: {integrity: sha512-IbKooQVqUBrlzWTi79E8Fw78l8k1RNtlDDNWsFZs7XonuQSJ8oNYfEeclhprUldXISRMLzBpILuKgPlIxm+/Yw==}
+  '@types/node@24.10.1':
+    resolution: {integrity: sha512-GNWcUTRBgIRJD5zj+Tq0fKOJ5XZajIiBroOF0yvj2bSU1WvNdYS/dn9UxwsujGW4JX06dnHyjV2y9rRaybH0iQ==}
 
   '@types/qrcode@1.5.5':
     resolution: {integrity: sha512-CdfBi/e3Qk+3Z/fXYShipBT13OJ2fDO2Q2w5CIP5anLTLIndQG9z6P1cnm+8zCWSpm5dnxMFd/uREtb0EXuQzg==}
@@ -2435,8 +2435,8 @@ packages:
   underscore@1.13.7:
     resolution: {integrity: sha512-GMXzWtsc57XAtguZgaQViUOzs0KTkk8ojr3/xAxXLITqf/3EMwxC0inyETfDFjH/Krbhuep0HNbbjI9i/q3F3g==}
 
-  undici-types@7.14.0:
-    resolution: {integrity: sha512-QQiYxHuyZ9gQUIrmPo3IA+hUl4KYk8uSA7cHrcKd/l3p1OTpZcM0Tbp9x7FAtXdAYhlasd60ncPpgu6ihG6TOA==}
+  undici-types@7.16.0:
+    resolution: {integrity: sha512-Zz+aZWSj8LE6zoxD+xrjh4VfkIG8Ya6LvYkZqtUQGJPZjYl53ypCaUwWqo7eI0x66KBGeRo+mlBEkMSeSZ38Nw==}
 
   undici@7.16.0:
     resolution: {integrity: sha512-QEg3HPMll0o3t2ourKwOeUAZ159Kn9mx5pnzHRQO8+Wixmh88YdZRiIwat0iNzNNXn0yoEtXJqFpyW7eM8BV7g==}
@@ -2951,7 +2951,7 @@ snapshots:
       fastify-plugin: 5.1.0
       toad-cache: 3.7.0
 
-  '@fastify/vite@8.2.0(fastify@5.6.1)(vite@7.1.11(@types/node@24.7.0)(yaml@2.8.1))':
+  '@fastify/vite@8.2.0(fastify@5.6.1)(vite@7.1.11(@types/node@24.10.1)(yaml@2.8.1))':
     dependencies:
       '@fastify/deepmerge': 3.1.0
       '@fastify/middie': 9.0.3
@@ -2963,7 +2963,7 @@ snapshots:
       html-rewriter-wasm: 0.4.1
       klaw: 4.1.0
       package-directory: 8.1.0
-      vite: 7.1.11(@types/node@24.7.0)(yaml@2.8.1)
+      vite: 7.1.11(@types/node@24.10.1)(yaml@2.8.1)
 
   '@humanfs/core@0.19.1': {}
 
@@ -3106,13 +3106,13 @@ snapshots:
   '@types/ms@2.1.0':
     optional: true
 
-  '@types/node@24.7.0':
+  '@types/node@24.10.1':
     dependencies:
-      undici-types: 7.14.0
+      undici-types: 7.16.0
 
   '@types/qrcode@1.5.5':
     dependencies:
-      '@types/node': 24.7.0
+      '@types/node': 24.10.1
 
   '@types/react-dom@19.1.7(@types/react@19.1.9)':
     dependencies:
@@ -3130,7 +3130,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 24.7.0
+      '@types/node': 24.10.1
     optional: true
 
   '@typescript-eslint/eslint-plugin@8.47.0(@typescript-eslint/parser@8.47.0(eslint@9.39.1)(typescript@5.8.3))(eslint@9.39.1)(typescript@5.8.3)':
@@ -3226,7 +3226,7 @@ snapshots:
       '@typescript-eslint/types': 8.47.0
       eslint-visitor-keys: 4.2.1
 
-  '@vitejs/plugin-react@5.0.4(vite@7.1.11(@types/node@24.7.0)(yaml@2.8.1))':
+  '@vitejs/plugin-react@5.0.4(vite@7.1.11(@types/node@24.10.1)(yaml@2.8.1))':
     dependencies:
       '@babel/core': 7.28.4
       '@babel/plugin-transform-react-jsx-self': 7.27.1(@babel/core@7.28.4)
@@ -3234,7 +3234,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-beta.38
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 7.1.11(@types/node@24.7.0)(yaml@2.8.1)
+      vite: 7.1.11(@types/node@24.10.1)(yaml@2.8.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -5049,7 +5049,7 @@ snapshots:
 
   ts-type@3.0.1(ts-toolbelt@9.6.0):
     dependencies:
-      '@types/node': 24.7.0
+      '@types/node': 24.10.1
       ts-toolbelt: 9.6.0
       tslib: 2.8.1
       typedarray-dts: 1.0.0
@@ -5081,7 +5081,7 @@ snapshots:
 
   underscore@1.13.7: {}
 
-  undici-types@7.14.0: {}
+  undici-types@7.16.0: {}
 
   undici@7.16.0: {}
 
@@ -5107,7 +5107,7 @@ snapshots:
 
   util-deprecate@1.0.2: {}
 
-  vite@7.1.11(@types/node@24.7.0)(yaml@2.8.1):
+  vite@7.1.11(@types/node@24.10.1)(yaml@2.8.1):
     dependencies:
       esbuild: 0.25.11
       fdir: 6.5.0(picomatch@4.0.3)
@@ -5116,7 +5116,7 @@ snapshots:
       rollup: '@rollup/wasm-node@4.53.2'
       tinyglobby: 0.2.15
     optionalDependencies:
-      '@types/node': 24.7.0
+      '@types/node': 24.10.1
       fsevents: 2.3.3
       yaml: 2.8.1
 
