@@ -1,3 +1,13 @@
+# [0.46.0](https://github.com/lucasfernandodev/dragoid/compare/v0.45.1...v0.46.0) (2025-11-19)
+
+
+### Features
+
+* Change api route /api/share to /api/novel/share ([bab9f92](https://github.com/lucasfernandodev/dragoid/commit/bab9f926fbacb16bc2fe0dedc27c7bfa8c209d6c))
+* Improve api errors messages ([83a0490](https://github.com/lucasfernandodev/dragoid/commit/83a04908b64e2ab789dc2dfade1133a140841d0b))
+
+
+
 ## [0.45.1](https://github.com/lucasfernandodev/dragoid/compare/v0.45.0...v0.45.1) (2025-11-19)
 
 
@@ -37,15 +47,6 @@
 ### Features
 
 * Add export novel option ([02a8368](https://github.com/lucasfernandodev/dragoid/commit/02a8368fd37f4dadda5613acf4ca2a141da3cffb))
-
-
-
-# [0.43.0](https://github.com/lucasfernandodev/dragoid/compare/v0.42.0...v0.43.0) (2025-10-20)
-
-
-### Features
-
-* implement qrcode/link novel share ([1cf67e7](https://github.com/lucasfernandodev/dragoid/commit/1cf67e78dd708f9cede61bb8340f5df484509626))
 
 
 
