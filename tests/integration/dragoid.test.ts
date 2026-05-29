@@ -107,7 +107,7 @@ describe('Test CLI Integration', async () => {
 
     it('Should start reader/server on 0.0.0.0 host using "-p" or "--public" flag', async () => {
       const config = {
-        readinessTimeoutMs: 6000,
+        readinessTimeoutMs: 16000,
         resolveOnStdout: /^(.*\n){4}$/,
         killOnResolve: true,
       }

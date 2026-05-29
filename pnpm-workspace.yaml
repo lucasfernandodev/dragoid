@@ -1,4 +1,17 @@
+allowBuilds:
+  ejs: true
+  esbuild: true
+  puppeteer: true
 onlyBuiltDependencies:
   - ejs
   - esbuild
   - puppeteer
+overrides:
+  'rollup': 'npm:@rollup/wasm-node'
+  'ejs@<3.1.7': '>=3.1.7'
+  'nth-check@<2.0.1': '>=2.0.1'
+  'ejs@<3.1.10': '>=3.1.10'
+  '@eslint/plugin-kit@<0.3.4': '>=0.3.4'
+  'vite@>=7.0.0 <=7.0.6': '>=7.0.7'
+  'axios@<1.12.0': '>=1.12.0'
+  'cheerio': '1.1.2'
