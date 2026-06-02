@@ -28,8 +28,8 @@ importers:
         specifier: ^11.1.1
         version: 11.1.1
       '@fastify/vite':
-        specifier: ^8.4.1
-        version: 8.4.1(fastify@5.8.5)(vite@7.3.3(@types/node@24.12.4)(yaml@2.9.0))
+        specifier: ^9.0.2
+        version: 9.0.2(fastify@5.8.5)(vite@7.3.3(@types/node@24.12.4)(yaml@2.9.0))
       '@radix-ui/react-slot':
         specifier: ^1.2.4
         version: 1.2.4(@types/react@19.2.15)(react@19.2.6)
@@ -477,8 +477,8 @@ packages:
   '@fastify/view@11.1.1':
     resolution: {integrity: sha512-GiHqT3R2eKJgWmy0s45eELTC447a4+lTM2o+8fSWeKwBe9VToeePuHJcKtOEXPrKGSddGO0RsNayULiS3aeHeQ==}
 
-  '@fastify/vite@8.4.1':
-    resolution: {integrity: sha512-phfSE+GPL0hvFOPDRVCIk2y24elodtSKDbTodddQ8dxxNIhLzz90afSSOPTabOu3QiofJyOhJi/IvemXGnVJ3A==}
+  '@fastify/vite@9.0.2':
+    resolution: {integrity: sha512-xt3H3ZpyWoSDx/07/3pVh04upimojxsbU3t3lGhCzIVCZ+jYystnNgdKBFtgMjIIUWts32Ttm8BOtHMXk7L8HQ==}
     peerDependencies:
       fastify: '>=5'
       vite: '>=7.0.7'
@@ -552,8 +552,8 @@ packages:
   '@rolldown/pluginutils@1.0.0-rc.3':
     resolution: {integrity: sha512-eybk3TjzzzV97Dlj5c+XrBFW57eTNhzod66y9HrBlzJ6NsCrWCp/2kaPS3K9wJmurBC0Tdw4yPjXKZqlznim3Q==}
 
-  '@rollup/wasm-node@4.60.4':
-    resolution: {integrity: sha512-j6qaRjdDujJ5utX5l6+8eiWlvMLmBfPMBht8mHP2au3xuzf+4deu6PuCquH5GvDIvIOsWHZhA1UVz/s0FvvgAA==}
+  '@rollup/wasm-node@4.61.0':
+    resolution: {integrity: sha512-UpYM5v/7Quee4u+VWHuNSgSlvIEQMQL7T/jEaOuaNJQ+JJcqSVvcqN6s1cLiDH5DuJMWRqJzvaCnyexp/UGftQ==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -588,9 +588,6 @@ packages:
 
   '@types/epub-gen@0.1.2':
     resolution: {integrity: sha512-uB145eBAhOMsBvEVwyWSgpB3WKLgp1joMS0PjbZtLHyeqEg84K8EG1RnOZhmWD598i4mEAnN3SHyZKU9aWBsmA==}
-
-  '@types/estree@1.0.8':
-    resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
 
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
@@ -2806,7 +2803,7 @@ snapshots:
       fastify-plugin: 5.1.0
       toad-cache: 3.7.1
 
-  '@fastify/vite@8.4.1(fastify@5.8.5)(vite@7.3.3(@types/node@24.12.4)(yaml@2.9.0))':
+  '@fastify/vite@9.0.2(fastify@5.8.5)(vite@7.3.3(@types/node@24.12.4)(yaml@2.9.0))':
     dependencies:
       '@fastify/deepmerge': 3.2.1
       '@fastify/middie': 9.3.2
@@ -2814,7 +2811,6 @@ snapshots:
       fastify: 5.8.5
       fastify-plugin: 5.1.0
       fs-extra: 11.3.5
-      html-rewriter-wasm: 0.4.1
       klaw: 4.1.0
       package-directory: 8.2.0
       vite: 7.3.3(@types/node@24.12.4)(yaml@2.9.0)
@@ -2888,9 +2884,9 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.0-rc.3': {}
 
-  '@rollup/wasm-node@4.60.4':
+  '@rollup/wasm-node@4.61.0':
     dependencies:
-      '@types/estree': 1.0.8
+      '@types/estree': 1.0.9
     optionalDependencies:
       fsevents: 2.3.3
 
@@ -2932,8 +2928,6 @@ snapshots:
   '@types/ejs@3.1.5': {}
 
   '@types/epub-gen@0.1.2': {}
-
-  '@types/estree@1.0.8': {}
 
   '@types/estree@1.0.9': {}
 
@@ -4812,7 +4806,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.4)
       picomatch: 4.0.4
       postcss: 8.5.15
-      rollup: '@rollup/wasm-node@4.60.4'
+      rollup: '@rollup/wasm-node@4.61.0'
       tinyglobby: 0.2.16
     optionalDependencies:
       '@types/node': 24.12.4
