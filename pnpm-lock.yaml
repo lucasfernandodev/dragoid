@@ -137,24 +137,24 @@ importers:
         specifier: ^3.8.3
         version: 3.8.3
       typescript:
-        specifier: ^5.9.3
-        version: 5.9.3
+        specifier: ^6.0.3
+        version: 6.0.3
       typescript-eslint:
         specifier: ^8.59.4
-        version: 8.59.4(eslint@9.39.4)(typescript@5.9.3)
+        version: 8.59.4(eslint@9.39.4)(typescript@6.0.3)
       vite:
         specifier: ^7.3.3
         version: 7.3.3(@types/node@24.12.4)(yaml@2.9.0)
     optionalDependencies:
       puppeteer:
         specifier: ^24.43.1
-        version: 24.43.1(typescript@5.9.3)
+        version: 24.43.1(typescript@6.0.3)
       puppeteer-extra:
         specifier: ^3.3.6
-        version: 3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3))
+        version: 3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3))
       puppeteer-extra-plugin-stealth:
         specifier: ^2.11.2
-        version: 2.11.2(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3)))
+        version: 2.11.2(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3)))
 
 packages:
 
@@ -552,8 +552,8 @@ packages:
   '@rolldown/pluginutils@1.0.0-rc.3':
     resolution: {integrity: sha512-eybk3TjzzzV97Dlj5c+XrBFW57eTNhzod66y9HrBlzJ6NsCrWCp/2kaPS3K9wJmurBC0Tdw4yPjXKZqlznim3Q==}
 
-  '@rollup/wasm-node@4.60.4':
-    resolution: {integrity: sha512-j6qaRjdDujJ5utX5l6+8eiWlvMLmBfPMBht8mHP2au3xuzf+4deu6PuCquH5GvDIvIOsWHZhA1UVz/s0FvvgAA==}
+  '@rollup/wasm-node@4.61.0':
+    resolution: {integrity: sha512-UpYM5v/7Quee4u+VWHuNSgSlvIEQMQL7T/jEaOuaNJQ+JJcqSVvcqN6s1cLiDH5DuJMWRqJzvaCnyexp/UGftQ==}
     engines: {node: '>=18.0.0', npm: '>=8.0.0'}
     hasBin: true
 
@@ -588,9 +588,6 @@ packages:
 
   '@types/epub-gen@0.1.2':
     resolution: {integrity: sha512-uB145eBAhOMsBvEVwyWSgpB3WKLgp1joMS0PjbZtLHyeqEg84K8EG1RnOZhmWD598i4mEAnN3SHyZKU9aWBsmA==}
-
-  '@types/estree@1.0.8':
-    resolution: {integrity: sha512-dWHzHa2WqEXI/O1E9OjrocMTKJl2mSrEolh1Iomrv6U+JuNwaHXsXx9bLu5gG7BUWFIN0skIQJQ/L1rIex4X6w==}
 
   '@types/estree@1.0.9':
     resolution: {integrity: sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==}
@@ -2293,8 +2290,8 @@ packages:
       eslint: ^8.57.0 || ^9.0.0 || ^10.0.0
       typescript: '>=4.8.4 <6.1.0'
 
-  typescript@5.9.3:
-    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+  typescript@6.0.3:
+    resolution: {integrity: sha512-y2TvuxSZPDyQakkFRPZHKFm+KKVqIisdg9/CZwm9ftvKXLP8NRWj38/ODjNbr43SsoXqNuAisEf1GdCxqWcdBw==}
     engines: {node: '>=14.17'}
     hasBin: true
 
@@ -2888,9 +2885,9 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.0-rc.3': {}
 
-  '@rollup/wasm-node@4.60.4':
+  '@rollup/wasm-node@4.61.0':
     dependencies:
-      '@types/estree': 1.0.8
+      '@types/estree': 1.0.9
     optionalDependencies:
       fsevents: 2.3.3
 
@@ -2933,8 +2930,6 @@ snapshots:
 
   '@types/epub-gen@0.1.2': {}
 
-  '@types/estree@1.0.8': {}
-
   '@types/estree@1.0.9': {}
 
   '@types/json-schema@7.0.15': {}
@@ -2969,40 +2964,40 @@ snapshots:
       '@types/node': 24.12.4
     optional: true
 
-  '@typescript-eslint/eslint-plugin@8.59.4(@typescript-eslint/parser@8.59.4(eslint@9.39.4)(typescript@5.9.3))(eslint@9.39.4)(typescript@5.9.3)':
+  '@typescript-eslint/eslint-plugin@8.59.4(@typescript-eslint/parser@8.59.4(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3)':
     dependencies:
       '@eslint-community/regexpp': 4.12.2
-      '@typescript-eslint/parser': 8.59.4(eslint@9.39.4)(typescript@5.9.3)
+      '@typescript-eslint/parser': 8.59.4(eslint@9.39.4)(typescript@6.0.3)
       '@typescript-eslint/scope-manager': 8.59.4
-      '@typescript-eslint/type-utils': 8.59.4(eslint@9.39.4)(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.59.4(eslint@9.39.4)(typescript@5.9.3)
+      '@typescript-eslint/type-utils': 8.59.4(eslint@9.39.4)(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.59.4(eslint@9.39.4)(typescript@6.0.3)
       '@typescript-eslint/visitor-keys': 8.59.4
       eslint: 9.39.4
       ignore: 7.0.5
       natural-compare: 1.4.0
-      ts-api-utils: 2.5.0(typescript@5.9.3)
-      typescript: 5.9.3
+      ts-api-utils: 2.5.0(typescript@6.0.3)
+      typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/parser@8.59.4(eslint@9.39.4)(typescript@5.9.3)':
+  '@typescript-eslint/parser@8.59.4(eslint@9.39.4)(typescript@6.0.3)':
     dependencies:
       '@typescript-eslint/scope-manager': 8.59.4
       '@typescript-eslint/types': 8.59.4
-      '@typescript-eslint/typescript-estree': 8.59.4(typescript@5.9.3)
+      '@typescript-eslint/typescript-estree': 8.59.4(typescript@6.0.3)
       '@typescript-eslint/visitor-keys': 8.59.4
       debug: 4.4.3
       eslint: 9.39.4
-      typescript: 5.9.3
+      typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/project-service@8.59.4(typescript@5.9.3)':
+  '@typescript-eslint/project-service@8.59.4(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.59.4(typescript@5.9.3)
+      '@typescript-eslint/tsconfig-utils': 8.59.4(typescript@6.0.3)
       '@typescript-eslint/types': 8.59.4
       debug: 4.4.3
-      typescript: 5.9.3
+      typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
@@ -3011,47 +3006,47 @@ snapshots:
       '@typescript-eslint/types': 8.59.4
       '@typescript-eslint/visitor-keys': 8.59.4
 
-  '@typescript-eslint/tsconfig-utils@8.59.4(typescript@5.9.3)':
+  '@typescript-eslint/tsconfig-utils@8.59.4(typescript@6.0.3)':
     dependencies:
-      typescript: 5.9.3
+      typescript: 6.0.3
 
-  '@typescript-eslint/type-utils@8.59.4(eslint@9.39.4)(typescript@5.9.3)':
+  '@typescript-eslint/type-utils@8.59.4(eslint@9.39.4)(typescript@6.0.3)':
     dependencies:
       '@typescript-eslint/types': 8.59.4
-      '@typescript-eslint/typescript-estree': 8.59.4(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.59.4(eslint@9.39.4)(typescript@5.9.3)
+      '@typescript-eslint/typescript-estree': 8.59.4(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.59.4(eslint@9.39.4)(typescript@6.0.3)
       debug: 4.4.3
       eslint: 9.39.4
-      ts-api-utils: 2.5.0(typescript@5.9.3)
-      typescript: 5.9.3
+      ts-api-utils: 2.5.0(typescript@6.0.3)
+      typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
   '@typescript-eslint/types@8.59.4': {}
 
-  '@typescript-eslint/typescript-estree@8.59.4(typescript@5.9.3)':
+  '@typescript-eslint/typescript-estree@8.59.4(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/project-service': 8.59.4(typescript@5.9.3)
-      '@typescript-eslint/tsconfig-utils': 8.59.4(typescript@5.9.3)
+      '@typescript-eslint/project-service': 8.59.4(typescript@6.0.3)
+      '@typescript-eslint/tsconfig-utils': 8.59.4(typescript@6.0.3)
       '@typescript-eslint/types': 8.59.4
       '@typescript-eslint/visitor-keys': 8.59.4
       debug: 4.4.3
       minimatch: 10.2.5
       semver: 7.8.1
       tinyglobby: 0.2.16
-      ts-api-utils: 2.5.0(typescript@5.9.3)
-      typescript: 5.9.3
+      ts-api-utils: 2.5.0(typescript@6.0.3)
+      typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
-  '@typescript-eslint/utils@8.59.4(eslint@9.39.4)(typescript@5.9.3)':
+  '@typescript-eslint/utils@8.59.4(eslint@9.39.4)(typescript@6.0.3)':
     dependencies:
       '@eslint-community/eslint-utils': 4.9.1(eslint@9.39.4)
       '@typescript-eslint/scope-manager': 8.59.4
       '@typescript-eslint/types': 8.59.4
-      '@typescript-eslint/typescript-estree': 8.59.4(typescript@5.9.3)
+      '@typescript-eslint/typescript-estree': 8.59.4(typescript@6.0.3)
       eslint: 9.39.4
-      typescript: 5.9.3
+      typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
@@ -3372,14 +3367,14 @@ snapshots:
 
   core-util-is@1.0.3: {}
 
-  cosmiconfig@9.0.1(typescript@5.9.3):
+  cosmiconfig@9.0.1(typescript@6.0.3):
     dependencies:
       env-paths: 2.2.1
       import-fresh: 3.3.1
       js-yaml: 4.1.1
       parse-json: 5.2.0
     optionalDependencies:
-      typescript: 5.9.3
+      typescript: 6.0.3
     optional: true
 
   crc32-stream@3.0.1:
@@ -4367,69 +4362,69 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  puppeteer-extra-plugin-stealth@2.11.2(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3))):
+  puppeteer-extra-plugin-stealth@2.11.2(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3))):
     dependencies:
       debug: 4.4.3
-      puppeteer-extra-plugin: 3.2.3(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3)))
-      puppeteer-extra-plugin-user-preferences: 2.4.1(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3)))
+      puppeteer-extra-plugin: 3.2.3(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3)))
+      puppeteer-extra-plugin-user-preferences: 2.4.1(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3)))
     optionalDependencies:
-      puppeteer-extra: 3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3))
+      puppeteer-extra: 3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3))
     transitivePeerDependencies:
       - supports-color
     optional: true
 
-  puppeteer-extra-plugin-user-data-dir@2.4.1(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3))):
+  puppeteer-extra-plugin-user-data-dir@2.4.1(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3))):
     dependencies:
       debug: 4.4.3
       fs-extra: 10.1.0
-      puppeteer-extra-plugin: 3.2.3(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3)))
+      puppeteer-extra-plugin: 3.2.3(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3)))
       rimraf: 3.0.2
     optionalDependencies:
-      puppeteer-extra: 3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3))
+      puppeteer-extra: 3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3))
     transitivePeerDependencies:
       - supports-color
     optional: true
 
-  puppeteer-extra-plugin-user-preferences@2.4.1(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3))):
+  puppeteer-extra-plugin-user-preferences@2.4.1(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3))):
     dependencies:
       debug: 4.4.3
       deepmerge: 4.3.1
-      puppeteer-extra-plugin: 3.2.3(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3)))
-      puppeteer-extra-plugin-user-data-dir: 2.4.1(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3)))
+      puppeteer-extra-plugin: 3.2.3(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3)))
+      puppeteer-extra-plugin-user-data-dir: 2.4.1(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3)))
     optionalDependencies:
-      puppeteer-extra: 3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3))
+      puppeteer-extra: 3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3))
     transitivePeerDependencies:
       - supports-color
     optional: true
 
-  puppeteer-extra-plugin@3.2.3(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3))):
+  puppeteer-extra-plugin@3.2.3(puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3))):
     dependencies:
       '@types/debug': 4.1.13
       debug: 4.4.3
       merge-deep: 3.0.3
     optionalDependencies:
-      puppeteer-extra: 3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3))
+      puppeteer-extra: 3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3))
     transitivePeerDependencies:
       - supports-color
     optional: true
 
-  puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@5.9.3)):
+  puppeteer-extra@3.3.6(puppeteer-core@24.43.1)(puppeteer@24.43.1(typescript@6.0.3)):
     dependencies:
       '@types/debug': 4.1.13
       debug: 4.4.3
       deepmerge: 4.3.1
     optionalDependencies:
-      puppeteer: 24.43.1(typescript@5.9.3)
+      puppeteer: 24.43.1(typescript@6.0.3)
       puppeteer-core: 24.43.1
     transitivePeerDependencies:
       - supports-color
     optional: true
 
-  puppeteer@24.43.1(typescript@5.9.3):
+  puppeteer@24.43.1(typescript@6.0.3):
     dependencies:
       '@puppeteer/browsers': 2.13.2
       chromium-bidi: 14.0.0(devtools-protocol@0.0.1608973)
-      cosmiconfig: 9.0.1(typescript@5.9.3)
+      cosmiconfig: 9.0.1(typescript@6.0.3)
       devtools-protocol: 0.0.1608973
       puppeteer-core: 24.43.1
       typed-query-selector: 2.12.2
@@ -4740,9 +4735,9 @@ snapshots:
 
   toidentifier@1.0.1: {}
 
-  ts-api-utils@2.5.0(typescript@5.9.3):
+  ts-api-utils@2.5.0(typescript@6.0.3):
     dependencies:
-      typescript: 5.9.3
+      typescript: 6.0.3
 
   ts-toolbelt@9.6.0: {}
 
@@ -4765,18 +4760,18 @@ snapshots:
 
   typedarray-dts@1.0.0: {}
 
-  typescript-eslint@8.59.4(eslint@9.39.4)(typescript@5.9.3):
+  typescript-eslint@8.59.4(eslint@9.39.4)(typescript@6.0.3):
     dependencies:
-      '@typescript-eslint/eslint-plugin': 8.59.4(@typescript-eslint/parser@8.59.4(eslint@9.39.4)(typescript@5.9.3))(eslint@9.39.4)(typescript@5.9.3)
-      '@typescript-eslint/parser': 8.59.4(eslint@9.39.4)(typescript@5.9.3)
-      '@typescript-eslint/typescript-estree': 8.59.4(typescript@5.9.3)
-      '@typescript-eslint/utils': 8.59.4(eslint@9.39.4)(typescript@5.9.3)
+      '@typescript-eslint/eslint-plugin': 8.59.4(@typescript-eslint/parser@8.59.4(eslint@9.39.4)(typescript@6.0.3))(eslint@9.39.4)(typescript@6.0.3)
+      '@typescript-eslint/parser': 8.59.4(eslint@9.39.4)(typescript@6.0.3)
+      '@typescript-eslint/typescript-estree': 8.59.4(typescript@6.0.3)
+      '@typescript-eslint/utils': 8.59.4(eslint@9.39.4)(typescript@6.0.3)
       eslint: 9.39.4
-      typescript: 5.9.3
+      typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
 
-  typescript@5.9.3: {}
+  typescript@6.0.3: {}
 
   underscore@1.13.8: {}
 
@@ -4812,7 +4807,7 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.4)
       picomatch: 4.0.4
       postcss: 8.5.15
-      rollup: '@rollup/wasm-node@4.60.4'
+      rollup: '@rollup/wasm-node@4.61.0'
       tinyglobby: 0.2.16
     optionalDependencies:
       '@types/node': 24.12.4
