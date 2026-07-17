@@ -1,28 +1,16 @@
-import path from 'path'
-import { fileURLToPath } from 'url'
+import path from 'node:path'
 import Vips from 'wasm-vips'
 import { ApplicationError } from '../errors/application-error.ts'
-import { isProd } from '../core/configurations.ts'
+import { createRequire } from 'node:module'
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+const require = createRequire(import.meta.url)
+const entry = require.resolve('wasm-vips')
+const libDir = path.dirname(entry)
 
 export const vipsInstance = async () => {
   try {
     const vips = await Vips({
-      locateFile: (filename) => {
-        if (isProd) {
-          return path.join(
-            __dirname,
-            `../node_modules/wasm-vips/lib/${filename}`
-          )
-        }
-
-        return path.join(
-          __dirname,
-          `../../node_modules/wasm-vips/lib/${filename}`
-        )
-      },
+      locateFile: (filename) => path.join(libDir, filename),
     })
     return vips
   } catch (error) {
