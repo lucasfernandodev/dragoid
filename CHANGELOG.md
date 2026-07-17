@@ -1,3 +1,18 @@
+# [0.48.0](https://github.com/lucasfernandodev/dragoid/compare/v0.47.0...v0.48.0) (2026-07-17)
+
+
+### Bug Fixes
+
+* **vips:** resolve dynamic paths for wasm-vips to support pnpm ([ddfd4ae](https://github.com/lucasfernandodev/dragoid/commit/ddfd4ae3a0130b55037ca3bd412cedf3bb5646cf))
+
+
+### Features
+
+* **puppeteer:** add cloudflare page detection ([74630da](https://github.com/lucasfernandodev/dragoid/commit/74630da6386574b57b372fd30feb48074174080b))
+* **puppeteer:** add cloudflare page detection ([fafd4c9](https://github.com/lucasfernandodev/dragoid/commit/fafd4c9072631ae5f595c76696a5eaa67d5efc87))
+
+
+
 # [0.47.0](https://github.com/lucasfernandodev/dragoid/compare/v0.46.0...v0.47.0) (2026-07-17)
 
 
@@ -38,15 +53,6 @@
 
 * Add rate-limit for download-novel route ([3ed45b8](https://github.com/lucasfernandodev/dragoid/commit/3ed45b8722ef11ced247e9f8f565c17618961f96))
 * Add req/res schema validation for all routes ([e1d2128](https://github.com/lucasfernandodev/dragoid/commit/e1d21286085c97429e5c670abbee77503c560de3))
-
-
-
-## [0.44.1](https://github.com/lucasfernandodev/dragoid/compare/v0.44.0...v0.44.1) (2025-10-27)
-
-
-### Bug Fixes
-
-* **reader:** Add function to resolve '~' to homedir ([4f22433](https://github.com/lucasfernandodev/dragoid/commit/4f22433f96bb40aeff6a18e1e5b2f0719298c7c0))
 
 
 
