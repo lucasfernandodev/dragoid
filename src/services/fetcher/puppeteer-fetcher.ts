@@ -218,7 +218,7 @@ export class PuppeteerFetcher implements IFetcherPuppeteer {
 
       logger.warning(
         `Cloudflare challenge detected (attempt ${attempt}/${MAX_ATTEMPTS}). ` +
-        `Restarting browser and waiting ${waitTime / 60000} minutes before retrying...`
+          `Restarting browser and waiting ${waitTime / 60000} minutes before retrying...`
       )
 
       await this.closeBrowser()
