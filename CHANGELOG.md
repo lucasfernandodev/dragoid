@@ -1,3 +1,12 @@
+# [0.47.0](https://github.com/lucasfernandodev/dragoid/compare/v0.46.0...v0.47.0) (2026-07-17)
+
+
+### Features
+
+* **deps:** update project dependencies ([779d922](https://github.com/lucasfernandodev/dragoid/commit/779d92211664c0153841713b9229a0ddfb98e07c))
+
+
+
 # [0.46.0](https://github.com/lucasfernandodev/dragoid/compare/v0.45.1...v0.46.0) (2025-11-19)
 
 
@@ -38,15 +47,6 @@
 ### Bug Fixes
 
 * **reader:** Add function to resolve '~' to homedir ([4f22433](https://github.com/lucasfernandodev/dragoid/commit/4f22433f96bb40aeff6a18e1e5b2f0719298c7c0))
-
-
-
-# [0.44.0](https://github.com/lucasfernandodev/dragoid/compare/v0.43.0...v0.44.0) (2025-10-23)
-
-
-### Features
-
-* Add export novel option ([02a8368](https://github.com/lucasfernandodev/dragoid/commit/02a8368fd37f4dadda5613acf4ca2a141da3cffb))
 
 
 
