@@ -50,7 +50,7 @@ export class GenerateEpubService {
   private silenceExecutable = async (options: EpubOptions, target: string) => {
     return new Promise((resolve, reject) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      let epub: any = null
+      let epub: any
       const preserveNormalLog = console.log
       const preserveErrorLog = console.error
 
