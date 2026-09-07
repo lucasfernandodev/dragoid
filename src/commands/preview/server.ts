@@ -59,7 +59,7 @@ export class Server {
       root: !isProd ? devPath : __dirname, // where to look for vite.config.js
       dev: !isProd,
       spa: true,
-      distDir: __dirname,
+      ...(isProd ? { distDir: 'bin' } : {}),
     })
 
     this.fastify.get('/', (_, reply) => {
