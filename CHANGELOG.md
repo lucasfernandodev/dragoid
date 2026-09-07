@@ -1,3 +1,12 @@
+## [0.48.1](https://github.com/lucasfernandodev/dragoid/compare/v0.48.0...v0.48.1) (2026-09-07)
+
+
+### Bug Fixes
+
+* **fastify-vite:** Fixing production package vite.config.json not found ([02908b6](https://github.com/lucasfernandodev/dragoid/commit/02908b62a8a5cdda2839c03ddd5c9738d6f43190))
+
+
+
 # [0.48.0](https://github.com/lucasfernandodev/dragoid/compare/v0.47.0...v0.48.0) (2026-07-17)
 
 
@@ -38,21 +47,6 @@
 ### Bug Fixes
 
 * update security issue ([1a9e6d3](https://github.com/lucasfernandodev/dragoid/commit/1a9e6d391278ba0352d6f941cb259c6503f6ef21))
-
-
-
-# [0.45.0](https://github.com/lucasfernandodev/dragoid/compare/v0.44.1...v0.45.0) (2025-11-13)
-
-
-### Bug Fixes
-
-* Fixing modal export/share wrong render child ([55a4a67](https://github.com/lucasfernandodev/dragoid/commit/55a4a6766ae1b32755655a361c81d4f9edfd8f9d))
-
-
-### Features
-
-* Add rate-limit for download-novel route ([3ed45b8](https://github.com/lucasfernandodev/dragoid/commit/3ed45b8722ef11ced247e9f8f565c17618961f96))
-* Add req/res schema validation for all routes ([e1d2128](https://github.com/lucasfernandodev/dragoid/commit/e1d21286085c97429e5c670abbee77503c560de3))
 
 
 
